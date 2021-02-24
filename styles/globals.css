@@ -14,3 +14,13 @@ a {
 * {
   box-sizing: border-box;
 }
+
+header {
+    height: 40px;
+    background: #0070f3;
+}
+
+footer {
+    height: 40px;
+    background: #eaeaea;
+}

@@ -10,7 +10,7 @@ export default function Home() {
             </Head>
             <h1>index</h1>
             <Link href={"/a"}>
-                <a>a</a>
+                <a>A</a>
             </Link>
         </div>
     )

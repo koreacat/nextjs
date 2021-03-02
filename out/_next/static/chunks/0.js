@@ -23,7 +23,7 @@
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
+        // A module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -38,7 +38,7 @@
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // StaticGeneration boundary can become ineligible if its exports are incompatible
+                // A boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to

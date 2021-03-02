@@ -634,7 +634,7 @@ var assign=Object.assign.bind(Object);module.exports=assign;module.exports.defau
           return __webpack_require__(/*! ./pages/index.tsx */ "./pages/index.tsx");
         }
       ]);
-    
+
 
 /***/ }),
 
@@ -924,7 +924,7 @@ $RefreshReg$(_c, "Link");
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -939,7 +939,7 @@ $RefreshReg$(_c, "Link");
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -1012,7 +1012,7 @@ exports.normalizePathTrailingSlash = normalizePathTrailingSlash;
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -1027,7 +1027,7 @@ exports.normalizePathTrailingSlash = normalizePathTrailingSlash;
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -1104,7 +1104,7 @@ exports.cancelIdleCallback = cancelIdleCallback;
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -1119,7 +1119,7 @@ exports.cancelIdleCallback = cancelIdleCallback;
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -1495,7 +1495,7 @@ exports["default"] = _default;
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -1510,7 +1510,7 @@ exports["default"] = _default;
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -1737,7 +1737,7 @@ function makePublicRouterInstance(router) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -1752,7 +1752,7 @@ function makePublicRouterInstance(router) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -1907,7 +1907,7 @@ function createObserver(options) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -1922,7 +1922,7 @@ function createObserver(options) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -2004,7 +2004,7 @@ function withRouter(ComposedComponent) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -2019,7 +2019,7 @@ function withRouter(ComposedComponent) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -2096,7 +2096,7 @@ module.exports = function(originalModule) {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __nccwpck_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -2109,7 +2109,7 @@ module.exports = function(originalModule) {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
@@ -2118,14 +2118,14 @@ module.exports = function(originalModule) {
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat */
-/******/ 	
+/******/
 /******/ 	__nccwpck_require__.ab = __dirname + "/";/************************************************************************/
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
@@ -2181,7 +2181,7 @@ module.exports = function(module) {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __nccwpck_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -2194,7 +2194,7 @@ module.exports = function(module) {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
@@ -2203,14 +2203,14 @@ module.exports = function(module) {
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat */
-/******/ 	
+/******/
 /******/ 	__nccwpck_require__.ab = __dirname + "/";/************************************************************************/
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
@@ -2264,7 +2264,7 @@ if (true) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -2279,7 +2279,7 @@ if (true) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -2370,7 +2370,7 @@ _s(useAmp, "gDsCjeeItUuvgOWf1v4qoK9RF6k=");
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -2385,7 +2385,7 @@ _s(useAmp, "gDsCjeeItUuvgOWf1v4qoK9RF6k=");
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -2458,7 +2458,7 @@ if (true) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -2473,7 +2473,7 @@ if (true) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -2760,7 +2760,7 @@ $RefreshReg$(_c, "Head");
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -2775,7 +2775,7 @@ $RefreshReg$(_c, "Head");
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -2852,7 +2852,7 @@ function normalizeLocalePath(pathname, locales) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -2867,7 +2867,7 @@ function normalizeLocalePath(pathname, locales) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -2915,7 +2915,7 @@ MIT License
 Copyright (c) Jason Miller (https://jasonformat.com/)
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR StaticGeneration PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 // This file is based on https://github.com/developit/mitt/blob/v1.1.3/src/index.js
 // It's been edited for the needs of this script
@@ -2960,7 +2960,7 @@ function mitt() {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -2975,7 +2975,7 @@ function mitt() {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -3048,7 +3048,7 @@ if (true) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -3063,7 +3063,7 @@ if (true) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -4590,7 +4590,7 @@ Router.events = (0, _mitt["default"])();
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -4605,7 +4605,7 @@ Router.events = (0, _mitt["default"])();
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -4717,7 +4717,7 @@ function _interopRequireWildcard(obj) {
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
 // OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// MERCHANTABILITY, FITNESS FOR StaticGeneration PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
 // NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
@@ -4780,7 +4780,7 @@ function formatUrl(urlObj) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -4795,7 +4795,7 @@ function formatUrl(urlObj) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -4859,7 +4859,7 @@ function getAssetPathFromRoute(route) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -4874,7 +4874,7 @@ function getAssetPathFromRoute(route) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -4937,7 +4937,7 @@ function isDynamicRoute(route) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -4952,7 +4952,7 @@ function isDynamicRoute(route) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -5045,7 +5045,7 @@ function parseRelativeUrl(url, base) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -5060,7 +5060,7 @@ function parseRelativeUrl(url, base) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -5178,7 +5178,7 @@ function assign(target) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -5193,7 +5193,7 @@ function assign(target) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -5252,7 +5252,7 @@ function resolveRewrites() {}
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -5267,7 +5267,7 @@ function resolveRewrites() {}
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -5359,7 +5359,7 @@ function getRouteMatcher(routeRegex) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -5374,7 +5374,7 @@ function getRouteMatcher(routeRegex) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -5487,7 +5487,7 @@ function getRouteRegex(normalizedRoute) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -5502,7 +5502,7 @@ function getRouteRegex(normalizedRoute) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -5646,7 +5646,7 @@ exports["default"] = _default;
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -5661,7 +5661,7 @@ exports["default"] = _default;
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -5882,7 +5882,7 @@ exports.ST = ST;
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -5897,7 +5897,7 @@ exports.ST = ST;
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -6915,7 +6915,7 @@ function defineRefPropWarningGetter(props, displayName) {
  * @param {*} key
  * @param {string|object} ref
  * @param {*} owner
- * @param {*} self A *temporary* helper to detect places where `this` is
+ * @param {*} self StaticGeneration *temporary* helper to detect places where `this` is
  * different from the `owner` when React.createElement is called, so that we
  * can warn. We want to get rid of owner and replace string `ref`s with arrow
  * functions, and as long as `this` and owner are the same, there will be no
@@ -8035,7 +8035,7 @@ function warnIfStringRefCannotBeAutoConverted(config) {
  * @param {*} key
  * @param {string|object} ref
  * @param {*} owner
- * @param {*} self A *temporary* helper to detect places where `this` is
+ * @param {*} self StaticGeneration *temporary* helper to detect places where `this` is
  * different from the `owner` when React.createElement is called, so that we
  * can warn. We want to get rid of owner and replace string `ref`s with arrow
  * functions, and as long as `this` and owner are the same, there will be no
@@ -8312,7 +8312,7 @@ function escapeUserProvidedKey(text) {
 /**
  * Generate a key string that identifies a element within a set.
  *
- * @param {*} element A element that could contain a manual key.
+ * @param {*} element StaticGeneration element that could contain a manual key.
  * @param {number} index Index that is used if a manual key is not provided.
  * @return {string}
  */
@@ -8580,7 +8580,7 @@ function createContext(defaultValue, calculateChangedBits) {
   var hasWarnedAboutDisplayNameOnConsumer = false;
 
   {
-    // A separate object, but proxies back to the original context object for
+    // StaticGeneration separate object, but proxies back to the original context object for
     // backwards compatibility. It has a different $$typeof, so we can properly
     // warn for the incorrect usage of Context as a Consumer.
     var Consumer = {
@@ -10103,7 +10103,7 @@ var runtime = (function (exports) {
   function maybeInvokeDelegate(delegate, context) {
     var method = delegate.iterator[context.method];
     if (method === undefined) {
-      // A .throw or .return when the delegate iterator has no .throw
+      // StaticGeneration .throw or .return when the delegate iterator has no .throw
       // method always terminates the yield* loop.
       context.delegate = null;
 
@@ -10185,7 +10185,7 @@ var runtime = (function (exports) {
 
   define(Gp, toStringTagSymbol, "Generator");
 
-  // A Generator should always return itself as the iterator object when the
+  // StaticGeneration Generator should always return itself as the iterator object when the
   // @@iterator function is called on it. Some browsers' implementations of the
   // iterator prototype chain incorrectly implement this, causing the Generator
   // object to not be returned from this call. This ensures that doesn't happen.
@@ -10607,7 +10607,7 @@ $RefreshReg$(_c, "Home");
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -10622,7 +10622,7 @@ $RefreshReg$(_c, "Home");
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to

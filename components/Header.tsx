@@ -8,11 +8,6 @@ export default function Header() {
 					<a>index</a>
 				</div>
 			</Link>
-			<Link href={"/a"}>
-				<div>
-					<a>a</a>
-				</div>
-			</Link>
         </header>
     )
 }

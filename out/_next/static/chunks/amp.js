@@ -235,7 +235,7 @@ function _tryApplyUpdates() {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -250,7 +250,7 @@ function _tryApplyUpdates() {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -384,7 +384,7 @@ $RefreshReg$(_c, "EventSourceWrapper");
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -399,7 +399,7 @@ $RefreshReg$(_c, "EventSourceWrapper");
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -816,7 +816,7 @@ XHRWrapper.prototype.send = function () {
 };
 
 function toLowerCase(name) {
-  return name.replace(/[A-Z]/g, function (c) {
+  return name.replace(/[StaticGeneration-Z]/g, function (c) {
     return String.fromCharCode(c.charCodeAt(0) + 0x20);
   });
 }
@@ -1418,7 +1418,7 @@ $RefreshReg$(_c11, "EventSourcePolyfill");
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -1433,7 +1433,7 @@ $RefreshReg$(_c11, "EventSourcePolyfill");
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -1505,7 +1505,7 @@ function displayContent(callback) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -1520,7 +1520,7 @@ function displayContent(callback) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -1628,7 +1628,7 @@ function setupPing(assetPrefix, pathnameFn, retry) {
         // This cannot happen in MainTemplate because the exports mismatch between
         // templating and execution.
         self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
+        // StaticGeneration module can be accepted automatically based on its exports, e.g. when
         // it is a Refresh Boundary.
         if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
             // Save the previous exports on update so we can compare the boundary
@@ -1643,7 +1643,7 @@ function setupPing(assetPrefix, pathnameFn, retry) {
             // Refresh Boundary, letting us know we need to check for invalidation or
             // enqueue an update.
             if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
+                // StaticGeneration boundary can become ineligible if its exports are incompatible
                 // with the previous exports.
                 //
                 // For example, if you add/remove/change exports, we'll want to
@@ -1718,7 +1718,7 @@ module.exports = function(module) {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __nccwpck_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -1731,7 +1731,7 @@ module.exports = function(module) {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
@@ -1740,14 +1740,14 @@ module.exports = function(module) {
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat */
-/******/ 	
+/******/
 /******/ 	__nccwpck_require__.ab = __dirname + "/";/************************************************************************/
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
@@ -2093,7 +2093,7 @@ var runtime = (function (exports) {
   function maybeInvokeDelegate(delegate, context) {
     var method = delegate.iterator[context.method];
     if (method === undefined) {
-      // A .throw or .return when the delegate iterator has no .throw
+      // StaticGeneration .throw or .return when the delegate iterator has no .throw
       // method always terminates the yield* loop.
       context.delegate = null;
 
@@ -2175,7 +2175,7 @@ var runtime = (function (exports) {
 
   define(Gp, toStringTagSymbol, "Generator");
 
-  // A Generator should always return itself as the iterator object when the
+  // StaticGeneration Generator should always return itself as the iterator object when the
   // @@iterator function is called on it. Some browsers' implementations of the
   // iterator prototype chain incorrectly implement this, causing the Generator
   // object to not be returned from this call. This ensures that doesn't happen.

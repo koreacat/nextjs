@@ -9,9 +9,18 @@ export default function Home() {
                 <title>index</title>
             </Head>
             <h1>index</h1>
-            <Link href={"/a"}>
-                <a>A</a>
-            </Link>
+			<ul>
+				<li>
+					<Link href={"/staticGeneration"}>
+						<a>Static Generation</a>
+					</Link>
+				</li>
+				<li>
+					<Link href={"/mobx"}>
+						<a>mobx</a>
+					</Link>
+				</li>
+			</ul>
         </div>
     )
 }

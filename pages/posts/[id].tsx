@@ -10,7 +10,7 @@ export default function Posts({ post, posts }) {
 	return (
 		<div>
 			<Head>
-				<title>{post.id}</title>
+				<title>post {post.id}</title>
 			</Head>
 			<h1>post {post.id}</h1>
 			<div>

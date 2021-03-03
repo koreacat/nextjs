@@ -1,6 +1,11 @@
 import Link from "next/link";
+import React from "react";
 
-export default function Header() {
+interface HeaderProps {
+
+}
+
+const Header: React.FC<HeaderProps> = () => {
     return (
         <header>
 			<Link href={"/"}>
@@ -10,4 +15,6 @@ export default function Header() {
 			</Link>
         </header>
     )
-}
+};
+
+export default Header;

@@ -24,8 +24,10 @@ $footerHeight: 70px;
 }
 
 .contents {
+    display: flex;
     width: 100%;
     height: 200vh;
+    padding: 10px 40px;
 }
 
 
@@ -50,4 +52,44 @@ footer {
     width: 100%;
     height: $footerHeight;
     background: pink;
+}
+
+
+@mixin postBtn {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    transform: rotate(45deg);
+    transition: right 0.2s ease-in-out, left 0.2s ease-in-out;
+    cursor: pointer;
+    
+    &:focus {
+        outline:0;
+    }
+}
+
+.prevPostBtn {
+    @include postBtn;
+    left: 30px;
+    top: 50vh;
+    border-left: 1px solid #000;
+    border-bottom: 1px solid #000;
+    
+    &:hover {
+        left: 20px;
+    }
+}
+
+.nextPostBtn {
+    @include postBtn;
+    right: 30px;
+    top: 50vh;
+    border-right: 1px solid #000;
+    border-top: 1px solid #000;
+    
+    &:hover {
+        right: 20px;
+    }
 }

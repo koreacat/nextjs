@@ -1,6 +1,6 @@
-import Header from "./Header";
 import {useEffect, useState} from "react";
 import classNames from 'classnames/bind';
+import Header from "../header/Header";
 
 export default function FixedHeader() {
 	let lastScrollTop = 0;

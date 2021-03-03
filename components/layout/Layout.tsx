@@ -1,7 +1,7 @@
-import Header from "./Header";
-import Footer from "./Footer";
-import Contents from "./Contents";
-import FixedHeader from "./FixedHeader";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
+import Contents from "../contents/Contents";
+import FixedHeader from "../fixedHeader/FixedHeader";
 
 export default function Layout(props) {
     return (

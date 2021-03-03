@@ -20,6 +20,11 @@ export default function Home() {
 						<a>mobx</a>
 					</Link>
 				</li>
+				<li>
+					<Link href={"/posts/0"}>
+						<a>getStaticPaths</a>
+					</Link>
+				</li>
 			</ul>
         </div>
     )

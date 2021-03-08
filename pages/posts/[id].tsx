@@ -1,5 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
+import Layout from "../../components/layout/Layout";
+
+/**
+ *
+ */
 
 export class Post {
 	id: number;
@@ -8,7 +13,7 @@ export class Post {
 
 export default function Posts({ post, posts }) {
 	return (
-		<div>
+		<Layout>
 			<Head>
 				<title>post {post.id}</title>
 			</Head>
@@ -30,7 +35,7 @@ export default function Posts({ post, posts }) {
                     <button className={'nextPostBtn'}></button>
                 </Link>
 			}
-		</div>
+		</Layout>
 	)
 }
 

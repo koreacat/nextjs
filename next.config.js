@@ -6,4 +6,8 @@ module.exports = {
     sassOptions: {
         includePaths: [path.join(__dirname, 'styles')],
     },
+    env: {
+        USER: process.env.USER,
+        PASS: process.env.PASS
+    }
 };

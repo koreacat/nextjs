@@ -1,5 +1,12 @@
 import Head from "next/head"
 import {useEffect, useState} from "react";
+import axios from "axios";
+import Layout from "../components/layout/Layout";
+
+/**
+ * static generation 테스트
+ * getStaticProps 메서드로 static generation 구현
+ */
 
 export class Employee {
 	id: string;
@@ -39,13 +46,13 @@ function StaticGeneration({ data }: StaticGenerationProps) {
 
 	useEffect(() => {
 		(async () => {
-			const rs: Employee = await getData();
-			setEmployee02(new Employee(rs.id, rs.name));
+			const rs = await getData();
+			setEmployee02(new Employee(rs.data.id, rs.data.name));
 		})();
 	}, []);
 
 	return (
-        <div>
+        <Layout>
             <Head>
                 <title>Static Generation</title>
                 <meta name="Static Generation" content="Static Generation" />
@@ -62,7 +69,7 @@ function StaticGeneration({ data }: StaticGenerationProps) {
 				id={employee02.id}
 				name={employee02.name}
 			/>
-        </div>
+        </Layout>
     )
 }
 
@@ -77,8 +84,9 @@ export async function getStaticProps() {
 	}
 }
 
-export async function getData(): Promise<Employee> {
-	return await employ(new Employee('kj9966', '바블'), 2000);
+export function getData() {
+	return axios.get<Employee>(`http://localhost:8080/api/employ`);
+	// return await employ(new Employee('kj9966', '바블'), 2000);
 }
 
 export async function employ(employee: Employee, timeout: number) {

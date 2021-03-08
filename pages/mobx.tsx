@@ -3,7 +3,7 @@ import Head from "next/head";
 import {MobXProviderContext, observer} from "mobx-react";
 import MobxStore from "../store/mobxStore";
 import { Provider } from "mobx-react";
-
+import Layout from "../components/layout/Layout";
 
 const AnimalInfo = observer(({data}) => {
 	const { mobxStore } = React.useContext(
@@ -24,7 +24,7 @@ const mobxStore = new MobxStore();
 const Mobx = ({data}) => {
 
 	return (
-		<div>
+		<Layout>
 			<Head>
 				<title>mobx</title>
 				<meta name="mobx" content="mobx" />
@@ -33,7 +33,7 @@ const Mobx = ({data}) => {
 			<Provider mobxStore={mobxStore}>
 				<AnimalInfo data={data}/>
 			</Provider>
-		</div>
+		</Layout>
 	)
 };
 

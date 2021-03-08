@@ -1,10 +1,11 @@
 import Head from "next/head"
 import Link from "next/link";
+import Layout from "../components/layout/Layout";
 
 export default function Home() {
 
     return (
-        <div>
+        <Layout>
             <Head>
                 <title>index</title>
             </Head>
@@ -25,7 +26,17 @@ export default function Home() {
 						<a>getStaticPaths</a>
 					</Link>
 				</li>
+				<li>
+					<Link href={"/catImage"}>
+						<a>Cat Image</a>
+					</Link>
+				</li>
+				<li>
+					<Link href={"/environmentVariables"}>
+						<a>environmentVariables</a>
+					</Link>
+				</li>
 			</ul>
-        </div>
+        </Layout>
     )
 }

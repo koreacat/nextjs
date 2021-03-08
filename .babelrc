@@ -1,6 +1,5 @@
 {
 	"presets": [
-		["@babel/typescript"],
 		["next/babel"]
 	],
 	"plugins": [

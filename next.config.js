@@ -6,6 +6,9 @@ module.exports = {
     sassOptions: {
         includePaths: [path.join(__dirname, 'styles')],
     },
+    images: {
+        loader: 'imgix'
+    },
     env: {
         USER: process.env.USER,
         PASS: process.env.PASS

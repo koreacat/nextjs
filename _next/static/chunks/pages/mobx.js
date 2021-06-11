@@ -3,7 +3,7 @@ _N_E =
 
 /***/ "./components/contents/Contents.tsx":
 /*!******************************************!*\
-  !*** ./components/contents/Contents.tsx ***!
+  !*** ./components/contents/Index.tsx ***!
   \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);
 
-var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\contents\\Contents.tsx";
+var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\contents\\index.tsx";
 function Contents(props) {
   return /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
     className: "contents",
@@ -29,7 +29,7 @@ _c = Contents;
 
 var _c;
 
-$RefreshReg$(_c, "Contents");
+$RefreshReg$(_c, "Index");
 
 ;
     var _a, _b;
@@ -92,7 +92,7 @@ $RefreshReg$(_c, "Contents");
 
 /***/ "./components/fixedHeader/FixedHeader.tsx":
 /*!************************************************!*\
-  !*** ./components/fixedHeader/FixedHeader.tsx ***!
+  !*** ./components/fixedHeader/Index.tsx ***!
   \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -106,10 +106,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames/bind */ "./node_modules/classnames/bind.js");
 /* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _header_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../header/Header */ "./components/header/Header.tsx");
+/* harmony import */ var _header_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../header/Index */ "./components/header/Header.tsx");
 
 
-var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\fixedHeader\\FixedHeader.tsx",
+var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\fixedHeader\\Index.tsx",
     _s = $RefreshSig$();
 
 
@@ -163,7 +163,7 @@ _c = FixedHeader;
 
 var _c;
 
-$RefreshReg$(_c, "FixedHeader");
+$RefreshReg$(_c, "Index");
 
 ;
     var _a, _b;
@@ -226,7 +226,7 @@ $RefreshReg$(_c, "FixedHeader");
 
 /***/ "./components/footer/Footer.tsx":
 /*!**************************************!*\
-  !*** ./components/footer/Footer.tsx ***!
+  !*** ./components/footer/index.tsx ***!
   \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -239,7 +239,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 
-var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\footer\\Footer.tsx";
+var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\footer\\Index.tsx";
 
 function Footer() {
   return /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("footer", {
@@ -273,7 +273,7 @@ _c = Footer;
 
 var _c;
 
-$RefreshReg$(_c, "Footer");
+$RefreshReg$(_c, "Index");
 
 ;
     var _a, _b;
@@ -336,7 +336,7 @@ $RefreshReg$(_c, "Footer");
 
 /***/ "./components/header/Header.tsx":
 /*!**************************************!*\
-  !*** ./components/header/Header.tsx ***!
+  !*** ./components/header/Index.tsx ***!
   \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -351,7 +351,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 
 
-var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\header\\Header.tsx",
+var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\header\\Index.tsx",
     _this = undefined;
 
 
@@ -454,7 +454,7 @@ $RefreshReg$(_c, "Header");
 
 /***/ "./components/layout/Layout.tsx":
 /*!**************************************!*\
-  !*** ./components/layout/Layout.tsx ***!
+  !*** ./components/layout/index.tsx ***!
   \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -464,12 +464,12 @@ __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Layout; });
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _header_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../header/Header */ "./components/header/Header.tsx");
-/* harmony import */ var _footer_Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../footer/Footer */ "./components/footer/Footer.tsx");
-/* harmony import */ var _contents_Contents__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../contents/Contents */ "./components/contents/Contents.tsx");
-/* harmony import */ var _fixedHeader_FixedHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../fixedHeader/FixedHeader */ "./components/fixedHeader/FixedHeader.tsx");
+/* harmony import */ var _header_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../header/Index */ "./components/header/Header.tsx");
+/* harmony import */ var _footer_Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../footer/Index */ "./components/footer/Footer.tsx");
+/* harmony import */ var _contents_Contents__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../contents/Index */ "./components/contents/Contents.tsx");
+/* harmony import */ var _fixedHeader_FixedHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../fixedHeader/Index */ "./components/fixedHeader/FixedHeader.tsx");
 
-var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\layout\\Layout.tsx";
+var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\layout\\Index.tsx";
 
 
 
@@ -506,7 +506,7 @@ _c = Layout;
 
 var _c;
 
-$RefreshReg$(_c, "Layout");
+$RefreshReg$(_c, "Index");
 
 ;
     var _a, _b;
@@ -3593,7 +3593,7 @@ function createDecoratorForEnhancer(enhancer) {
             : undefined;
         defineObservableProperty(target, propertyName, initialValue, enhancer);
     });
-    var res = 
+    var res =
     // Extra process checks, as this happens during module initialization
     typeof process !== "undefined" && process.env && "development" !== "production"
         ? function observableDecorator() {
@@ -4400,7 +4400,7 @@ var ComputedValue = /** @class */ (function () {
             });
         }
         var oldValue = this.value;
-        var wasSuspended = 
+        var wasSuspended =
         /* see #1208 */ this.dependenciesState === IDerivationState.NOT_TRACKING;
         var newValue = this.computeValue(true);
         var changed = wasSuspended ||
@@ -7843,7 +7843,7 @@ var assign=Object.assign.bind(Object);module.exports=assign;module.exports.defau
           return __webpack_require__(/*! ./pages/mobx.tsx */ "./pages/mobx.tsx");
         }
       ]);
-    
+
 
 /***/ }),
 
@@ -9301,7 +9301,7 @@ module.exports = g;
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __nccwpck_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -9314,7 +9314,7 @@ module.exports = g;
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
@@ -9323,14 +9323,14 @@ module.exports = g;
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat */
-/******/ 	
+/******/
 /******/ 	__nccwpck_require__.ab = __dirname + "/";/************************************************************************/
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
@@ -9388,7 +9388,7 @@ module.exports = function(originalModule) {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __nccwpck_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -9401,7 +9401,7 @@ module.exports = function(originalModule) {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
@@ -9410,14 +9410,14 @@ module.exports = function(originalModule) {
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat */
-/******/ 	
+/******/
 /******/ 	__nccwpck_require__.ab = __dirname + "/";/************************************************************************/
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
@@ -9473,7 +9473,7 @@ module.exports = function(module) {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __nccwpck_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -9486,7 +9486,7 @@ module.exports = function(module) {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
@@ -9495,14 +9495,14 @@ module.exports = function(module) {
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat */
-/******/ 	
+/******/
 /******/ 	__nccwpck_require__.ab = __dirname + "/";/************************************************************************/
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
@@ -34821,7 +34821,7 @@ function commitWork(current, finishedWork) {
     case SimpleMemoComponent:
     case Block:
       {
-        // Layout effects are destroyed during the mutation phase so that all
+        // Index effects are destroyed during the mutation phase so that all
         // destroy functions for all fibers are called before any create functions.
         // This prevents sibling component effects from interfering with each other,
         // e.g. a destroy function in one component should never override a ref set
@@ -36971,7 +36971,7 @@ function flushPassiveEffectsImpl() {
   // Otherwise effects in sibling components might interfere with each other.
   // e.g. a destroy function in one component may unintentionally override a ref
   // value set by a create function in another component.
-  // Layout effects have the same constraint.
+  // Index effects have the same constraint.
   // First pass: Destroy stale passive effects.
 
   var unmountEffects = pendingPassiveHookEffectsUnmount;
@@ -39280,7 +39280,7 @@ function injectIntoDevTools(devToolsConfig) {
     scheduleRoot:  scheduleRoot ,
     setRefreshHandler:  setRefreshHandler ,
     // Enables DevTools to append owner stacks to error messages in DEV mode.
-    getCurrentFiber:  getCurrentFiberForDevTools 
+    getCurrentFiber:  getCurrentFiberForDevTools
   });
 }
 
@@ -45596,7 +45596,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! mobx-react */ "./node_modules/mobx-react/dist/mobxreact.esm.js");
 /* harmony import */ var _store_mobxStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/mobxStore */ "./store/mobxStore.ts");
-/* harmony import */ var _components_layout_Layout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/layout/Layout */ "./components/layout/Layout.tsx");
+/* harmony import */ var _components_layout_Layout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/layout/Index */ "./components/layout/Layout.tsx");
 
 
 var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\pages\\mobx.tsx",

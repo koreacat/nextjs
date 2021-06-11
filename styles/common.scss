@@ -1,0 +1,19 @@
+@charset 'UTF-8';
+
+// variables
+@import './variables/colors.scss';
+@import './variables/path.scss';
+@import './variables/variables.scss';
+
+// mixins
+@import './mixins.scss';
+
+// hidden
+.hidden {
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    clip: rect(0, 0, 0, 0);
+}

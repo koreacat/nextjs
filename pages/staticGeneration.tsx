@@ -1,7 +1,7 @@
 import Head from "next/head"
 import {useEffect, useState} from "react";
 import axios from "axios";
-import Layout from "../components/layout/Layout";
+import Index from "../components/common/layout";
 
 /**
  * static generation 테스트
@@ -52,7 +52,7 @@ function StaticGeneration({ data }: StaticGenerationProps) {
 	}, []);
 
 	return (
-        <Layout>
+        <Index>
             <Head>
                 <title>Static Generation</title>
                 <meta name="Static Generation" content="Static Generation" />
@@ -69,7 +69,7 @@ function StaticGeneration({ data }: StaticGenerationProps) {
 				id={employee02.id}
 				name={employee02.name}
 			/>
-        </Layout>
+        </Index>
     )
 }
 

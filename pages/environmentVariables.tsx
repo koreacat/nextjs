@@ -3,14 +3,14 @@
  * 환경변수는 env.local 에 설정
  * next.config.js env 설정으로 client 에서도 환경변수 접근 가능
  */
-import Layout from "../components/layout/Layout";
+import Index from "../components/common/layout";
 
 const EnvironmentVariables = ({data}) => {
 	return (
-		<Layout>
+		<Index>
 			<h2>USER: {data.USER}</h2>
 			<h2>PASS: {data.PASS}</h2>
-		</Layout>
+		</Index>
 	)
 };
 

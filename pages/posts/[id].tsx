@@ -1,10 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
-import Layout from "../../components/layout/Layout";
+import Index from "../../components/common/layout";
+import styles from '../../components/posts/posts.module.scss';
+import classnames from 'classnames/bind';
 
-/**
- *
- */
+const cx = classnames.bind(styles);
 
 export class Post {
 	id: number;
@@ -13,7 +13,7 @@ export class Post {
 
 export default function Posts({ post, posts }) {
 	return (
-		<Layout>
+		<Index>
 			<Head>
 				<title>post {post.id}</title>
 			</Head>
@@ -25,17 +25,17 @@ export default function Posts({ post, posts }) {
 				posts[post.id - 1]
 				&&
                 <Link href={"/posts/" + (post.id - 1)}>
-                    <button className={'prevPostBtn'}></button>
+                    <button className={cx('prevPostBtn')}/>
                 </Link>
 			}
 			{
 				posts[post.id + 1]
 				&&
                 <Link href={"/posts/" + (post.id + 1)}>
-                    <button className={'nextPostBtn'}></button>
+                    <button className={cx('nextPostBtn')}/>
                 </Link>
 			}
-		</Layout>
+		</Index>
 	)
 }
 

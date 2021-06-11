@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from "next/head";
 import Image from 'next/image';
-import Layout from "../components/layout/Layout";
+import Index from "../components/common/layout";
 
 /**
  * next 에서 제공하는 이미지 최적화 컴포넌트 Image
@@ -10,7 +10,7 @@ import Layout from "../components/layout/Layout";
 const CatImage = () => {
 
 	return (
-		<Layout>
+		<Index>
 			<Head>
 				<title>Cat Image</title>
 			</Head>
@@ -34,7 +34,7 @@ const CatImage = () => {
 					/>
 				</li>
 			</ul>
-		</Layout>
+		</Index>
 	)
 };
 

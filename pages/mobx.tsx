@@ -1,16 +1,16 @@
 import React from 'react';
 import Head from "next/head";
 import {MobXProviderContext, observer} from "mobx-react";
-import MobxStore from "../store/mobxStore";
-import { Provider } from "mobx-react";
-import Index from "../components/common/layout";
+import MobxStore from "../src/store/mobxStore";
+import {Provider} from "mobx-react";
+import Layout from "../src/components/common/layout";
 
 const AnimalInfo = observer(({data}) => {
-	const { mobxStore } = React.useContext(
+	const {mobxStore} = React.useContext(
 		MobXProviderContext
 	);
 
-	const { type, age } = mobxStore;
+	const {type, age} = mobxStore;
 
 	return (
 		<div>
@@ -24,16 +24,16 @@ const mobxStore = new MobxStore();
 const Mobx = ({data}) => {
 
 	return (
-		<Index>
+		<Layout>
 			<Head>
 				<title>mobx</title>
-				<meta name="mobx" content="mobx" />
+				<meta name="mobx" content="mobx"/>
 			</Head>
 			<h1>mobx</h1>
 			<Provider mobxStore={mobxStore}>
 				<AnimalInfo data={data}/>
 			</Provider>
-		</Index>
+		</Layout>
 	)
 };
 

@@ -28,7 +28,7 @@ const FixedHeader = () => {
 	}, []);
 
 	return (
-		<div className={cx('fixedHeader', scrollUp && 'up')}>
+		<div className={cx('fixedHeader', false && 'up')}>
 			<Header/>
 		</div>
 	)

@@ -1,7 +1,7 @@
 import Head from "next/head"
 import {useEffect, useState} from "react";
 import axios from "axios";
-import Index from "../components/common/layout";
+import Layout from "../src/components/common/layout";
 
 /**
  * static generation 테스트
@@ -40,24 +40,24 @@ interface StaticGenerationProps {
 	}
 }
 
-function StaticGeneration({ data }: StaticGenerationProps) {
-	const { employee01 } = data;
+function StaticGeneration({data}: StaticGenerationProps) {
+	const {employee01} = data;
 	const [employee02, setEmployee02] = useState(new Employee());
 
 	useEffect(() => {
 		(async () => {
 			const rs = await getData();
-			setEmployee02(new Employee(rs.data.id, rs.data.name));
+			setEmployee02(new Employee(rs.id, rs.name));
 		})();
 	}, []);
 
 	return (
-        <Index>
-            <Head>
-                <title>Static Generation</title>
-                <meta name="Static Generation" content="Static Generation" />
-            </Head>
-            <h1>Static Generation</h1>
+		<Layout>
+			<Head>
+				<title>Static Generation</title>
+				<meta name="Static Generation" content="Static Generation"/>
+			</Head>
+			<h1>Static Generation</h1>
 			<EmployeeInfo
 				title={'Static Generation'}
 				id={employee01.id}
@@ -69,24 +69,24 @@ function StaticGeneration({ data }: StaticGenerationProps) {
 				id={employee02.id}
 				name={employee02.name}
 			/>
-        </Index>
-    )
+		</Layout>
+	)
 }
 
 //static generation
 export async function getStaticProps() {
 	return {
 		props: {
-			data : {
+			data: {
 				employee01: await employ(new Employee('jgm0531', '지경민'), 0)
 			}
 		}
 	}
 }
 
-export function getData() {
-	return axios.get<Employee>(`http://localhost:8080/api/employ`);
-	// return await employ(new Employee('kj9966', '바블'), 2000);
+export async function getData() {
+	// return axios.get<Employee>(`http://localhost:8080/api/employ`);
+	return await employ(new Employee('kj9966', '바블'), 2000);
 }
 
 export async function employ(employee: Employee, timeout: number) {

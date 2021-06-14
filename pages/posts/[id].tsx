@@ -1,8 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
-import Index from "../../components/common/layout";
-import styles from '../../components/posts/posts.module.scss';
+import styles from '../../src/components/posts/posts.module.scss';
 import classnames from 'classnames/bind';
+import Layout from "../../src/components/common/layout";
 
 const cx = classnames.bind(styles);
 
@@ -11,9 +11,9 @@ export class Post {
 	contents: string;
 }
 
-export default function Posts({ post, posts }) {
+export default function Posts({post, posts}) {
 	return (
-		<Index>
+		<Layout>
 			<Head>
 				<title>post {post.id}</title>
 			</Head>
@@ -35,7 +35,7 @@ export default function Posts({ post, posts }) {
                     <button className={cx('nextPostBtn')}/>
                 </Link>
 			}
-		</Index>
+		</Layout>
 	)
 }
 
@@ -46,13 +46,13 @@ export default function Posts({ post, posts }) {
 export async function getStaticPaths() {
 	const posts: Post[] = await getPosts();
 	const paths = posts.map((post) => `/posts/${post.id}`);
-	return { paths, fallback: false }
+	return {paths, fallback: false}
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({params}) {
 	const posts: Post[] = await getPosts();
 	const post: Post = posts[params.id];
-	return { props: { post: post, posts: posts } }
+	return {props: {post: post, posts: posts}}
 }
 
 export async function getPosts() {

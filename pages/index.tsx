@@ -1,6 +1,6 @@
 import Head from "next/head"
 import Link from "next/link";
-import Layout from "../components/common/layout";
+import Layout from "../src/components/common/layout";
 
 export default function Home() {
 
@@ -9,39 +9,37 @@ export default function Home() {
 			<Head>
 				<title>index</title>
 			</Head>
-			<h1>index</h1>
-			<ul>
-				<li>
-					<Link href={"/staticGeneration"}>
-						<a>Static Generation</a>
-					</Link>
-				</li>
-				<li>
-					<Link href={"/mobx"}>
-						<a>mobx</a>
-					</Link>
-				</li>
-				<li>
-					<Link href={"/posts/0"}>
-						<a>getStaticPaths</a>
-					</Link>
-				</li>
-				<li>
-					<Link href={"/catImage"}>
-						<a>Cat Image</a>
-					</Link>
-				</li>
-				<li>
-					<Link href={"/environmentVariables"}>
-						<a>environmentVariables</a>
-					</Link>
-				</li>
-			</ul>
-			<hr/>
-			<h1>components</h1>
-			<Link href={"/components"}>
-				<a>Components</a>
-			</Link>
+			<div>
+				<h1>Next js</h1>
+				<ul>
+					<li>
+						<Link href={"/staticGeneration"}>
+							<a>Static Generation</a>
+						</Link>
+					</li>
+					<li>
+						<Link href={"/mobx"}>
+							<a>mobx</a>
+						</Link>
+					</li>
+					<li>
+						<Link href={"/posts/0"}>
+							<a>getStaticPaths</a>
+						</Link>
+					</li>
+				</ul>
+				<hr/>
+				<h1>Interaction components</h1>
+				<Link href={"/components"}>
+					<a>Components</a>
+				</Link>
+				<hr/>
+				<h1>layout</h1>
+				<Link href={"/stickyScroll"}>
+					<a>StickyScroll</a>
+				</Link>
+				<hr/>
+			</div>
 		</Layout>
 	)
 }

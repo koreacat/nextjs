@@ -1,6 +1,6 @@
-import WaterFill from "../components/waterFill";
-import Count from "../components/count/index.";
-import Layout from "../components/common/layout";
+import WaterFill from "../src/components/waterFill";
+import Count from "../src/components/count/index.";
+import Layout from "../src/components/common/layout";
 import {useEffect, useState} from "react";
 
 const Components = () => {

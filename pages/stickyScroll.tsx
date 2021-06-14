@@ -80,7 +80,7 @@ const DetailItems = (props: DetailItemsProps) => {
 			if (scrollDir === 'UP') {
 				if (elTop <= scrollUpOffset && elTop > -(itemEl.offsetHeight - scrollUpOffset)) {
 					setActive(index);
-					if(listEls.current[index].getBoundingClientRect().bottom - 150 >= listWrapEl.current.offsetHeight) {
+					if(listEls.current[index].getBoundingClientRect().bottom - 150 >= listWrapEl.current.offsetHeight || listEls.current[index].getBoundingClientRect().top <= 100) {
 						animateScroll.scrollTo(index * 100, {
 							containerId: 'listWrap',
 							smooth: false,
@@ -91,7 +91,7 @@ const DetailItems = (props: DetailItemsProps) => {
 			} else if (scrollDir === 'DOWN') {
 				if (elBottom >= windHeight - scrollDownOffset && elBottom < windHeight + itemEl.offsetHeight - scrollDownOffset) {
 					setActive(index);
-					if(listEls.current[index].getBoundingClientRect().top <= 100) {
+					if(listEls.current[index].getBoundingClientRect().bottom - 150 >= listWrapEl.current.offsetHeight || listEls.current[index].getBoundingClientRect().top <= 100) {
 						animateScroll.scrollTo(index * 100, {
 							containerId: 'listWrap',
 							smooth: false,

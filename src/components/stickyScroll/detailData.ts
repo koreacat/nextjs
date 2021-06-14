@@ -57,6 +57,102 @@ const detailData = [
 		sn: 13,
 		contents: Lorem
 	},
+	{
+		sn: 14,
+		contents: Lorem
+	},
+	{
+		sn: 15,
+		contents: Lorem
+	},
+	{
+		sn: 16,
+		contents: Lorem
+	},
+	{
+		sn: 17,
+		contents: Lorem
+	},
+	{
+		sn: 18,
+		contents: Lorem
+	},
+	{
+		sn: 19,
+		contents: Lorem
+	},
+	{
+		sn: 20,
+		contents: Lorem
+	},
+	{
+		sn: 21,
+		contents: Lorem
+	},
+	{
+		sn: 22,
+		contents: Lorem
+	},
+	{
+		sn: 23,
+		contents: Lorem
+	},
+	{
+		sn: 24,
+		contents: Lorem
+	},
+	{
+		sn: 25,
+		contents: Lorem
+	},
+	{
+		sn: 26,
+		contents: Lorem
+	},
+	{
+		sn: 27,
+		contents: Lorem
+	},
+	{
+		sn: 28,
+		contents: Lorem
+	},
+	{
+		sn: 29,
+		contents: Lorem
+	},
+	{
+		sn: 30,
+		contents: Lorem
+	},
+	{
+		sn: 31,
+		contents: Lorem
+	},
+	{
+		sn: 32,
+		contents: Lorem
+	},
+	{
+		sn: 33,
+		contents: Lorem
+	},
+	{
+		sn: 34,
+		contents: Lorem
+	},
+	{
+		sn: 35,
+		contents: Lorem
+	},
+	{
+		sn: 36,
+		contents: Lorem
+	},
+	{
+		sn: 37,
+		contents: Lorem
+	},
 ];
 
 export default detailData;

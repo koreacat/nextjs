@@ -65,14 +65,15 @@ interface DetailItemsProps {
 const DetailItems = (props: DetailItemsProps) => {
 	const {scrollMode, listWrapEl, listEls, itemsEls, active, setActive} = props;
 	let lastScrollTop = 0;
-	const scrollUpOffset = 300;
-	const scrollDownOffset = 300;
+
 
 	const onScroll = () => {
 		if (scrollMode !== 'SCROLL') return;
 		const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 		const scrollDir = scrollTop > lastScrollTop ? 'UP' : 'DOWN';
 		const windHeight = window.innerHeight;
+		const scrollUpOffset = windHeight * 0.4;
+		const scrollDownOffset = 300;
 
 		itemsEls.current.map((itemEl, index) => {
 			if(active === index) return;

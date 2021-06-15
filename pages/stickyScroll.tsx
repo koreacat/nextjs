@@ -11,24 +11,24 @@ import {getInteger} from "../src/util/getInteger";
 const cx = classnames.bind(styles);
 
 type SCROLL_MODE = 'SCROLL' | 'CLICK';
-let scrollMode: SCROLL_MODE = 'SCROLL';
 
 interface DetailListProps {
+	setScrollMode: (scrollMode: SCROLL_MODE) => void;
 	listEls: RefObject<Array<HTMLElement>>;
 	active: number;
 	setActive: (sn: number) => void;
 }
 
 const DetailList = (props: DetailListProps) => {
-	const {listEls, active, setActive} = props;
+	const {setScrollMode, listEls, active, setActive} = props;
 
 	const handleClick = (sn: number) => {
-		scrollMode = 'CLICK';
+		setScrollMode('CLICK');
 		setActive(sn);
 
 		//스크롤 끝나면 스크롤 모드로 변경
 		Events.scrollEvent.register('end', (to, element) => {
-			scrollMode = 'SCROLL';
+			setScrollMode('SCROLL');
 		});
 	};
 
@@ -54,6 +54,7 @@ const DetailList = (props: DetailListProps) => {
 
 
 interface DetailItemsProps {
+	scrollMode: SCROLL_MODE;
 	listWrapEl: RefObject<HTMLDivElement>;
 	listEls: RefObject<Array<HTMLElement>>;
 	itemsEls: RefObject<Array<HTMLElement>>;
@@ -62,7 +63,7 @@ interface DetailItemsProps {
 }
 
 const DetailItems = (props: DetailItemsProps) => {
-	const {listWrapEl, listEls, itemsEls, active, setActive} = props;
+	const {scrollMode, listWrapEl, listEls, itemsEls, active, setActive} = props;
 	let lastScrollTop = 0;
 	const scrollUpOffset = 300;
 	const scrollDownOffset = 300;
@@ -113,7 +114,7 @@ const DetailItems = (props: DetailItemsProps) => {
 		return (() => {
 			document.removeEventListener('scroll', onScroll);
 		})
-	}, [active]);
+	}, [active, scrollMode]);
 
 	const items = detailData.map((d) => {
 		return (
@@ -121,11 +122,11 @@ const DetailItems = (props: DetailItemsProps) => {
 				<Element name={'scroll' + d.sn}>
 					<span className={cx('title')}>{d.sn}</span>
 					<div style={{display: 'flex', justifyContent:'space-around', width: '100%', padding: '20px 0'}}>
-						<CircleProgress title={'YELLOW'} r={60} percent={active === d.sn ? getInteger(101) : 0} colorType={'YELLOW'}/>
-						<CircleProgress title={'LIME'} r={60} percent={active === d.sn ? getInteger(101) : 0} colorType={'LIME'}/>
-						<CircleProgress title={'GREEN'} r={60} percent={active === d.sn ? getInteger(101) : 0} colorType={'GREEN'}/>
-						<CircleProgress title={'SKY'} r={60} percent={active === d.sn ? getInteger(101) : 0} colorType={'SKY'}/>
-						<CircleProgress title={'BLUE'} r={60} percent={active === d.sn ? getInteger(101) : 0} colorType={'BLUE'}/>
+						<CircleProgress title={'YELLOW'} r={60} percent={active === d.sn && scrollMode === 'SCROLL' ? getInteger(101) : 0} colorType={'YELLOW'}/>
+						<CircleProgress title={'LIME'} r={60} percent={active === d.sn && scrollMode === 'SCROLL' ? getInteger(101) : 0} colorType={'LIME'}/>
+						<CircleProgress title={'GREEN'} r={60} percent={active === d.sn && scrollMode === 'SCROLL' ? getInteger(101) : 0} colorType={'GREEN'}/>
+						<CircleProgress title={'SKY'} r={60} percent={active === d.sn && scrollMode === 'SCROLL' ? getInteger(101) : 0} colorType={'SKY'}/>
+						<CircleProgress title={'BLUE'} r={60} percent={active === d.sn && scrollMode === 'SCROLL' ? getInteger(101) : 0} colorType={'BLUE'}/>
 					</div>
 					<div>{d.contents}</div>
 				</Element>
@@ -149,6 +150,7 @@ const ScrollTop = () => {
 };
 
 const StickyScroll = () => {
+	const [scrollMode, setScrollMode] = useState<SCROLL_MODE>('SCROLL');
 	const [active, setActive] = useState(0);
 	const listWrapEl = useRef<HTMLDivElement>(null);
 	const listEls = useRef<Array<HTMLElement>>([]);
@@ -164,6 +166,7 @@ const StickyScroll = () => {
 						<div ref={listWrapEl} id='listWrap' className={cx('list')}>
 							<ul>
 								<DetailList
+									setScrollMode={setScrollMode}
 									listEls={listEls}
 									active={active}
 									setActive={setActive}
@@ -172,6 +175,7 @@ const StickyScroll = () => {
 						</div>
 						<div className={cx('detail')}>
 							<DetailItems
+								scrollMode={scrollMode}
 								listWrapEl={listWrapEl}
 								listEls={listEls}
 								itemsEls={itemsEls}

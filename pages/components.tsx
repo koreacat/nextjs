@@ -4,18 +4,14 @@ import Layout from "../src/components/common/layout";
 import {useEffect, useState} from "react";
 import HeartFill from "../src/components/heartFill";
 import CircleProgress from "../src/components/circleProgress";
-
-const getInteger = (max: number) => {
-	return Math.floor(Math.random() * max)
-};
+import {getInteger} from "../src/util/getInteger";
 
 const Components = () => {
 	const [count, setCount] = useState(getInteger(100000));
 	const [averagePos, setAveragePos] = useState(getInteger(101));
 	const [averageVal, setAverageVal] = useState(getInteger(101));
 	const [averagePer, setAveragePer] = useState(getInteger(101));
-	const [percent1, setPercent1] = useState(getInteger(101));
-	const [percent2, setPercent2] = useState(getInteger(101));
+	const [percent, setPercent] = useState(getInteger(101) * 2);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -23,8 +19,7 @@ const Components = () => {
 			setAveragePos(getInteger(101));
 			setAverageVal(getInteger(101));
 			setAveragePer(getInteger(101));
-			setPercent1(getInteger(101));
-			setPercent2(getInteger(101));
+			setPercent(getInteger(101) * 2);
 		}, 7000);
 
 		return (() => {
@@ -86,31 +81,31 @@ const Components = () => {
 				<CircleProgress
 					r={31.5}
 					title={'쉬움'}
-					percent={percent1}
+					percent={percent / 5}
 					colorType={'YELLOW'}
 				/>
 				<CircleProgress
 					r={37.8}
 					title={'다소 쉬움'}
-					percent={percent2}
+					percent={percent / 4}
 					colorType={'LIME'}
 				/>
 				<CircleProgress
 					r={44.1}
 					title={'보통'}
-					percent={averagePos}
+					percent={percent / 3}
 					colorType={'GREEN'}
 				/>
 				<CircleProgress
 					r={50.4}
 					title={'다소 어려움'}
-					percent={averageVal}
+					percent={percent / 2}
 					colorType={'SKY'}
 				/>
 				<CircleProgress
 					r={56.7}
 					title={'어려움'}
-					percent={averagePer}
+					percent={percent}
 					colorType={'BLUE'}
 				/>
 			</div>

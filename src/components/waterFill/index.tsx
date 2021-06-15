@@ -4,8 +4,6 @@ import classnames from 'classnames/bind';
 
 const cx = classnames.bind(styles);
 
-const heartClipPath = "M24.0748 101.514L24.0516 101.491C8.35072 85.8073 0 69.5004 0 51.8627C0 23.2461 23.3213 0 51.8842 0C68.2024 0 83.3983 7.76195 93.0951 20.5416C102.799 7.75562 118.022 0 134.497 0C163.072 0 186.2 23.2626 185.999 51.8795C185.994 69.6616 177.872 85.9736 161.924 101.514L100.481 162.89C96.3283 167.039 89.6669 167.037 85.517 162.881L83.3333 160.694L83.3245 160.685C68.0859 145.422 30.2079 107.484 24.0983 101.537L24.0748 101.514Z";
-
 export type CULTURE_TYPE =
 	'POSITIVE' | //긍정문화
 	'PERFORMANCE' | //성과문화
@@ -65,6 +63,10 @@ const WaterFill = (props: WaterFillProps) => {
 			setCount,
 			average
 		});
+
+		return (() => {
+			clearInterval(interval);
+		})
 	}, [average, type]);
 
 	return (

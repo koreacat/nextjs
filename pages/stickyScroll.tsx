@@ -5,6 +5,8 @@ import detailData from "../src/components/stickyScroll/detailData";
 import {Element, Link as ScrollLink} from "react-scroll/modules";
 import {animateScroll, Events} from "react-scroll";
 import {RefObject, useEffect, useRef, useState} from "react";
+import CircleProgress from "../src/components/circleProgress";
+import {getInteger} from "../src/util/getInteger";
 
 const cx = classnames.bind(styles);
 
@@ -118,6 +120,13 @@ const DetailItems = (props: DetailItemsProps) => {
 			<div key={d.sn} ref={(itemEl) => itemsEls.current[d.sn] = itemEl} className={cx('detailItems')}>
 				<Element name={'scroll' + d.sn}>
 					<span className={cx('title')}>{d.sn}</span>
+					<div style={{display: 'flex', justifyContent:'space-around', width: '100%', padding: '20px 0'}}>
+						<CircleProgress title={'YELLOW'} r={60} percent={active === d.sn ? getInteger(101) : 0} colorType={'YELLOW'}/>
+						<CircleProgress title={'LIME'} r={60} percent={active === d.sn ? getInteger(101) : 0} colorType={'LIME'}/>
+						<CircleProgress title={'GREEN'} r={60} percent={active === d.sn ? getInteger(101) : 0} colorType={'GREEN'}/>
+						<CircleProgress title={'SKY'} r={60} percent={active === d.sn ? getInteger(101) : 0} colorType={'SKY'}/>
+						<CircleProgress title={'BLUE'} r={60} percent={active === d.sn ? getInteger(101) : 0} colorType={'BLUE'}/>
+					</div>
 					<div>{d.contents}</div>
 				</Element>
 			</div>

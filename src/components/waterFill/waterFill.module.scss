@@ -28,28 +28,6 @@ $TRANSITION_SEC: 0.3s;
     width: 160px;
     height: 160px;
     
-    &:before {
-        position: absolute;
-        top: -33px;
-        left: 52px;
-        width: 64px;
-        height: 79px;
-        background-image: url($COMPONENT_IMG_PATH + '/iconWaterFillBefore.png');
-        background-size: cover;
-        content: '';
-    }
-    
-    &:after {
-        position: absolute;
-        top: 0;
-        left: 51px;
-        width: 58px;
-        height: 15px;
-        background-image: url($COMPONENT_IMG_PATH + '/iconWaterFillAfter.png');
-        background-size: cover;
-        content: '';
-    }
-    
     .box {
         overflow: hidden;
         position: relative;

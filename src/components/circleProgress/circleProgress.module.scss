@@ -14,11 +14,17 @@
             .front {
                 stroke: $C_YELLOW_100;
             }
+            .border {
+                stroke: $C_YELLOW_200;
+            }
         }
     
         &.LIME {
             .front {
                 stroke: $C_LIME_100;
+            }
+            .border {
+                stroke: $C_LIME_200;
             }
         }
     
@@ -26,17 +32,26 @@
             .front {
                 stroke: $C_GREEN_100;
             }
+            .border {
+                stroke: $C_GREEN_200;
+            }
         }
     
         &.SKY {
             .front {
                 stroke: $C_SKY_100;
             }
+            .border {
+                stroke: $C_SKY_200;
+            }
         }
     
         &.BLUE {
             .front {
                 stroke: $C_BLUE_70;
+            }
+            .border {
+                stroke: $C_BLUE_80;
             }
         }
     }
@@ -50,10 +65,16 @@
             stroke: $C_COOL_GRAY_40;
         }
         
+        &.border {
+            stroke-dashoffset: 0;
+            stroke: $C_GREEN_200;
+            transition: 1s ease-in-out;
+        }
+        
         &.front {
             stroke-dashoffset: 0;
             stroke: $C_GREEN_100;
-            transition: 2s ease-in-out;
+            transition: 1s ease-in-out;
         }
     }
     
@@ -71,7 +92,6 @@
         
         .title {
             display: block;
-            width: 38px;
             text-align: center;
             font-family: $F_NOTO_SANS_KR;
             font-size: 13px;

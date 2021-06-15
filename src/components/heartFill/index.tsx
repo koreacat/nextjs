@@ -65,6 +65,10 @@ const HeartFill = (props: HeartFillProps) => {
 			setCount,
 			average
 		});
+
+		return (() => {
+			clearInterval(interval);
+		})
 	}, [average, type]);
 
 	return (

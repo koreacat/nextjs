@@ -10,7 +10,7 @@ interface CircleProgressProps {
 	r: number;
 	title?: string;
 	percent: number;
-	colorType: COLOR_TYPE;
+	colorType?: COLOR_TYPE;
 }
 
 const CircleProgress = (props: CircleProgressProps) => {
@@ -24,11 +24,10 @@ const CircleProgress = (props: CircleProgressProps) => {
 	const strokeDashoffset = Math.round(l - (l * count) / 100);
 
 	useEffect(() => {
-		setCount(percent);
+		setCount(Math.round(percent));
 	}, [percent]);
 
 	const circleStyle = {
-		strokeWidth: strokeWidth,
 		strokeDasharray: l,
 		transform: `translate(${strokeWidth / 2}px, ${strokeWidth / 2}px)`
 	};
@@ -45,12 +44,25 @@ const CircleProgress = (props: CircleProgressProps) => {
 				<circle
 					className={cx('circle', 'back')}
 					cx={r} cy={r} r={r}
-					style={circleStyle}
+					style={{
+						strokeWidth: strokeWidth,
+						...circleStyle
+					}}
+				/>
+				<circle
+					className={cx('circle', 'border')}
+					cx={r} cy={r} r={r}
+					style={{
+						strokeWidth: strokeWidth,
+						strokeDashoffset: strokeDashoffset,
+						...circleStyle
+					}}
 				/>
 				<circle
 					className={cx('circle', 'front')}
 					cx={r} cy={r} r={r}
 					style={{
+						strokeWidth: strokeWidth - 2,
 						strokeDashoffset: strokeDashoffset,
 						...circleStyle
 					}}

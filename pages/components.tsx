@@ -3,19 +3,28 @@ import Count from "../src/components/count/index.";
 import Layout from "../src/components/common/layout";
 import {useEffect, useState} from "react";
 import HeartFill from "../src/components/heartFill";
+import CircleProgress from "../src/components/circleProgress";
+
+const getInteger = (max: number) => {
+	return Math.floor(Math.random() * max)
+};
 
 const Components = () => {
-	const [averagePos, setAveragePos] = useState(Math.floor(Math.random() * 101));
-	const [averageVal, setAverageVal] = useState(Math.floor(Math.random() * 101));
-	const [averagePer, setAveragePer] = useState(Math.floor(Math.random() * 101));
-	const [count, setCount] = useState(Math.floor(Math.random() * 100000));
+	const [count, setCount] = useState(getInteger(100000));
+	const [averagePos, setAveragePos] = useState(getInteger(101));
+	const [averageVal, setAverageVal] = useState(getInteger(101));
+	const [averagePer, setAveragePer] = useState(getInteger(101));
+	const [percent1, setPercent1] = useState(getInteger(101));
+	const [percent2, setPercent2] = useState(getInteger(101));
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setAveragePos(Math.floor(Math.random() * 101));
-			setAverageVal(Math.floor(Math.random() * 101));
-			setAveragePer(Math.floor(Math.random() * 101));
-			setCount(Math.floor(Math.random() * 100000));
+			setCount(getInteger(100000));
+			setAveragePos(getInteger(101));
+			setAverageVal(getInteger(101));
+			setAveragePer(getInteger(101));
+			setPercent1(getInteger(101));
+			setPercent2(getInteger(101));
 		}, 7000);
 
 		return (() => {
@@ -25,7 +34,20 @@ const Components = () => {
 
 	return (
 		<Layout>
-			<Count count={count}/>
+			<div style={{display: "flex"}}>
+				<Count
+					maxLength={1}
+					count={count}
+				/>
+				<Count
+					maxLength={3}
+					count={count}
+				/>
+				<Count
+					maxLength={5}
+					count={count}
+				/>
+			</div>
 			<div style={{display: "flex"}}>
 				<WaterFill
 					title={'waterFill'}
@@ -45,19 +67,51 @@ const Components = () => {
 			</div>
 			<div style={{display: "flex"}}>
 				<HeartFill
-					title={'면접온도 지수'}
+					title={'heartFill'}
 					type={'POSITIVE'}
 					average={averagePos}
 				/>
 				<HeartFill
-					title={'면접온도 지수'}
+					title={'heartFill'}
 					type={'PERFORMANCE'}
 					average={averagePer}
 				/>
 				<HeartFill
-					title={'면접온도 지수'}
+					title={'heartFill'}
 					type={'VALUE'}
 					average={averageVal}
+				/>
+			</div>
+			<div style={{display: "flex"}}>
+				<CircleProgress
+					r={31.5}
+					title={'쉬움'}
+					percent={percent1}
+					colorType={'YELLOW'}
+				/>
+				<CircleProgress
+					r={37.8}
+					title={'다소 쉬움'}
+					percent={percent2}
+					colorType={'LIME'}
+				/>
+				<CircleProgress
+					r={44.1}
+					title={'보통'}
+					percent={averagePos}
+					colorType={'GREEN'}
+				/>
+				<CircleProgress
+					r={50.4}
+					title={'다소 어려움'}
+					percent={averageVal}
+					colorType={'SKY'}
+				/>
+				<CircleProgress
+					r={56.7}
+					title={'어려움'}
+					percent={averagePer}
+					colorType={'BLUE'}
 				/>
 			</div>
 		</Layout>

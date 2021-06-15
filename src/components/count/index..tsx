@@ -1,6 +1,7 @@
 import styles from './count.module.scss';
 import classnames from 'classnames/bind';
 import {useEffect, useState} from "react";
+
 const cx = classnames.bind(styles);
 
 interface NumberProps {
@@ -18,7 +19,7 @@ const Number = (props: NumberProps) => {
 	}, [num]);
 
 	const digitEl = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
-		return <span className={cx('digit')}>{index}</span>
+		return <span key={index} className={cx('digit')}>{index}</span>
 	});
 
 	return (
@@ -29,23 +30,31 @@ const Number = (props: NumberProps) => {
 };
 
 interface CountProps {
+	maxLength: number;
 	count: number;
 }
 
 const Count = (props: CountProps) => {
-	const {count} = props;
-	const arr = count.toString().split('');
+	const {count, maxLength} = props;
+	let countArr = count.toString().split('');
+	let arr = Array.from({length: maxLength}, () => '0');
 
-	const NumberEl = arr.map((num) => {
-		return <Number num={parseInt(num)}/>
+	for (let i = 0; i < countArr.length; i++) {
+		arr[arr.length - countArr.length + i] = countArr[i];
+	}
+
+	const NumberEl = arr.map((num, index) => {
+		return <Number key={index} num={parseInt(num)}/>
 	});
 
 	return (
-		<span className={cx('countWrap')}>
-			<div className={cx('count')}>
-				{NumberEl}
-			</div>개
-		</span>
+		<div className={cx('wrap')}>
+			<span className={cx('countWrap')}>
+				<div className={cx('count')}>
+					{NumberEl}
+				</div>개
+			</span>
+		</div>
 	)
 };
 

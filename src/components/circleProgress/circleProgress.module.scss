@@ -1,0 +1,90 @@
+@import '@styles/common.scss';
+
+.circleProgress {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .circleWrap {
+        position: relative;
+        transform: rotate(-90deg);
+    
+        &.YELLOW {
+            .front {
+                stroke: $C_YELLOW_100;
+            }
+        }
+    
+        &.LIME {
+            .front {
+                stroke: $C_LIME_100;
+            }
+        }
+    
+        &.GREEN {
+            .front {
+                stroke: $C_GREEN_100;
+            }
+        }
+    
+        &.SKY {
+            .front {
+                stroke: $C_SKY_100;
+            }
+        }
+    
+        &.BLUE {
+            .front {
+                stroke: $C_BLUE_70;
+            }
+        }
+    }
+    
+    .circle {
+        fill: none;
+        stroke-linecap: round;
+        
+        &.back {
+            stroke-dashoffset: 0;
+            stroke: $C_COOL_GRAY_40;
+        }
+        
+        &.front {
+            stroke-dashoffset: 0;
+            stroke: $C_GREEN_100;
+            transition: 2s ease-in-out;
+        }
+    }
+    
+    .text {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        
+        
+        .title {
+            display: block;
+            width: 38px;
+            text-align: center;
+            font-family: $F_NOTO_SANS_KR;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 15px;
+            letter-spacing: -0.086px;
+            word-break: break-all;
+        }
+    
+        .num {
+            font-size: 10px;
+        }
+    }
+    
+    
+}

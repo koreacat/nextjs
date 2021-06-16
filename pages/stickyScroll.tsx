@@ -123,19 +123,19 @@ const DetailItems = (props: DetailItemsProps) => {
 					<span className={cx('title')}>{d.sn}</span>
 					<div style={{display: 'flex', justifyContent: 'space-around', width: '100%', padding: '20px 0'}}>
 						<CircleProgress title={'YELLOW'} r={60}
-										percent={active === index && scrollMode === 'SCROLL' ? getInteger(101) : 0}
+										percent={active === index && scrollMode === 'SCROLL' && getInteger(101)}
 										colorType={'YELLOW'}/>
 						<CircleProgress title={'LIME'} r={60}
-										percent={active === index && scrollMode === 'SCROLL' ? getInteger(101) : 0}
+										percent={active === index && scrollMode === 'SCROLL' && getInteger(101)}
 										colorType={'LIME'}/>
 						<CircleProgress title={'GREEN'} r={60}
-										percent={active === index && scrollMode === 'SCROLL' ? getInteger(101) : 0}
+										percent={active === index && scrollMode === 'SCROLL' && getInteger(101)}
 										colorType={'GREEN'}/>
 						<CircleProgress title={'SKY'} r={60}
-										percent={active === index && scrollMode === 'SCROLL' ? getInteger(101) : 0}
+										percent={active === index && scrollMode === 'SCROLL' && getInteger(101)}
 										colorType={'SKY'}/>
 						<CircleProgress title={'BLUE'} r={60}
-										percent={active === index && scrollMode === 'SCROLL' ? getInteger(101) : 0}
+										percent={active === index && scrollMode === 'SCROLL' && getInteger(101)}
 										colorType={'BLUE'}/>
 					</div>
 					<div>{d.contents}</div>

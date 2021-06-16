@@ -39,7 +39,7 @@
             width: 350px;
             height: calc(100vh - 150px);
             background-color: #eee;
-            overscroll-behavior: contain;
+            overscroll-behavior: contain; //내부스크롤 끝에 도달 시 외부스크롤 방지
     
             ul {
                 display: flex;

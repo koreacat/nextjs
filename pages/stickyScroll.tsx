@@ -35,7 +35,7 @@ const DetailList = (props: DetailListProps) => {
 	const list = detailData.map((d, index) => {
 		return (
 			<li key={index} ref={(listEl) => listEls.current[index] = listEl}
-				className={cx(index === active && 'active')} style={{height: `calc(100px + ${d.sn * 20}px)`}}>
+				className={cx(index === active && 'active')} style={{height: `calc(100px + ${d.sn * 30 % 100}px)`}}>
 				<Element name={`detailList${index}`}/>
 				<ScrollLink
 					onClick={() => handleClick(index)}
@@ -74,7 +74,7 @@ const DetailItems = (props: DetailItemsProps) => {
 			scroller.scrollTo(`detailList${index}`, {
 				containerId: 'listWrap',
 				smooth: true,
-				ignoreCancelEvents: true
+				ignoreCancelEvents: true,
 			});
 		}
 	};

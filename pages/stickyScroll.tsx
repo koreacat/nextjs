@@ -3,7 +3,7 @@ import classnames from "classnames/bind";
 import styles from "../src/components/stickyScroll/stickyScroll.module.scss";
 import detailData from "../src/components/stickyScroll/detailData";
 import {Element, Link as ScrollLink} from "react-scroll/modules";
-import {animateScroll, Events} from "react-scroll";
+import {Events, scroller} from "react-scroll";
 import {RefObject, useEffect, useRef, useState} from "react";
 import CircleProgress from "../src/components/circleProgress";
 import {getInteger} from "../src/util/getInteger";
@@ -22,9 +22,9 @@ interface DetailListProps {
 const DetailList = (props: DetailListProps) => {
 	const {setScrollMode, listEls, active, setActive} = props;
 
-	const handleClick = (sn: number) => {
+	const handleClick = (index: number) => {
 		setScrollMode('CLICK');
-		setActive(sn);
+		setActive(index);
 
 		//스크롤 끝나면 스크롤 모드로 변경
 		Events.scrollEvent.register('end', (to, element) => {
@@ -32,12 +32,14 @@ const DetailList = (props: DetailListProps) => {
 		});
 	};
 
-	const list = detailData.map((d) => {
+	const list = detailData.map((d, index) => {
 		return (
-			<li key={d.sn} ref={(listEl) => listEls.current[d.sn] = listEl} className={cx(d.sn === active && 'active')}>
+			<li key={index} ref={(listEl) => listEls.current[index] = listEl}
+				className={cx(index === active && 'active')} style={{height: `calc(100px + ${d.sn * 20}px)`}}>
+				<Element name={`detailList${index}`}/>
 				<ScrollLink
-					onClick={() => handleClick(d.sn)}
-					to={'scroll' + d.sn}
+					onClick={() => handleClick(index)}
+					to={'scroll' + index}
 					smooth={true}
 					offset={-100}
 				>
@@ -67,6 +69,16 @@ const DetailItems = (props: DetailItemsProps) => {
 	let lastScrollTop = 0;
 
 
+	const scrollTo = (index: number) => {
+		if (listEls.current[index].getBoundingClientRect().bottom - 150 >= listWrapEl.current.offsetHeight || listEls.current[index].getBoundingClientRect().top <= 100) {
+			scroller.scrollTo(`detailList${index}`, {
+				containerId: 'listWrap',
+				smooth: true,
+				ignoreCancelEvents: true
+			});
+		}
+	};
+
 	const onScroll = () => {
 		if (scrollMode !== 'SCROLL') return;
 		const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -76,32 +88,19 @@ const DetailItems = (props: DetailItemsProps) => {
 		const scrollDownOffset = 300;
 
 		itemsEls.current.map((itemEl, index) => {
-			if(active === index) return;
-
+			if (active === index) return;
 			const elTop = itemEl?.getBoundingClientRect().top;
 			const elBottom = itemEl?.getBoundingClientRect().bottom;
 
 			if (scrollDir === 'UP') {
 				if (elTop <= scrollUpOffset && elTop > -(itemEl.offsetHeight - scrollUpOffset)) {
 					setActive(index);
-					if(listEls.current[index].getBoundingClientRect().bottom - 150 >= listWrapEl.current.offsetHeight || listEls.current[index].getBoundingClientRect().top <= 100) {
-						animateScroll.scrollTo(index * 100, {
-							containerId: 'listWrap',
-							smooth: false,
-							ignoreCancelEvents:true
-						});
-					}
+					scrollTo(index);
 				}
 			} else if (scrollDir === 'DOWN') {
 				if (elBottom >= windHeight - scrollDownOffset && elBottom < windHeight + itemEl.offsetHeight - scrollDownOffset) {
 					setActive(index);
-					if(listEls.current[index].getBoundingClientRect().bottom - 150 >= listWrapEl.current.offsetHeight || listEls.current[index].getBoundingClientRect().top <= 100) {
-						animateScroll.scrollTo(index * 100, {
-							containerId: 'listWrap',
-							smooth: false,
-							ignoreCancelEvents:true
-						});
-					}
+					scrollTo(index);
 				}
 			}
 
@@ -117,17 +116,27 @@ const DetailItems = (props: DetailItemsProps) => {
 		})
 	}, [active, scrollMode]);
 
-	const items = detailData.map((d) => {
+	const items = detailData.map((d, index) => {
 		return (
-			<div key={d.sn} ref={(itemEl) => itemsEls.current[d.sn] = itemEl} className={cx('detailItems')}>
-				<Element name={'scroll' + d.sn}>
+			<div key={index} ref={(itemEl) => itemsEls.current[index] = itemEl} className={cx('detailItems')}>
+				<Element name={'scroll' + index}>
 					<span className={cx('title')}>{d.sn}</span>
-					<div style={{display: 'flex', justifyContent:'space-around', width: '100%', padding: '20px 0'}}>
-						<CircleProgress title={'YELLOW'} r={60} percent={active === d.sn && scrollMode === 'SCROLL' ? getInteger(101) : 0} colorType={'YELLOW'}/>
-						<CircleProgress title={'LIME'} r={60} percent={active === d.sn && scrollMode === 'SCROLL' ? getInteger(101) : 0} colorType={'LIME'}/>
-						<CircleProgress title={'GREEN'} r={60} percent={active === d.sn && scrollMode === 'SCROLL' ? getInteger(101) : 0} colorType={'GREEN'}/>
-						<CircleProgress title={'SKY'} r={60} percent={active === d.sn && scrollMode === 'SCROLL' ? getInteger(101) : 0} colorType={'SKY'}/>
-						<CircleProgress title={'BLUE'} r={60} percent={active === d.sn && scrollMode === 'SCROLL' ? getInteger(101) : 0} colorType={'BLUE'}/>
+					<div style={{display: 'flex', justifyContent: 'space-around', width: '100%', padding: '20px 0'}}>
+						<CircleProgress title={'YELLOW'} r={60}
+										percent={active === index && scrollMode === 'SCROLL' ? getInteger(101) : 0}
+										colorType={'YELLOW'}/>
+						<CircleProgress title={'LIME'} r={60}
+										percent={active === index && scrollMode === 'SCROLL' ? getInteger(101) : 0}
+										colorType={'LIME'}/>
+						<CircleProgress title={'GREEN'} r={60}
+										percent={active === index && scrollMode === 'SCROLL' ? getInteger(101) : 0}
+										colorType={'GREEN'}/>
+						<CircleProgress title={'SKY'} r={60}
+										percent={active === index && scrollMode === 'SCROLL' ? getInteger(101) : 0}
+										colorType={'SKY'}/>
+						<CircleProgress title={'BLUE'} r={60}
+										percent={active === index && scrollMode === 'SCROLL' ? getInteger(101) : 0}
+										colorType={'BLUE'}/>
 					</div>
 					<div>{d.contents}</div>
 				</Element>

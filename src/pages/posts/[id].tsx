@@ -1,8 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
-import styles from '../../src/components/posts/posts.module.scss';
+import styles from '../../components/posts/posts.module.scss';
 import classnames from 'classnames/bind';
-import Layout from "../../src/components/common/layout";
+import Layout from "@components/layout";
 
 const cx = classnames.bind(styles);
 

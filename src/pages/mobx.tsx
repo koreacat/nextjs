@@ -1,9 +1,9 @@
 import React from 'react';
 import Head from "next/head";
 import {MobXProviderContext, observer} from "mobx-react";
-import MobxStore from "../src/store/mobxStore";
+import MobxStore from "../store/mobxStore";
 import {Provider} from "mobx-react";
-import Layout from "../src/components/common/layout";
+import Layout from "@components/layout";
 
 const AnimalInfo = observer(({data}) => {
 	const {mobxStore} = React.useContext(

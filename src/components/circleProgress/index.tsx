@@ -24,7 +24,7 @@ const CircleProgress = (props: CircleProgressProps) => {
 	const strokeDashoffset = Math.round(l - (l * count) / 100);
 
 	useEffect(() => {
-		if(count === 0)	setCount(Math.round(percent));
+		setCount(Math.round(percent));
 	}, [percent]);
 
 	const circleStyle = {

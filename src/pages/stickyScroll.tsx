@@ -1,12 +1,12 @@
-import Layout from "../src/components/common/layout";
+import Layout from "@components/layout";
 import classnames from "classnames/bind";
-import styles from "../src/components/stickyScroll/stickyScroll.module.scss";
-import detailData from "../src/components/stickyScroll/detailData";
+import styles from "../components/stickyScroll/stickyScroll.module.scss";
+import detailData from "../components/stickyScroll/detailData";
 import {Element, Link as ScrollLink} from "react-scroll/modules";
 import {Events, scroller} from "react-scroll";
 import {RefObject, useEffect, useRef, useState} from "react";
-import CircleProgress from "../src/components/circleProgress";
-import {getInteger} from "../src/util/getInteger";
+import CircleProgress from "../components/circleProgress";
+import {getInteger} from "../util/getInteger";
 
 const cx = classnames.bind(styles);
 

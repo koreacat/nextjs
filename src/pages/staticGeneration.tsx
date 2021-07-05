@@ -1,7 +1,7 @@
 import Head from "next/head"
 import {useEffect, useState} from "react";
 import axios from "axios";
-import Layout from "../src/components/common/layout";
+import Layout from "@components/layout";
 
 /**
  * static generation 테스트

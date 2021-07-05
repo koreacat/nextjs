@@ -1,10 +1,10 @@
-import WaterFill from "../src/components/waterFill";
-import Count from "../src/components/count/index.";
-import Layout from "../src/components/common/layout";
+import WaterFill from "../components/waterFill";
+import Count from "../components/count/index.";
+import Layout from "@components/layout";
 import {useEffect, useState} from "react";
-import HeartFill from "../src/components/heartFill";
-import CircleProgress from "../src/components/circleProgress";
-import {getInteger} from "../src/util/getInteger";
+import HeartFill from "../components/heartFill";
+import CircleProgress from "../components/circleProgress";
+import {getInteger} from "../util/getInteger";
 
 const Components = () => {
 	const [count, setCount] = useState(getInteger(100000));

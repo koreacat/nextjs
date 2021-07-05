@@ -30,9 +30,18 @@ export default function Home() {
 				</ul>
 				<hr/>
 				<h1>Interaction components</h1>
-				<Link href={"/components"}>
-					<a>Components</a>
-				</Link>
+				<ul>
+					<li>
+						<Link href={"/components"}>
+							<a>Components</a>
+						</Link>
+					</li>
+					<li>
+						<Link href={"/path"}>
+							<a>Path</a>
+						</Link>
+					</li>
+				</ul>
 				<hr/>
 				<h1>layout</h1>
 				<Link href={"/stickyScroll"}>

@@ -509,7 +509,7 @@ var assign=Object.assign.bind(Object);module.exports=assign;module.exports.defau
           return __webpack_require__(/*! ./src/pages/path.tsx */ "./src/pages/path.tsx");
         }
       ]);
-    
+
 
 /***/ }),
 
@@ -2078,7 +2078,7 @@ module.exports = function(originalModule) {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __nccwpck_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -2091,7 +2091,7 @@ module.exports = function(originalModule) {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
@@ -2100,14 +2100,14 @@ module.exports = function(originalModule) {
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat */
-/******/ 	
+/******/
 /******/ 	__nccwpck_require__.ab = __dirname + "/";/************************************************************************/
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
@@ -2163,7 +2163,7 @@ module.exports = function(module) {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __nccwpck_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -2176,7 +2176,7 @@ module.exports = function(module) {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
@@ -2185,14 +2185,14 @@ module.exports = function(module) {
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat */
-/******/ 	
+/******/
 /******/ 	__nccwpck_require__.ab = __dirname + "/";/************************************************************************/
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
@@ -9827,7 +9827,7 @@ module.exports = content.locals || {};
 
 /***/ "./src/components/common/fixedHeader/index.tsx":
 /*!*****************************************************!*\
-  !*** ./src/components/common/fixedHeader/index.tsx ***!
+  !*** ./src/components/common/fixedHeader/index.ts ***!
   \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -9845,7 +9845,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_4__);
 
 
-var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\common\\fixedHeader\\index.tsx",
+var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\common\\fixedHeader\\index.ts",
     _this = undefined,
     _s = $RefreshSig$();
 
@@ -10037,7 +10037,7 @@ module.exports = content.locals || {};
 
 /***/ "./src/components/common/footer/index.tsx":
 /*!************************************************!*\
-  !*** ./src/components/common/footer/index.tsx ***!
+  !*** ./src/components/common/footer/index.ts ***!
   \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -10054,7 +10054,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_3__);
 
 
-var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\footer\\index.tsx",
+var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\footer\\index.ts",
     _this = undefined;
 
 
@@ -10230,7 +10230,7 @@ module.exports = content.locals || {};
 
 /***/ "./src/components/common/header/index.tsx":
 /*!************************************************!*\
-  !*** ./src/components/common/header/index.tsx ***!
+  !*** ./src/components/common/header/index.ts ***!
   \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -10249,7 +10249,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_4__);
 
 
-var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\header\\index.tsx",
+var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\header\\index.ts",
     _this = undefined;
 
 
@@ -10356,7 +10356,7 @@ $RefreshReg$(_c, "Header");
 
 /***/ "./src/components/common/layout/index.tsx":
 /*!************************************************!*\
-  !*** ./src/components/common/layout/index.tsx ***!
+  !*** ./src/components/common/layout/index.ts ***!
   \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -10370,7 +10370,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../footer */ "./src/components/common/footer/index.tsx");
 
 
-var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\common\\layout\\index.tsx",
+var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\components\\common\\layout\\index.ts",
     _this = undefined;
 
 

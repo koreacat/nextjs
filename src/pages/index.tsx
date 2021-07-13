@@ -41,6 +41,11 @@ export default function Home() {
 							<a>Path</a>
 						</Link>
 					</li>
+					<li>
+						<Link href={"/slider"}>
+							<a>Slider</a>
+						</Link>
+					</li>
 				</ul>
 				<hr/>
 				<h1>layout</h1>

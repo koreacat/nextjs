@@ -1,16 +1,17 @@
 import {observable} from "mobx";
-import {RefObject} from "react";
+import { Ifilter } from "src/pages/filterSlider";
 
 export default class FilterSliderUIStore {
-	@observable private _itemsEls: RefObject<Array<HTMLElement>> | null = null;
+	@observable private _itemsEls: Array<HTMLElement> = [];
 	@observable private _currentIndex: number = 0;
-	@observable private _selectedItemList: Array<any> = [];
+	@observable private _selectedFilterList: Array<Ifilter> = [];
+	@observable private _scrollLeftOffset = 0;
 
-	get itemsEls(): React.RefObject<Array<HTMLElement>> | null {
+	get itemsEls(): Array<HTMLElement> {
 		return this._itemsEls;
 	}
 
-	setItemsEls = (value: React.RefObject<Array<HTMLElement>> | null) => {
+	setItemsEls = (value: Array<HTMLElement>) => {
 		this._itemsEls = value;
 	};
 
@@ -21,5 +22,40 @@ export default class FilterSliderUIStore {
 	setCurrentIndex = (value: number) => {
 		this._currentIndex = value;
 	};
+	
+	get selectedFilterList(): Array<Ifilter>{
+		return this._selectedFilterList;
+	}
+
+	get scrollLeftOffset(): number {
+		return this._scrollLeftOffset;
+	}
+
+	setScrollLeftOffset = (value: number) => {
+		this._scrollLeftOffset = value;
+	};
+
+	existFilter = (filterType: Ifilter) => {
+		let exist = false;
+		this._selectedFilterList.forEach((filter) => {
+			if(filter.type === filterType.type) {
+				exist = true;
+			}
+		})
+		return exist;
+	}
+
+	selectFilter = (filterType: Ifilter) => {
+		this._selectedFilterList.push(filterType);
+	}
+
+	deleteFilter = (filterType: Ifilter) => {
+		this._selectedFilterList.forEach((filter, index) => {
+			if(filter.type === filterType.type) {
+				this._selectedFilterList.splice(index, 1);
+				this._itemsEls.splice(index, 1);
+			}
+		})
+	}
 
 }

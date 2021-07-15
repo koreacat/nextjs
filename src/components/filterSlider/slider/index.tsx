@@ -1,6 +1,5 @@
 import styles from './slider.module.scss';
 import classnames from 'classnames/bind';
-import {useEffect, useRef, useState} from "react";
 import {useStores} from "../../../util/storeProvider";
 import {observer} from "mobx-react";
 
@@ -10,36 +9,32 @@ interface List {
 	scrollLeftOffset: number;
 }
 
-const List = (props: List) => {
-	const data = [];
-
+const List = observer((props: List) => {
 	const {scrollLeftOffset} = props;
 	const {filterSliderUIStore} = useStores();
-	const {itemsEls} = filterSliderUIStore;
+	const {itemsEls, selectedFilterList, deleteFilter} = filterSliderUIStore;
 
-	const deleteItem = (index: number) => {
-		data.splice(index, 1);
-		console.log(data);
-	}
+	let filterList = [];
+	selectedFilterList.forEach((filter) => {filterList.push(filter)});
 
-	const list = data.map((item, index) => {
+	const list = filterList.map((filter, index) => {
 		return (
 			<li ref={(itemEl) => {
-					itemsEls && itemsEls.current && itemEl && (itemsEls.current[index] = itemEl);
-				}} 
-				key={index} 
-				className={cx('item')}
+				itemsEls && itemEl && (itemsEls[index] = itemEl);
+			}} 
+			key={filter.type} 
+			className={cx('item')}
 			>
-				<div>
-					<span>{item}</span>
-					<a 
-						className={cx('deleteBtn')}
-						onClick={() => deleteItem(index)}
-					>X</a>
-				</div>
-			</li>
+			<div>
+				<span>{filter.text}</span>
+				<a 
+					className={cx('deleteBtn')}
+					onClick={() => deleteFilter(filter)}
+				>X</a>
+			</div>
+		</li>
 		)
-	});
+	})
 
 	return (
 		<ul 
@@ -49,31 +44,24 @@ const List = (props: List) => {
 			{list}
 		</ul>
 	)
-};
+});
 
 
 const Slider = observer(() => {
-	const [scrollLeftOffset, setScrollLeftOffset] = useState<number>(0);
-	const els = useRef<Array<HTMLElement>>(null);
 	const {filterSliderUIStore} = useStores();
-	const {itemsEls, currentIndex, setCurrentIndex} = filterSliderUIStore;
+	const {itemsEls, currentIndex, setCurrentIndex, scrollLeftOffset, setScrollLeftOffset} = filterSliderUIStore;
 	const marginRight = 12;
 
-	useEffect(() => {
-		els.current = [];
-		filterSliderUIStore.setItemsEls(els);
-	}, [els]);
-
 	const handleNext = () => {
-		if(currentIndex + 1 > itemsEls.current.length - 4) return;
-		const itemEl = itemsEls.current[currentIndex];
-		if(currentIndex < itemsEls.current.length - 1) setCurrentIndex(currentIndex + 1);
+		if(currentIndex + 1 > itemsEls.length - 3) return;
+		const itemEl = itemsEls[currentIndex];
+		if(currentIndex < itemsEls.length - 1) setCurrentIndex(currentIndex + 1);
 		setScrollLeftOffset(scrollLeftOffset - (itemEl.offsetWidth + marginRight));
 	};
 
 	const handlePrev = () => {
 		if(currentIndex - 1 < 0) return;
-		const itemEl = itemsEls.current[currentIndex - 1];
+		const itemEl = itemsEls[currentIndex - 1];
 		if(currentIndex > 0) setCurrentIndex(currentIndex - 1);
 		setScrollLeftOffset(scrollLeftOffset + (itemEl.offsetWidth + marginRight));
 	};

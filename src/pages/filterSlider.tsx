@@ -1,7 +1,6 @@
 import Contents from "@components/contents";
 import Layout from "@components/layout";
-import Filter from "src/components/companyList/filter";
-import Slider from "src/components/companyList/slider";
+import FilterSlider from "src/components/filterSlider";
 
 export interface Ifilter {
     type: string;
@@ -211,8 +210,7 @@ const CompanyList = () => {
 	return (
 		<Layout>
             <Contents>
-                <Filter/>
-			    <Slider/>
+                <FilterSlider/>
             </Contents>
 		</Layout>
 	)

@@ -1,40 +1,26 @@
 import styles from './slider.module.scss';
 import classnames from 'classnames/bind';
 import {useEffect, useRef, useState} from "react";
-import {useStores} from "../../util/storeProvider";
+import {useStores} from "../../../util/storeProvider";
 import {observer} from "mobx-react";
 
 const cx = classnames.bind(styles);
-
-const data = [
-	'유연 근무를 시행하는',
-	'사내식당을',
-	'직급',
-	'뛰어난 동료가 많은',
-	'차별이 없는',
-	'사회공동이익을 추구하는 추구하는 추구하는',
-	'유연 근무를 시행하는',
-	'사내식당을 운영하는',
-	'직급이 없는',
-	'뛰어난 동료가 많은',
-	'차별이 없는',
-	'사회공동이익을 추구하는',
-	'유연 근무를 시행하는',
-	'사내식당을 운영하는',
-	'직급이 없는',
-	'뛰어난 동료가 많은',
-	'차별이 없는',
-	'사회공동이익을 추구하는',
-];
 
 interface List {
 	scrollLeftOffset: number;
 }
 
 const List = (props: List) => {
+	const data = [];
+
 	const {scrollLeftOffset} = props;
-	const {sliderUIStore} = useStores();
-	const {itemsEls} = sliderUIStore;
+	const {filterSliderUIStore} = useStores();
+	const {itemsEls} = filterSliderUIStore;
+
+	const deleteItem = (index: number) => {
+		data.splice(index, 1);
+		console.log(data);
+	}
 
 	const list = data.map((item, index) => {
 		return (
@@ -46,6 +32,10 @@ const List = (props: List) => {
 			>
 				<div>
 					<span>{item}</span>
+					<a 
+						className={cx('deleteBtn')}
+						onClick={() => deleteItem(index)}
+					>X</a>
 				</div>
 			</li>
 		)
@@ -65,26 +55,27 @@ const List = (props: List) => {
 const Slider = observer(() => {
 	const [scrollLeftOffset, setScrollLeftOffset] = useState<number>(0);
 	const els = useRef<Array<HTMLElement>>(null);
-	const {sliderUIStore} = useStores();
-	const {itemsEls, currentIndex, setCurrentIndex} = sliderUIStore;
+	const {filterSliderUIStore} = useStores();
+	const {itemsEls, currentIndex, setCurrentIndex} = filterSliderUIStore;
+	const marginRight = 12;
 
 	useEffect(() => {
 		els.current = [];
-		sliderUIStore.setItemsEls(els);
+		filterSliderUIStore.setItemsEls(els);
 	}, [els]);
 
 	const handleNext = () => {
-		
+		if(currentIndex + 1 > itemsEls.current.length - 4) return;
 		const itemEl = itemsEls.current[currentIndex];
 		if(currentIndex < itemsEls.current.length - 1) setCurrentIndex(currentIndex + 1);
-		setScrollLeftOffset(scrollLeftOffset - (itemEl.offsetWidth + 12));
+		setScrollLeftOffset(scrollLeftOffset - (itemEl.offsetWidth + marginRight));
 	};
 
 	const handlePrev = () => {
 		if(currentIndex - 1 < 0) return;
 		const itemEl = itemsEls.current[currentIndex - 1];
 		if(currentIndex > 0) setCurrentIndex(currentIndex - 1);
-		setScrollLeftOffset(scrollLeftOffset + (itemEl.offsetWidth + 12));
+		setScrollLeftOffset(scrollLeftOffset + (itemEl.offsetWidth + marginRight));
 	};
 
 	return (

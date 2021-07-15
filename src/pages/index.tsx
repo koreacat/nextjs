@@ -1,6 +1,7 @@
 import Head from "next/head"
 import Link from "next/link";
 import Layout from "@components/layout";
+import Contents from "@components/contents";
 
 export default function Home() {
 
@@ -9,7 +10,7 @@ export default function Home() {
 			<Head>
 				<title>index</title>
 			</Head>
-			<div>
+			<Contents>
 				<h1>Next js</h1>
 				<ul>
 					<li>
@@ -41,19 +42,23 @@ export default function Home() {
 							<a>Path</a>
 						</Link>
 					</li>
+				</ul>
+				<hr/>
+				<h1>layout</h1>
+				<ul>
 					<li>
-						<Link href={"/slider"}>
-							<a>Slider</a>
+						<Link href={"/stickyScroll"}>
+							<a>StickyScroll</a>
+						</Link>
+					</li>
+					<li>
+						<Link href={"/filterSlider"}>
+							<a>FilterSlider</a>
 						</Link>
 					</li>
 				</ul>
 				<hr/>
-				<h1>layout</h1>
-				<Link href={"/stickyScroll"}>
-					<a>StickyScroll</a>
-				</Link>
-				<hr/>
-			</div>
+			</Contents>
 		</Layout>
 	)
 }

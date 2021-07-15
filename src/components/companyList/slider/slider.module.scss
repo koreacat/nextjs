@@ -39,6 +39,12 @@
         font-size: 20px;
         color: #fff;
         background-color: #6CDD83;
+
+        .deleteBtn {
+            display: inline-block;
+            margin-left: 10px;
+            cursor: pointer;
+        }
     }
     
     .button {

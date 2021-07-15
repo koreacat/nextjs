@@ -9,7 +9,7 @@ const Footer = () => {
         <footer className={cx('footer')}>
 			<Link href={"/"}>
 				<div>
-					<a>index</a>
+					<a>footer</a>
 				</div>
 			</Link>
         </footer>

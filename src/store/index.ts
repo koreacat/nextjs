@@ -1,12 +1,12 @@
-import SliderUIStore from "./sliderUIStore";
+import FilterSliderUIStore from "./FilterSliderUIStore";
 
 export interface Stores {
-	sliderUIStore: SliderUIStore;
+	filterSliderUIStore: FilterSliderUIStore;
 }
 
 export function getStores() {
 	return {
-		sliderUIStore: new SliderUIStore()
+		filterSliderUIStore: new FilterSliderUIStore()
 	}
 
 }

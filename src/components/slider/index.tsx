@@ -1,6 +1,6 @@
 import styles from './slider.module.scss';
 import classnames from 'classnames/bind';
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useStores} from "../../util/storeProvider";
 import {observer} from "mobx-react";
 
@@ -28,24 +28,22 @@ const data = [
 ];
 
 interface List {
-	appMenu: any;
+	scrollLeftOffset: number;
 }
 
 const List = (props: List) => {
-	const {appMenu} = props;
+	const {scrollLeftOffset} = props;
 	const {sliderUIStore} = useStores();
 	const {itemsEls} = sliderUIStore;
-
-	const scrollEvent = (e: any) => {
-		let diff = e.deltaY;
-		appMenu.current.scrollLeft += diff;
-	};
 
 	const list = data.map((item, index) => {
 		return (
 			<li ref={(itemEl) => {
-				itemsEls && itemsEls.current && itemEl && (itemsEls.current[index] = itemEl);
-			}} key={index} className={cx('item')}>
+					itemsEls && itemsEls.current && itemEl && (itemsEls.current[index] = itemEl);
+				}} 
+				key={index} 
+				className={cx('item')}
+			>
 				<div>
 					<span>{item}</span>
 				</div>
@@ -54,7 +52,10 @@ const List = (props: List) => {
 	});
 
 	return (
-		<ul ref={appMenu} className={cx('slider')} onWheel={scrollEvent}>
+		<ul 
+			className={cx('list')} 
+			style={{transform: `translate3d(${scrollLeftOffset}px, 0px, 0px)`}}
+		>
 			{list}
 		</ul>
 	)
@@ -62,7 +63,7 @@ const List = (props: List) => {
 
 
 const Slider = observer(() => {
-	const appMenu = useRef<HTMLUListElement>(null);
+	const [scrollLeftOffset, setScrollLeftOffset] = useState<number>(0);
 	const els = useRef<Array<HTMLElement>>(null);
 	const {sliderUIStore} = useStores();
 	const {itemsEls, currentIndex, setCurrentIndex} = sliderUIStore;
@@ -73,22 +74,25 @@ const Slider = observer(() => {
 	}, [els]);
 
 	const handleNext = () => {
-		if(!appMenu.current) return;
+		
 		const itemEl = itemsEls.current[currentIndex];
 		if(currentIndex < itemsEls.current.length - 1) setCurrentIndex(currentIndex + 1);
-		appMenu.current.scrollLeft += itemEl.offsetWidth + 12;
+		setScrollLeftOffset(scrollLeftOffset - (itemEl.offsetWidth + 12));
 	};
 
 	const handlePrev = () => {
-		if(!appMenu.current) return;
+		if(currentIndex - 1 < 0) return;
 		const itemEl = itemsEls.current[currentIndex - 1];
 		if(currentIndex > 0) setCurrentIndex(currentIndex - 1);
-		appMenu.current.scrollLeft -= itemEl?.offsetWidth + 12;
+		setScrollLeftOffset(scrollLeftOffset + (itemEl.offsetWidth + 12));
 	};
 
 	return (
 		<div className={cx('sliderWrap')}>
 			<div className={cx('sliderContents')}>
+				<div className={cx('slider')}>
+					<List scrollLeftOffset={scrollLeftOffset}/>
+				</div>
 				<button
 					type={'button'}
 					className={cx('button', 'prev')}
@@ -98,9 +102,6 @@ const Slider = observer(() => {
 					type={'button'}
 					className={cx('button', 'next')}
 					onClick={handleNext}
-				/>
-				<List
-					appMenu={appMenu}
 				/>
 			</div>
 		</div>

@@ -13,15 +13,18 @@
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: center;
-    }
-    
-    .slider {
-        overflow: hidden;
-        display: flex;
-        align-items: center;
         width: 800px;
         height: 100px;
+    }
+
+    .slider {
+        overflow: hidden;
+    }
+    
+    .list {
+        display: flex;
+        transform: translate3d(0px, 0px, 0px);
+        transition: all 0.5s;
     }
     
     .item {

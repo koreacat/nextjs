@@ -2,10 +2,15 @@ import {observable} from "mobx";
 import { Ifilter } from "src/pages/filterSlider";
 
 export default class FilterSliderUIStore {
+	private _marginRight = 12;
 	@observable private _itemsEls: Array<HTMLElement> = [];
 	@observable private _currentIndex: number = 0;
 	@observable private _selectedFilterList: Array<Ifilter> = [];
 	@observable private _scrollLeftOffset = 0;
+
+	get marginRight(): number {
+		return this._marginRight;
+	}
 
 	get itemsEls(): Array<HTMLElement> {
 		return this._itemsEls;
@@ -52,6 +57,10 @@ export default class FilterSliderUIStore {
 	deleteFilter = (filterType: Ifilter) => {
 		this._selectedFilterList.forEach((filter, index) => {
 			if(filter.type === filterType.type) {
+				if(this._currentIndex > index) {
+					this.setScrollLeftOffset(this.scrollLeftOffset + this._itemsEls[index].offsetWidth + this._marginRight);
+					this.setCurrentIndex(this.currentIndex - 1);
+				}
 				this._selectedFilterList.splice(index, 1);
 				this._itemsEls.splice(index, 1);
 			}

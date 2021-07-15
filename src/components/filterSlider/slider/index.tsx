@@ -49,21 +49,29 @@ const List = observer((props: List) => {
 
 const Slider = observer(() => {
 	const {filterSliderUIStore} = useStores();
-	const {itemsEls, currentIndex, setCurrentIndex, scrollLeftOffset, setScrollLeftOffset} = filterSliderUIStore;
-	const marginRight = 12;
-
-	const handleNext = () => {
-		if(currentIndex + 1 > itemsEls.length - 3) return;
-		const itemEl = itemsEls[currentIndex];
-		if(currentIndex < itemsEls.length - 1) setCurrentIndex(currentIndex + 1);
-		setScrollLeftOffset(scrollLeftOffset - (itemEl.offsetWidth + marginRight));
-	};
+	const {
+		itemsEls, 
+		currentIndex, 
+		setCurrentIndex, 
+		scrollLeftOffset, 
+		setScrollLeftOffset,
+		marginRight
+	} = filterSliderUIStore;
 
 	const handlePrev = () => {
 		if(currentIndex - 1 < 0) return;
 		const itemEl = itemsEls[currentIndex - 1];
+		if(!itemEl) return;
 		if(currentIndex > 0) setCurrentIndex(currentIndex - 1);
 		setScrollLeftOffset(scrollLeftOffset + (itemEl.offsetWidth + marginRight));
+	};
+
+	const handleNext = () => {
+		if(currentIndex + 1 > itemsEls.length - 2) return;
+		const itemEl = itemsEls[currentIndex];
+		if(!itemEl) return;
+		if(currentIndex < itemsEls.length - 1) setCurrentIndex(currentIndex + 1);
+		setScrollLeftOffset(scrollLeftOffset - (itemEl.offsetWidth + marginRight));
 	};
 
 	return (
@@ -72,11 +80,15 @@ const Slider = observer(() => {
 				<div className={cx('slider')}>
 					<List scrollLeftOffset={scrollLeftOffset}/>
 				</div>
-				<button
-					type={'button'}
-					className={cx('button', 'prev')}
-					onClick={handlePrev}
-				/>
+				{
+					currentIndex > 0 &&
+					<button
+						type={'button'}
+						className={cx('button', 'prev')}
+						onClick={handlePrev}
+					/>
+				}
+				
 				<button
 					type={'button'}
 					className={cx('button', 'next')}

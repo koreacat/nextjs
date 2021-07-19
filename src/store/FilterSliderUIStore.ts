@@ -2,19 +2,19 @@ import {observable} from "mobx";
 import { Ifilter } from "src/pages/filterSlider";
 
 export default class FilterSliderUIStore {
-	private _marginRight = 12;
-	private _sliderContentsWidth = 800;
-	@observable private _itemsEls: Array<HTMLElement> = [];
-	@observable private _currentIndex: number = 0;
-	@observable private _selectedFilterList: Array<Ifilter> = [];
+	private _MARGIN_RIGHT = 12;
+	private _SLIDER_CONTENTS_WIDTH = 800;
 	@observable private _scrollOffset = 0;
+	@observable private _currentItemIndex = 0;
+	@observable private _itemsEls: Array<HTMLElement> = [];
+	@observable private _selectedFilterList: Array<Ifilter> = [];
 
-	get marginRight(): number {
-		return this._marginRight;
+	get MARGIN_RIGHT(): number {
+		return this._MARGIN_RIGHT;
 	}
 
-	get sliderContentsWidth(): number {
-		return this._sliderContentsWidth;
+	get SLIDER_CONTENTS_WIDTH(): number {
+		return this._SLIDER_CONTENTS_WIDTH;
 	}
 
 	get itemsEls(): Array<HTMLElement> {
@@ -25,12 +25,12 @@ export default class FilterSliderUIStore {
 		this._itemsEls = value;
 	};
 
-	get currentIndex(): number {
-		return this._currentIndex;
+	get currentItemIndex(): number {
+		return this._currentItemIndex;
 	}
 
-	setCurrentIndex = (value: number) => {
-		this._currentIndex = value;
+	setCurrentItemIndex = (value: number) => {
+		this._currentItemIndex = value;
 	};
 	
 	get selectedFilterList(): Array<Ifilter>{
@@ -45,28 +45,25 @@ export default class FilterSliderUIStore {
 		this._scrollOffset = value;
 	};
 
-	getSelectedFilterListWidth = () => {
-		let sum = 0;
-		this._itemsEls.forEach((item) => {
-			sum += item.offsetWidth + this._marginRight;
+	getSelectedFilterListWidth = (length: number) => {
+		let listWidth = 0;
+		this._itemsEls.forEach((item, index) => {
+			if(index > length) return;
+			listWidth += item.offsetWidth + this._MARGIN_RIGHT;
 		})
-		return sum;
+		return listWidth;
 	};
 
 	//슬라이더 한칸 왼쪽으로 밀기
 	setScrollLeft = () => {
-		let sum = 0;
-		this._itemsEls.forEach((item, index) => {
-			if(index > this._currentIndex - 2) return;
-			sum += item.offsetWidth + this._marginRight;
-		})
+		let listWidth = this.getSelectedFilterListWidth(this._currentItemIndex - 2);
 
-		if(sum > this._sliderContentsWidth) {
-			if(this._currentIndex - 1 < 0) return;
-			const itemEl = this._itemsEls[this._currentIndex - 1];
+		if(listWidth > this._SLIDER_CONTENTS_WIDTH) {
+			if(this._currentItemIndex - 1 < 0) return;
+			const itemEl = this._itemsEls[this._currentItemIndex - 1];
 			if(!itemEl) return;
-			if(this._currentIndex > 0) this.setCurrentIndex(this._currentIndex - 1);
-			this.setScrollOffset(-(sum - this.sliderContentsWidth - this._marginRight));
+			if(this._currentItemIndex > 0) this.setCurrentItemIndex(this._currentItemIndex - 1);
+			this.setScrollOffset(-(listWidth - this._SLIDER_CONTENTS_WIDTH - this._MARGIN_RIGHT));
 		} else {
 			this.setScrollOffset(0);
 		}
@@ -74,55 +71,49 @@ export default class FilterSliderUIStore {
 
 	//슬라이더 한칸 오른쪽으로 밀기
 	setScrollRight = () => {
-		let sum = 0;
-		this._itemsEls.forEach((item, index) => {
-			if(index > this._currentIndex) return;
-			sum += item.offsetWidth + this._marginRight;
-		})
+		let listWidth = this.getSelectedFilterListWidth(this._currentItemIndex);
 	
-		if(this._currentIndex > this._itemsEls.length - 1) return;
-		const itemEl = this._itemsEls[this._currentIndex];
+		if(this._currentItemIndex > this._itemsEls.length - 1) return;
+		const itemEl = this._itemsEls[this._currentItemIndex];
 		if(!itemEl) return;
-		if(this._currentIndex < this._itemsEls.length) this.setCurrentIndex(this._currentIndex + 1);
-		this.setScrollOffset(-(sum - this._sliderContentsWidth - this._marginRight));
+		if(this._currentItemIndex < this._itemsEls.length) this.setCurrentItemIndex(this._currentItemIndex + 1);
+		this.setScrollOffset(-(listWidth - this._SLIDER_CONTENTS_WIDTH - this._MARGIN_RIGHT));
 	}
 
 	//슬라이더 왼쪽 끝에 맞추기
 	setScrollLeftEdge = () => {
-		this.setCurrentIndex(0);
+		this.setCurrentItemIndex(0);
 		this.setScrollOffset(0);
 	}
 
 	//슬라이더 오른쪽 끝에 맞추기
 	setScrollRightEdge = () => {
-		this.setCurrentIndex(this._selectedFilterList.length);
-		this.setScrollOffset(-(this.getSelectedFilterListWidth() - this.sliderContentsWidth - this._marginRight));
+		this.setCurrentItemIndex(this._selectedFilterList.length);
+		this.setScrollOffset(-(this.getSelectedFilterListWidth(this._itemsEls.length) - this._SLIDER_CONTENTS_WIDTH - this._MARGIN_RIGHT));
 	}
 
 	resetFilter = () => {
 		this._selectedFilterList = [];
 		this._itemsEls = [];
-		this.setCurrentIndex(0);
+		this.setCurrentItemIndex(0);
 		this.setScrollOffset(0);
 	};
 
 	existFilter = (filterType: Ifilter) => {
 		let exist = false;
 		this._selectedFilterList.forEach((filter) => {
-			if(filter.type === filterType.type) {
-				exist = true;
-			}
+			if(filter.type === filterType.type) exist = true;
 		})
 		return exist;
 	}
 
 	selectFilter = (filterType: Ifilter) => {
 		this._selectedFilterList.push(filterType);
-		this.setCurrentIndex(this._currentIndex + 1);
+		this.setCurrentItemIndex(this._currentItemIndex + 1);
+
 		setTimeout(() => {
-			if(this.getSelectedFilterListWidth() > this._sliderContentsWidth) this.setScrollRightEdge();
+			if(this.getSelectedFilterListWidth(this._itemsEls.length) > this._SLIDER_CONTENTS_WIDTH) this.setScrollRightEdge();
 		}, 0)
-		
 	}
 
 	deleteFilter = (filterType: Ifilter) => {
@@ -130,11 +121,13 @@ export default class FilterSliderUIStore {
 			if(filter.type === filterType.type) {
 				this._selectedFilterList.splice(index, 1);
 				this._itemsEls.splice(index, 1);
-				this.setCurrentIndex(this._currentIndex - 1);
+				this.setCurrentItemIndex(this._currentItemIndex - 1);
+
 				setTimeout(() => {
-					if(this.getSelectedFilterListWidth() > this._sliderContentsWidth) this.setScrollRightEdge();
+					if(this.getSelectedFilterListWidth(this._itemsEls.length) > this._SLIDER_CONTENTS_WIDTH) this.setScrollRightEdge();
 					else this.setScrollLeftEdge();
 				}, 0)
+				return;
 			}
 		})
 	}

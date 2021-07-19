@@ -12,18 +12,17 @@ interface List {
 const List = observer((props: List) => {
 	const {scrollOffset} = props;
 	const {filterSliderUIStore} = useStores();
-	const {itemsEls, selectedFilterList, deleteFilter} = filterSliderUIStore;
+	const {MARGIN_RIGHT, itemsEls, selectedFilterList, deleteFilter} = filterSliderUIStore;
 
-	let filterList = [];
-	selectedFilterList.forEach((filter) => {filterList.push(filter)});
-
-	const list = filterList.map((filter, index) => {
+	const list = selectedFilterList.map((filter, index) => {
 		return (
-			<li ref={(itemEl) => {
-				itemsEls && itemEl && (itemsEls[index] = itemEl);
-			}} 
-			key={filter.type} 
-			className={cx('item')}
+			<li 
+				key={filter.type} 
+				ref={(itemEl) => {
+					itemsEls && itemEl && (itemsEls[index] = itemEl);
+				}} 
+				className={cx('item')}
+				style={{marginRight: `${MARGIN_RIGHT}px`}}
 			>
 			<div>
 				<span>{filter.text}</span>
@@ -49,7 +48,7 @@ const List = observer((props: List) => {
 const Slider = observer(() => {
 	const {filterSliderUIStore} = useStores();
 	const {
-		sliderContentsWidth,
+		SLIDER_CONTENTS_WIDTH,
 		scrollOffset, 
 		resetFilter,
 		setScrollLeft,
@@ -60,7 +59,7 @@ const Slider = observer(() => {
 		<div className={cx('sliderWrap')}>
 			<div 
 				className={cx('sliderContents')}
-				style={{width: `${sliderContentsWidth}px`}}
+				style={{width: `${SLIDER_CONTENTS_WIDTH}px`}}
 			>
 				<div className={cx('slider')}>
 					<List scrollOffset={scrollOffset}/>

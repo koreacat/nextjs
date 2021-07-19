@@ -6,11 +6,11 @@ import {observer} from "mobx-react";
 const cx = classnames.bind(styles);
 
 interface List {
-	scrollLeftOffset: number;
+	scrollOffset: number;
 }
 
 const List = observer((props: List) => {
-	const {scrollLeftOffset} = props;
+	const {scrollOffset} = props;
 	const {filterSliderUIStore} = useStores();
 	const {itemsEls, selectedFilterList, deleteFilter} = filterSliderUIStore;
 
@@ -39,61 +39,48 @@ const List = observer((props: List) => {
 	return (
 		<ul 
 			className={cx('list')} 
-			style={{transform: `translate3d(${scrollLeftOffset}px, 0px, 0px)`}}
+			style={{transform: `translate3d(${scrollOffset}px, 0px, 0px)`}}
 		>
 			{list}
 		</ul>
 	)
 });
 
-
 const Slider = observer(() => {
 	const {filterSliderUIStore} = useStores();
 	const {
-		itemsEls, 
-		currentIndex, 
-		setCurrentIndex, 
-		scrollLeftOffset, 
-		setScrollLeftOffset,
-		marginRight
+		sliderContentsWidth,
+		scrollOffset, 
+		resetFilter,
+		setScrollLeft,
+		setScrollRight
 	} = filterSliderUIStore;
-
-	const handlePrev = () => {
-		if(currentIndex - 1 < 0) return;
-		const itemEl = itemsEls[currentIndex - 1];
-		if(!itemEl) return;
-		if(currentIndex > 0) setCurrentIndex(currentIndex - 1);
-		setScrollLeftOffset(scrollLeftOffset + (itemEl.offsetWidth + marginRight));
-	};
-
-	const handleNext = () => {
-		if(currentIndex + 1 > itemsEls.length - 2) return;
-		const itemEl = itemsEls[currentIndex];
-		if(!itemEl) return;
-		if(currentIndex < itemsEls.length - 1) setCurrentIndex(currentIndex + 1);
-		setScrollLeftOffset(scrollLeftOffset - (itemEl.offsetWidth + marginRight));
-	};
 
 	return (
 		<div className={cx('sliderWrap')}>
-			<div className={cx('sliderContents')}>
+			<div 
+				className={cx('sliderContents')}
+				style={{width: `${sliderContentsWidth}px`}}
+			>
 				<div className={cx('slider')}>
-					<List scrollLeftOffset={scrollLeftOffset}/>
+					<List scrollOffset={scrollOffset}/>
 				</div>
-				{
-					currentIndex > 0 &&
-					<button
-						type={'button'}
-						className={cx('button', 'prev')}
-						onClick={handlePrev}
-					/>
-				}
-				
+				<button
+					type={'button'}
+					className={cx('button', 'prev')}
+					onClick={setScrollLeft}
+				/>
 				<button
 					type={'button'}
 					className={cx('button', 'next')}
-					onClick={handleNext}
+					onClick={setScrollRight}
 				/>
+			</div>
+			<div className={cx('buttonWrap')}>
+				<button 
+					className={cx('reset')}
+					onClick={resetFilter}
+				>초기화</button>
 			</div>
 		</div>
 	)

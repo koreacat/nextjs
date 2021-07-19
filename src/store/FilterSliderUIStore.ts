@@ -54,6 +54,10 @@ export default class FilterSliderUIStore {
 		return listWidth;
 	};
 
+	existScrollRight = () => {
+		return this.getSelectedFilterListWidth(this._currentItemIndex) > this._SLIDER_CONTENTS_WIDTH;
+	}
+
 	//슬라이더 한칸 왼쪽으로 밀기
 	setScrollLeft = () => {
 		let listWidth = this.getSelectedFilterListWidth(this._currentItemIndex - 2);
@@ -72,17 +76,21 @@ export default class FilterSliderUIStore {
 	//슬라이더 한칸 오른쪽으로 밀기
 	setScrollRight = () => {
 		let listWidth = this.getSelectedFilterListWidth(this._currentItemIndex);
-	
-		if(this._currentItemIndex > this._itemsEls.length - 1) return;
-		const itemEl = this._itemsEls[this._currentItemIndex];
-		if(!itemEl) return;
-		if(this._currentItemIndex < this._itemsEls.length) this.setCurrentItemIndex(this._currentItemIndex + 1);
-		this.setScrollOffset(-(listWidth - this._SLIDER_CONTENTS_WIDTH - this._MARGIN_RIGHT));
+		if(!this.existScrollRight()) return;
+
+		if(this._currentItemIndex < this._itemsEls.length) {
+			if(this._currentItemIndex > this._itemsEls.length - 1) return;
+			const itemEl = this._itemsEls[this._currentItemIndex];
+			if(!itemEl) return;
+			if(this._currentItemIndex < this._itemsEls.length) this.setCurrentItemIndex(this._currentItemIndex + 1);
+			this.setScrollOffset(-(listWidth - this._SLIDER_CONTENTS_WIDTH - this._MARGIN_RIGHT));
+		} else {
+			this.setScrollOffset(-(this.getSelectedFilterListWidth(this._itemsEls.length) - this._SLIDER_CONTENTS_WIDTH - this._MARGIN_RIGHT));
+		}
 	}
 
 	//슬라이더 왼쪽 끝에 맞추기
 	setScrollLeftEdge = () => {
-		this.setCurrentItemIndex(0);
 		this.setScrollOffset(0);
 	}
 

@@ -72,7 +72,6 @@ export default class FilterSliderUIStore {
 		}
 	}
 
-
 	//슬라이더 한칸 오른쪽으로 밀기
 	setScrollRight = () => {
 		let sum = 0;
@@ -81,10 +80,10 @@ export default class FilterSliderUIStore {
 			sum += item.offsetWidth + this._marginRight;
 		})
 	
-		if(this._currentIndex > this._itemsEls.length) return;
+		if(this._currentIndex > this._itemsEls.length - 1) return;
 		const itemEl = this._itemsEls[this._currentIndex];
 		if(!itemEl) return;
-		if(this._currentIndex < this._itemsEls.length - 1) this.setCurrentIndex(this._currentIndex + 1);
+		if(this._currentIndex < this._itemsEls.length) this.setCurrentIndex(this._currentIndex + 1);
 		this.setScrollOffset(-(sum - this._sliderContentsWidth - this._marginRight));
 	}
 
@@ -101,7 +100,8 @@ export default class FilterSliderUIStore {
 	}
 
 	resetFilter = () => {
-		this._selectedFilterList.splice(0, this._selectedFilterList.length);
+		this._selectedFilterList = [];
+		this._itemsEls = [];
 		this.setCurrentIndex(0);
 		this.setScrollOffset(0);
 	};
@@ -120,9 +120,7 @@ export default class FilterSliderUIStore {
 		this._selectedFilterList.push(filterType);
 		this.setCurrentIndex(this._currentIndex + 1);
 		setTimeout(() => {
-			if(this.getSelectedFilterListWidth() > this._sliderContentsWidth) {
-				this.setScrollRightEdge();
-			}
+			if(this.getSelectedFilterListWidth() > this._sliderContentsWidth) this.setScrollRightEdge();
 		}, 0)
 		
 	}
@@ -134,13 +132,9 @@ export default class FilterSliderUIStore {
 				this._itemsEls.splice(index, 1);
 				this.setCurrentIndex(this._currentIndex - 1);
 				setTimeout(() => {
-					if(this.getSelectedFilterListWidth() > this._sliderContentsWidth) {
-						this.setScrollRightEdge();
-					} else {
-						this.setScrollLeftEdge();
-					}
+					if(this.getSelectedFilterListWidth() > this._sliderContentsWidth) this.setScrollRightEdge();
+					else this.setScrollLeftEdge();
 				}, 0)
-				
 			}
 		})
 	}

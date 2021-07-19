@@ -7,11 +7,11 @@ const cx = classnames.bind(styles);
 const Footer = () => {
     return (
         <footer className={cx('footer')}>
-			<Link href={"/"}>
+			{/* <Link href={"/"}>
 				<div>
 					<a>footer</a>
 				</div>
-			</Link>
+			</Link> */}
         </footer>
     )
 };

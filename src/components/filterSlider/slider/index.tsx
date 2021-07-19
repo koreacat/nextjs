@@ -52,7 +52,7 @@ const Slider = observer(() => {
 		scrollOffset, 
 		resetFilter,
 		setScrollLeft,
-		setScrollRight
+		setScrollRight,
 	} = filterSliderUIStore;
 
 	return (

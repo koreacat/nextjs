@@ -5,14 +5,15 @@ import {observer} from "mobx-react";
 
 const cx = classnames.bind(styles);
 
-interface List {
-	scrollOffset: number;
-}
-
-const List = observer((props: List) => {
-	const {scrollOffset} = props;
+const List = observer(() => {
 	const {filterSliderUIStore} = useStores();
-	const {MARGIN_RIGHT, itemsEls, selectedFilterList, deleteFilter} = filterSliderUIStore;
+	const {
+		MARGIN_RIGHT, 
+		itemsEls, 
+		selectedFilterList, 
+		deleteFilter,
+		scrollOffset
+	} = filterSliderUIStore;
 
 	const list = selectedFilterList.map((filter, index) => {
 		return (
@@ -49,7 +50,6 @@ const Slider = observer(() => {
 	const {filterSliderUIStore} = useStores();
 	const {
 		SLIDER_CONTENTS_WIDTH,
-		scrollOffset, 
 		resetFilter,
 		setScrollLeft,
 		setScrollRight,
@@ -62,7 +62,7 @@ const Slider = observer(() => {
 				style={{width: `${SLIDER_CONTENTS_WIDTH}px`}}
 			>
 				<div className={cx('slider')}>
-					<List scrollOffset={scrollOffset}/>
+					<List/>
 				</div>
 				<button
 					type={'button'}

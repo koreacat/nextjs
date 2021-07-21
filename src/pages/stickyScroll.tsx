@@ -159,7 +159,7 @@ const ScrollTop = () => {
 	)
 };
 
-const StickyScroll = () => {
+const StickyScrollPage = () => {
 	const [scrollMode, setScrollMode] = useState<SCROLL_MODE>('SCROLL');
 	const [active, setActive] = useState(0);
 	const listWrapEl = useRef<HTMLDivElement>(null);
@@ -201,5 +201,5 @@ const StickyScroll = () => {
 	)
 };
 
-export default StickyScroll;
+export default StickyScrollPage;
 

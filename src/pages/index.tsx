@@ -23,11 +23,6 @@ export default function Home() {
 								<a className={cx('contents')}>Components</a>
 							</Link>
 						</li>
-						<li>
-							<Link href={"/charts"}>
-								<a className={cx('contents')}>Charts</a>
-							</Link>
-						</li>
 					</ul>
 					<hr/>
 					<h1 className={cx('title')}>Layout</h1>
@@ -44,6 +39,21 @@ export default function Home() {
 						</li>
 					</ul>
 					<hr/>
+					<h1 className={cx('title')}>Chart</h1>
+					<ul>
+						<li>
+							<Link href={"/barChart"}>
+								<a className={cx('contents')}>BarChart</a>
+							</Link>
+						</li>
+						<li>
+							<Link href={"/vennDiagram"}>
+								<a className={cx('contents')}>VennDiagram</a>
+							</Link>
+						</li>
+					</ul>
+					<hr/>
+
 				</div>
 			</Contents>
 		</Layout>

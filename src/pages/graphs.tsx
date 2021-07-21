@@ -1,12 +1,12 @@
 import Layout from "@components/layout";
 
-const Graphs = () => {
+const GraphsPage = () => {
 
     return (
 		<Layout>
-            
+
         </Layout>
     )
-}
+};
 
-export default Graphs;
+export default GraphsPage;

@@ -1,5 +1,5 @@
-import FilterSliderUIStore from "./FilterSliderUIStore";
-import GraphsUIStore from "./GraphsUIStore";
+import FilterSliderUIStore from "./filterSliderUIStore";
+import GraphsUIStore from "./graphsUIStore";
 
 export interface Stores {
 	filterSliderUIStore: FilterSliderUIStore;

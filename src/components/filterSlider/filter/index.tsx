@@ -1,8 +1,8 @@
 import styles from './filter.module.scss';
 import classnames from 'classnames/bind';
-import { IFilter, filterData } from 'src/pages/filterSlider';
 import { useStores } from 'src/util/storeProvider';
 import { observer } from 'mobx-react';
+import {filterData, IFilter} from "../data";
 
 const cx = classnames.bind(styles);
 

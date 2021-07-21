@@ -1,5 +1,5 @@
 import {observable} from "mobx";
-import { Ifilter } from "src/pages/filterSlider";
+import { IFilter } from "src/pages/filterSlider";
 
 export default class FilterSliderUIStore {
 	private _MARGIN_RIGHT = 12;
@@ -7,7 +7,7 @@ export default class FilterSliderUIStore {
 	@observable private _scrollOffset = 0;
 	@observable private _currentItemIndex = 0;
 	@observable private _itemsEls: Array<HTMLElement> = [];
-	@observable private _selectedFilterList: Array<Ifilter> = [];
+	@observable private _selectedFilterList: Array<IFilter> = [];
 
 	get MARGIN_RIGHT(): number {
 		return this._MARGIN_RIGHT;
@@ -32,8 +32,8 @@ export default class FilterSliderUIStore {
 	setCurrentItemIndex = (value: number) => {
 		this._currentItemIndex = value;
 	};
-	
-	get selectedFilterList(): Array<Ifilter>{
+
+	get selectedFilterList(): Array<IFilter>{
 		return this._selectedFilterList;
 	}
 
@@ -50,13 +50,13 @@ export default class FilterSliderUIStore {
 		this._itemsEls.forEach((item, index) => {
 			if(index > length) return;
 			listWidth += item.offsetWidth + this._MARGIN_RIGHT;
-		})
+		});
 		return listWidth;
 	};
 
 	existScrollRight = () => {
 		return this.getSelectedFilterListWidth(this._currentItemIndex) > this._SLIDER_CONTENTS_WIDTH;
-	}
+	};
 
 	//슬라이더 한칸 왼쪽으로 밀기
 	setScrollLeft = () => {
@@ -71,7 +71,7 @@ export default class FilterSliderUIStore {
 		} else {
 			this.setScrollOffset(0);
 		}
-	}
+	};
 
 	//슬라이더 한칸 오른쪽으로 밀기
 	setScrollRight = () => {
@@ -87,18 +87,18 @@ export default class FilterSliderUIStore {
 		} else {
 			this.setScrollOffset(-(this.getSelectedFilterListWidth(this._itemsEls.length) - this._SLIDER_CONTENTS_WIDTH - this._MARGIN_RIGHT));
 		}
-	}
+	};
 
 	//슬라이더 왼쪽 끝에 맞추기
 	setScrollLeftEdge = () => {
 		this.setScrollOffset(0);
-	}
+	};
 
 	//슬라이더 오른쪽 끝에 맞추기
 	setScrollRightEdge = () => {
 		this.setCurrentItemIndex(this._selectedFilterList.length);
 		this.setScrollOffset(-(this.getSelectedFilterListWidth(this._itemsEls.length) - this._SLIDER_CONTENTS_WIDTH - this._MARGIN_RIGHT));
-	}
+	};
 
 	resetFilter = () => {
 		this._selectedFilterList = [];
@@ -107,24 +107,24 @@ export default class FilterSliderUIStore {
 		this.setScrollOffset(0);
 	};
 
-	existFilter = (filterType: Ifilter) => {
+	existFilter = (filterType: IFilter) => {
 		let exist = false;
 		this._selectedFilterList.forEach((filter) => {
 			if(filter.type === filterType.type) exist = true;
-		})
+		});
 		return exist;
-	}
+	};
 
-	selectFilter = (filterType: Ifilter) => {
+	selectFilter = (filterType: IFilter) => {
 		this._selectedFilterList.push(filterType);
 		this.setCurrentItemIndex(this._currentItemIndex + 1);
 
 		setTimeout(() => {
 			if(this.getSelectedFilterListWidth(this._itemsEls.length) > this._SLIDER_CONTENTS_WIDTH) this.setScrollRightEdge();
 		}, 0)
-	}
+	};
 
-	deleteFilter = (filterType: Ifilter) => {
+	deleteFilter = (filterType: IFilter) => {
 		this._selectedFilterList.forEach((filter, index) => {
 			if(filter.type === filterType.type) {
 				this._selectedFilterList.splice(index, 1);
@@ -134,7 +134,7 @@ export default class FilterSliderUIStore {
 				setTimeout(() => {
 					if(this.getSelectedFilterListWidth(this._itemsEls.length) > this._SLIDER_CONTENTS_WIDTH) this.setScrollRightEdge();
 					else this.setScrollLeftEdge();
-				}, 0)
+				}, 0);
 				return;
 			}
 		})

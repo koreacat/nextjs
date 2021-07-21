@@ -1,6 +1,6 @@
 import styles from './filter.module.scss';
 import classnames from 'classnames/bind';
-import { Ifilter, filterData } from 'src/pages/filterSlider';
+import { IFilter, filterData } from 'src/pages/filterSlider';
 import { useStores } from 'src/util/storeProvider';
 import { observer } from 'mobx-react';
 
@@ -8,7 +8,7 @@ const cx = classnames.bind(styles);
 
 interface FilterList {
     title: string;
-    list: Array<Ifilter>;
+    list: Array<IFilter>;
 }
 
 const FilterList = observer((props: FilterList) => {
@@ -18,15 +18,15 @@ const FilterList = observer((props: FilterList) => {
 
     const onChange = (filter) => {
         existFilter(filter) ? deleteFilter(filter) : selectFilter(filter);
-    }
+    };
 
     const filterList = list.map((filter) => {
         return (
             <li key={filter.type}>
                 <label className={cx('item')}>
 			    	<span>{filter.text}</span>
-			    	<input 
-                        type={'checkbox'} 
+			    	<input
+                        type={'checkbox'}
                         onChange={e => onChange(filter)}
                         checked={existFilter(filter)}
                     />
@@ -43,7 +43,7 @@ const FilterList = observer((props: FilterList) => {
 		    </ul>
         </div>
     )
-})
+});
 
 const Filter = () => {
     return (
@@ -62,6 +62,6 @@ const Filter = () => {
             </div>
 		</div>
     )
-}
+};
 
 export default Filter;

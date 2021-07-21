@@ -20,6 +20,6 @@ const FilterSlider = observer(() => {
             }
         </div>
     )
-})
+});
 
 export default FilterSlider;

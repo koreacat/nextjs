@@ -2,20 +2,20 @@ import Contents from "@components/contents";
 import Layout from "@components/layout";
 import FilterSlider from "src/components/filterSlider";
 
-export interface Ifilter {
+export interface IFilter {
     type: string;
     text: string;
 }
 
 interface filterData {
-    ATTENDANCE: Array<Ifilter>;
-    WORKING_CULTURE: Array<Ifilter>;
-    WELFARE_CULTURE: Array<Ifilter>;
-    TEAM_CULTURE: Array<Ifilter>;
-    COMPANY_CULTURE: Array<Ifilter>;
-    LEAVE_WORK: Array<Ifilter>;
-    REST: Array<Ifilter>;
-    SELF_IMPROVEMENT: Array<Ifilter>;
+    ATTENDANCE: Array<IFilter>;
+    WORKING_CULTURE: Array<IFilter>;
+    WELFARE_CULTURE: Array<IFilter>;
+    TEAM_CULTURE: Array<IFilter>;
+    COMPANY_CULTURE: Array<IFilter>;
+    LEAVE_WORK: Array<IFilter>;
+    REST: Array<IFilter>;
+    SELF_IMPROVEMENT: Array<IFilter>;
 }
 
 const ATTENDANCE = [
@@ -204,7 +204,7 @@ export const filterData: filterData = {
     LEAVE_WORK: LEAVE_WORK,
     REST: REST,
     SELF_IMPROVEMENT: SELF_IMPROVEMENT
-}
+};
 
 const FilterSliderPage = () => {
 	return (

@@ -1,5 +1,5 @@
 import {observable} from "mobx";
-import { IFilter } from "src/pages/filterSlider";
+import {IFilter} from "../components/filterSlider/data";
 
 export default class FilterSliderUIStore {
 	private _MARGIN_RIGHT = 12;

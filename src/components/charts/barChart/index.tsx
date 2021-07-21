@@ -13,10 +13,14 @@ export interface IBarChartData {
 
 const Bar = ({title, value, emphasized, interactionTrigger}: IBarChartData) => {
     const [count, setCount] = useState(20);
-
+    let timeout;
     useEffect(() => {
         interactionTrigger ? 
-        setTimeout(() => {setCount(20 + value * 5)}, 600) : setCount(20);
+        timeout = setTimeout(() => {setCount(20 + value * 5)}, 600) : setCount(20);
+
+        return (() => {
+            clearTimeout(timeout);
+        })
     }, [interactionTrigger, value])
 
     return (

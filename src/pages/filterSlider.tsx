@@ -206,7 +206,7 @@ export const filterData: filterData = {
     SELF_IMPROVEMENT: SELF_IMPROVEMENT
 }
 
-const CompanyList = () => {
+const FilterSliderPage = () => {
 	return (
 		<Layout>
             <Contents>
@@ -216,4 +216,4 @@ const CompanyList = () => {
 	)
 };
 
-export default CompanyList;
+export default FilterSliderPage;

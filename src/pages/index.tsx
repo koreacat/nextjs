@@ -24,8 +24,8 @@ export default function Home() {
 							</Link>
 						</li>
 						<li>
-							<Link href={"/graphs"}>
-								<a className={cx('contents')}>Graphs</a>
+							<Link href={"/charts"}>
+								<a className={cx('contents')}>Charts</a>
 							</Link>
 						</li>
 					</ul>

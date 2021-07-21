@@ -1,0 +1,32 @@
+@import '@styles/common.scss';
+
+.wrap {
+    padding: 10px;
+}
+
+.barChartBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 640px;
+    height: 56px;
+    background: $C_COOL_GRAY_30;
+    border: 1px solid $C_COOL_GRAY_40;    
+    border-radius: 16px;
+    font-family: $F_NOTO_SANS_KR;
+    font-size: 15px;
+    color: $C_WARM_GRAY_70;
+    line-height: 20px;
+    letter-spacing: -0.36px;
+
+    &.open {
+        background: $C_COOL_GRAY_70;
+        border: 1px solid $C_COOL_GRAY_70;
+        color: $C_WARM_GRAY_30;
+    }
+
+    &:hover {
+        border: 1px solid $C_COOL_GRAY_70;
+    }
+}

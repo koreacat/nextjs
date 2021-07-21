@@ -1,15 +1,15 @@
 import FilterSliderUIStore from "./filterSliderUIStore";
-import GraphsUIStore from "./graphsUIStore";
+import ChartsUIStore from "./chartsUIStore";
 
 export interface Stores {
 	filterSliderUIStore: FilterSliderUIStore;
-	graphsUIStore: GraphsUIStore;
+	chartsUIStore: ChartsUIStore;
 }
 
 export function getStores() {
 	return {
 		filterSliderUIStore: new FilterSliderUIStore(),
-		graphsUIStore: new GraphsUIStore(),
+		chartsUIStore: new ChartsUIStore(),
 	}
 
 }

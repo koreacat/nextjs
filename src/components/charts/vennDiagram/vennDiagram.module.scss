@@ -49,17 +49,20 @@
     user-select: none;
 }
 
+.textWrap:hover {
+    .name {
+        text-decoration: underline;
+    }
+}
+
 .title {
     overflow: hidden;
     display: block;
-    width: 100px;
     text-overflow: ellipsis;
     text-align: center;
     white-space: nowrap;
     margin-bottom: 12px;
     font-family: $F_NOTO_SANS_KR;
-    font-style: normal;
-    font-weight: normal;
     font-size: 15px;
     line-height: 20px;
     color: $C_WARM_GRAY_60;
@@ -68,60 +71,66 @@
 .name {
     overflow: hidden;
     display: block;
-    width: 80px;
     text-overflow: ellipsis;
     text-align: center;
     white-space: nowrap;
     font-family: $F_NOTO_SANS_KR;
-    font-style: normal;
-    font-weight: bold;
+    font-weight: 600;
     font-size: 15px;
     line-height: 20px;
 }
 
 .outSide {
+    width: 115px;
+    
     .name {
-        width: 100px;
+        width: 115px;
+    }
+    
+    .title {
+        width: 115px;
+    }
+}
+
+.inSide {
+    width: 85px;
+    
+    .name {
+        width: 85px;
     }
 }
 
 .area01 {
-    width: 100px;
     top: 55px;
 }
 
 .area02 {
-    width: 80px;
     top: 175px;
     left: 93px;
 }
 
 .area03 {
-    width: 80px;
     top: 223px;
 }
 
 .area04 {
-    width: 80px;
     top: 175px;
     right: 93px;
 }
 
 .area05 {
-    width: 100px;
-    bottom: 90px;
-    left: 42px;
+    bottom: 100px;
+    left: 25px;
 }
 
 .area06 {
-    width: 80px;
+    width: 85px;
     bottom: 91px;
 }
 
 .area07 {
-    width: 100px;
-    bottom: 90px;
-    right: 42px;
+    bottom: 100px;
+    right: 25px;
 }
 
 

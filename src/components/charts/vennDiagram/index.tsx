@@ -28,24 +28,24 @@ const VennDiagram = () => {
 				<span className={cx('title')}>사내화합사내화합사내화합사내화합사내화합</span>
 				<span className={cx('name')}>카카오카카오오카카오카카오오카카오카카오오</span>
 			</div>
-			<div className={cx('textWrap', 'area02', 'sky')}>
+			<div className={cx('textWrap', 'inSide', 'area02', 'sky')}>
 				<span className={cx('name')}>배달의민족배달의민족배달의민족</span>
 			</div>
-			<div className={cx('textWrap', 'area03', 'yellow')}>
+			<div className={cx('textWrap', 'inSide', 'area03', 'yellow')}>
 				<span className={cx('name')}>카카오뱅크</span>
 			</div>
-			<div className={cx('textWrap', 'area04', 'green')}>
+			<div className={cx('textWrap', 'inSide', 'area04', 'green')}>
 				<span className={cx('name')}>카카오페이</span>
 			</div>
 			<div className={cx('textWrap', 'outSide', 'area05')}>
-				<span className={cx('title')}>칭찬가득</span>
+				<span className={cx('title')}>칭찬가득 기업</span>
 				<span className={cx('name')}>카카오뱅크</span>
 			</div>
-			<div className={cx('textWrap', 'area06', 'blue')}>
+			<div className={cx('textWrap', 'inSide', 'area06', 'blue')}>
 				<span className={cx('name')}>일동제약약</span>
 			</div>
 			<div className={cx('textWrap', 'outSide', 'area07')}>
-				<span className={cx('title')}>리더좋은</span>
+				<span className={cx('title')}>리더좋은 기업</span>
 				<span className={cx('name')}>한국수자원</span>
 			</div>
 		</div>

@@ -51,6 +51,11 @@ export default function Home() {
 								<a className={cx('contents')}>VennDiagram</a>
 							</Link>
 						</li>
+						<li>
+							<Link href={"/dotChart"}>
+								<a className={cx('contents')}>DotChart</a>
+							</Link>
+						</li>
 					</ul>
 					<hr/>
 

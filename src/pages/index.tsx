@@ -23,6 +23,11 @@ export default function Home() {
 								<a className={cx('contents')}>Components</a>
 							</Link>
 						</li>
+						<li>
+							<Link href={"/sliderTab"}>
+								<a className={cx('contents')}>SliderTab</a>
+							</Link>
+						</li>
 					</ul>
 					<hr/>
 					<h1 className={cx('title')}>Layout</h1>

@@ -47,6 +47,11 @@ export default function Home() {
 								<a className={cx('contents')}>FilterSlider</a>
 							</Link>
 						</li>
+						<li>
+							<Link href={"/onOffCover"}>
+								<a className={cx('contents')}>OnOffCover</a>
+							</Link>
+						</li>
 					</ul>
 					<hr/>
 					<h1 className={cx('title')}>Chart</h1>
@@ -64,6 +69,15 @@ export default function Home() {
 						<li>
 							<Link href={"/dotChart"}>
 								<a className={cx('contents')}>DotChart</a>
+							</Link>
+						</li>
+					</ul>
+					<hr/>
+					<h1 className={cx('title')}>Page</h1>
+					<ul>
+						<li>
+							<Link href={"/introduction"}>
+								<a className={cx('contents')}>Introduction</a>
 							</Link>
 						</li>
 					</ul>

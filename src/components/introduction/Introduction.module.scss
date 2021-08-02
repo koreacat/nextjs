@@ -1,0 +1,75 @@
+@import '@styles/common.scss';
+
+.wrap {
+
+}
+
+.bannerWrap {
+    height: 620px;
+    background: $C_POSITIVE_LIGHT;
+}
+
+.trendsWrap {
+    height: 1104px;
+}
+
+.questionWrap {
+    height: 680px;
+    background: $C_GREEN_100;
+}
+
+.mySelfWrap {
+    height: 959px;
+}
+
+.onOffWrap {
+    height: 1273px;
+    background: $C_WARM_GRAY_80;
+}
+
+.processWrap {
+    height: 960px;
+}
+
+.realYouWrap {
+    height: 2200px;
+    
+    .cover {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: $C_GREEN_100;
+        opacity: 0;
+    }
+    
+    .contentsWrap {
+        position: sticky;
+        top: calc(50% - 94px);
+        left: 0;
+    }
+}
+
+.guideWrap {
+    height: 990px;
+    background: $C_JOBDA_WHITE;
+}
+
+.lineGraphWrap {
+    height: 968px;
+}
+
+.barGraphWrap {
+    height: 990px;
+    background: $C_JOBDA_WHITE;
+}
+
+.interviewWrap {
+    height: 947px;
+}
+
+.cardBannerWrap {
+    height: 726px;
+    background: $C_JOBDA_WHITE;
+}

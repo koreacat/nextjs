@@ -1,21 +1,22 @@
-import styles from './count.module.scss';
-import classnames from 'classnames/bind';
+import styles from './type02.module.scss';
 import {useEffect, useState} from "react";
+import classnames from "classnames/bind";
 
 const cx = classnames.bind(styles);
 
 interface NumberProps {
 	num: number;
+	delay: number;
 }
 
 const Number = (props: NumberProps) => {
-	const {num} = props;
-	const [style, setStyle] = useState({transform: 'translateY(0px)'});
+	const {num, delay} = props;
+	const [style, setStyle] = useState({transform: 'translateY(132px)'});
 
 	useEffect(() => {
 		setTimeout(() => {
-			setStyle({transform: `translateY(-${num * 57}px)`})
-		}, 0);
+			setStyle({transform: `translateY(-${num * 132}px)`})
+		}, delay);
 	}, [num]);
 
 	const digitEl = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
@@ -29,33 +30,34 @@ const Number = (props: NumberProps) => {
 	)
 };
 
+
 interface CountProps {
-	maxLength: number;
 	count: number;
+	unitText?: string;
 }
 
-const Count = (props: CountProps) => {
-	const {count, maxLength} = props;
+const CountType02 = ({count, unitText}: CountProps) => {
 	let countArr = count.toString().split('');
-	let arr = Array.from({length: maxLength}, () => '0');
+	let arr = Array.from({length: countArr.length}, () => '0');
 
 	for (let i = 0; i < countArr.length; i++) {
 		arr[arr.length - countArr.length + i] = countArr[i];
 	}
 
 	const NumberEl = arr.map((num, index) => {
-		return <Number key={index} num={parseInt(num)}/>
+		return <Number key={index} num={parseInt(num)} delay={(arr.length - 1 - index) * 300}/>
 	});
 
 	return (
-		<div className={cx('wrap')}>
+		<div>
 			<span className={cx('countWrap')}>
 				<div className={cx('count')}>
 					{NumberEl}
-				</div>개
+				</div>
+				<span className={cx('unitText')}>{unitText}</span>
 			</span>
 		</div>
 	)
 };
 
-export default Count;
+export default CountType02;

@@ -28,6 +28,11 @@ export default function Home() {
 								<a className={cx('contents')}>SliderTab</a>
 							</Link>
 						</li>
+						<li>
+							<Link href={"/count"}>
+								<a className={cx('contents')}>Count</a>
+							</Link>
+						</li>
 					</ul>
 					<hr/>
 					<h1 className={cx('title')}>Layout</h1>

@@ -1,0 +1,50 @@
+@import '@styles/common.scss';
+
+.wrap {
+    display: flex;
+}
+
+.countWrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 132px;
+    padding: 0 6px;
+}
+
+.count {
+    overflow: hidden;
+    display: flex;
+    height: 100%;
+    padding-left: 1px;
+    font-family: $F_NOTO_SANS_KR;
+    font-size: 140px;
+    font-weight: 900;
+    line-height: 132px;
+    color: $C_GREEN_100;
+}
+
+.unitText {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 100%;
+    padding-bottom: 10px;
+    font-family: $F_NOTO_SANS_KR;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    color: $C_GREEN_100;
+}
+
+.number {
+    height: 1320px;
+    transition: all 2s cubic-bezier(0.65, 0.05, 0.29, 0.93);
+    
+    .digit {
+        display: block;
+        width: 90px;
+        height: 132px;
+        text-align: center;
+    }
+}

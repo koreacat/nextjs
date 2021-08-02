@@ -1,12 +1,16 @@
-import Count from "./count/index.";
 import WaterFill from "./waterFill";
 import HeartFill from "./heartFill";
 import CircleProgress from "./circleProgress";
 import {useEffect, useState} from "react";
 import {getInteger} from "../../util/getInteger";
+import classnames from "classnames/bind";
+import styles from "./components.module.scss";
+import SpeechBubble from "./speechBubble";
+import WordSlider from "./wordSlider";
+
+const cx = classnames.bind(styles);
 
 const Components = () => {
-	const [count, setCount] = useState(getInteger(100000));
 	const [averagePos, setAveragePos] = useState(getInteger(101));
 	const [averageVal, setAverageVal] = useState(getInteger(101));
 	const [averagePer, setAveragePer] = useState(getInteger(101));
@@ -14,7 +18,6 @@ const Components = () => {
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setCount(getInteger(100000));
 			setAveragePos(getInteger(101));
 			setAverageVal(getInteger(101));
 			setAveragePer(getInteger(101));
@@ -28,21 +31,7 @@ const Components = () => {
 
 	return (
 		<div>
-			<div style={{display: "flex"}}>
-				<Count
-					maxLength={1}
-					count={count}
-				/>
-				<Count
-					maxLength={3}
-					count={count}
-				/>
-				<Count
-					maxLength={5}
-					count={count}
-				/>
-			</div>
-			<div style={{display: "flex"}}>
+			<div className={cx('contentsWrap')}>
 				<WaterFill
 					title={'waterFill'}
 					type={'POSITIVE'}
@@ -59,7 +48,7 @@ const Components = () => {
 					average={averageVal}
 				/>
 			</div>
-			<div style={{display: "flex"}}>
+			<div className={cx('contentsWrap')}>
 				<HeartFill
 					title={'heartFill'}
 					type={'POSITIVE'}
@@ -76,7 +65,7 @@ const Components = () => {
 					average={averageVal}
 				/>
 			</div>
-			<div style={{display: "flex"}}>
+			<div className={cx('contentsWrap')}>
 				<CircleProgress
 					r={31.5}
 					title={'쉬움'}
@@ -107,6 +96,12 @@ const Components = () => {
 					percent={percent}
 					colorType={'BLUE'}
 				/>
+			</div>
+			<div className={cx('contentsWrap')} style={{background: '#6CDD83'}}>
+				<SpeechBubble/>
+			</div>
+			<div className={cx('contentsWrap')} style={{background: '#6CDD83'}}>
+				<WordSlider/>
 			</div>
 		</div>
 	)

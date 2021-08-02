@@ -1,0 +1,42 @@
+@import '@styles/common.scss';
+
+.wrap {
+
+}
+
+.slider {
+    height: 42px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.words {
+    animation: wordSlider 7s infinite ease-in-out;
+}
+
+.word {
+    display: block;
+    font-family: $F_NOTO_SANS_KR;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 42px;
+    letter-spacing: -0.24px;
+    color: $C_WHITE;
+}
+
+@keyframes wordSlider {
+    $steps: -0%, -25%, -50%, -75%;
+    
+    @for $index from 0 to length($steps) - 1 {
+        $next: $index + 1;
+        $step: floor(100 / (length($steps) - 1));
+        $animation_step: floor($step * .2);
+        
+        #{$step * $index}%, #{($step * $next) - $animation_step}% {
+            transform: translateY(nth($steps, $next));
+        }
+    }
+    100% {
+        transform: translateY(nth($steps, length($steps)));
+    }
+}

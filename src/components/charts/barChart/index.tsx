@@ -21,7 +21,7 @@ const Bar = ({title, value, emphasized, interactionTrigger}: IBarChartData) => {
         return (() => {
             clearTimeout(timeout);
         })
-    }, [interactionTrigger, value])
+    }, [interactionTrigger, value]);
 
     return (
         <div className={cx('bar', {'emphasized': emphasized})}>
@@ -29,7 +29,7 @@ const Bar = ({title, value, emphasized, interactionTrigger}: IBarChartData) => {
             <span className={cx('value')} style={{width: count, transition: interactionTrigger && 'all .7s ease-in-out'}}/>
         </div>
     )
-}
+};
 
 type INTERACTION_TRIGGER = true | false;
 
@@ -56,6 +56,6 @@ const BarChart = ({data, interactionTrigger}: BarChart) => {
             {list}
         </div>
     )
-}
+};
 
 export default BarChart;

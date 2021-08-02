@@ -10,7 +10,10 @@ const cx = classnames.bind(styles);
 const Introduction = () => {
 	return (
 		<div className={cx('wrap')}>
-			<div className={cx('bannerWrap')}></div>
+			<div className={cx('bannerWrap')}>
+
+			</div>
+
 			<div className={cx('trendsWrap')}>
 				<CountType02 count={450} unitText={'사'}/>
 				<CountType02 count={30} unitText={'만'}/>
@@ -20,11 +23,15 @@ const Introduction = () => {
 				<SpeechBubble/>
 				<WordSlider/>
 			</div>
-			<div className={cx('mySelfWrap')}></div>
+			<div className={cx('mySelfWrap')}>
+
+			</div>
 			<div className={cx('onOffWrap')}>
 				<OnOffCover/>
 			</div>
-			<div className={cx('processWrap')}></div>
+			<div className={cx('processWrap')}>
+
+			</div>
 
 			<div className={cx('realYouWrap')}>
 				<span className={cx('cover')}/>
@@ -34,11 +41,21 @@ const Introduction = () => {
 				</div>
 			</div>
 
-			<div className={cx('guideWrap')}></div>
-			<div className={cx('lineGraphWrap')}></div>
-			<div className={cx('barGraphWrap')}></div>
-			<div className={cx('interviewWrap')}></div>
-			<div className={cx('cardBannerWrap')}></div>
+			<div className={cx('guideWrap')}>
+
+			</div>
+			<div className={cx('lineGraphWrap')}>
+
+			</div>
+			<div className={cx('barGraphWrap')}>
+
+			</div>
+			<div className={cx('interviewWrap')}>
+
+			</div>
+			<div className={cx('cardBannerWrap')}>
+
+			</div>
 		</div>
 	)
 };

@@ -15,7 +15,7 @@ const Bar = ({title, value, emphasized, interactionTrigger}: IBarChartData) => {
     const [count, setCount] = useState(20);
     let timeout;
     useEffect(() => {
-        interactionTrigger ? 
+        interactionTrigger ?
         timeout = setTimeout(() => {setCount(20 + value * 5)}, 600) : setCount(20);
 
         return (() => {
@@ -26,7 +26,7 @@ const Bar = ({title, value, emphasized, interactionTrigger}: IBarChartData) => {
     return (
         <div className={cx('bar', {'emphasized': emphasized})}>
             <span className={cx('title')}>{title}</span>
-            <span className={cx('value')} style={{width: count, transition: interactionTrigger && 'all 1s ease-in-out'}}/>
+            <span className={cx('value')} style={{width: count, transition: interactionTrigger && 'all .7s ease-in-out'}}/>
         </div>
     )
 }
@@ -34,16 +34,16 @@ const Bar = ({title, value, emphasized, interactionTrigger}: IBarChartData) => {
 type INTERACTION_TRIGGER = true | false;
 
 interface BarChart {
-    data?: Array<IBarChartData>; 
+    data?: Array<IBarChartData>;
     interactionTrigger?: INTERACTION_TRIGGER;
 }
 
 const BarChart = ({data, interactionTrigger}: BarChart) => {
     const list = data?.map(({title, value, emphasized}, index) => {
         return (
-            <Bar 
-                key={index} 
-                title={title ? title : ''} 
+            <Bar
+                key={index}
+                title={title ? title : ''}
                 value={value ? (value > 100 ? 100 : (value < 0 ? 0 : value)) : 0}
                 emphasized={emphasized}
                 interactionTrigger={interactionTrigger}

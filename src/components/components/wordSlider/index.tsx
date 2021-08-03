@@ -12,8 +12,8 @@ const data = [
 
 const List = () => {
 
-	const list = data.map((data) => {
-		return <li className={cx('word')}>{data}</li>;
+	const list = data.map((data, index) => {
+		return <li key={index} className={cx('word')}>{data}</li>;
 	});
 
 	return (

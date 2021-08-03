@@ -47,11 +47,6 @@ export default function Home() {
 								<a className={cx('contents')}>FilterSlider</a>
 							</Link>
 						</li>
-						<li>
-							<Link href={"/onOffCover"}>
-								<a className={cx('contents')}>OnOffCover</a>
-							</Link>
-						</li>
 					</ul>
 					<hr/>
 					<h1 className={cx('title')}>Chart</h1>

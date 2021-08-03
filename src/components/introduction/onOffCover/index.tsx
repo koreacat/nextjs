@@ -13,8 +13,8 @@ interface Card {
 
 const Card = ({title, listTitle, list, img}: Card) => {
 
-	const listEl = list?.map((data) => {
-		return <li className={cx('item')}>{data}</li>
+	const listEl = list?.map((data, index) => {
+		return <li key={index} className={cx('item')}>{data}</li>
 	});
 
 	return (

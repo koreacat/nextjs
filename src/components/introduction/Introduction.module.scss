@@ -22,7 +22,7 @@
     height: 959px;
 }
 
-.onOffWrap {
+.onOffCoverWrap {
     height: 1273px;
     background: $C_WARM_GRAY_80;
 }
@@ -42,6 +42,7 @@
         right: 0;
         background: $C_GREEN_100;
         opacity: 0;
+        z-index: -1;
     }
     
     .contentsWrap {

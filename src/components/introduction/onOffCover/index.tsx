@@ -1,6 +1,7 @@
 import classnames from "classnames/bind";
 import styles from "./onOffCover.module.scss";
-import {useState} from "react";
+import {useRef, useState} from "react";
+import { useScrollDir } from "src/util/hooks/useScroll";
 
 const cx = classnames.bind(styles);
 
@@ -34,15 +35,25 @@ const Card = ({title, listTitle, list, img}: Card) => {
 };
 
 const OnOffCover = () => {
-	const [style, setStyle] = useState({height: '0'});
+	const [visible, setVisible] = useState(false);
+    const wrapEl = useRef<HTMLDivElement>(null);
+
+	useScrollDir({
+        el: wrapEl,
+        scrollUpTop: -1,
+        onScrollUp: () => {
+            setVisible(true);
+        },
+    });
 
 	return (
-		<div className={cx('wrap')}>
+		<div ref={wrapEl} className={cx('wrap')}>
 			<div className={cx('contentsWrap')}>
-				<div className={cx('contents', 'off')} onClick={() => setStyle({height: `100%`})}>
+				<div className={cx('contents', 'off')}>
 					<span className={cx('text')}>서류와 몇 줄 스펙만으로는..</span>
 					<span className={cx('text', 'em')}>나의 모든 것을 다 설명할 수 없어요.</span>
 					<div className={cx('cardWrap')}>
+						<i className={cx('bulbOff')} onClick={() => setVisible(true)}/>
 						<Card title={'지원자 A'} listTitle={'보유 스펙'}
 							  list={['지방 출신 대학', '이공계', '학점 3.2', '어학점수 無', '어학연수 無']}
 							  img={'imgApplicantOffA.png'}
@@ -57,11 +68,12 @@ const OnOffCover = () => {
 						/>
 					</div>
 				</div>
-				<div className={cx('contentsCover')} style={style} onClick={() => setStyle({height: `0`})}>
+				<div className={cx('contentsCover', {'visible': visible})}>
 					<div className={cx('contents', 'on')}>
 						<span className={cx('text')}>서류와 몇 마디 말로는 다 표현하지 못한</span>
 						<span className={cx('text', 'em')}>여러분만의 역량 스펙트럼을 보여주세요.</span>
 						<div className={cx('cardWrap')}>
+						<i className={cx('bulbOn')} onClick={() => setVisible(false)}/>
 							<Card title={'지원자 A'} listTitle={'동료 평가'}
 								  list={['“ 협업 및 소통 능력이 뛰어나 ”', '“ 정말 열정적인 사람이야! ”', '“ 발상이 정말 창의적이야! “', '“ 논리적으로 표현할 줄 알아 “']}
 								  img={'imgApplicantOnA.png'}

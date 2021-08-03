@@ -32,11 +32,15 @@ const Number = (props: NumberProps) => {
 
 
 interface CountProps {
-	count: number;
+	count?: number;
 	unitText?: string;
 }
 
 const CountType02 = ({count, unitText}: CountProps) => {
+	if(!count) {
+		return <></>;
+	}
+
 	let countArr = count.toString().split('');
 	let arr = Array.from({length: countArr.length}, () => '0');
 

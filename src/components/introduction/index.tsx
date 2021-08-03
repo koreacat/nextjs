@@ -1,60 +1,62 @@
 import classnames from "classnames/bind";
 import styles from "./introduction.module.scss";
 import OnOffCover from "./onOffCover";
-import CountType02 from "../count/type02";
-import SpeechBubble from "../components/speechBubble";
-import WordSlider from "../components/wordSlider";
+import RealYou from "./realYou";
+import Trands from "./trends";
+import Question from "./question";
+import ResultProcess from "./resultProcess";
 
 const cx = classnames.bind(styles);
 
 const Introduction = () => {
 	return (
 		<div className={cx('wrap')}>
-			<div className={cx('bannerWrap')}>
+			<div className={cx('bannerWrap', 'contents')}>
 
 			</div>
 
-			<div className={cx('trendsWrap')}>
-				<CountType02 count={450} unitText={'사'}/>
-				<CountType02 count={30} unitText={'만'}/>
-				<CountType02 count={1} unitText={'위'}/>
+			<div className={cx('trendsWrap', 'contents')}>
+				<Trands/>
 			</div>
-			<div className={cx('questionWrap')}>
-				<SpeechBubble/>
-				<WordSlider/>
+
+			<div className={cx('questionWrap', 'contents')}>
+				<Question/>
 			</div>
-			<div className={cx('mySelfWrap')}>
+
+			<div className={cx('mySelfWrap', 'contents')}>
 
 			</div>
-			<div className={cx('onOffCoverWrap')}>
+			
+			<div className={cx('onOffCoverWrap', 'contents')}>
 				<OnOffCover/>
 			</div>
-			<div className={cx('processWrap')}>
 
+			<div className={cx('processWrap', 'contents')}>
+				AI역량검사, 어떤 과정으로 진행될까요? 응시 프로세스를 소개합니다.
 			</div>
 
-			<div className={cx('realYouWrap')}>
-				<span className={cx('cover')}/>
-				<div className={cx('contentsWrap')}>
-					<span>THE REAL YOU</span>
-					<span>열심히 응시한 AI역량검사 결과는 당신의 진짜 모습만 꾹꾹 담아 인사팀에 전달됩니다.</span>
-				</div>
+			<div className={cx('realYouWrap', 'contents')}>
+				<RealYou/>
 			</div>
 
-			<div className={cx('guideWrap')}>
-
+			<div className={cx('guideWrap', 'contents')}>
+				스펙이 아닌 역량으로.
 			</div>
-			<div className={cx('lineGraphWrap')}>
 
+			<div className={cx('resultProcessWrap', 'contents')}>
+				<ResultProcess/>
 			</div>
-			<div className={cx('barGraphWrap')}>
 
+			<div className={cx('barChartWrap', 'contents')}>
+				성적이 아닌 적합도를.
 			</div>
-			<div className={cx('interviewWrap')}>
 
+			<div className={cx('interviewWrap', 'contents')}>
+				먼저 경험한 선배들이 알려주는 AI역량검사 꿀팁. 지금 바로 확인하세요.
 			</div>
-			<div className={cx('cardBannerWrap')}>
 
+			<div className={cx('cardBannerWrap', 'contents')}>
+				남들과는 다르게, 누구보다 빠르게! 공식 개발사와 함께라면 AI역량검사 준비 끝.
 			</div>
 		</div>
 	)

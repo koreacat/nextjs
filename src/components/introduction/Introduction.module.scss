@@ -1,7 +1,13 @@
 @import '@styles/common.scss';
 
 .wrap {
+    min-width: 1440px;
+}
 
+.contents {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .bannerWrap {
@@ -33,23 +39,7 @@
 
 .realYouWrap {
     height: 2200px;
-    
-    .cover {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: $C_GREEN_100;
-        opacity: 0;
-        z-index: -1;
-    }
-    
-    .contentsWrap {
-        position: sticky;
-        top: calc(50% - 94px);
-        left: 0;
-    }
+    margin: 200px 0 -500px;
 }
 
 .guideWrap {
@@ -57,11 +47,11 @@
     background: $C_JOBDA_WHITE;
 }
 
-.lineGraphWrap {
+.resultProcessWrap {
     height: 968px;
 }
 
-.barGraphWrap {
+.barChartWrap {
     height: 990px;
     background: $C_JOBDA_WHITE;
 }

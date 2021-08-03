@@ -11,11 +11,12 @@
 }
 
 .words {
-    animation: wordSlider 7s infinite ease-in-out;
+    animation: wordSlider 5s infinite ease-in-out;
 }
 
 .word {
     display: block;
+    text-align: center;
     font-family: $F_NOTO_SANS_KR;
     font-weight: 500;
     font-size: 30px;

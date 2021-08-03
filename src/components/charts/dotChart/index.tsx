@@ -138,7 +138,6 @@ const DotChart = () => {
 
 	return (
 		<div className={cx('wrap')}>
-
 			<div className={cx('dotChart')}>
 				<Arrow/>
 				<Line/>

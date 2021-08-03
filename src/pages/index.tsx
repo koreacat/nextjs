@@ -66,6 +66,11 @@ export default function Home() {
 								<a className={cx('contents')}>DotChart</a>
 							</Link>
 						</li>
+						<li>
+							<Link href={"/lineChart"}>
+								<a className={cx('contents')}>LineChart</a>
+							</Link>
+						</li>
 					</ul>
 					<hr/>
 					<h1 className={cx('title')}>Page</h1>

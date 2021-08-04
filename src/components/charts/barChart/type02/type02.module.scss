@@ -1,0 +1,91 @@
+@import '@styles/common.scss';
+
+.wrap {
+    
+}
+
+.barWrap {
+    display: flex;
+    flex-direction: column;
+
+    &:not(:first-child) {
+        margin-top: 48px;
+    }
+
+    .title {
+        font-family: $F_NOTO_SANS_KR;
+        font-weight: 600;
+        font-size: 17px;
+        line-height: 24px;
+        letter-spacing: -0.41px;
+        color: $C_COOL_GRAY_60;
+    }
+
+    .bar {
+        display: flex;
+        align-items: center;
+        height: 56px;
+        margin-top: 8px;
+        cursor: pointer;
+    }  
+
+    .valueWrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 56px;
+        height: 56px;
+    }
+
+    .value {
+        width: 0;
+        height: 0;
+        background: $C_COOL_GRAY_40;
+        border-radius: 28px;
+        transition: width 1s cubic-bezier(0.65, 0.05, 0.29, 0.93);
+
+        &.GREEN {
+            background: $C_GREEN_100;
+        }
+
+        &.bigger {
+            width: 56px;
+            height: 56px;
+            animation: bigger .5s ease-in-out;
+        }
+    }
+
+    .per {
+        overflow: hidden;
+        width: 0;
+        margin-left: 15px;
+        font-family: $F_NOTO_SANS_KR;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 40px;
+        color: $C_COOL_GRAY_90;
+
+        &.show {
+            width: auto;
+            animation: show 1.8s linear;
+        }
+    }
+}
+
+@keyframes bigger {
+    from {
+        width: 0;
+        height: 0;
+    } to {
+        width: 56px;
+        height: 56px;
+    }
+}
+
+@keyframes show {
+    0% {
+        width: 0;
+    } 50% {
+        width: auto;
+    }
+}

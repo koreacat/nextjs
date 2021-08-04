@@ -1,10 +1,24 @@
 import classnames from "classnames/bind";
+import { useRef, useState } from "react";
+import BarChartType02 from "src/components/charts/barChart/type02";
+import { useScrollDir } from "src/util/hooks/useScroll";
 import styles from "./fit.module.scss";
 
 const cx = classnames.bind(styles);
 const Fit = () => {
+    const [interactionTrigger, setInteractionTrigger] = useState(false);
+    const wrapEl = useRef<HTMLDivElement>(null);
+
+	useScrollDir({
+        el: wrapEl,
+        scrollUpTop: -0.1,
+        onScrollUp: () => {
+            setInteractionTrigger(true);
+        },
+    });
+
     return (
-        <div className={cx('wrap')}>
+        <div ref={wrapEl} className={cx('wrap')}>
             <div className={cx('textWrap')}>
                 <div className={cx('titleWrap')}>
                     <span>성적이 아닌</span>
@@ -20,7 +34,7 @@ const Fit = () => {
                 </div>
             </div>
             <div className={cx('chartWrap')}>
-
+                <BarChartType02 interactionTrigger={interactionTrigger}/>
             </div>
         </div>
     )

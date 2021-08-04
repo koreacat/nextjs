@@ -13,6 +13,7 @@
     justify-content: center;
     width: 544px;
     height: 488px;
+    margin-left: 128px;
     background: #FFFFFF;
     box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
@@ -30,13 +31,12 @@
         line-height: 14px;
         letter-spacing: -0.0733333px;
         color: $C_WHITE;
-        content: '난이도 적응 패턴 예시';
+        content: '직군 적합도 예시';
     }
 }
 
 .textWrap {
     width: 257px;
-    margin-left: 128px;
 }
 
 .titleWrap {

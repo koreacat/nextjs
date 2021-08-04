@@ -51,8 +51,8 @@ const LineChart = () => {
                 <path className={cx('path')} stroke={'#fef8b1'} strokeWidth={5} fill="transparent" d={lineData04}/>
                 <defs>
                     <linearGradient id="myGradient" gradientTransform="rotate(90)">
-                        <stop offset="0%" stop-color="#6CDD8399"/>
-                        <stop offset="100%" stop-color="#effdf3" />
+                        <stop offset="0%" stopColor="#6CDD8399"/>
+                        <stop offset="100%" stopColor="#effdf3" />
                     </linearGradient>
                 </defs>
             </svg>

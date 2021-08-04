@@ -22,7 +22,7 @@ export function useScrollDir(props: useScrollDirProps) {
 	const scrollEvent = () => {
 		const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 		const scrollDir: ScrollDir = scrollTop > lastScrollTop ? 'UP' : 'DOWN';
-		const elTop = el?.current.getBoundingClientRect().top;
+		const elTop = el?.current?.getBoundingClientRect().top;
 		const windHeight = window.innerHeight;
 		const elPos = elTop - windHeight;
 		// const absoluteTop = scrollTop + elTop;

@@ -5,6 +5,7 @@ import RealYou from "./realYou";
 import Trands from "./trends";
 import Question from "./question";
 import ResultProcess from "./resultProcess";
+import Fit from "./fit";
 
 const cx = classnames.bind(styles);
 
@@ -47,8 +48,8 @@ const Introduction = () => {
 				<ResultProcess/>
 			</div>
 
-			<div className={cx('barChartWrap', 'contents')}>
-				성적이 아닌 적합도를.
+			<div className={cx('fitWrap', 'contents')}>
+				<Fit/>
 			</div>
 
 			<div className={cx('interviewWrap', 'contents')}>

@@ -1,59 +1,37 @@
+import { useState } from "react";
 import styles from './barChart.module.scss';
 import classnames from 'classnames/bind';
-import { ReactElement, useEffect, useState } from 'react';
+import BarChartType01 from "./type01";
+import { barChartData } from "./type01/data";
 
 const cx = classnames.bind(styles);
 
-export interface IBarChartData {
-    title: string | ReactElement;
-    value: number;
-    emphasized?: boolean;
-    interactionTrigger?: INTERACTION_TRIGGER;
-}
-
-const Bar = ({title, value, emphasized, interactionTrigger}: IBarChartData) => {
-    const [count, setCount] = useState(20);
-    let timeout;
-    useEffect(() => {
-        interactionTrigger ?
-        timeout = setTimeout(() => {setCount(20 + value * 5)}, 600) : setCount(20);
-
-        return (() => {
-            clearTimeout(timeout);
-        })
-    }, [interactionTrigger, value]);
+const BarChart = () => {
+    const [barChartsVisible, setBarChartsVisible] = useState(false);
 
     return (
-        <div className={cx('bar', {'emphasized': emphasized})}>
-            <span className={cx('title')}>{title}</span>
-            <span className={cx('value')} style={{width: count, transition: interactionTrigger && 'all .7s ease-in-out'}}/>
-        </div>
-    )
-};
+        <div>
+            <button
+                className={cx('barChartBtn', { 'open': barChartsVisible })}
+                onClick={() => setBarChartsVisible(!barChartsVisible)}
+            >
+                {barChartsVisible ? '접어두기' : '확인하기'}
+            </button>
+            <div
+                style={{
+                    overflow: 'hidden',
+                    height: !barChartsVisible ? '0px' : '600px',
+                    transition: barChartsVisible && '.5s all ease-in-out'
+                }}
+            >
+                <div style={{ padding: '15px' }}>
+                    <BarChartType01
+                        data={barChartData}
+                        interactionTrigger={barChartsVisible}
+                    />
+                </div>
+            </div>
 
-type INTERACTION_TRIGGER = true | false;
-
-interface BarChart {
-    data?: Array<IBarChartData>;
-    interactionTrigger?: INTERACTION_TRIGGER;
-}
-
-const BarChart = ({data, interactionTrigger}: BarChart) => {
-    const list = data?.map(({title, value, emphasized}, index) => {
-        return (
-            <Bar
-                key={index}
-                title={title ? title : ''}
-                value={value ? (value > 100 ? 100 : (value < 0 ? 0 : value)) : 0}
-                emphasized={emphasized}
-                interactionTrigger={interactionTrigger}
-            />
-        )
-    });
-
-    return (
-        <div className={cx('wrap')}>
-            {list}
         </div>
     )
 };

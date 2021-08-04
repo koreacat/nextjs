@@ -7,6 +7,11 @@ import Question from "./question";
 import ResultProcess from "./resultProcess";
 import Fit from "./fit";
 import Guide from "./guide";
+import Interview from "./interview";
+import CardBanner from "./cardBanner";
+import Process from "./process";
+import Banner from "./banner";
+import Myself from "./myself";
 
 const cx = classnames.bind(styles);
 
@@ -14,7 +19,7 @@ const Introduction = () => {
 	return (
 		<div className={cx('wrap')}>
 			<div className={cx('bannerWrap', 'contents')}>
-
+				<Banner/>
 			</div>
 
 			<div className={cx('trendsWrap', 'contents')}>
@@ -26,7 +31,7 @@ const Introduction = () => {
 			</div>
 
 			<div className={cx('mySelfWrap', 'contents')}>
-
+				<Myself/>
 			</div>
 			
 			<div className={cx('onOffCoverWrap', 'contents')}>
@@ -34,7 +39,7 @@ const Introduction = () => {
 			</div>
 
 			<div className={cx('processWrap', 'contents')}>
-				AI역량검사, 어떤 과정으로 진행될까요? 응시 프로세스를 소개합니다.
+				<Process/>
 			</div>
 
 			<div className={cx('realYouWrap', 'contents')}>
@@ -54,11 +59,11 @@ const Introduction = () => {
 			</div>
 
 			<div className={cx('interviewWrap', 'contents')}>
-				먼저 경험한 선배들이 알려주는 AI역량검사 꿀팁. 지금 바로 확인하세요.
+				<Interview/>
 			</div>
 
 			<div className={cx('cardBannerWrap', 'contents')}>
-				남들과는 다르게, 누구보다 빠르게! 공식 개발사와 함께라면 AI역량검사 준비 끝.
+				<CardBanner/>
 			</div>
 		</div>
 	)

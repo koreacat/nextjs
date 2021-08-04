@@ -33,12 +33,12 @@ const Bar = ({title, value, emphasized, interactionTrigger}: IBarChartData) => {
 
 type INTERACTION_TRIGGER = true | false;
 
-interface BarChart {
+interface BarChartType01 {
     data?: Array<IBarChartData>;
     interactionTrigger?: INTERACTION_TRIGGER;
 }
 
-const BarChartType01 = ({data, interactionTrigger}: BarChart) => {
+const BarChartType01 = ({data, interactionTrigger}: BarChartType01) => {
     const list = data?.map(({title, value, emphasized}, index) => {
         return (
             <Bar

@@ -43,7 +43,7 @@ const RealYou = () => {
         <div ref={wrapEl} className={cx('wrap')}>
             <span className={cx('cover', {'covered': covered})}/>
 			<div className={cx('contentsWrap', {'covered': covered})}>
-				<span className={cx('title')}>THE REAL <span onClick={() => setCovered(false)}>YOU</span></span>
+				<span className={cx('title')}>THE REAL <span onClick={() => setCovered(false)} style={{cursor: 'pointer'}}>YOU</span></span>
                 <div className={cx('textWrap')}>
                     <span className={cx('text')}>열심히 응시한 AI역량검사 결과는</span>
 				    <span className={cx('text')}>당신의 진짜 모습만 꾹꾹 담아 인사팀에 전달됩니다.</span>

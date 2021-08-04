@@ -6,6 +6,7 @@ import Trands from "./trends";
 import Question from "./question";
 import ResultProcess from "./resultProcess";
 import Fit from "./fit";
+import Guide from "./guide";
 
 const cx = classnames.bind(styles);
 
@@ -41,7 +42,7 @@ const Introduction = () => {
 			</div>
 
 			<div className={cx('guideWrap', 'contents')}>
-				스펙이 아닌 역량으로.
+				<Guide/>
 			</div>
 
 			<div className={cx('resultProcessWrap', 'contents')}>

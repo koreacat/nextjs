@@ -1,0 +1,36 @@
+@import '@styles/common.scss';
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    width: 1440px;
+    height: 100%;
+    padding: 172px 160px 0 216px;
+    font-family: $F_NOTO_SANS_KR;
+}
+
+.name {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.18px;
+    color: $C_GREEN_200;
+}
+
+.titleWrap {
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+
+    .title {
+        margin-top: 16px;
+        font-size: 48px;
+        line-height: 48px;
+        letter-spacing: 0.3px;
+        color: $C_JOBDA_BLACK;
+    }
+
+    .em {
+        font-weight: 700;
+    }
+}

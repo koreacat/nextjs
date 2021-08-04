@@ -31,8 +31,8 @@ const RealYou = () => {
         onScrollUp: () => {
             setCovered(false);
         },
-        scrollDownTopSrtart: -2.5,
-        scrollDownTopEnd: -2.0,
+        scrollDownTopSrtart: -2.0,
+        scrollDownTopEnd: -1.8,
         onScrollDown: () => {
             setCovered(true);
         },

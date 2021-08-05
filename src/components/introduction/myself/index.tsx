@@ -6,7 +6,7 @@ const cx = classnames.bind(styles);
 const Myself = () => {
     return (
         <div className={cx('wrap')}>
-
+            
         </div>
     )
 };

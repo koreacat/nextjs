@@ -8,7 +8,7 @@ const LineChartPage = () => {
             <Contents>
                 <LineChart />
             </Contents>
-        </Layout>
+		</Layout>
 
     )
 };

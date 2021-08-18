@@ -82,7 +82,15 @@ export default function Home() {
 						</li>
 					</ul>
 					<hr/>
-
+					<h1 className={cx('title')}>WebGL</h1>
+					<ul>
+						<li>
+							<Link href={"/webGL"}>
+								<a className={cx('contents')}>WebGL</a>
+							</Link>
+						</li>
+					</ul>
+					<hr/>
 				</div>
 			</Contents>
 		</Layout>

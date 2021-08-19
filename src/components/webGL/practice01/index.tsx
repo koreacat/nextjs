@@ -27,7 +27,7 @@ const Practice01 = () => {
 	});
 
 	const initWebGL = () => {
-		canvas = document.querySelector("#c");
+		canvas = document.querySelector("#canvas");
 		gl = canvas.getContext("webgl");
 		if (!gl) return;
 	}
@@ -41,18 +41,19 @@ const Practice01 = () => {
 		// vertexShader - 좌표를 제공, 정점 위치를 계산
 		// Attribute는 버퍼에서 데이터를 받음
 		const vertexShaderCode = `
-		attribute vec2 a_position;
-		uniform vec2 u_resolution;
-		void main() {
-			// 위치를 픽셀에서 0.0과 1.0사이로 변환
-			vec2 zeroToOne = a_position / u_resolution;
+			attribute vec2 a_position;
+			uniform vec2 u_resolution;
+			void main() {
+				// 위치를 픽셀에서 0.0과 1.0사이로 변환
+				vec2 zeroToOne = a_position / u_resolution;
 
-			// 0->1에서 0->2로 변환
-			vec2 zeroToTwo = zeroToOne * 2.0;
-			
-			// 0->2에서 -1->+1로 변환 (clip space)
-			vec2 clipSpace = zeroToTwo - 1.0;
-			gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1);}`;
+				// 0->1에서 0->2로 변환
+				vec2 zeroToTwo = zeroToOne * 2.0;
+				
+				// 0->2에서 -1->+1로 변환 (clip space)
+				vec2 clipSpace = zeroToTwo - 1.0;
+				gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1);
+			}`;
 
 
 		// fragmentShader - 색상을 제공, 현재 그려지는 primitive의 각 픽셀에 대한 색상을 계산
@@ -160,7 +161,7 @@ const Practice01 = () => {
 
 	return (
 		<div>
-			<canvas id={'c'} width={canvasWidth} height={canvasHeight}/>
+			<canvas id={'canvas'} width={canvasWidth} height={canvasHeight}/>
 		</div>
 	)
 };

@@ -2300,6 +2300,11 @@ watchpack@2.0.0-beta.13:
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.1.2"
 
+webgl-dev-utils@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/webgl-dev-utils/-/webgl-dev-utils-0.0.2.tgz#a7196fea4b9775370eb2a43ca29f6740c80a6486"
+  integrity sha512-FnapWUgfjUSrDutKoP25ADR7EfrJFa2p6mdZlL1N2d4k4fgjwJh54/i64oStvw4qHsmM4ibuLdGbI6civMz6Jg==
+
 webidl-conversions@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"

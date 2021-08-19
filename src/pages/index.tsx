@@ -86,7 +86,21 @@ export default function Home() {
 					<ul>
 						<li>
 							<Link href={"/webGL"}>
-								<a className={cx('contents')}>WebGL</a>
+								<a className={cx('contents')}>Practice01</a>
+							</Link>
+						</li>
+					</ul>
+					<hr/>
+					<h1 className={cx('title')}>Effect</h1>
+					<ul>
+						<li>
+							<Link href={"/wave"}>
+								<a className={cx('contents')}>Wave</a>
+							</Link>
+						</li>
+						<li>
+							<Link href={"/gradation"}>
+								<a className={cx('contents')}>Gradation</a>
 							</Link>
 						</li>
 					</ul>

@@ -2,14 +2,18 @@ import { useEffect } from "react";
 import { getInteger } from "src/util/getInteger";
 import * as webglUtils from 'webgl-dev-utils';
 
+import classnames from "classnames/bind";
+import styles from "./practice01.module.scss";
+const cx = classnames.bind(styles);
+
 // GLSL는 C 언어를 기초로 한, 상위 레벨 셰이딩 언어이다.
 // Rasterization(레스터화)- 백터 그래픽 이미지를 비디오 디스플레이나 프린터 등의 
 // 래스터 디바이스에 출력하기 위해 래스터 이미지로 변환하는 것
+const canvasWidth = 1280;
+const canvasHeight = 720;
 
 const Practice01 = () => {
 	let canvas = null;
-	const canvasWidth = 1280;
-	const canvasHeight = 720;
 	let gl = null;
 	let program = null;
 	let positionAttributeLocation = null;
@@ -23,7 +27,6 @@ const Practice01 = () => {
 	});
 
 	const initWebGL = () => {
-		
 		canvas = document.querySelector("#c");
 		gl = canvas.getContext("webgl");
 		if (!gl) return;
@@ -126,7 +129,7 @@ const Practice01 = () => {
 			// This will write to positionBuffer because
 			// its the last thing we bound on the ARRAY_BUFFER
 			// bind point
-			setRectangle(gl, getInteger(300), getInteger(300), getInteger(300), getInteger(300));
+			setRectangle(gl, getInteger(canvasWidth), getInteger(canvasHeight), getInteger(300), getInteger(300));
 
 			// Set a random color.
 			const colorUniformLocation = gl.getUniformLocation(program, "u_color");

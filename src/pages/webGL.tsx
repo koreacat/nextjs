@@ -1,15 +1,15 @@
 import Layout from "@components/layout";
 import Contents from "@components/contents";
-import Practice01 from "../components/webGL/practice01";
+import WebGL from "src/components/webGL";
 
-const WebGL = () => {
+const WebGLPage = () => {
 	return (
 		<Layout>
 			<Contents>
-				<Practice01/>
+				<WebGL/>
 			</Contents>
 		</Layout>
 	)
 };
 
-export default WebGL;
+export default WebGLPage;

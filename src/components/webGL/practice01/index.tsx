@@ -7,7 +7,7 @@ import styles from "./practice01.module.scss";
 const cx = classnames.bind(styles);
 
 // GLSL는 C 언어를 기초로 한, 상위 레벨 셰이딩 언어이다.
-// Rasterization(레스터화)- 백터 그래픽 이미지를 비디오 디스플레이나 프린터 등의 
+// Rasterization(레스터화)- 백터 그래픽 이미지를 비디오 디스플레이나 프린터 등의
 // 래스터 디바이스에 출력하기 위해 래스터 이미지로 변환하는 것
 const canvasWidth = 1280;
 const canvasHeight = 720;
@@ -30,14 +30,14 @@ const Practice01 = () => {
 		canvas = document.querySelector("#canvas");
 		gl = canvas.getContext("webgl");
 		if (!gl) return;
-	}
+	};
 
 	const initProgram = () => {
 		// WebGL은 GPU에서 실행됨. 따라서 GPU에서 실행되는 코드를 제공해야합니다.
 		// 해당 코드는 함수 쌍 형태로 제공해야하는데
 		// 이 두 함수는 vertex shader와 fragment shader로 불리고 C/C++처럼 엄격한 Type을 가지는 GLSL로 작성되어 있습니다.
 		// 이 두 개를 합쳐서 program이라고 부릅니다.
-		
+
 		// vertexShader - 좌표를 제공, 정점 위치를 계산
 		// Attribute는 버퍼에서 데이터를 받음
 		const vertexShaderCode = `

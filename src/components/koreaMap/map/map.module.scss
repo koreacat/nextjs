@@ -8,11 +8,11 @@
     height: 378px;
     
     .active {
-        fill: $C_GREEN_90;
+        fill: $C_GREEN_90 !important;
     }
     
     path:hover {
-        // fill: $C_GREEN_90;
+         fill: $C_COOL_GRAY_50;
         cursor: pointer;
     }
     

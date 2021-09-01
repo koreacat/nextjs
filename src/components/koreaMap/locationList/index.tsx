@@ -21,7 +21,7 @@ const Location = observer(({name}: Location) => {
 		>
 			{name}
 		</li>
-	)
+)
 })
 
 const LocationList = () => {

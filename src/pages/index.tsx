@@ -33,6 +33,11 @@ export default function Home() {
 								<a className={cx('contents')}>Count</a>
 							</Link>
 						</li>
+						<li>
+							<Link href={"/koreaMap"}>
+								<a className={cx('contents')}>KoreaMap</a>
+							</Link>
+						</li>
 					</ul>
 					<hr/>
 					<h1 className={cx('title')}>Layout</h1>

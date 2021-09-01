@@ -1,5 +1,9 @@
 @import '@styles/common.scss';
 
 .wrap {
-    display: flex;
+    path:hover {
+        fill: $C_GREEN_90;
+        cursor: pointer;
+    }
+
 }

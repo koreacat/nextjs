@@ -1,0 +1,19 @@
+@import '@styles/common.scss';
+
+.wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 383px;
+    height: 378px;
+    
+    .active {
+        fill: $C_GREEN_90;
+    }
+    
+    path:hover {
+        // fill: $C_GREEN_90;
+        cursor: pointer;
+    }
+    
+}

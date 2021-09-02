@@ -7,7 +7,7 @@
     height: 378px;
 }
 
-.locationWrap {
+.locationList {
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
@@ -30,10 +30,16 @@
         cursor: pointer;
         
         &.active {
-            background: $C_GREEN_100;
+            background: $C_GREEN_100 !important;
             border: 1px solid $C_GREEN_200;
             color: $C_WHITE;
         }
+
+        &.hover {
+            background: $C_COOL_GRAY_30;
+        }
     }
+
+    
     
 }

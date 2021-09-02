@@ -9,15 +9,43 @@
     
     .name {
         position: absolute;
-    }
-    
-    .active {
-        fill: $C_GREEN_90 !important;
-    }
-    
-    path:hover {
-         fill: $C_COOL_GRAY_50;
+        height: 26px;
+        padding: 3px 12px 5px;
+        background: $C_GREEN_100;
+        border: 1px solid $C_GREEN_200;
+        border-radius: 13px;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 18px;
+        color: $C_WHITE;
         cursor: pointer;
     }
-    
+}
+
+.mapWrap {
+    .em {
+        fill: #E7E8EA;
+    }
+
+    .active {
+        fill: $C_GREEN_90 !important;
+
+        &.em {
+            fill: $C_GREEN_200 !important;
+        }
+    }
+
+    path {
+        fill: #F4F4F5;
+        cursor: pointer;
+
+        &.noCursor {
+            cursor: default;
+        }
+    }
+
+    .hover {
+        fill: $C_COOL_GRAY_50;
+    }
+
 }

@@ -43,12 +43,12 @@ const MapSvg = observer(() => {
 
 	const getCx = (name: string) => {
 		return cx({'hover': currentLocation === name}, { 'active': isSelected(name)})
-	}
+	};
 
 	const pathList = PATH_DATA.map((pathData, index) => {
 		const {specialCity, path} = pathData;
 		return <path key={index} className={cx({'em': specialCity}, getCx(LOCATION_DATA[index]))} data-location={LOCATION_DATA[index]} d={path}/>
-	})
+	});
 
 	return (
 		<svg ref={mapRef} className={cx('mapWrap')} onClick={handleClick} width="265" height="320" viewBox="0 0 265 320" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +58,7 @@ const MapSvg = observer(() => {
 			<path className={cx('noCursor')} d="M259.788 85.1316L259.261 85.261C259.023 85.3207 258.797 85.419 258.591 85.5522C257.918 85.9835 257.206 86.3889 256.563 86.8634C255.429 87.698 255.826 88.4204 256.85 89.2507C257.713 89.943 259.007 90.7604 260.128 90.3484C261.207 89.9538 261.884 89.0351 262.272 88.3299C262.411 88.0741 262.497 87.7931 262.526 87.5036C262.555 87.214 262.526 86.9216 262.44 86.6434C262.276 86.0995 261.909 85.6394 261.416 85.3581C260.922 85.0768 260.339 84.9957 259.788 85.1316V85.1316Z" />
 		</svg>
 	)
-})
+});
 
 const Map = () => {
 	const { koreaMapUIStore } = useStores();
@@ -66,11 +66,11 @@ const Map = () => {
 
 	const onMouseEnter = () => {
 		setCurrentLocation(currentLocation, () => {});
-	}
+	};
 
 	const onMouseLeave = () => {
 		setCurrentLocation('', () => {});
-	}
+	};
 
 	const handleClick = () => {
 		toggleLocation();
@@ -78,16 +78,16 @@ const Map = () => {
 
 	return (
 		<div className={cx('wrap')}>
-			<div 
-				id='locationName' 
-				onClick={handleClick} 
+			<div
+				id='locationName'
+				onClick={handleClick}
 				onMouseEnter={onMouseEnter}
 				onMouseLeave={onMouseLeave}
-				className={cx('name')} 
+				className={cx('name')}
 				style={{
-					display: currentLocation ? 'block' : 'none', 
-					top: `${namePosition.top}px`, 
-					left: `${namePosition.left}px` 
+					display: currentLocation ? 'block' : 'none',
+					top: `${namePosition.top}px`,
+					left: `${namePosition.left}px`
 				}}>{currentLocation}</div>
 			<MapSvg />
 		</div>

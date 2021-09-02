@@ -1,15 +1,15 @@
-import { useEffect } from "react";
+import {useEffect} from "react";
 
 
 interface IUseMouseHoverProps {
-    ref;
-    cx;
-    setCurrentLocation;
+	ref;
+	cx;
+	setCurrentLocation;
 }
 
 export const useMouseHover = ({ref, cx, setCurrentLocation}: IUseMouseHoverProps) => {
 
-    useEffect(() => {
+	useEffect(() => {
 		const mouseover = ref.current.addEventListener('mouseover', (e) => {
 			if (!e.target.dataset.location) return;
 			setCurrentLocation(e.target.dataset.location, () => e.target.classList.add(cx('hover')));
@@ -25,4 +25,4 @@ export const useMouseHover = ({ref, cx, setCurrentLocation}: IUseMouseHoverProps
 			// ref.current.removeEventListener('mouseout', mouseout);
 		})
 	}, []);
-}
+};

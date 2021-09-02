@@ -1,9 +1,9 @@
 import classnames from "classnames/bind";
-import { observer } from "mobx-react";
-import { useRef } from "react";
-import { LOCATION_DATA } from "src/store/koreaMapUIStore";
-import { useStores } from "src/util/storeProvider";
-import { useMouseHover } from "../hooks";
+import {observer} from "mobx-react";
+import {useRef} from "react";
+import {LOCATION_DATA} from "src/store/koreaMapUIStore";
+import {useStores} from "src/util/storeProvider";
+import {useMouseHover} from "../hooks";
 import styles from "./locationList.module.scss";
 
 const cx = classnames.bind(styles);
@@ -24,8 +24,8 @@ const Location = observer(({name}: Location) => {
 		>
 			{name}
 		</li>
-)
-})
+	)
+});
 
 const LocationList = () => {
 	const {koreaMapUIStore} = useStores();
@@ -34,13 +34,13 @@ const LocationList = () => {
 
 	useMouseHover({ref: locationListRef, cx, setCurrentLocation});
 
-	const list = LOCATION_DATA.map((name) => <Location key={name} name={name}/>)
+	const list = LOCATION_DATA.map((name) => <Location key={name} name={name}/>);
 
 	return (
 		<div ref={locationListRef} className={cx('wrap')}>
 			<ul className={cx('locationList')}>{list}</ul>
 		</div>
 	)
-}
+};
 
 export default LocationList;

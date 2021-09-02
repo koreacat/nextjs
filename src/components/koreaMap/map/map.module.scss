@@ -26,26 +26,26 @@
     .em {
         fill: #E7E8EA;
     }
-
+    
     .active {
         fill: $C_GREEN_90 !important;
-
+        
         &.em {
             fill: $C_GREEN_200 !important;
         }
     }
-
+    
     path {
         fill: #F4F4F5;
         cursor: pointer;
-
+        
         &.noCursor {
             cursor: default;
         }
     }
-
+    
     .hover {
         fill: $C_COOL_GRAY_50;
     }
-
+    
 }

@@ -7,6 +7,10 @@
     width: 383px;
     height: 378px;
     
+    .name {
+        position: absolute;
+    }
+    
     .active {
         fill: $C_GREEN_90 !important;
     }

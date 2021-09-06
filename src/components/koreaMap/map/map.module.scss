@@ -20,6 +20,7 @@
         color: $C_WHITE;
         white-space: nowrap;
         cursor: pointer;
+        user-select: none;
 
         &::after {
             position: absolute;
@@ -43,7 +44,7 @@
         fill: #E7E8EA;
     }
     
-    .active {
+    .selected {
         fill: $C_GREEN_90 !important;
         
         &.em {
@@ -60,7 +61,7 @@
         }
     }
     
-    .hover {
+    .hovered {
         fill: $C_COOL_GRAY_50;
     }
     

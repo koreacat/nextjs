@@ -29,13 +29,13 @@
         color: $C_COOL_GRAY_70;
         cursor: pointer;
         
-        &.active {
+        &.selected {
             background: $C_GREEN_100 !important;
             border: 1px solid $C_GREEN_200;
             color: $C_WHITE;
         }
         
-        &.hover {
+        &.hovered {
             background: $C_COOL_GRAY_30;
         }
     }

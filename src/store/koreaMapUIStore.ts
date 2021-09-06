@@ -24,10 +24,20 @@ export default class KoreaMapUIStore {
 		return this._namePosition;
 	}
 
-	setCurrentLocation = (value: string, callback?) => {
+	isSelected = (name: LOCATION_TYPE) => {
+		return this._selectedLocations.has(name);
+	};
+
+	@action
+	toggleLocation = () => {
+		this._selectedLocations.has(this._currentLocation)
+			? this._selectedLocations.delete(this._currentLocation)
+			: this._selectedLocations.add(this._currentLocation)
+	};
+
+	setCurrentLocation = (value: string) => {
 		this._currentLocation = value;
 		this.setNamePosition(value);
-		callback && callback();
 	};
 
 	setNamePosition = (value) => {
@@ -42,16 +52,5 @@ export default class KoreaMapUIStore {
 			left: cr.x + cr.width / 2 - nameWidth / 2
 		};
 	};
-
-	isSelected = (name: LOCATION_TYPE) => {
-		return this._selectedLocations.has(name);
-	};
-
-	@action
-	toggleLocation = () => {
-		this._selectedLocations.has(this._currentLocation)
-			? this._selectedLocations.delete(this._currentLocation)
-			: this._selectedLocations.add(this._currentLocation)
-	}
 
 }

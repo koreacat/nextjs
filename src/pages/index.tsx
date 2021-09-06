@@ -24,11 +24,6 @@ export default function Home() {
 							</Link>
 						</li>
 						<li>
-							<Link href={"/sliderTab"}>
-								<a className={cx('contents')}>SliderTab</a>
-							</Link>
-						</li>
-						<li>
 							<Link href={"/count"}>
 								<a className={cx('contents')}>Count</a>
 							</Link>
@@ -36,6 +31,16 @@ export default function Home() {
 						<li>
 							<Link href={"/koreaMap"}>
 								<a className={cx('contents')}>KoreaMap</a>
+							</Link>
+						</li>
+						<li>
+							<Link href={"/slider"}>
+								<a className={cx('contents')}>Slider</a>
+							</Link>
+						</li>
+						<li>
+							<Link href={"/sliderTab"}>
+								<a className={cx('contents')}>SliderTab</a>
 							</Link>
 						</li>
 					</ul>

@@ -14,7 +14,7 @@ export const useMouseOver = ({ref, setCurrentLocation}: IUseMouseOverProps) => {
 		});
 
 		return (() => {
-			ref.current.removeEventListener('mouseover', mouseover);
+			ref.current?.removeEventListener('mouseover', mouseover);
 		})
 	}, []);
 };

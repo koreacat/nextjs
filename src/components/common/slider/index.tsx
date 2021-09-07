@@ -1,4 +1,4 @@
-import {ReactNode, useEffect, useRef} from 'react';
+import {ReactNode, useEffect, useRef, useState} from 'react';
 import styles from './slider.module.scss';
 import classnames from 'classnames/bind';
 
@@ -12,40 +12,38 @@ interface ISliderProps {
 	range?: boolean;
 	tooltipVisible?: boolean;
 	value: number;
-	onAfterChange?: () => {};
+	step?: number;
 	onChange?: (value) => void;
 }
 
 const Slider = (
 	{
-		disabled= false,
+		disabled = false,
 		marks,
 		max,
 		min,
 		range,
 		tooltipVisible,
 		value,
+		step = 1,
 		onChange
 	}: ISliderProps) => {
+	const fixedNum = (step+'').split('.')[1]?.length || 0;
+	const sliderValue = value <= min ? min : value >= max ? max : value;
 
 	const railEl = useRef(null);
 	const handleEl = useRef(null);
+	const [sliderPercent, setSliderPercent] = useState((sliderValue - min) / (max - min) * 100);
 
-	const sliderValue = value <= min ? min : value >= max ? max : value;
+	// const handleRailOnMouseDown = (e) => {
+	// 	let newLeft = e.clientX - railEl.current.getBoundingClientRect().left;
+	// 	if (newLeft < 0) newLeft = 0;
 
-	const handleRailOnMouseDown = (e) => {
-		let newLeft = e.clientX - railEl.current.getBoundingClientRect().left;
-		if (newLeft < 0) newLeft = 0;
+	// 	let rightEdge = railEl.current.offsetWidth;
+	// 	if (newLeft > rightEdge) newLeft = rightEdge;
 
-		let rightEdge = railEl.current.offsetWidth;
-		if (newLeft > rightEdge) newLeft = rightEdge;
-
-		onChange(Math.round(newLeft / rightEdge * 100));
-	};
-
-	const handleOnChange = (e) => {
-		onChange(e.target.value);
-	};
+	// 	onChange(Math.round(newLeft / rightEdge * 100));
+	// };
 
 	const handleOnMouseDown = (e) => {
 		e.preventDefault();
@@ -57,15 +55,49 @@ const Slider = (
 		};
 
 		const onMouseMove = (e) => {
-			let newLeft = e.clientX - shiftX - railEl.current.getBoundingClientRect().left;
-			if (newLeft < 0) newLeft = 0;
+			let left = e.clientX - shiftX - railEl.current.getBoundingClientRect().left;
+			if (left < 0) left = 0;
 
-			let rightEdge = railEl.current.offsetWidth;
-			if (newLeft > rightEdge) newLeft = rightEdge;
+			const rightEdge = railEl.current.offsetWidth;
+			if (left > rightEdge) left = rightEdge;
 
-			handleEl.current.style.left = newLeft + 'px';
-			onChange(Math.round(newLeft / rightEdge * 100));
-		};
+			const percent = left / rightEdge * 100;
+
+			if (step < 1) {
+				//TODO 소수점 처리
+				const range = (max - min) / step;
+
+				const offset = range / 100 * step;
+	
+				const value = Number((percent * offset).toFixed(fixedNum));
+				
+				const newLeft = value / offset;
+	
+				const result = Number(((min + value)).toFixed(fixedNum));
+
+				console.log(value, newLeft, result);
+	
+				if(result > max) return;
+				onChange(result);
+				setSliderPercent(newLeft);
+
+			} else {
+				const range = (max - min) / step;
+
+				const offset = range / 100;
+	
+				const value = Number((percent * offset).toFixed(fixedNum));
+	
+				const newLeft = value / offset;
+	
+				const result = Number((min + value * step).toFixed(fixedNum));
+	
+				if(result > max) return;
+				onChange(result);
+				setSliderPercent(newLeft);
+			};
+		}
+
 
 		document.addEventListener('mousemove', onMouseMove);
 		document.addEventListener('mouseup', onMouseUp);
@@ -73,8 +105,8 @@ const Slider = (
 
 	return (
 		<div className={cx('slider')}>
-			<div ref={railEl} className={cx('rail')} onMouseDown={e => handleRailOnMouseDown(e)}/>
-			<div className={cx('track')} style={{width: `${sliderValue}%`}} onMouseDown={e => handleRailOnMouseDown(e)}/>
+			<div ref={railEl} className={cx('rail')}/>
+			<div className={cx('track')} style={{width: `${sliderPercent}%`}}/>
 			<div
 				ref={handleEl}
 				className={cx('handle')}
@@ -83,7 +115,7 @@ const Slider = (
 				data-valuemax='100'
 				data-valuenow='74'
 				aria-disabled='false'
-				style={{left: `${sliderValue}%`}}
+				style={{left: `${sliderPercent}%`}}
 				onMouseDown={e => handleOnMouseDown(e)}
 				onDragStart={() => {return false}}
 			/>
@@ -91,7 +123,7 @@ const Slider = (
 			<div className={cx('step')}/>
 			<div className={cx('mark')}/>
 
-			<input type='number' className={cx('input')} onChange={e => handleOnChange(e)} value={sliderValue}/>
+			<input type='number' className={cx('input')} onChange={e => onChange(e.target.value)} value={sliderValue}/>
 		</div>
 	)
 };

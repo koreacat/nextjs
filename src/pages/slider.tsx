@@ -4,7 +4,7 @@ import Slider from "@components/slider";
 import {useState} from "react";
 
 const SliderPage = () => {
-	const [value, setValue] = useState(50);
+	const [value, setValue] = useState(0);
 	const onChange = (value) => {
 		setValue(value);
 	};
@@ -13,10 +13,11 @@ const SliderPage = () => {
 		<Layout>
 			<Contents>
 
-				<div style={{width: '300px'}}>
+				<div style={{width: '500px'}}>
 					<Slider
-						min={1}
-						max={100}
+						min={-1}
+						max={2}
+						step={0.3}
 						value={value}
 						onChange={onChange}
 					/>

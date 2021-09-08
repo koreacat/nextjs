@@ -9,10 +9,10 @@ interface ISliderProps {
 	marks?: Record<number, ReactNode | string>;
 	max: number;
 	min: number;
-	range?: boolean;
+	range?: boolean; // TODO 핸들 2개로 범위 설정
 	tooltipVisible?: boolean;
 	value: number;
-	step?: number;
+	step: number;
 	onChange?: (value) => void;
 }
 
@@ -23,15 +23,16 @@ const Slider = (
 		max,
 		min,
 		range,
-		tooltipVisible,
+		tooltipVisible = true,
 		value,
-		step = 1,
+		step,
 		onChange
 	}: ISliderProps) => {
 	const sliderValue = value <= min ? min : value >= max ? max : value;
 	const railEl = useRef(null);
 	const handleEl = useRef(null);
 	const [sliderPercent, setSliderPercent] = useState((sliderValue - min) / (max - min) * 100);
+	const [toolTip, setToolTip] = useState(false);
 
 	// const handleRailOnMouseDown = (e) => {
 	// 	let newLeft = e.clientX - railEl.current.getBoundingClientRect().left;
@@ -45,9 +46,12 @@ const Slider = (
 
 	const handleOnMouseDown = (e) => {
 		e.preventDefault();
+		setToolTip(true);
+
 		const shiftX = e.clientX - handleEl.current.getBoundingClientRect().left;
 
 		const onMouseUp = () => {
+			setToolTip(false);
 			document.removeEventListener('mouseup', onMouseUp);
 			document.removeEventListener('mousemove', onMouseMove);
 		};
@@ -96,8 +100,9 @@ const Slider = (
 					style={{ left: `${sliderPercent}%` }}
 					onMouseDown={e => handleOnMouseDown(e)}
 					onDragStart={() => { return false }}
-				/>
-
+				>
+					{tooltipVisible && <div className={cx('tooltip', {'hide': !toolTip})}>{value}</div>}
+				</div>
 				<div className={cx('step')} />
 				<div className={cx('mark')} />
 			</div>

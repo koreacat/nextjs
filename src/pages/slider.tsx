@@ -7,8 +7,8 @@ const SliderPage = () => {
 	const [value, setValue] = useState(0);
 	const [options, setOptions] = useState({
 		min: 0,
-		max: 1,
-		step: 0.2
+		max: 10,
+		step: 1
 	});
 
 	const {min, max, step} = options;
@@ -59,7 +59,7 @@ const SliderPage = () => {
 					<span>{value}</span>
 				</div>
 			
-				<div style={{width: '500px'}}>
+				<div style={{width: '262px'}}>
 					<Slider
 						min={min}
 						max={max}

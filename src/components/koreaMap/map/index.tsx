@@ -1,10 +1,8 @@
 import classnames from "classnames/bind";
-import { observer } from "mobx-react";
-import { useStores } from "src/util/storeProvider";
 import styles from "./map.module.scss";
 import { useRef } from "react";
-import { LOCATION_TYPE } from "src/store/koreaMapUIStore";
 import { useMouseOver } from "../hooks";
+import { LOCATION_TYPE } from "..";
 
 const cx = classnames.bind(styles);
 
@@ -40,12 +38,23 @@ const PATH_DATA: Array<IPathData> = [
 
 const jejuRect = <rect x="189.5" y="261.5" width="75.4499" height="56.3076" rx="7.5" stroke="#E7E8EA" />;
 
-const LocationMap = observer(() => {
-	const { koreaMapUIStore } = useStores();
-	const { isSelected, toggleLocation, currentLocation, setCurrentLocation } = koreaMapUIStore;
+
+interface ILocationMapProps {
+	isSelected;
+	toggleLocation;
+	currentLocation;
+	handleSetCurrentLocation;
+}
+
+const LocationMap = ({
+		isSelected,
+		toggleLocation,
+		currentLocation,
+		handleSetCurrentLocation,
+	}: ILocationMapProps) => {
 	const mapRef = useRef(null);
 
-	useMouseOver({ref: mapRef, setCurrentLocation});
+	useMouseOver({ref: mapRef, handleSetCurrentLocation});
 
 	const handleClick = (e) => {
 		if (!e.target.dataset.location) return;
@@ -73,11 +82,21 @@ const LocationMap = observer(() => {
 			{jejuRect}
 		</svg>
 	)
-});
+};
 
-const LocationName = observer(() => {
-	const { koreaMapUIStore } = useStores();
-	const { toggleLocation, setCurrentLocation, currentLocation, namePosition } = koreaMapUIStore;
+interface ILocationNameProps {
+	toggleLocation;
+	setCurrentLocation;
+	currentLocation;
+	namePosition;
+}
+
+const LocationName = ({
+		toggleLocation,
+		setCurrentLocation,
+		currentLocation,
+		namePosition,
+	}: ILocationNameProps) => {
 
 	return (
 		<div
@@ -94,13 +113,39 @@ const LocationName = observer(() => {
 			{currentLocation}
 		</div>
 	)
-});
+};
 
-const Map = () => {
+interface IMapProps {
+	toggleLocation;
+	setCurrentLocation;
+	currentLocation;
+	namePosition;
+	handleSetCurrentLocation;
+	isSelected;
+}
+
+const Map = ({
+		toggleLocation,
+		setCurrentLocation,
+		currentLocation,
+		namePosition,
+		handleSetCurrentLocation,
+		isSelected,
+	}: IMapProps) => {
 	return (
 		<div className={cx('wrap')}>
-			<LocationName />
-			<LocationMap />
+			<LocationName 
+				toggleLocation={toggleLocation}
+				setCurrentLocation={setCurrentLocation}
+				currentLocation={currentLocation}
+				namePosition={namePosition}
+			/>
+			<LocationMap 
+				isSelected={isSelected}
+				toggleLocation={toggleLocation}
+				currentLocation={currentLocation}
+				handleSetCurrentLocation={handleSetCurrentLocation}
+			/>
 		</div>
 	)
 };

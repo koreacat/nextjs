@@ -1,8 +1,6 @@
 import classnames from "classnames/bind";
-import {observer} from "mobx-react";
 import {useRef} from "react";
-import {LOCATION_TYPE} from "src/store/koreaMapUIStore";
-import {useStores} from "src/util/storeProvider";
+import { LOCATION_TYPE } from "..";
 import {useMouseOver} from "../hooks";
 import styles from "./locationList.module.scss";
 
@@ -17,12 +15,18 @@ const LOCATION_DATA: Array<LOCATION_TYPE> = [
 ];
 
 interface ILocationProps {
+	isSelected;
+	toggleLocation;
+	currentLocation;
 	locationName: LOCATION_TYPE;
 }
 
-const Location = observer(({locationName}: ILocationProps) => {
-	const {koreaMapUIStore} = useStores();
-	const {isSelected, toggleLocation, currentLocation} = koreaMapUIStore;
+const Location = ({
+		isSelected,
+		toggleLocation,
+		currentLocation,
+		locationName
+	}: ILocationProps) => {
 
 	return (
 		<li
@@ -37,16 +41,33 @@ const Location = observer(({locationName}: ILocationProps) => {
 			{locationName}
 		</li>
 	)
-});
+};
 
-const LocationList = () => {
-	const {koreaMapUIStore} = useStores();
-	const {setCurrentLocation} = koreaMapUIStore;
+interface ILocationListProps {
+	isSelected;
+	toggleLocation;
+	currentLocation;
+	handleSetCurrentLocation: (value: string) => void;
+}
+
+const LocationList = ({
+		isSelected,
+		toggleLocation,
+		currentLocation,
+		handleSetCurrentLocation
+	}: ILocationListProps) => {
 	const locationListRef = useRef(null);
 
-	useMouseOver({ref: locationListRef, setCurrentLocation});
+	useMouseOver({ref: locationListRef, handleSetCurrentLocation});
 
-	const list = LOCATION_DATA.map(locationName => <Location key={locationName} locationName={locationName}/>);
+	const list = LOCATION_DATA.map(locationName => 
+		<Location 
+			key={locationName} 
+			isSelected={isSelected}
+			toggleLocation={toggleLocation}
+			currentLocation={currentLocation}
+			locationName={locationName}
+		/>);
 
 	return (
 		<div ref={locationListRef} className={cx('wrap')}>

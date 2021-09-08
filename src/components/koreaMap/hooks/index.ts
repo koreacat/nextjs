@@ -2,15 +2,15 @@ import {useEffect} from "react";
 
 interface IUseMouseOverProps {
 	ref;
-	setCurrentLocation;
+	handleSetCurrentLocation;
 }
 
-export const useMouseOver = ({ref, setCurrentLocation}: IUseMouseOverProps) => {
+export const useMouseOver = ({ref, handleSetCurrentLocation}: IUseMouseOverProps) => {
 
 	useEffect(() => {
 		const mouseover = ref.current.addEventListener('mouseover', (e) => {
 			if (!e.target.dataset.location) return;
-			setCurrentLocation(e.target.dataset.location);
+			handleSetCurrentLocation(e.target.dataset.location);
 		});
 
 		return (() => {

@@ -48,6 +48,38 @@
     cursor: pointer;
 }
 
+.tooltip {
+    position: absolute;
+    top: -35px;
+    left: calc(50% - 16px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 26px;
+    border-radius: 8px;
+    background: $C_GREEN_60;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    color: $C_POSITIVE_DARK;
+
+    &.hide {
+        display: none;
+    }
+
+    &::after {
+        position: absolute;
+        left: calc(50% - 2px);
+        bottom: -2px;
+        width: 4px;
+        height: 4px;
+        background: $C_GREEN_60;
+        transform: rotate(-135deg);
+        content: '';
+    }
+}
+
 .input {
     display: none;
 }

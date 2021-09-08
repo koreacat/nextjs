@@ -34,7 +34,7 @@ const Slider = (
 	const [isMouseDown, setIsMouseDown] = useState(false);
 	let shiftHandleX = 0;
 
-	const handleSlide = async (left) => {
+	const handleSlide = (left) => {
 		if (left < 0) left = 0;
 
 		const rightEdge = railEl.current.offsetWidth;
@@ -69,9 +69,9 @@ const Slider = (
 
 	const onMouseMove = (e) => {
 		let left = e.clientX - shiftHandleX - railEl.current.getBoundingClientRect().left;
-		handleSlide(left);			
+		handleSlide(left);
 	}
-	
+
 	const setNewPosition = (clientX) => {
 		const shiftRailX = clientX - railEl.current.getBoundingClientRect().left;
 		handleSlide(shiftRailX);
@@ -104,8 +104,8 @@ const Slider = (
 	})
 
 	return (
-		<div 
-			className={cx('slider', {'disabled': disabled})} 
+		<div
+			className={cx('slider', {'disabled': disabled})}
 			onMouseDown={e => handleOnMouseDown(e)}
 		>
 			<div className={cx('wrap')}>

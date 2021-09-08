@@ -4,6 +4,19 @@
     height: 30px;
     padding: 10px;
     margin: 10px;
+
+    &.disabled {
+        opacity: .5;
+
+        .handle {
+            background: $C_JOBDA_WHITE;
+            border-color: $C_COOL_GRAY_60;
+
+            &:hover {
+                box-shadow: none;
+            }
+        }
+    }
 }
 
 .wrap {
@@ -46,6 +59,14 @@
     border-radius: 50%;
     transform: translate(-50%, -25%);
     cursor: pointer;
+
+    &.active {
+        box-shadow: 0 0 0 4px #6CDD8330;
+    }
+
+    &:hover {
+        box-shadow: 0 0 0 4px #6CDD8330;
+    }
 }
 
 .tooltip {
@@ -77,6 +98,22 @@
         background: $C_GREEN_60;
         transform: rotate(-135deg);
         content: '';
+        user-select: none;
+    }
+}
+
+.markWrap {
+    position: absolute;
+    top: 25px;
+    width: 100%;
+    font-size: 11px;
+    line-height: 14px;
+    color: $C_COOL_GRAY_60;
+
+    .mark {
+        position: absolute;
+        width: max-content;
+        transform: translate(-50%, 0);
     }
 }
 

@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 import styles from './slider.module.scss';
 import classnames from 'classnames/bind';
 
@@ -9,11 +9,11 @@ interface ISliderProps {
 	marks?: Record<number, ReactNode | string>;
 	max: number;
 	min: number;
-	range?: boolean; // TODO 핸들 2개로 범위 설정
+	// range?: boolean; // TODO 핸들 2개로 범위 설정
 	tooltipVisible?: boolean;
 	value: number;
 	step: number;
-	onChange?: (value) => void;
+	onChange: (value) => void;
 }
 
 const Slider = (
@@ -22,7 +22,6 @@ const Slider = (
 		marks,
 		max,
 		min,
-		range,
 		tooltipVisible = true,
 		value,
 		step,
@@ -32,81 +31,98 @@ const Slider = (
 	const railEl = useRef(null);
 	const handleEl = useRef(null);
 	const [sliderPercent, setSliderPercent] = useState((sliderValue - min) / (max - min) * 100);
-	const [toolTip, setToolTip] = useState(false);
+	const [isMouseDown, setIsMouseDown] = useState(false);
+	let shiftHandleX = 0;
 
-	// const handleRailOnMouseDown = (e) => {
-	// 	let newLeft = e.clientX - railEl.current.getBoundingClientRect().left;
-	// 	if (newLeft < 0) newLeft = 0;
+	const handleSlide = async (left) => {
+		if (left < 0) left = 0;
 
-	// 	let rightEdge = railEl.current.offsetWidth;
-	// 	if (newLeft > rightEdge) newLeft = rightEdge;
+		const rightEdge = railEl.current.offsetWidth;
+		if (left > rightEdge) left = rightEdge;
 
-	// 	onChange(Math.round(newLeft / rightEdge * 100));
-	// };
+		const fixedNum = (step + '').split('.')[1]?.length || 0;
+
+		const percent = left / rightEdge * 100;
+
+		const decimalOffset = Math.pow(10, fixedNum);
+
+		const stepRange = (max - min) / step;
+
+		const offset = stepRange / decimalOffset / 100;
+
+		const newValue = Number((percent * offset).toFixed(fixedNum));
+
+		const newLeft = newValue / offset;
+
+		const result = Number(((min + newValue * step * decimalOffset)).toFixed(fixedNum));
+
+		if (result > max) return;
+		onChange(result);
+		setSliderPercent(newLeft);
+	}
+
+	const onMouseUp = () => {
+		setIsMouseDown(false);
+		document.removeEventListener('mouseup', onMouseUp);
+		document.removeEventListener('mousemove', onMouseMove);
+	};
+
+	const onMouseMove = (e) => {
+		let left = e.clientX - shiftHandleX - railEl.current.getBoundingClientRect().left;
+		handleSlide(left);			
+	}
+	
+	const setNewPosition = (clientX) => {
+		const shiftRailX = clientX - railEl.current.getBoundingClientRect().left;
+		handleSlide(shiftRailX);
+	}
+
+	const setHandlePosition = (clientX) => {
+		setTimeout(() => {shiftHandleX = clientX - handleEl.current.getBoundingClientRect().left}, 0);
+	}
 
 	const handleOnMouseDown = (e) => {
+		if(disabled) return;
 		e.preventDefault();
-		setToolTip(true);
-
-		const shiftX = e.clientX - handleEl.current.getBoundingClientRect().left;
-
-		const onMouseUp = () => {
-			setToolTip(false);
-			document.removeEventListener('mouseup', onMouseUp);
-			document.removeEventListener('mousemove', onMouseMove);
-		};
-
-		const onMouseMove = (e) => {
-			let left = e.clientX - shiftX - railEl.current.getBoundingClientRect().left;
-			if (left < 0) left = 0;
-
-			const rightEdge = railEl.current.offsetWidth;
-			if (left > rightEdge) left = rightEdge;
-
-			const fixedNum = (step + '').split('.')[1]?.length || 0;
-
-			const percent = left / rightEdge * 100;
-
-			const decimalOffset = Math.pow(10, fixedNum);
-
-			const range = (max - min) / step;
-
-			const offset = range / 100 / decimalOffset;
-
-			const value = Number((percent * offset).toFixed(fixedNum));
-
-			const newLeft = value / offset;
-
-			const result = Number(((min + value * step * decimalOffset)).toFixed(fixedNum));
-
-			if (result > max) return;
-			onChange(result);
-			setSliderPercent(newLeft);
-		}
-
+		setIsMouseDown(true);
+		setNewPosition(e.clientX);
+		setHandlePosition(e.clientX);
 		document.addEventListener('mousemove', onMouseMove);
 		document.addEventListener('mouseup', onMouseUp);
 	};
 
+	const mark = Object.keys(marks).map((key) => {
+		const value = marks[key];
+		const range = max - min;
+		const newLeft = (Number(key) - min) / range * 100;
+
+		return (
+			<div key={key} className={cx('mark')} style={{left: `${newLeft}%`}}>
+				{value}
+			</div>
+		)
+	})
+
 	return (
-		<div className={cx('slider')}>
+		<div 
+			className={cx('slider', {'disabled': disabled})} 
+			onMouseDown={e => handleOnMouseDown(e)}
+		>
 			<div className={cx('wrap')}>
-				<div ref={railEl} className={cx('rail')} />
-				<div className={cx('track')} style={{ width: `${sliderPercent}%` }} />
+				<div ref={railEl} className={cx('rail')}/>
+				<div className={cx('track')} style={{ width: `${sliderPercent}%` }}/>
 				<div
 					ref={handleEl}
-					className={cx('handle')}
+					className={cx('handle', {'active': isMouseDown})}
 					role='slider'
 					style={{ left: `${sliderPercent}%` }}
-					onMouseDown={e => handleOnMouseDown(e)}
 					onDragStart={() => { return false }}
 				>
-					{tooltipVisible && <div className={cx('tooltip', {'hide': !toolTip})}>{value}</div>}
+					{tooltipVisible && <div className={cx('tooltip', { 'hide': !isMouseDown })}>{value}</div>}
 				</div>
-				<div className={cx('step')} />
-				<div className={cx('mark')} />
+				<div className={cx('markWrap')}>{mark}</div>
 			</div>
-			<input type='number' className={cx('input')} onChange={e => onChange(e.target.value)} value={sliderValue} />
+			<input type='number' className={cx('input')} onChange={() => onChange(value)} value={value} />
 		</div>
 	)
 };

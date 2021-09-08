@@ -1,4 +1,4 @@
-import {ReactNode, useEffect, useRef, useState} from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import styles from './slider.module.scss';
 import classnames from 'classnames/bind';
 
@@ -28,9 +28,7 @@ const Slider = (
 		step = 1,
 		onChange
 	}: ISliderProps) => {
-	const fixedNum = (step+'').split('.')[1]?.length || 0;
 	const sliderValue = value <= min ? min : value >= max ? max : value;
-
 	const railEl = useRef(null);
 	const handleEl = useRef(null);
 	const [sliderPercent, setSliderPercent] = useState((sliderValue - min) / (max - min) * 100);
@@ -61,43 +59,26 @@ const Slider = (
 			const rightEdge = railEl.current.offsetWidth;
 			if (left > rightEdge) left = rightEdge;
 
+			const fixedNum = (step + '').split('.')[1]?.length || 0;
+
 			const percent = left / rightEdge * 100;
 
-			if (step < 1) {
-				//TODO 소수점 처리
-				const range = (max - min) / step;
+			const decimalOffset = Math.pow(10, fixedNum);
 
-				const offset = range / 100 * step;
-	
-				const value = Number((percent * offset).toFixed(fixedNum));
-				
-				const newLeft = value / offset;
-	
-				const result = Number(((min + value)).toFixed(fixedNum));
+			const range = (max - min) / step;
 
-				console.log(value, newLeft, result);
-	
-				if(result > max) return;
-				onChange(result);
-				setSliderPercent(newLeft);
+			const offset = range / 100 / decimalOffset;
 
-			} else {
-				const range = (max - min) / step;
+			const value = Number((percent * offset).toFixed(fixedNum));
 
-				const offset = range / 100;
-	
-				const value = Number((percent * offset).toFixed(fixedNum));
-	
-				const newLeft = value / offset;
-	
-				const result = Number((min + value * step).toFixed(fixedNum));
-	
-				if(result > max) return;
-				onChange(result);
-				setSliderPercent(newLeft);
-			};
+			const newLeft = value / offset;
+
+			const result = Number(((min + value * step * decimalOffset)).toFixed(fixedNum));
+
+			if (result > max) return;
+			onChange(result);
+			setSliderPercent(newLeft);
 		}
-
 
 		document.addEventListener('mousemove', onMouseMove);
 		document.addEventListener('mouseup', onMouseUp);
@@ -105,25 +86,22 @@ const Slider = (
 
 	return (
 		<div className={cx('slider')}>
-			<div ref={railEl} className={cx('rail')}/>
-			<div className={cx('track')} style={{width: `${sliderPercent}%`}}/>
-			<div
-				ref={handleEl}
-				className={cx('handle')}
-				role='slider'
-				data-valuemin='0'
-				data-valuemax='100'
-				data-valuenow='74'
-				aria-disabled='false'
-				style={{left: `${sliderPercent}%`}}
-				onMouseDown={e => handleOnMouseDown(e)}
-				onDragStart={() => {return false}}
-			/>
+			<div className={cx('wrap')}>
+				<div ref={railEl} className={cx('rail')} />
+				<div className={cx('track')} style={{ width: `${sliderPercent}%` }} />
+				<div
+					ref={handleEl}
+					className={cx('handle')}
+					role='slider'
+					style={{ left: `${sliderPercent}%` }}
+					onMouseDown={e => handleOnMouseDown(e)}
+					onDragStart={() => { return false }}
+				/>
 
-			<div className={cx('step')}/>
-			<div className={cx('mark')}/>
-
-			<input type='number' className={cx('input')} onChange={e => onChange(e.target.value)} value={sliderValue}/>
+				<div className={cx('step')} />
+				<div className={cx('mark')} />
+			</div>
+			<input type='number' className={cx('input')} onChange={e => onChange(e.target.value)} value={sliderValue} />
 		</div>
 	)
 };

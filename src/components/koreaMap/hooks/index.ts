@@ -5,7 +5,11 @@ interface IUseMouseOverProps {
 	handleSetCurrentLocation;
 }
 
-export const useMouseOver = ({ref, handleSetCurrentLocation}: IUseMouseOverProps) => {
+export const useMouseOver = (
+	{
+		ref,
+		handleSetCurrentLocation
+	}: IUseMouseOverProps) => {
 
 	useEffect(() => {
 		const mouseover = ref.current.addEventListener('mouseover', (e) => {

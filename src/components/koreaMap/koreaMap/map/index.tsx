@@ -2,15 +2,15 @@ import classnames from "classnames/bind";
 import styles from "./map.module.scss";
 import {useRef} from "react";
 import {useMouseOver} from "../hooks";
-import {jejuRect, PATH_DATA} from "../data";
+import {jejuRect, LOCATION_TYPE, PATH_DATA} from "../data";
 
 const cx = classnames.bind(styles);
 
 interface ILocationMapProps {
-	isSelected;
-	toggleLocation;
-	currentLocation;
-	handleSetCurrentLocation;
+	isSelected: (name: LOCATION_TYPE) => boolean;
+	toggleLocation: () => void;
+	currentLocation: LOCATION_TYPE | null;
+	handleSetCurrentLocation: (value: LOCATION_TYPE) => void;
 }
 
 const LocationMap = (
@@ -24,8 +24,9 @@ const LocationMap = (
 
 	useMouseOver({ref: mapRef, handleSetCurrentLocation});
 
-	const handleClick = (e) => {
-		if (!e.target.dataset.location) return;
+	const handleClick = (e: React.MouseEvent<SVGElement>) => {
+		const target = e.target as SVGElement;
+		if (!target || !target.dataset?.location) return;
 		toggleLocation();
 	};
 
@@ -45,7 +46,7 @@ const LocationMap = (
 	});
 
 	return (
-		<svg ref={mapRef} className={cx('mapWrap')} onClick={handleClick} width="265" height="320" viewBox="0 0 265 320"
+		<svg ref={mapRef} className={cx('mapWrap')} onClick={e => handleClick(e)} width="265" height="320" viewBox="0 0 265 320"
 			 fill="none" xmlns="http://www.w3.org/2000/svg">
 			{pathList}
 			{jejuRect}
@@ -54,10 +55,10 @@ const LocationMap = (
 };
 
 interface ILocationNameProps {
-	toggleLocation;
-	setCurrentLocation;
-	currentLocation;
-	namePosition;
+	toggleLocation: () => void;
+	setCurrentLocation: (currentLocation: LOCATION_TYPE | null) => void;
+	currentLocation: LOCATION_TYPE | null;
+	namePosition: {top: number; left: number};
 }
 
 const LocationName = (
@@ -73,7 +74,7 @@ const LocationName = (
 			id='locationName'
 			onClick={() => toggleLocation()}
 			onMouseEnter={() => setCurrentLocation(currentLocation)}
-			onMouseLeave={() => setCurrentLocation('')}
+			onMouseLeave={() => setCurrentLocation(null)}
 			className={cx('name')}
 			style={{
 				display: currentLocation ? 'block' : 'none',
@@ -86,12 +87,12 @@ const LocationName = (
 };
 
 interface IMapProps {
-	toggleLocation;
-	setCurrentLocation;
-	currentLocation;
-	namePosition;
-	handleSetCurrentLocation;
-	isSelected;
+	toggleLocation: () => void;
+	setCurrentLocation: (currentLocation: LOCATION_TYPE | null) => void;
+	currentLocation: LOCATION_TYPE | null;
+	namePosition: {top: number; left: number};
+	handleSetCurrentLocation: (value: LOCATION_TYPE) => void;
+	isSelected: (name: LOCATION_TYPE) => boolean;
 }
 
 const Map = (

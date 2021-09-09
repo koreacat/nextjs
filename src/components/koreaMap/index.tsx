@@ -1,20 +1,18 @@
 import classnames from "classnames/bind";
 import { useState } from "react";
+import { LOCATION_TYPE } from "./data";
 import styles from "./koreaMap.module.scss";
 import LocationList from "./locationList";
 import Map from "./map";
 
 const cx = classnames.bind(styles);
 
-export type LOCATION_TYPE =
-	'서울특별시' | '경기도' | '인천광역시' | '부산광역시' |
-	'대구광역시'| '광주광역시'| '대전광역시'| '울산광역시'|
-	'세종특별자치시'| '강원도'| '충청남도'| '경상남도'|
-	'경상북도'| '전라남도'| '전라북도'| '충청북도'|
-	'제주특별자치도';
+interface IKoreaMapProps {
+	selectedLocations: Array<LOCATION_TYPE>;
+	setSelectedLocations: (selectedLocations) => void;
+}
 
-const KoreaMap = () => {
-	const [selectedLocations, setSelectedLocations] = useState(new Array<LOCATION_TYPE>());
+const KoreaMap = ({selectedLocations, setSelectedLocations}: IKoreaMapProps) => {
 	const [currentLocation, setCurrentLocation] = useState(null);
 	const [namePosition, setNamePosition] = useState({top: 0, left: 0});
 	

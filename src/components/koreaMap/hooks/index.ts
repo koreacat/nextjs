@@ -1,8 +1,9 @@
-import {useEffect} from "react";
+import {RefObject, useEffect} from "react";
+import {LOCATION_TYPE} from "@components/koreaMap/data";
 
 interface IUseMouseOverProps {
-	ref;
-	handleSetCurrentLocation;
+	ref: RefObject<HTMLDivElement | SVGElement>;
+	handleSetCurrentLocation: (value: LOCATION_TYPE) => void;
 }
 
 export const useMouseOver = (
@@ -12,13 +13,17 @@ export const useMouseOver = (
 	}: IUseMouseOverProps) => {
 
 	useEffect(() => {
-		const mouseover = ref.current.addEventListener('mouseover', (e) => {
+		if(!ref.current) return;
+
+		const handleMouseover = (e: any) => {
 			if (!e.target.dataset.location) return;
 			handleSetCurrentLocation(e.target.dataset.location);
-		});
+		};
+
+		ref.current.addEventListener('mouseover', handleMouseover);
 
 		return (() => {
-			ref.current?.removeEventListener('mouseover', mouseover);
+			ref.current?.removeEventListener('mouseover', handleMouseover);
 		})
 	}, []);
 };

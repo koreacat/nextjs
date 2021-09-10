@@ -7,9 +7,9 @@ import styles from "./locationList.module.scss";
 const cx = classnames.bind(styles);
 
 interface ILocationProps {
-	isSelected;
-	toggleLocation;
-	currentLocation;
+	isSelected: (name: LOCATION_TYPE) => boolean;
+	toggleLocation: () => void;
+	currentLocation: LOCATION_TYPE | null;
 	locationName: LOCATION_TYPE;
 }
 
@@ -37,10 +37,10 @@ const Location = (
 };
 
 interface ILocationListProps {
-	isSelected;
-	toggleLocation;
-	currentLocation;
-	handleSetCurrentLocation: (value: string) => void;
+	isSelected: (name: LOCATION_TYPE) => boolean;
+	toggleLocation: () => void;
+	currentLocation: LOCATION_TYPE | null;
+	handleSetCurrentLocation: (value: LOCATION_TYPE) => void;
 }
 
 const LocationList = (

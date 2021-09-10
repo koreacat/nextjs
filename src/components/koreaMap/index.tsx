@@ -1,5 +1,5 @@
 import classnames from "classnames/bind";
-import {useState} from "react";
+import {useRef, useState} from "react";
 import {LOCATION_TYPE} from "./data";
 import styles from "./koreaMap.module.scss";
 import LocationList from "./locationList";
@@ -8,8 +8,8 @@ import Map from "./map";
 const cx = classnames.bind(styles);
 
 interface IKoreaMapProps {
-	selectedLocations: Array<LOCATION_TYPE>;
-	setSelectedLocations: (selectedLocations) => void;
+	selectedLocations: LOCATION_TYPE[];
+	setSelectedLocations: (selectedLocation: ((prev: LOCATION_TYPE[]) => LOCATION_TYPE[]) | LOCATION_TYPE[]) => void;
 }
 
 const KoreaMap = (
@@ -17,14 +17,16 @@ const KoreaMap = (
 		selectedLocations,
 		setSelectedLocations
 	}: IKoreaMapProps) => {
-	const [currentLocation, setCurrentLocation] = useState(null);
+	const [currentLocation, setCurrentLocation] = useState<LOCATION_TYPE | null>(null);
 	const [namePosition, setNamePosition] = useState({top: 0, left: 0});
+	const nameRef = useRef<HTMLDivElement>(null);
 
 	const isSelected = (name: LOCATION_TYPE) => {
 		return selectedLocations.includes(name);
 	};
 
 	const toggleLocation = () => {
+		if(!currentLocation) return;
 		if (selectedLocations.includes(currentLocation)) {
 			setSelectedLocations(selectedLocations.filter((location) => location !== currentLocation))
 		} else {
@@ -32,18 +34,18 @@ const KoreaMap = (
 		}
 	};
 
-	const handleSetCurrentLocation = (value: string) => {
+	const handleSetCurrentLocation = (value: LOCATION_TYPE) => {
 		setCurrentLocation(value);
 		handleSetNamePosition(value);
 	};
 
-	const handleSetNamePosition = (value) => {
-		if (!value) return;
+	const handleSetNamePosition = (value: LOCATION_TYPE) => {
+		if (!value || !nameRef) return;
 		const target = document.querySelector(`path[data-location=${value}]`);
-		const cr = target.getBoundingClientRect();
-		const nameRef = document.getElementById('locationName');
-		const nameWidth = nameRef.getBoundingClientRect().width;
+		const cr = target?.getBoundingClientRect();
+		const nameWidth = nameRef.current?.getBoundingClientRect().width;
 
+		if(!cr || !nameWidth) return;
 		setNamePosition({
 			top: cr.y + cr.height / 2 - 40,
 			left: cr.x + cr.width / 2 - nameWidth / 2
@@ -65,6 +67,7 @@ const KoreaMap = (
 				namePosition={namePosition}
 				handleSetCurrentLocation={handleSetCurrentLocation}
 				isSelected={isSelected}
+				nameRef={nameRef}
 			/>
 		</div>
 	)

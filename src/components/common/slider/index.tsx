@@ -85,20 +85,20 @@ const Slider = (
 		//한 스텝당 이동하는 슬라이더의 퍼센트
 		const stepRange = (max - min) / step;
 
-		//퍼센트에서 value를 구하기 위한 보정값
+		//퍼센트에서 relativeValue 구하기 위한 보정값
 		const offset = stepRange / decimalOffset / 100;
 
 		//퍼센트에서 환산된 상대적 위치값
-		const newValue = Number((percent * offset).toFixed(fixedNum));
+		const relativeValue = Number((percent * offset).toFixed(fixedNum));
 
 		//마우스 위치에 따라 계산된 슬라이더 위치
-		const nextLeft = newValue / offset;
+		const nextLeft = relativeValue / offset;
 
 		//실제 value 값
-		const result = Number(((min + newValue * step * decimalOffset)).toFixed(fixedNum));
+		const newResult = Number(((min + relativeValue * step * decimalOffset)).toFixed(fixedNum));
 
-		if (result > max) return;
-		onChange(result);
+		if (newResult > max) return;
+		onChange(newResult);
 		setSliderPercent(nextLeft);
 	};
 
@@ -109,7 +109,6 @@ const Slider = (
 	};
 
 	const onMouseMove = (e: MouseEvent) => {
-		console.log(shiftHandleX);
 		if (!railEl.current) return;
 		let left = e.clientX - shiftHandleX - railEl.current.getBoundingClientRect().left;
 		handleSlide(left);

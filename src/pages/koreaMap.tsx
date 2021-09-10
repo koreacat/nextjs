@@ -13,6 +13,10 @@ const KoreaMapPage = () => {
 					selectedLocations={selectedLocations}
 					setSelectedLocations={setSelectedLocations}
 				/>
+				<KoreaMap
+					selectedLocations={selectedLocations}
+					setSelectedLocations={setSelectedLocations}
+				/>
 			</Contents>
 		</Layout>
 	)

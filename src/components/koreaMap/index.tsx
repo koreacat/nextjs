@@ -4,6 +4,7 @@ import {LOCATION_TYPE} from "./data";
 import styles from "./koreaMap.module.scss";
 import LocationList from "./locationList";
 import Map from "./map";
+import { getNewPosition } from "./util";
 
 const cx = classnames.bind(styles);
 
@@ -42,13 +43,16 @@ const KoreaMap = (
 	const handleSetNamePosition = (value: LOCATION_TYPE) => {
 		if (!value || !nameRef) return;
 		const target = document.querySelector(`path[data-location=${value}]`);
-		const cr = target?.getBoundingClientRect();
+		const cr = target.getBoundingClientRect();
 		const nameWidth = nameRef.current?.getBoundingClientRect().width;
 
-		if(!cr || !nameWidth) return;
+		// SVG Element는 offsetTop과 같은 상대적 위치를 제공하는 API가 존재하지 않기 때문에,
+		// SVG에서의 상대적 위치값을 따로 계산해줘야함
+		const newPosition = getNewPosition(target); 
+
 		setNamePosition({
-			top: cr.y + cr.height / 2 - 40,
-			left: cr.x + cr.width / 2 - nameWidth / 2
+			top: newPosition.top + cr.height / 2 - 40,
+			left: newPosition.left + cr.width / 2 - nameWidth / 2
 		});
 	};
 

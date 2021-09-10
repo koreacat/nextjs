@@ -109,20 +109,22 @@ const Map = (
 		nameRef,
 	}: IMapProps) => {
 	return (
-		<div className={cx('wrap')}>
-			<LocationName
-				toggleLocation={toggleLocation}
-				setCurrentLocation={setCurrentLocation}
-				currentLocation={currentLocation}
-				namePosition={namePosition}
-				nameRef={nameRef}
-			/>
-			<LocationMap
-				isSelected={isSelected}
-				toggleLocation={toggleLocation}
-				currentLocation={currentLocation}
-				handleSetCurrentLocation={handleSetCurrentLocation}
-			/>
+		<div className={cx('mapArea')}>
+			<div className={cx('mapContents')}>
+				<LocationMap
+					isSelected={isSelected}
+					toggleLocation={toggleLocation}
+					currentLocation={currentLocation}
+					handleSetCurrentLocation={handleSetCurrentLocation}
+				/>
+				<LocationName
+					toggleLocation={toggleLocation}
+					setCurrentLocation={setCurrentLocation}
+					currentLocation={currentLocation}
+					namePosition={namePosition}
+					nameRef={nameRef}
+				/>
+			</div>
 		</div>
 	)
 };

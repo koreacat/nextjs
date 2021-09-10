@@ -13,13 +13,12 @@ interface IMarkProps {
 const Mark = ({max, min, marks}: IMarkProps) => {
 	if (!marks) return null;
 
-	const mark = Object.keys(marks).map((key) => {
-		const value = marks[Number(key)];
+	const mark = Object.entries(marks).map(([key, value], index) => {
 		const range = max - min;
-		const newLeft = (Number(key) - min) / range * 100;
+		const left = (Number(key) - min) / range * 100;
 
 		return (
-			<div key={key} className={cx('mark')} style={{left: `${newLeft}%`}}>
+			<div key={key} className={cx('mark')} style={{left: `${left}%`}}>
 				{value}
 			</div>
 		)
@@ -33,7 +32,6 @@ interface ISliderProps {
 	marks?: Record<number, ReactNode | string>;
 	max: number;
 	min: number;
-	// range?: boolean; // TODO 핸들 2개로 범위 설정
 	tooltipVisible?: boolean;
 	value: number;
 	step: number;
@@ -52,12 +50,21 @@ const Slider = (
 		onChange
 	}: ISliderProps) => {
 
-	const sliderValue = value <= min ? min : value >= max ? max : value;
+	const sliderValue = (value: number) => {
+		if(value <= min) {
+			return min;
+		} else if(value >= max) {
+			return max;
+		} else {
+			return value;
+		}
+	};
+
 	const railEl = useRef<HTMLDivElement>(null);
 	const handleEl = useRef<HTMLDivElement>(null);
-	const [sliderPercent, setSliderPercent] = useState((sliderValue - min) / (max - min) * 100);
+	const [sliderPercent, setSliderPercent] = useState((sliderValue(value) - min) / (max - min) * 100);
 	const [isMouseDown, setIsMouseDown] = useState(false);
-	let shiftHandleX = 0;
+	const [shiftHandleX, setShiftHandleX] = useState(0); // 클릭시 마우스 위치와 핸들의 위치 차이
 
 	const handleSlide = (left: number) => {
 		if (!railEl.current) return;
@@ -66,25 +73,33 @@ const Slider = (
 		const rightEdge = railEl.current.offsetWidth;
 		if (left > rightEdge) left = rightEdge;
 
+		//소수점 자리수
 		const fixedNum = (step + '').split('.')[1]?.length || 0;
 
+		//현재 슬라이더 퍼센트
 		const percent = left / rightEdge * 100;
 
+		//소수점 step 처리를 위한 보정값
 		const decimalOffset = Math.pow(10, fixedNum);
 
+		//한 스텝당 이동하는 슬라이더의 퍼센트
 		const stepRange = (max - min) / step;
 
+		//퍼센트에서 value를 구하기 위한 보정값
 		const offset = stepRange / decimalOffset / 100;
 
+		//퍼센트에서 환산된 상대적 위치값
 		const newValue = Number((percent * offset).toFixed(fixedNum));
 
-		const newLeft = newValue / offset;
+		//마우스 위치에 따라 계산된 슬라이더 위치
+		const nextLeft = newValue / offset;
 
+		//실제 value 값
 		const result = Number(((min + newValue * step * decimalOffset)).toFixed(fixedNum));
 
 		if (result > max) return;
 		onChange(result);
-		setSliderPercent(newLeft);
+		setSliderPercent(nextLeft);
 	};
 
 	const onMouseUp = () => {
@@ -94,22 +109,22 @@ const Slider = (
 	};
 
 	const onMouseMove = (e: MouseEvent) => {
+		console.log(shiftHandleX);
 		if (!railEl.current) return;
 		let left = e.clientX - shiftHandleX - railEl.current.getBoundingClientRect().left;
 		handleSlide(left);
 	};
 
-	const setNewPosition = (clientX: number) => {
+	// 클릭 했을 때 핸들의 처음 위치를 정해주는 함수
+	const setNewPosition = async (clientX: number) => {
 		if (!railEl.current) return;
 		const shiftRailX = clientX - railEl.current.getBoundingClientRect().left;
-		handleSlide(shiftRailX);
-	};
+		await handleSlide(shiftRailX);
 
-	const setHandlePosition = (clientX: number) => {
-		setTimeout(() => {
-			if (!handleEl.current) return;
-			shiftHandleX = clientX - handleEl.current.getBoundingClientRect().left
-		}, 0);
+		// 클릭 했을 때 클라이언트의 클릭 위치에 대한 핸들의 상대적 위치가 정해짐
+		// 핸들의 상대적 위치는 핸들이 옮겨지고 결정되어야함
+		if (!handleEl.current) return;
+		setShiftHandleX(clientX - handleEl.current.getBoundingClientRect().left);
 	};
 
 	const handleOnMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -117,7 +132,6 @@ const Slider = (
 		e.preventDefault();
 		setIsMouseDown(true);
 		setNewPosition(e.clientX);
-		setHandlePosition(e.clientX);
 		document.addEventListener('mousemove', onMouseMove);
 		document.addEventListener('mouseup', onMouseUp);
 	};
@@ -135,9 +149,6 @@ const Slider = (
 					className={cx('handle', {'active': isMouseDown})}
 					role='slider'
 					style={{left: `${sliderPercent}%`}}
-					onDragStart={() => {
-						return false
-					}}
 				>
 					{tooltipVisible && <div className={cx('tooltip', {'hide': !isMouseDown})}>{value}</div>}
 				</div>
@@ -149,7 +160,6 @@ const Slider = (
 					/>
 				</div>
 			</div>
-			<input type='number' className={cx('input')} onChange={() => onChange(value)} value={value}/>
 		</div>
 	)
 };

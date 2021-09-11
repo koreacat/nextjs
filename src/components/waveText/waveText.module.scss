@@ -1,0 +1,25 @@
+@import '@styles/common.scss';
+
+.waveTextWrap {
+    display: flex;
+    padding: 50px;
+    margin-top: 30px;
+}
+
+.waveText {
+    display: block;
+    font-family: $F_NOTO_SANS_KR;
+    font-size: 48px;
+    font-weight: 500;
+    animation: wave infinite 1s ease-in-out;
+}
+
+@keyframes wave {
+    0% {
+        transform: translateY(0px);
+    } 50% {
+        transform: translateY(-30px);
+    } 100% {
+        transform: translateY(0px);
+    }
+}

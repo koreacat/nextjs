@@ -7,7 +7,9 @@ const cx = classnames.bind(styles);
 const clothesData = [
     '/nextjs/img/chunSik/imgChunSikLoopy.png',
     '/nextjs/img/chunSik/imgChunSikPitter.png',
-    '/nextjs/img/chunSik/imgChunSikSanta.png'
+    '/nextjs/img/chunSik/imgChunSikSanta.png',
+    '/nextjs/img/chunSik/imgChunSikLoopy.png',
+    '/nextjs/img/chunSik/imgChunSikPitter.png',
 ];
 
 interface IClothesListProps {
@@ -52,7 +54,7 @@ const SoundButton = () => {
     const [audio, setAudio] = useState(null);
 
     useEffect(() => {
-        const audio = new Audio('/nextjs/sound/chunSik/soundButtercup.mp3')
+        const audio = new Audio('/nextjs/sound/chunSik/soundQuincasMoreira.mp3')
         setAudio(audio);
 
         audio.addEventListener('ended', () => {

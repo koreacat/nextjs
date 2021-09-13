@@ -73,8 +73,33 @@
                 stroke-width: 2px;
             }
         }
+    
+        > .mask {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
         
-
+            > .label {
+                cursor: default;
+                color: $C_COOL_GRAY_60;
+                font-size: 13px;
+                line-height: 18px;
+                position: absolute;
+                width: max-content;
+            
+                &.high {
+                    color: $C_GREEN_200;
+                }
+            
+                > .tooltipWrap {
+                    position: relative;
+                    left: -50%;
+                }
+            }
+        }
+    
     }
     
     > div ~ div {

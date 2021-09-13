@@ -57,6 +57,26 @@ const Values = () => {
 	)
 }
 
+const texts = () => scores.map(({type, high}, i, arr) => {
+		const deg = PI * 2 * i / arr.length;
+		const top = CENTER - cos(deg) * 132 - 6.5;
+		const left = CENTER + sin(deg) * 136;
+
+		return (
+			<div key={type}
+				 className={cx('label', high ? 'high' : null)}
+				 style={{left, top}}>
+				<div className={cx('tooltipWrap')}>
+					<section>
+						<h6>{type}</h6>
+						<p>{type}</p>
+					</section>
+				</div>
+			</div>
+		)
+	}
+);
+
 
 const RaderChart = () => {
 	return (
@@ -67,6 +87,9 @@ const RaderChart = () => {
 					<Dots />
 					<Values />
 				</svg>
+				<div className={cx('mask')}>
+					{texts}
+				</div>
 			</div>
 		</div>
 	);

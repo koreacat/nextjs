@@ -72,8 +72,8 @@ export default function Home() {
 							</Link>
 						</li>
 						<li>
-							<Link href={'/vennDiagram'}>
-								<a className={cx('contents')}>VennDiagram</a>
+							<Link href={'/raderChart'}>
+								<a className={cx('contents', 'new')}>RaderChart</a>
 							</Link>
 						</li>
 						<li>
@@ -84,6 +84,11 @@ export default function Home() {
 						<li>
 							<Link href={'/lineChart'}>
 								<a className={cx('contents')}>LineChart</a>
+							</Link>
+						</li>
+						<li>
+							<Link href={'/vennDiagram'}>
+								<a className={cx('contents')}>VennDiagram</a>
 							</Link>
 						</li>
 					</ul>
@@ -124,7 +129,7 @@ export default function Home() {
 					<ul>
 						<li>
 							<Link href={'/chunSik'}>
-								<a className={cx('contents')}>ChunSik</a>
+								<a className={cx('contents', 'new')}>ChunSik</a>
 							</Link>
 						</li>
 					</ul>

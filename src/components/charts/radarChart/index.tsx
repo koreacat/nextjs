@@ -1,94 +1,129 @@
 import React from "react";
 import classNames from "classnames/bind";
-import styles from "./raderChart.module.scss";
+import styles from "./radarChart.module.scss";
 
 const cx = classNames.bind(styles);
-const { cos, sin, PI } = Math;
 
+const { cos, sin, PI } = Math;
 const CENTER = 292 / 2;
 
-const scores = [
-	{ type: 'a', score: 10, high: true },
-	{ type: 'b', score: 30, high: false },
-	{ type: 'c', score: 40, high: false },
-	{ type: 'd', score: 60, high: false },
-	{ type: 'e', score: 70, high: false },
-	{ type: 'f', score: 90, high: false },
-];
+interface IRadarChartData {
+	title: string;
+	desc?: string;
+	value: number;
+	emphasized?: boolean;
+}
 
-const Grid = () => {
+const Grid = (
+	{
+		radarChartDataList
+	}: { radarChartDataList: IRadarChartData[] }) => {
+
+	const lines = radarChartDataList.map((chartData, index, arr) =>
+		<line
+			key={index}
+			className={cx("line")}
+			x1={'50%'} y1={'50%'} x2={'50%'} y2={CENTER - 100}
+			transform={`rotate(${360 * index / arr.length})`}
+		/>
+	)
+
+	const circles = Array(5).fill(0).map((v, index) =>
+		<circle
+			key={index}
+			className={cx("circle")}
+			cx={'50%'} cy={'50%'} r={(index + 1) * 20}
+		/>
+	)
+
 	return (
-		<g className={cx('grid')}>
-			{scores.map((v, i, arr) =>
-				<line className={cx("line")} transform={`rotate(${360 * i / arr.length})`}
-					key={v.type} x1={'50%'} y1={'50%'} x2={'50%'} y2={CENTER - 100} />)}
-			{Array(5).fill(0).map((v, i) =>
-				<circle className={cx("circle")} key={i} cx={'50%'} cy={'50%'} r={(i + 1) * 20} />)}
+		<g className={cx('gridWrap')}>
+			{lines}
+			{circles}
 		</g>
 	)
 }
 
 
+const Dots = (
+	{
+		radarChartDataList
+	}: { radarChartDataList: IRadarChartData[] }) => {
 
-const Dots = () => {
-	const dots = scores.map(({ high, type }, i, arr) => {
-		return <circle key={type} className={cx('dot', high ? 'high' : null)} cx={'50%'} cy={CENTER - 112} r={4} transform={`rotate(${360 * i / arr.length})`} />
-	})
-
-	return (
-		<>{dots}</>
+	const dots = radarChartDataList.map(({ emphasized }, index, arr) =>
+		<circle
+			key={index}
+			className={cx('dot', { 'em': emphasized })}
+			cx={'50%'} cy={CENTER - 112} r={4}
+			transform={`rotate(${360 * index / arr.length})`}
+		/>
 	)
+
+	return <>{dots}</>
 }
 
-const Values = () => {
-	const coords = scores.map(({ score }, i, arr) => {
-		const deg = PI * 2 * i / arr.length;
-		const valueTop = CENTER - cos(deg) * score;
-		const valueLeft = CENTER + sin(deg) * score;
+const Polygon = (
+	{
+		radarChartDataList
+	}: { radarChartDataList: IRadarChartData[] }) => {
+
+	const coords = radarChartDataList.map(({ value }, index, arr) => {
+		const deg = PI * 2 * index / arr.length;
+		const valueTop = CENTER - cos(deg) * value;
+		const valueLeft = CENTER + sin(deg) * value;
 		return `${valueLeft},${valueTop}`
-	}).reduce((acc, v) => {
-		return `${acc} ${v}`;
+	}).reduce((acc, cur) => {
+		return `${acc} ${cur}`;
 	});
 
-	return (
-		<>
-			<polygon className={cx('value')} points={coords} />
-		</>
-	)
+	return <polygon className={cx('polygon')} points={coords} />
 }
 
-const texts = () => scores.map(({type, high}, i, arr) => {
-		const deg = PI * 2 * i / arr.length;
-		const top = CENTER - cos(deg) * 132 - 6.5;
-		const left = CENTER + sin(deg) * 136;
+const Texts = (
+	{
+		radarChartDataList
+	}: { radarChartDataList: IRadarChartData[] }) => {
+
+	const texts = radarChartDataList.map(({ title, desc, emphasized }, index, arr) => {
+		const deg = PI * 2 * index / arr.length;
+		const top = CENTER - cos(deg) * 133 - 7.5;
+		const left = CENTER + sin(deg) * 140;
 
 		return (
-			<div key={type}
-				 className={cx('label', high ? 'high' : null)}
-				 style={{left, top}}>
-				<div className={cx('tooltipWrap')}>
-					<section>
-						<h6>{type}</h6>
-						<p>{type}</p>
-					</section>
+			<div
+				key={index}
+				className={cx('textWrap', { 'em': emphasized })}
+				style={{ left, top }}>
+				<div className={cx('contents')}>
+					<em className={cx('title')}>{title}</em>
+					<span className={cx('text')}>{desc}</span>
 				</div>
 			</div>
 		)
-	}
-);
+	});
 
+	return <>{texts}</>
+}
 
-const RadarChart = () => {
+interface IRadarChartProps {
+	radarChartDataList: IRadarChartData[];
+}
+
+const RadarChart = (
+	{
+		radarChartDataList
+	}: IRadarChartProps) => {
+
 	return (
-		<div className={cx('container')}>
-			<div className={cx('radar')}>
-				<svg>
-					<Grid />
-					<Dots />
-					<Values />
+		<div className={cx('radarCharArea')}>
+			<div className={cx('radarCharWrap')}>
+				<svg className={cx('svgArea')}>
+					<Grid radarChartDataList={radarChartDataList} />
+					<Dots radarChartDataList={radarChartDataList} />
+					<Polygon radarChartDataList={radarChartDataList} />
 				</svg>
-				<div className={cx('mask')}>
-					{texts}
+				<div className={cx('textArea')}>
+					<Texts radarChartDataList={radarChartDataList} />
 				</div>
 			</div>
 		</div>

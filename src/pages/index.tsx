@@ -1,7 +1,10 @@
 import Head from 'next/head'
 import Link from 'next/link';
 import Layout from '@components/layout';
+import Header from '@components/header';
+import FixedHeader from '@components/fixedHeader';
 import Contents from '@components/contents';
+import Footer from '@components/footer';
 import styles from './../components/index/index.module.scss';
 import classnames from 'classnames/bind';
 
@@ -14,6 +17,8 @@ export default function Home() {
 			<Head>
 				<title>index</title>
 			</Head>
+			<Header/>
+            <FixedHeader/>
 			<Contents>
 				<div className={cx('wrap')}>
 					<h1 className={cx('title')}>Interaction components</h1>
@@ -136,6 +141,7 @@ export default function Home() {
 					<hr/>
 				</div>
 			</Contents>
+			<Footer/>
 		</Layout>
 	)
 }

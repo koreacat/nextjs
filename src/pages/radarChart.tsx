@@ -1,4 +1,6 @@
 import Layout from "@components/layout";
+import Header from "@components/header";
+import FixedHeader from "@components/fixedHeader";
 import Contents from "@components/contents";
 import RadarChart from "src/components/charts/radarChart";
 
@@ -15,6 +17,8 @@ const RadarChartPage = () => {
 
     return (
 		<Layout>
+			<Header/>
+            <FixedHeader/>
             <Contents>
                 <RadarChart radarChartDataList={radarChartDataList}/>
             </Contents>

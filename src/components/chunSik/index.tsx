@@ -5,11 +5,13 @@ import { useEffect, useState } from 'react';
 const cx = classnames.bind(styles);
 
 const clothesData = [
+    '/nextjs/img/chunSik/imgChunSikGentleman.png',
     '/nextjs/img/chunSik/imgChunSikLoopy.png',
+    '/nextjs/img/chunSik/imgChunSikMacho.png',
+    '/nextjs/img/chunSik/imgChunSikMask.png',
     '/nextjs/img/chunSik/imgChunSikPitter.png',
     '/nextjs/img/chunSik/imgChunSikSanta.png',
-    '/nextjs/img/chunSik/imgChunSikLoopy.png',
-    '/nextjs/img/chunSik/imgChunSikPitter.png',
+    '/nextjs/img/chunSik/imgChunSikCucumber.png',
 ];
 
 interface IClothesListProps {

@@ -1,4 +1,6 @@
 import Layout from "@components/layout";
+import Header from "@components/header";
+import FixedHeader from "@components/fixedHeader";
 import Contents from "@components/contents";
 import Slider from "@components/slider";
 import { useState } from "react";
@@ -34,6 +36,8 @@ const SliderPage = () => {
 
 	return (
 		<Layout>
+			<Header/>
+            <FixedHeader/>
 			<Contents>
 				<div>
 					<span>min</span>

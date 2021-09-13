@@ -78,7 +78,7 @@ const texts = () => scores.map(({type, high}, i, arr) => {
 );
 
 
-const RaderChart = () => {
+const RadarChart = () => {
 	return (
 		<div className={cx('container')}>
 			<div className={cx('radar')}>
@@ -95,4 +95,4 @@ const RaderChart = () => {
 	);
 };
 
-export default RaderChart;
+export default RadarChart;

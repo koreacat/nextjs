@@ -72,8 +72,8 @@ export default function Home() {
 							</Link>
 						</li>
 						<li>
-							<Link href={'/raderChart'}>
-								<a className={cx('contents', 'new')}>RaderChart</a>
+							<Link href={'/radarChart'}>
+								<a className={cx('contents', 'new')}>RadarChart</a>
 							</Link>
 						</li>
 						<li>

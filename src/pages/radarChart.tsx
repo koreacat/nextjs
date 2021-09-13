@@ -1,15 +1,15 @@
 import Layout from "@components/layout";
 import Contents from "@components/contents";
-import RaderChart from "src/components/charts/raderChart";
+import RadarChart from "src/components/charts/radarChart";
 
-const RaderChartPage = () => {
+const RadarChartPage = () => {
     return (
 		<Layout>
             <Contents>
-                <RaderChart/>
+                <RadarChart/>
             </Contents>
         </Layout>
     )
 };
 
-export default RaderChartPage;
+export default RadarChartPage;

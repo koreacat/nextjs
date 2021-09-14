@@ -4,7 +4,7 @@ import styles from "./radarChart.module.scss";
 
 const cx = classNames.bind(styles);
 
-const { cos, sin, PI } = Math;
+const {cos, sin, PI} = Math;
 const CENTER = 292 / 2;
 
 interface IRadarChartData {
@@ -12,6 +12,7 @@ interface IRadarChartData {
 	desc?: string;
 	value: number;
 	emphasized?: boolean;
+	onClick?: () => void;
 }
 
 const Grid = ({radarChartDataList}: { radarChartDataList: IRadarChartData[] }) => {
@@ -23,7 +24,7 @@ const Grid = ({radarChartDataList}: { radarChartDataList: IRadarChartData[] }) =
 			x1={'50%'} y1={'50%'} x2={'50%'} y2={CENTER - 100}
 			transform={`rotate(${360 * index / arr.length})`}
 		/>
-	)
+	);
 
 	const circles = Array(5).fill(0).map((v, index) =>
 		<circle
@@ -31,7 +32,7 @@ const Grid = ({radarChartDataList}: { radarChartDataList: IRadarChartData[] }) =
 			className={cx("circle")}
 			cx={'50%'} cy={'50%'} r={(index + 1) * 20}
 		/>
-	)
+	);
 
 	return (
 		<g className={cx('gridWrap')}>
@@ -39,26 +40,29 @@ const Grid = ({radarChartDataList}: { radarChartDataList: IRadarChartData[] }) =
 			{circles}
 		</g>
 	)
+};
+
+interface IDotesProps {
+	radarChartDataList: IRadarChartData[];
 }
 
+const Dots = ({radarChartDataList}: IDotesProps) => {
 
-const Dots = ({radarChartDataList}: { radarChartDataList: IRadarChartData[] }) => {
-
-	const dots = radarChartDataList.map(({ emphasized }, index, arr) =>
+	const dots = radarChartDataList.map(({emphasized}, index, arr) =>
 		<circle
 			key={index}
-			className={cx('dot', { 'em': emphasized })}
+			className={cx('dot', {'em': emphasized})}
 			cx={'50%'} cy={CENTER - 112} r={4}
 			transform={`rotate(${360 * index / arr.length})`}
 		/>
-	)
+	);
 
 	return <>{dots}</>
-}
+};
 
 const Polygon = ({radarChartDataList}: { radarChartDataList: IRadarChartData[] }) => {
-	
-	const coords = radarChartDataList.map(({ value }, index, arr) => {
+
+	const coords = radarChartDataList.map(({value}, index, arr) => {
 		const deg = PI * 2 * index / arr.length;
 		const valueTop = CENTER - cos(deg) * value;
 		const valueLeft = CENTER + sin(deg) * value;
@@ -68,20 +72,35 @@ const Polygon = ({radarChartDataList}: { radarChartDataList: IRadarChartData[] }
 	});
 
 	return <polygon className={cx('polygon')} points={coords}/>
+};
+
+interface ITextsProps {
+	radarChartDataList: IRadarChartData[];
+	selectable?: boolean;
 }
 
-const Texts = ({radarChartDataList}: { radarChartDataList: IRadarChartData[] }) => {
+const Texts = (
+	{
+		radarChartDataList,
+		selectable
+	}:ITextsProps) => {
 
-	const texts = radarChartDataList.map(({ title, desc, emphasized }, index, arr) => {
+	const texts = radarChartDataList.map(({title, desc, emphasized, onClick}, index, arr) => {
 		const deg = PI * 2 * index / arr.length;
 		const top = CENTER - cos(deg) * 133 - 7.5;
 		const left = CENTER + sin(deg) * 140;
 
+		const handleOnclick = (index: number) => {
+			if(!selectable) return;
+			onClick && onClick();
+		};
+
 		return (
 			<div
 				key={index}
-				className={cx('textWrap', { 'em': emphasized })}
-				style={{ left, top }}>
+				className={cx('textWrap', {'em': emphasized})}
+				style={{left, top}}
+				onClick={() => handleOnclick(index)}>
 				<div className={cx('contents')}>
 					<em className={cx('title')}>{title}</em>
 					<span className={cx('text')}>{desc}</span>
@@ -91,24 +110,34 @@ const Texts = ({radarChartDataList}: { radarChartDataList: IRadarChartData[] }) 
 	});
 
 	return <>{texts}</>
-}
+};
 
 interface IRadarChartProps {
 	radarChartDataList: IRadarChartData[];
+	theme?: 'empty';
+	selectable?: boolean;
 }
 
-const RadarChart = ({radarChartDataList}: IRadarChartProps) => {
+const RadarChart = (
+	{
+		radarChartDataList,
+		theme,
+		selectable = true
+	}: IRadarChartProps) => {
 
 	return (
-		<div className={cx('radarCharArea')}>
+		<div className={cx('radarCharArea', theme)}>
 			<div className={cx('radarCharWrap')}>
 				<svg className={cx('svgArea')}>
-					<Grid radarChartDataList={radarChartDataList} />
-					<Dots radarChartDataList={radarChartDataList} />
+					<Grid radarChartDataList={radarChartDataList}/>
+					<Dots radarChartDataList={radarChartDataList}/>
 					<Polygon radarChartDataList={radarChartDataList}/>
 				</svg>
 				<div className={cx('textArea')}>
-					<Texts radarChartDataList={radarChartDataList} />
+					<Texts
+						radarChartDataList={radarChartDataList}
+						selectable={selectable}
+					/>
 				</div>
 			</div>
 		</div>

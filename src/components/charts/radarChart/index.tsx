@@ -10,14 +10,14 @@ const CENTER = 292 / 2;
 interface IRadarChartData {
 	title: string;
 	desc?: string;
-	value: number;
+	values: number[];
 	emphasized?: boolean;
 	onClick?: () => void;
 }
 
 const Grid = ({radarChartDataList}: { radarChartDataList: IRadarChartData[] }) => {
 
-	const lines = radarChartDataList.map((chartData, index, arr) =>
+	const lines = radarChartDataList.map((v, index, arr) =>
 		<line
 			key={index}
 			className={cx("line")}
@@ -60,18 +60,33 @@ const Dots = ({radarChartDataList}: IDotesProps) => {
 	return <>{dots}</>
 };
 
-const Polygon = ({radarChartDataList}: { radarChartDataList: IRadarChartData[] }) => {
+interface IPolygonProps {
+	radarChartDataList: IRadarChartData[];
+	polygonColor?: THEME_TYPE; // 그래프 색상
+	valueIndex: number;
+}
 
-	const coords = radarChartDataList.map(({value}, index, arr) => {
+const Polygon = (
+	{
+		radarChartDataList,
+		polygonColor,
+		valueIndex
+	}: IPolygonProps) => {
+
+	const coords = radarChartDataList.map(({values}, index, arr) => {
 		const deg = PI * 2 * index / arr.length;
-		const valueTop = CENTER - cos(deg) * value;
-		const valueLeft = CENTER + sin(deg) * value;
+		let valueTop = CENTER - cos(deg) * values[valueIndex];
+		let valueLeft = CENTER + sin(deg) * values[valueIndex];
+		if(isNaN(valueTop)) valueTop = CENTER - cos(deg);
+		if(isNaN(valueLeft)) valueLeft = CENTER + sin(deg);
 		return `${valueLeft},${valueTop}`
 	}).reduce((acc, cur) => {
 		return `${acc} ${cur}`;
 	});
 
-	return <polygon className={cx('polygon')} points={coords}/>
+	return (
+		<polygon className={cx('polygon', polygonColor)} points={coords}/>
+	)
 };
 
 interface ITextsProps {
@@ -90,7 +105,7 @@ const Texts = (
 		const top = CENTER - cos(deg) * 133 - 7.5;
 		const left = CENTER + sin(deg) * 140;
 
-		const handleOnclick = (index: number) => {
+		const handleOnclick = () => {
 			if(!selectable) return;
 			onClick && onClick();
 		};
@@ -100,7 +115,7 @@ const Texts = (
 				key={index}
 				className={cx('textWrap', {'em': emphasized})}
 				style={{left, top}}
-				onClick={() => handleOnclick(index)}>
+				onClick={handleOnclick}>
 				<div className={cx('contents')}>
 					<em className={cx('title')}>{title}</em>
 					<span className={cx('text')}>{desc}</span>
@@ -112,26 +127,43 @@ const Texts = (
 	return <>{texts}</>
 };
 
+type THEME_TYPE = 'EMPTY' | 'GREEN' | 'SKY';
+
 interface IRadarChartProps {
 	radarChartDataList: IRadarChartData[];
-	theme?: 'empty';
+	color?: THEME_TYPE; // 강조된 점, 텍스트 색상 
+	polygonColors?: THEME_TYPE[]; // 그래프 색상
 	selectable?: boolean;
+	polygonCount?: number;
 }
 
 const RadarChart = (
 	{
 		radarChartDataList,
-		theme,
+		color,
+		polygonColors,
+		polygonCount = 1,
 		selectable = true
 	}: IRadarChartProps) => {
 
+	const polygons = new Array(polygonCount).fill(0).map((v, index) => {
+		return (
+			<Polygon 
+				key={index}
+				radarChartDataList={radarChartDataList} 
+				polygonColor={polygonColors[index]}
+				valueIndex={index}
+			/>
+		)
+	});
+
 	return (
-		<div className={cx('radarCharArea', theme)}>
+		<div className={cx('radarCharArea', color)}>
 			<div className={cx('radarCharWrap')}>
 				<svg className={cx('svgArea')}>
 					<Grid radarChartDataList={radarChartDataList}/>
 					<Dots radarChartDataList={radarChartDataList}/>
-					<Polygon radarChartDataList={radarChartDataList}/>
+					{polygons}
 				</svg>
 				<div className={cx('textArea')}>
 					<Texts

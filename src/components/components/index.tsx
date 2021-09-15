@@ -42,28 +42,12 @@ const Components = () => {
 					type={'PERFORMANCE'}
 					average={averagePer}
 				/>
-				<WaterFill
-					title={'waterFill'}
-					type={'VALUE'}
-					average={averageVal}
-				/>
-			</div>
-			<div className={cx('contentsWrap')}>
-				<HeartFill
-					title={'heartFill'}
-					type={'POSITIVE'}
-					average={averagePos}
-				/>
-				<HeartFill
-					title={'heartFill'}
-					type={'PERFORMANCE'}
-					average={averagePer}
-				/>
 				<HeartFill
 					title={'heartFill'}
 					type={'VALUE'}
 					average={averageVal}
 				/>
+
 			</div>
 			<div className={cx('contentsWrap')}>
 				<CircleProgress

@@ -5,3 +5,14 @@
     height: $HEADER_HEIGHT;
     background: #0070f3;
 }
+
+.textWrap {
+    padding: 10px;
+    
+    .text {
+        font-size: 24px;
+        color: $C_WHITE;
+        cursor: pointer;
+    }
+}
+

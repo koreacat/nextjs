@@ -13,8 +13,8 @@ const Header = () => {
     return (
         <header className={cx('header')}>
 			<Link href={"/"}>
-				<div>
-					<a>index</a>
+				<div className={cx('textWrap')}>
+					<a className={cx('text')}>Home</a>
 				</div>
 			</Link>
         </header>

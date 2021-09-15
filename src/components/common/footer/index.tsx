@@ -7,11 +7,9 @@ const cx = classnames.bind(styles);
 const Footer = () => {
     return (
         <footer className={cx('footer')}>
-			{/* <Link href={"/"}>
-				<div>
-					<a>footer</a>
-				</div>
-			</Link> */}
+			<div className={cx('textWrap')}>
+				{/* <span className={cx('text')}>Copyright 2021. 지경민 All rights reserved. </span> */}
+			</div>
         </footer>
     )
 };

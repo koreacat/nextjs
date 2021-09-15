@@ -5,3 +5,11 @@
     height: $FOOTER_HEIGHT;
     background: $C_COOL_GRAY_90;
 }
+
+.textWrap {
+    padding: 10px;
+    
+    .text {
+        color: $C_COOL_GRAY_50;
+    }
+}

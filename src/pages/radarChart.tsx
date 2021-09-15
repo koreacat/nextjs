@@ -7,12 +7,12 @@ import RadarChart from "src/components/charts/radarChart";
 const RadarChartPage = () => {
 
     const radarChartDataList = [
-		{ title: '보상', value: 80, emphasized: true },
-		{ title: '사회가치', value: 50, emphasized: false },
-		{ title: '자존감', value: 70, emphasized: false },
-		{ title: '성장성', value: 60, emphasized: false },
-		{ title: '업무환경', value: 100, emphasized: true },
-		{ title: '안정성', value: 90, emphasized: false },
+		{ title: '보상', values: [80, 100], emphasized: false },
+		{ title: '사회가치', values: [50, 100], emphasized: true },
+		{ title: '자존감', values: [70, 90], emphasized: false },
+		{ title: '성장성', values: [60, 90], emphasized: false },
+		{ title: '업무환경', values: [100, 70], emphasized: false },
+		{ title: '안정성', values: [90, 70], emphasized: false },
 	];
 
     return (
@@ -20,7 +20,12 @@ const RadarChartPage = () => {
 			<Header/>
             <FixedHeader/>
             <Contents>
-                <RadarChart radarChartDataList={radarChartDataList}/>
+                <RadarChart 
+					radarChartDataList={radarChartDataList} 
+					color={'SKY'}
+					polygonColors={['GREEN', 'SKY']}
+					polygonCount={2}
+				/>
             </Contents>
         </Layout>
     )

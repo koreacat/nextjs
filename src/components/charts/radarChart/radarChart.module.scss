@@ -3,12 +3,62 @@
 .radarCharArea {
     font-family: $F_NOTO_SANS_KR;
     
-    &.empty {
-        .polygon {
+    &.EMPTY {
+        .dot {
+            &.em {
+                fill: $C_COOL_GRAY_50;
+            }
+        }
+
+        .textWrap {
+            &.em {
+                color: $C_COOL_GRAY_60;
+            }
+        }
+    }
+
+    &.SKY {
+        .dot {
+            &.em {
+                fill: $C_SKY_200;
+            }
+        }
+
+        .textWrap {
+            &.em {
+                color: $C_SKY_200;
+            }
+        }
+    }
+
+    &.GREEN {
+        .dot {
+            &.em {
+                fill: $C_GREEN_200;
+            }
+        }
+
+        .textWrap {
+            &.em {
+                color: $C_GREEN_200;
+            }
+        }
+    }
+
+    .polygon {
+        &.EMPTY {
             fill: $C_COOL_GRAY_40;
-            fill-opacity: 0.7;
             stroke: $C_COOL_GRAY_50;
-            stroke-width: 2px;
+        }
+
+        &.SKY {
+            fill: $C_SKY_100;
+            stroke: $C_SKY_100;
+        }
+
+        &.GREEN {
+            fill: $C_GREEN_100;
+            stroke: $C_POSITIVE_DARK;
         }
     }
 }

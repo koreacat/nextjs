@@ -1,4 +1,4 @@
-import React, {ReactNode, useRef, useState} from 'react';
+import React, {ReactNode, useEffect, useRef, useState} from 'react';
 import styles from './slider.module.scss';
 import classnames from 'classnames/bind';
 
@@ -60,11 +60,19 @@ const Slider = (
 		}
 	};
 
+	const getSliderPercent = (value: number, min: number, max: number) => {
+		return ((sliderValue(value) - min) / (max - min) * 100);
+	};
+
 	const railEl = useRef<HTMLDivElement>(null);
 	const handleEl = useRef<HTMLDivElement>(null);
-	const [sliderPercent, setSliderPercent] = useState((sliderValue(value) - min) / (max - min) * 100);
+	const [sliderPercent, setSliderPercent] = useState(0);
 	const [isMouseDown, setIsMouseDown] = useState(false);
 	const [shiftHandleX, setShiftHandleX] = useState(0); // 클릭시 마우스 위치와 핸들의 위치 차이
+
+	useEffect(() => {
+		setSliderPercent(getSliderPercent(value, min, max));
+	}, [value]);
 
 	const handleSlide = (left: number) => {
 		if (!railEl.current) return;

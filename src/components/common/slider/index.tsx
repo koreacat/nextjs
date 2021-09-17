@@ -1,8 +1,22 @@
-import React, {ReactNode, useRef, useState} from 'react';
+import React, {ReactNode, useEffect, useRef, useState} from 'react';
 import styles from './slider.module.scss';
 import classnames from 'classnames/bind';
 
 const cx = classnames.bind(styles);
+
+const sliderValue = (value: number, min: number, max: number) => {
+	if(value <= min) {
+		return min;
+	} else if(value >= max) {
+		return max;
+	} else {
+		return value;
+	}
+};
+
+const getSliderPercent = (value: number, min: number, max: number) => {
+	return (sliderValue(value, min, max) - min) / (max - min) * 100;
+};
 
 interface IMarkProps {
 	max: number;
@@ -29,9 +43,10 @@ const Mark = ({max, min, marks}: IMarkProps) => {
 
 interface ISliderProps {
 	disabled?: boolean;
-	marks?: Record<number, ReactNode | string>;
+	marks?: Record<number, ReactNode>;
 	max: number;
 	min: number;
+	toolTip?: (value: number) => ReactNode;
 	tooltipVisible?: boolean;
 	value: number;
 	step: number;
@@ -44,27 +59,22 @@ const Slider = (
 		marks,
 		max,
 		min,
+		toolTip,
 		tooltipVisible = true,
 		value,
 		step,
 		onChange
 	}: ISliderProps) => {
 
-	const sliderValue = (value: number) => {
-		if(value <= min) {
-			return min;
-		} else if(value >= max) {
-			return max;
-		} else {
-			return value;
-		}
-	};
-
 	const railEl = useRef<HTMLDivElement>(null);
 	const handleEl = useRef<HTMLDivElement>(null);
-	const [sliderPercent, setSliderPercent] = useState((sliderValue(value) - min) / (max - min) * 100);
+	const [sliderPercent, setSliderPercent] = useState(getSliderPercent(value, min, max));
 	const [isMouseDown, setIsMouseDown] = useState(false);
 	const [shiftHandleX, setShiftHandleX] = useState(0); // 클릭시 마우스 위치와 핸들의 위치 차이
+
+	useEffect(() => {
+		setSliderPercent(getSliderPercent(value, min, max));
+	}, [value]);
 
 	const handleSlide = (left: number) => {
 		if (!railEl.current) return;
@@ -135,6 +145,8 @@ const Slider = (
 		document.addEventListener('mouseup', onMouseUp);
 	};
 
+	const toolTipEl = toolTip ? toolTip(value) : value;
+
 	return (
 		<div
 			className={cx('slider', {'disabled': disabled})}
@@ -149,7 +161,7 @@ const Slider = (
 					role='slider'
 					style={{left: `${sliderPercent}%`}}
 				>
-					{tooltipVisible && <div className={cx('tooltip', {'hide': !isMouseDown})}>{value}</div>}
+					{tooltipVisible && <div className={cx('tooltip', {'hide': !isMouseDown})}>{toolTipEl}</div>}
 				</div>
 				<div className={cx('markWrap')}>
 					<Mark

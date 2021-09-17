@@ -6,7 +6,7 @@ import Slider from "@components/slider";
 import { useState } from "react";
 
 const SliderPage = () => {
-	const [value, setValue] = useState(1);
+	const [value, setValue] = useState(3);
 	const [options, setOptions] = useState({
 		min: 1,
 		max: 10,
@@ -71,6 +71,7 @@ const SliderPage = () => {
 
 				<div>
 					<span>value : </span>
+					<input value={value} onChange={e => setValue(Number(e.target.value))}/>
 					<span>{value}</span>
 				</div>
 

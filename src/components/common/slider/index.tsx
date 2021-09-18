@@ -9,9 +9,8 @@ const sliderValue = (value: number, min: number, max: number) => {
 		return min;
 	} else if(value >= max) {
 		return max;
-	} else {
-		return value;
 	}
+	return value;
 };
 
 const getSliderPercent = (value: number, min: number, max: number) => {

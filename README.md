@@ -1,3 +1,3 @@
 ## Next js Practice
 components
-svg canvas wrbGL
+svg canvas webGL

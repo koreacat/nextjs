@@ -1,3 +1,3 @@
 ## Next js Practice
-components
+react components
 svg canvas webGL

@@ -59,7 +59,7 @@ const KoreaMap = (
 	};
 
 	return (
-		<div className={cx('wrap')}>
+		<div className={cx('wrap')} onMouseOut={() => setCurrentLocation(null)}>
 			<LocationList
 				isSelected={isSelected}
 				toggleLocation={toggleLocation}

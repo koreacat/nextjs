@@ -12,6 +12,8 @@
     }
 
     .name {
+        @include commonBoxShadowStyle('large');
+    
         position: absolute;
         height: 26px;
         padding: 3px 12px 5px;
@@ -47,24 +49,24 @@
     .em {
          fill: #E7E8EA;
     }
-        
+    
     .selected {
         fill: $C_GREEN_90 !important;
-            
+         
          &.em {
             fill: $C_GREEN_200 !important;
         }
     }
-        
+    
     path {
         fill: #F4F4F5;
          cursor: pointer;
-            
+         
         &.noCursor {
             cursor: default;
         }
     }
-        
+    
     .hovered {
         fill: $C_COOL_GRAY_50;
     }

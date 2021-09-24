@@ -1,1 +1,1 @@
-next js Practice
+nextjs practice

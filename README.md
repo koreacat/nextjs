@@ -1,3 +1,1 @@
-## Next js Practice
-### react components
-### svg canvas webGL
+next js Practice

@@ -21,13 +21,8 @@ export default function Home() {
             <FixedHeader/>
 			<Contents>
 				<div className={cx('wrap')}>
-					<h1 className={cx('title')}>Interaction components</h1>
+					<h1 className={cx('title')}>Components</h1>
 					<ul>
-						<li>
-							<Link href={'/components'}>
-								<a className={cx('contents')}>Components</a>
-							</Link>
-						</li>
 						<li>
 							<Link href={'/count'}>
 								<a className={cx('contents')}>Count</a>
@@ -51,6 +46,16 @@ export default function Home() {
 						<li>
 							<Link href={'/waveText'}>
 								<a className={cx('contents')}>WaveText</a>
+							</Link>
+						</li>
+						<li>
+							<Link href={'/virtualScroll'}>
+								<a className={cx('contents')}>VirtualScroll</a>
+							</Link>
+						</li>
+						<li>
+							<Link href={'/components'}>
+								<a className={cx('contents')}>Etc.</a>
 							</Link>
 						</li>
 					</ul>

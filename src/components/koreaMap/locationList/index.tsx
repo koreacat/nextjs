@@ -1,6 +1,6 @@
+import { ALL_LOCATIONS, LocationNameMap, LOCATION_TYPE } from "@domain/location";
 import classnames from "classnames/bind";
 import {useRef} from "react";
-import {LOCATION_DATA, LOCATION_TYPE} from "../data";
 import {useMouseOver} from "../hooks";
 import styles from "./locationList.module.scss";
 
@@ -20,7 +20,7 @@ const Location = (
 		currentLocation,
 		locationName
 	}: ILocationProps) => {
-
+	
 	return (
 		<li
 			onClick={() => toggleLocation()}
@@ -31,7 +31,7 @@ const Location = (
 			)}
 			data-location={locationName}
 		>
-			{locationName}
+			{LocationNameMap[locationName]}
 		</li>
 	)
 };
@@ -54,7 +54,7 @@ const LocationList = (
 
 	useMouseOver({ref: locationListRef, handleSetCurrentLocation});
 
-	const list = LOCATION_DATA.map(locationName =>
+	const list = ALL_LOCATIONS.map(locationName =>
 		<Location
 			key={locationName}
 			isSelected={isSelected}

@@ -54,6 +54,11 @@ export default function Home() {
 							</Link>
 						</li>
 						<li>
+							<Link href={'/selectList'}>
+								<a className={cx('contents')}>SelectList</a>
+							</Link>
+						</li>
+						<li>
 							<Link href={'/components'}>
 								<a className={cx('contents')}>Etc.</a>
 							</Link>

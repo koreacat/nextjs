@@ -1,25 +1,4 @@
-export enum LOCATION {
-	SO = '서울특별시', GG = '경기도', IC = '인천광역시', BS = '부산광역시',
-	DG = '대구광역시', GJ = '광주광역시', DJ = '대전광역시', US = '울산광역시',
-	SJ = '세종특별자치시', GW = '강원도', CN = '충청남도', GN = '경상남도',
-	GB = '경상북도', JN = '전라남도', JB = '전라북도', CB = '충청북도',
-	JJ = '제주특별자치도'
-}
-
-export type LOCATION_TYPE =
-	LOCATION.SO | LOCATION.GG | LOCATION.IC | LOCATION.BS |
-	LOCATION.DG | LOCATION.GJ | LOCATION.DJ | LOCATION.US |
-	LOCATION.SJ | LOCATION.GW | LOCATION.CN | LOCATION.GN |
-	LOCATION.GB | LOCATION.JN | LOCATION.JB | LOCATION.CB |
-	LOCATION.JJ;
-
-export const LOCATION_DATA: Array<LOCATION_TYPE> = [
-	LOCATION.SO, LOCATION.GG, LOCATION.IC, LOCATION.BS,
-	LOCATION.DG, LOCATION.GJ, LOCATION.DJ, LOCATION.US,
-	LOCATION.SJ, LOCATION.GW, LOCATION.CN, LOCATION.GN,
-	LOCATION.GB, LOCATION.JN, LOCATION.JB, LOCATION.CB,
-	LOCATION.JJ
-];
+import { LOCATION } from "@domain/location";
 
 interface IPathData {
 	locationName: LOCATION;

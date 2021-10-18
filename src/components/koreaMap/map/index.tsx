@@ -2,7 +2,8 @@ import classnames from "classnames/bind";
 import styles from "./map.module.scss";
 import {RefObject, useRef} from "react";
 import {useMouseOver} from "../hooks";
-import {jejuRect, LOCATION_TYPE, PATH_DATA} from "../data";
+import { LocationNameMap, LOCATION_TYPE } from "@domain/location";
+import { jejuRect, PATH_DATA } from "../data";
 
 const cx = classnames.bind(styles);
 
@@ -83,7 +84,7 @@ const LocationName = (
 				top: `${namePosition.top}px`,
 				left: `${namePosition.left}px`
 			}}>
-			{currentLocation}
+			{LocationNameMap[currentLocation]}
 		</div>
 	)
 };

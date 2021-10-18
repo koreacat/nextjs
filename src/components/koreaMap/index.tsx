@@ -1,6 +1,6 @@
+import { LOCATION_TYPE } from "@domain/location";
 import classnames from "classnames/bind";
 import {useRef, useState} from "react";
-import {LOCATION_TYPE} from "./data";
 import styles from "./koreaMap.module.scss";
 import LocationList from "./locationList";
 import Map from "./map";

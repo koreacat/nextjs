@@ -3,8 +3,9 @@ import Header from "@components/header";
 import FixedHeader from "@components/fixedHeader";
 import Contents from "@components/contents";
 import SelectList from "@components/selectList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ALL_LOCATIONS, LocationNameMap } from "@domain/location";
+import Toast from "@components/toast";
 
 const DesignJobs = ['UX 디자이너', 'UI,GUI 디자이너', '웹 디자이너', '그래픽 디자이너', '모바일 디자이너', 'BI/BX 디자이너', '광고 디자이너', '제품 디자이너', '영상,모션 디자이너', '3D 디자이너', '아트 디렉터', '캐릭터 디자이너', '일러스트레이터', '2D 디자이너'];
 const DevJobs = ['프론트', '백앤드', '서버', '보안'];
@@ -149,13 +150,13 @@ const SelectListPage = () => {
                     {jobSelectListEl}
                     <button onClick={handleAddJobSelect}>직군 직무 추가</button>
                     <hr/>
-                    {/* <strong>희망 근무 지역</strong>
+                    <strong>희망 근무 지역</strong>
                     <SelectList
                         list={ALL_LOCATIONS.map(location => LocationNameMap[location])}
                         selectList={locationList}
                         setSelectList={setLocationList}
                         itemStyle={{ width: '116px', padding: '18px 0' }}
-                    /> */}
+                    />
                     <button onClick={() => console.log(jobSelectList, locationList)}>다음</button>
                 </div>
             </Contents>

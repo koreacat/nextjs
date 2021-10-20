@@ -1,5 +1,5 @@
 import {RefObject, useEffect} from "react";
-import {LOCATION_TYPE} from "../data";
+import { LOCATION_TYPE } from "@domain/location";
 
 interface IUseMouseOverProps {
 	ref: RefObject<HTMLDivElement | SVGElement>;

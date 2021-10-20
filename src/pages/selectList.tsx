@@ -8,6 +8,12 @@ import { ALL_LOCATIONS, LocationNameMap } from "@domain/location";
 
 const DesignJobs = ['UX 디자이너', 'UI,GUI 디자이너', '웹 디자이너', '그래픽 디자이너', '모바일 디자이너', 'BI/BX 디자이너', '광고 디자이너', '제품 디자이너', '영상,모션 디자이너', '3D 디자이너', '아트 디렉터', '캐릭터 디자이너', '일러스트레이터', '2D 디자이너'];
 const DevJobs = ['프론트', '백앤드', '서버', '보안'];
+const taskList = ['design', 'dev'];
+
+const Jobs = {
+    design: DesignJobs,
+    dev: DevJobs,
+}
 
 const EmptySelect = () => {
     return <span>희망 직군을 선택해주세요.</span>
@@ -34,21 +40,11 @@ const JobSelect = (
         setSelectedJobList,
     }: IJobSelect) => {
 
-    const taskList = ['design', 'dev'];
     const [jobList, setJobList] = useState([]);
 
     const handleOnChange = (value: string) => {
-        selectedJobList = [];
-        switch (value) {
-            case 'design':
-                setJobList(DesignJobs);
-                setSelectedTask('design');
-                break;
-            case 'dev':
-                setJobList(DevJobs);
-                setSelectedTask('dev');
-                break;
-        }
+        setSelectedTask(value);
+        setJobList(Jobs[value]);
     }
 
     const taskListEl = taskList.map(task => {
@@ -118,13 +114,16 @@ const SelectListPage = () => {
     }
 
     const setSelectedTask = (key: number) => {
-        return (value: string) => setJobSelectList(prev => prev.map(
-            jobSelect => jobSelect.key === key ? 
-            {...jobSelect, selectedTask: value} : jobSelect));
+        return (value: string) => 
+        setJobSelectList(prev => prev.map(jobSelect => 
+            jobSelect.key === key ? {...jobSelect, selectedTask: value} : jobSelect));
     }
 
-    const setSelectedJobList = () => {
-        
+    const setSelectedJobList = (key: number) => {
+        return (value: string[]) => {
+            setJobSelectList(prev => prev.map(jobSelect => 
+                jobSelect.key === key ? {...jobSelect, selectedJobList: value} : jobSelect));
+        }
     }
 
     const jobSelectListEl = jobSelectList.map((jobSelect) => {
@@ -137,7 +136,7 @@ const SelectListPage = () => {
             selectedTask={selectedTask}
             setSelectedTask={setSelectedTask(key)}
             selectedJobList={selectedJobList}
-            setSelectedJobList={setSelectedJobList}
+            setSelectedJobList={setSelectedJobList(key)}
         />
     });
 

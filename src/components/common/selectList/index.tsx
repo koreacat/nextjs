@@ -1,5 +1,5 @@
 import classnames from "classnames/bind";
-import { CSSProperties } from "react";
+import { CSSProperties, useEffect } from "react";
 import styles from "./selectList.module.scss";
 
 const cx = classnames.bind(styles);
@@ -48,14 +48,14 @@ const SelectList = (
     }: ISelectListProps) => {
 
     const isSelected = (name: string) => {
-        return selectList.includes(name);
+        return selectList.includes?.(name);
     };
 
     const toggleSelected = (name: string) => {
-        if (selectList.includes(name)) {
+        if (selectList.includes?.(name)) {
 			setSelectList(selectList.filter(itemName => itemName !== name))
 		} else {
-			setSelectList(prev => [...prev, name]);
+			setSelectList([...selectList, name]);
 		}
     }
 

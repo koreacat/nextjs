@@ -83,6 +83,7 @@ const SliderPage = () => {
 						step={step}
 						value={value}
 						marks={marksDifficult}
+            toolTip={value => <>{value}</>}
 						onChange={value => setValue(value)}
 					/>
 				</div>

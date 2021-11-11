@@ -1,122 +1,215 @@
 @import '@styles/common.scss';
 
 .slider {
-    height: 30px;
-    padding: 10px;
-    margin: 10px;
-
-    &.disabled {
-        opacity: .5;
-
-        .handle {
-            background: $C_JOBDA_WHITE;
-            border-color: $C_COOL_GRAY_60;
-
-            &:hover {
-                box-shadow: none;
-            }
-        }
+  position: relative;
+  height: 30px;
+  padding: 10px 16px;
+  
+  &.disabled {
+    opacity: 0.5;
+    
+    .handle {
+      border-color: $C_COOL_GRAY_60;
+      background-color: $C_JOBDA_WHITE;
+      
+      &:hover {
+        box-shadow: none;
+      }
     }
+  }
 }
 
 .wrap {
-    position: relative;
-    height: 100%;
+  position: relative;
+  height: 10px;
 }
 
-.rail {
+.railArea,
+.trackArea,
+.handleArea,
+.markArea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 5px;
+  cursor: pointer;
+}
+
+.railArea {
+  border-radius: 6px;
+  background-color: $C_COOL_GRAY_50;
+  
+  &:after {
     position: absolute;
     top: 0;
+    bottom: 0;
     left: 0;
-    right: auto;
-    width: 100%;
-    height: 10px;
-    background: $C_COOL_GRAY_50;
-    border-radius: 6px;
-    cursor: pointer;
+    width: 5px;
+    border-radius: 6px 0 0 6px;
+    background-color: rgba($C_GREEN_100, 0.8);
+    content: '';
+  }
+}
+
+.markArea {
+  top: auto;
+  right: 16px;
+  bottom: -1px;
+  left: 16px;
+  width: auto;
+  height: 16px;
+  transform: translateY(100%);
+  cursor: auto;
+  
+  .mark {
+    position: absolute;
+    top: 0;
+    width: max-content;
+    font-family: $F_NOTO_SANS_KR;
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: -0.07px;
+    color: $C_COOL_GRAY_60;
+    transform: translateX(-50%);
+  }
+}
+
+.dotArea,
+.trackWrap,
+.handleWrap,
+.markWrap {
+  position: relative;
+  height: 100%;
+}
+
+.dot {
+  &:before,
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: $C_COOL_GRAY_60;
+    transform: translate(-50%, -50%);
+    content: '';
+  }
+  
+  &.type1 {
+    &:before {
+      left: 0;
+    }
+    
+    &:after {
+      left: 11.1111%;
+    }
+  }
+  
+  &.type2 {
+    &:before {
+      left: 22.2222%;
+    }
+    
+    &:after {
+      left: 33.3333%;
+    }
+  }
+  
+  &.type3 {
+    &:before {
+      left: 44.4444%;
+    }
+    
+    &:after {
+      left: 55.5556%;
+    }
+  }
+  
+  &.type4 {
+    &:before {
+      left: 66.6667%;
+    }
+    
+    &:after {
+      left: 77.7778%;
+    }
+  }
+  
+  &.type5 {
+    &:before {
+      left: 88.8889%;
+    }
+    
+    &:after {
+      left: 100%;
+    }
+  }
 }
 
 .track {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: auto;
-    width: 100%;
-    height: 10px;
-    background: $C_GREEN_100;
-    border-radius: 6px;
-    cursor: pointer;
+  width: 0;
+  height: 100%;
+  background-color: rgba($C_GREEN_100, 0.8);
 }
 
 .handle {
-    position: absolute;
-    top: 0;
-    right: auto;
-    width: 24px;
-    height: 24px;
-    background: #F9F9FA;
-    border: 2px solid $C_GREEN_100;
-    border-radius: 50%;
-    transform: translate(-50%, -25%);
-    cursor: pointer;
-
-    &.active {
-        box-shadow: 0 0 0 4px #6CDD8330;
-    }
-
-    &:hover {
-        box-shadow: 0 0 0 4px #6CDD8330;
-    }
+  position: absolute;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  border: 2px solid $C_GREEN_100;
+  border-radius: 50%;
+  background-color: $C_JOBDA_WHITE;
+  transform: translate(-50%, -7px);
+  
+  &.active {
+    box-shadow: 0 0 0 4px rgba($C_GREEN_100, 0.3);
+  }
+  
+  &:hover {
+    box-shadow: 0 0 0 4px rgba($C_GREEN_100, 0.3);
+  }
 }
 
 .tooltip {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 26px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  background-color: $C_GREEN_60;
+  font-family: $F_NOTO_SANS_KR;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+  color: $C_POSITIVE_DARK;
+  transform: translateX(-50%);
+  
+  &.hide {
+    display: none;
+  }
+  
+  &::after {
     position: absolute;
-    top: -35px;
-    left: calc(50% - 16px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 26px;
-    border-radius: 8px;
-    background: $C_GREEN_60;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 18px;
-    color: $C_POSITIVE_DARK;
-
-    &.hide {
-        display: none;
-    }
-
-    &::after {
-        position: absolute;
-        left: calc(50% - 2px);
-        bottom: -2px;
-        width: 4px;
-        height: 4px;
-        background: $C_GREEN_60;
-        transform: rotate(-135deg);
-        content: '';
-        user-select: none;
-    }
-}
-
-.markWrap {
-    position: absolute;
-    top: 25px;
-    width: 100%;
-    font-size: 11px;
-    line-height: 14px;
-    color: $C_COOL_GRAY_60;
-
-    .mark {
-        position: absolute;
-        width: max-content;
-        transform: translate(-50%, 0);
-    }
+    bottom: -2px;
+    left: calc(50% - 2px);
+    width: 4px;
+    height: 4px;
+    background-color: $C_GREEN_60;
+    transform: rotate(-135deg);
+    user-select: none;
+    content: '';
+  }
 }
 
 .input {
-    display: none;
+  display: none;
 }

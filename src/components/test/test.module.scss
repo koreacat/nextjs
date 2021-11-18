@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  height: 426px;
+  margin-right: 8px;
+  transition: all .5s ease-in-out;
+  
+  .img {
+    height: 426px;
+    background-image: url("https://picsum.photos/440/426");
+  }
+  
+  .desc {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  &.enter {
+    width: 440px;
+  }
+  
+  &.outer {
+    width: 140px;
+  }
+}

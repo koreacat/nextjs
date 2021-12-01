@@ -88,7 +88,7 @@ export default function Home() {
 						</li>
 						<li>
 							<Link href={'/radarChart'}>
-								<a className={cx('contents', 'new')}>RadarChart</a>
+								<a className={cx('contents')}>RadarChart</a>
 							</Link>
 						</li>
 						<li>
@@ -111,8 +111,13 @@ export default function Home() {
 					<h1 className={cx('title')}>Page</h1>
 					<ul>
 						<li>
+							<Link href={'/jobdaIntroduction'}>
+								<a className={cx('contents', 'new')}>JobdaIntroduction</a>
+							</Link>
+						</li>
+						<li>
 							<Link href={'/introduction'}>
-								<a className={cx('contents')}>Introduction</a>
+								<a className={cx('contents')}>AIIntroduction</a>
 							</Link>
 						</li>
 					</ul>

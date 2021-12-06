@@ -1,14 +1,23 @@
+.cardWrap {
+  display: flex;
+  width: 736px;
+  height: 512px;
+}
+
 .card {
   display: flex;
+  flex: auto;
   flex-direction: column;
-  width: 240px;
+  width: 20%;
   height: 426px;
   margin-right: 8px;
-  transition: all .5s ease-in-out;
+  transition: all .3s ease-in-out;
   
   .img {
     height: 426px;
-    background-image: url("https://picsum.photos/440/426");
+    background-image: url("https://via.placeholder.com/440");
+    background-position: center;
+    background-repeat: no-repeat;
   }
   
   .desc {
@@ -16,11 +25,8 @@
     white-space: nowrap;
   }
   
-  &.enter {
-    width: 440px;
+  &:hover {
+    width: 100%;
   }
-  
-  &.outer {
-    width: 140px;
-  }
+
 }

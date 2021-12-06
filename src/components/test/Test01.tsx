@@ -35,7 +35,7 @@ const Test01 = () => {
     max: 10000,
     step: 1000
   });
-  const { min, max, step } = options;
+  const {min, max, step} = options;
 
   const [selectedTab, setSelectedTab] = useState('');
   const [selectedListItems, setSelectedListItems] = useState([]);
@@ -46,8 +46,17 @@ const Test01 = () => {
     return (
       <button
         key={tab}
-        style={{padding: '5px 10px', marginRight: '5px', border:'1px solid #ccc', borderRadius: '20px', color: `${isSelected ? '#fff' : '#000'}`, background: `${isSelected ? '#6CDD83' : '#fff'}`}}
-        onClick={() => {setSelectedTab(tab)}}
+        style={{
+          padding: '5px 10px',
+          marginRight: '5px',
+          border: '1px solid #ccc',
+          borderRadius: '20px',
+          color: `${isSelected ? '#fff' : '#000'}`,
+          background: `${isSelected ? '#6CDD83' : '#fff'}`
+        }}
+        onClick={() => {
+          setSelectedTab(tab)
+        }}
       >
         {tab}
       </button>
@@ -60,9 +69,18 @@ const Test01 = () => {
     return (
       <button
         key={listItem}
-        style={{padding: '5px 10px', marginRight: '5px', border:'1px solid #ccc', borderRadius: '20px', color: `${isSelected ? '#fff' : '#000'}`, background: `${isSelected ? '#6CDD83' : '#fff'}`}}
+        style={{
+          padding: '5px 10px',
+          marginRight: '5px',
+          border: '1px solid #ccc',
+          borderRadius: '20px',
+          color: `${isSelected ? '#fff' : '#000'}`,
+          background: `${isSelected ? '#6CDD83' : '#fff'}`
+        }}
         onClick={() => {
-          if(isSelected) setSelectedListItems(prev => prev.filter(selectedListItem => {return selectedListItem !== listItem}));
+          if (isSelected) setSelectedListItems(prev => prev.filter(selectedListItem => {
+            return selectedListItem !== listItem
+          }));
           else setSelectedListItems(prev => [...prev, listItem]);
         }}
       >
@@ -75,7 +93,14 @@ const Test01 = () => {
     return (
       <button
         key={selectedListItem}
-        style={{padding: '5px 10px', marginRight: '5px', border:'1px solid #ccc', borderRadius: '5px', color: '#fff', background: '#6CDD83'}}
+        style={{
+          padding: '5px 10px',
+          marginRight: '5px',
+          border: '1px solid #ccc',
+          borderRadius: '5px',
+          color: '#fff',
+          background: '#6CDD83'
+        }}
         onClick={() => {
           setSelectedListItems(prev => prev.filter(item => selectedListItem !== item))
         }}
@@ -88,7 +113,7 @@ const Test01 = () => {
   return (
     <div style={{padding: '100px'}}>
 
-      <div style={{ width: '262px' }}>
+      <div style={{width: '262px'}}>
         <Slider
           disabled={false}
           min={min}
@@ -114,7 +139,14 @@ const Test01 = () => {
         {
           value !== 0 &&
           <button
-              style={{padding: '5px 10px', marginRight: '5px', border:'1px solid #ccc', borderRadius: '5px', color: '#fff', background: '#6CDD83'}}
+              style={{
+                padding: '5px 10px',
+                marginRight: '5px',
+                border: '1px solid #ccc',
+                borderRadius: '5px',
+                color: '#fff',
+                background: '#6CDD83'
+              }}
               onClick={() => setValue(0)}
           >
             {value}만원

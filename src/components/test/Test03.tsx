@@ -23,12 +23,12 @@ const Test03 = () => {
   }).slice(ListCount * (page - 1), ListCount * page);
 
   const handlePrev = () => {
-    if(page <= 1) return;
+    if (page <= 1) return;
     setPage(prev => prev - 1);
   };
 
   const handleNext = () => {
-    if(page >= maxPage) return;
+    if (page >= maxPage) return;
     setPage(prev => prev + 1);
   };
 

@@ -5,12 +5,12 @@ import Test04 from "../components/test/Test04";
 
 const TestPage = () => {
   return (
-   <>
-     {/*<Test01/>*/}
-     <Test02/>
-     <Test03/>
-     <Test04/>
-   </>
+    <>
+      <Test01/>
+      <Test02/>
+      <Test03/>
+      <Test04/>
+    </>
   )
 };
 

@@ -16,6 +16,30 @@ export const initData: Record<any, IinitData> = {
             opacity: 0
         }
     },
+    circle: {
+        top: 0,
+        bottom: 3000,
+        topStyle: {
+            width: 20,
+            height: 20,
+        },
+        bottomStyle: {
+            width: 20,
+            height: 20,
+        }
+    },
+    circle2: {
+        top: 2000,
+        bottom: 10000,
+        topStyle: {
+            width: 20,
+            height: 20,
+        },
+        bottomStyle: {
+            width: 20,
+            height: 20,
+        }
+    },
     sl1: {
         top: 500,
         bottom: 1900,
@@ -95,6 +119,70 @@ export const animationData: Record<string, IanimationData[]> = {
                 }
             }
         }
+    ],
+    circle: [
+        {
+            top: 600,
+            bottom: 1500,
+            easing: ease,
+            styles: {
+                width: {
+                    topValue: 20,
+                    bottomValue: 300,
+                },
+                height: {
+                    topValue: 20,
+                    bottomValue: 300,
+                },
+            }
+        },
+        {
+            top: 1800,
+            bottom: 3000,
+            easing: easeIn,
+            styles: {
+                width: {
+                    topValue: 300,
+                    bottomValue: 20,
+                },
+                height: {
+                    topValue: 300,
+                    bottomValue: 20,
+                },
+            }
+        }
+    ],
+    circle2: [
+        {
+            top: 3000,
+            bottom: 4000,
+            easing: midSlow,
+            styles: {
+                width: {
+                    topValue: 20,
+                    bottomValue: 20,
+                },
+                height: {
+                    topValue: 20,
+                    bottomValue: 20,
+                },
+            }
+        },
+        {
+            top: 4500,
+            bottom: 6000,
+            easing: easeIn,
+            styles: {
+                width: {
+                    topValue: 20,
+                    bottomValue: 3000,
+                },
+                height: {
+                    topValue: 20,
+                    bottomValue: 3000,
+                },
+            }
+        },
     ],
     sl1: [
         {

@@ -10,6 +10,7 @@
     }
 
     .slideContainer {
+        overflow: hidden;
         position: relative;
         display: flex;
         align-items: center;
@@ -26,6 +27,13 @@
     height: 50px;
     text-align: center;
     bottom: 0px;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
 }
 
 .slide {

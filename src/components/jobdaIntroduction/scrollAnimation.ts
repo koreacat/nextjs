@@ -85,6 +85,10 @@ export const useScrollAnimation = (
 			element.style.transform = `translateY(${value}${unit})`;
 			return;
 		}
+		if (styleName === "width" || "height") {
+			element.style[styleName] = value + 'px';
+		}
+		console.log(value, styleName);
 		element.style[styleName] = value;
 	};
 

@@ -22,6 +22,9 @@ const JobdaIntroduction = () => {
 						sokodomo - 회전목마 (Feat. Zion.T, 원슈타인)
 					</div>
 
+					<div className={cx('slide', 'circle')} ref={el => setRef('circle', el)}></div>
+					<div className={cx('slide', 'circle')} ref={el => setRef('circle2', el)}></div>
+
 					<div className={cx("slide")} ref={el => setRef('sl1', el)}>
 						<div className={cx("bigText")}>
 							<p>내가 슬플 때마다</p>

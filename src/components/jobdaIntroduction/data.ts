@@ -18,7 +18,7 @@ export const initData: Record<any, IinitData> = {
   },
   circle: {
     top: 0,
-    bottom: 3000,
+    bottom: 4000,
     topStyle: {
       width: 20,
       height: 20,

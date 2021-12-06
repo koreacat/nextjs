@@ -7,6 +7,7 @@ export interface IinitData {
     bottom: number;
     topStyle: CSSProperties | Record<TranslateType, number>;
     bottomStyle: CSSProperties | Record<TranslateType, number>;
+	enabled?: boolean;
 }
 
 export interface IanimationData {
@@ -14,6 +15,7 @@ export interface IanimationData {
     bottom: number;
     easing: any;
     styles: Record<string, {topValue: number, bottomValue: number}>;
+	enabled?: boolean;
 }
 
 interface useScrollAnimationProps {

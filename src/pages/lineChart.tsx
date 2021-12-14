@@ -5,16 +5,16 @@ import Contents from "@components/contents";
 import LineChart from "src/components/charts/lineChart";
 
 const LineChartPage = () => {
-    return (
-        <Layout>
-            <Header/>
-            <FixedHeader/>
-            <Contents>
-                <LineChart />
-            </Contents>
-		</Layout>
+  return (
+    <Layout>
+      <Header/>
+      <FixedHeader/>
+      <Contents>
+        <LineChart/>
+      </Contents>
+    </Layout>
 
-    )
+  )
 };
 
 export default LineChartPage;

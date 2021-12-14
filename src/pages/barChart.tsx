@@ -6,16 +6,16 @@ import BarChart from "src/components/charts/barChart";
 import Footer from "@components/footer";
 
 const BarChartPage = () => {
-    return (
-		<Layout>
-            <Header/>
-            <FixedHeader/>
-            <Contents>
-                <BarChart/>
-            </Contents>
-            <Footer/>
-        </Layout>
-    )
+  return (
+    <Layout>
+      <Header/>
+      <FixedHeader/>
+      <Contents>
+        <BarChart/>
+      </Contents>
+      <Footer/>
+    </Layout>
+  )
 };
 
 export default BarChartPage;

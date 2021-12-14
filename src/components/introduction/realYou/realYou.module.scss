@@ -3,75 +3,75 @@
 $COVER_Z_INDEX: 1000;
 
 .wrap {
-    height: 100%;
+  height: 100%;
 }
 
 .cover {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: $C_GREEN_100;
-    transition: all ease-in;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $C_GREEN_100;
+  transition: all ease-in;
+  transition-duration: .5s;
+  opacity: 0;
+  z-index: -1;
+  
+  &.covered {
+    z-index: $COVER_Z_INDEX;
+    opacity: 1;
     transition-duration: .5s;
-    opacity: 0;
-    z-index: -1;
-
-    &.covered {
-        z-index: $COVER_Z_INDEX;
-        opacity: 1;
-        transition-duration: .5s;
-    }
+  }
 }
 
 .contentsWrap {
-    position: sticky;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: calc(50% - 94px);
+  left: 0;
+  
+  &.covered {
+    z-index: $COVER_Z_INDEX;
+    
+    .title {
+      opacity: 0.5;
+    }
+    
+    .text {
+      opacity: 1;
+    }
+  }
+  
+  .title {
+    font-family: $F_NOTO_SANS_KR;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 34px;
+    letter-spacing: 0.24px;
+    color: $C_WHITE;
+    opacity: 0;
+  }
+  
+  .textWrap {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    top: calc(50% - 94px);
-    left: 0;
-
-    &.covered {
-        z-index: $COVER_Z_INDEX;
-
-        .title {
-            opacity: 0.5;
-        }
-
-        .text {
-            opacity: 1;
-        }
-    }
-
-    .title {
-        font-family: $F_NOTO_SANS_KR;
-        font-weight: 600;
-        font-size: 28px;
-        line-height: 34px;
-        letter-spacing: 0.24px;
-        color: $C_WHITE;
-        opacity: 0;
-    }
-
-    .textWrap {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-top: 32px;
-    }
-
-    .text {
-        font-family: $F_NOTO_SANS_KR;
-        font-weight: 600;
-        font-size: 34px;
-        line-height: 48px;
-        color: $C_WHITE;
-        opacity: 0;
-    }
-
-
+    margin-top: 32px;
+  }
+  
+  .text {
+    font-family: $F_NOTO_SANS_KR;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 48px;
+    color: $C_WHITE;
+    opacity: 0;
+  }
+  
+  
 }

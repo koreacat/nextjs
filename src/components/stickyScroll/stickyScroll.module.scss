@@ -1,106 +1,106 @@
 @import '@styles/common.scss';
 
 .banner {
-    display: flex;
-    width: 100%;
-    height: 300px;
-    background-color: #eee;
+  display: flex;
+  width: 100%;
+  height: 300px;
+  background-color: #eee;
 }
 
 .wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  
+  .contentsWrap {
+    width: $CONTENTS_WIDTH;
+    margin-top: 20px;
+  }
+  
+  .summary {
     width: 100%;
+    height: 300px;
+    background-color: #eee;
+  }
+  
+  .contents {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 30px;
+    margin-top: 20px;
     
-    .contentsWrap {
-        width: $CONTENTS_WIDTH;
-        margin-top: 20px;
-    }
-    
-    .summary {
-        width: 100%;
-        height: 300px;
-        background-color: #eee;
-    }
-    
-    .contents {
+    .list {
+      overflow-y: scroll;
+      position: sticky;
+      top: 100px;
+      width: 350px;
+      height: calc(100vh - 150px);
+      background-color: #eee;
+      overscroll-behavior: contain; //내부스크롤 끝에 도달 시 외부스크롤 방지
+      
+      ul {
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      
+      li {
         width: 100%;
-        padding-bottom: 30px;
-        margin-top: 20px;
+        height: 100px;
+        border-bottom: 1px solid #fff;
         
-        .list {
-            overflow-y: scroll;
-            position: sticky;
-            top: 100px;
-            width: 350px;
-            height: calc(100vh - 150px);
-            background-color: #eee;
-            overscroll-behavior: contain; //내부스크롤 끝에 도달 시 외부스크롤 방지
-    
-            ul {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
-            
-            li {
-                width: 100%;
-                height: 100px;
-                border-bottom: 1px solid #fff;
-                
-                &:nth-child(2n - 1) {
-                    background-color: #eee;
-                }
-                
-                &.active {
-                    background-color: #e7fcc6;
-                }
-    
-                a {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: 100%;
-                    height: 100%;
-                    cursor: pointer;
-    
-                }
-            }
+        &:nth-child(2n - 1) {
+          background-color: #eee;
         }
         
-        .detail {
-            overflow: hidden;
-            width: 736px;
-            padding: 20px;
-            background-color: #eee;
-            
-            .detailItems {
-                padding: 10px;
-                background-color: #ddd;
-                
-                .title {
-                    font-size: 24px;
-                }
-                
-                &:not(:first-child) {
-                    margin-top: 60px;
-                }
-            }
+        &.active {
+          background-color: #e7fcc6;
         }
+        
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+          
+        }
+      }
     }
+    
+    .detail {
+      overflow: hidden;
+      width: 736px;
+      padding: 20px;
+      background-color: #eee;
+      
+      .detailItems {
+        padding: 10px;
+        background-color: #ddd;
+        
+        .title {
+          font-size: 24px;
+        }
+        
+        &:not(:first-child) {
+          margin-top: 60px;
+        }
+      }
+    }
+  }
 }
 
 .scrollTop {
-    position: fixed;
-    right: 30px;
-    bottom: 30px;
-    width: 40px;
-    height: 40px;
-    background-color: #777;
-    border-radius: 50%;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 40px;
+  height: 40px;
+  background-color: #777;
+  border-radius: 50%;
 }

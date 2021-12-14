@@ -3,16 +3,16 @@ import ChartsUIStore from "./chartsUIStore";
 import SliderTabUIStore from "./sliderTabUIStore";
 
 export interface Stores {
-	sliderTabUIStore: SliderTabUIStore;
-	filterSliderUIStore: FilterSliderUIStore;
-	chartsUIStore: ChartsUIStore;
+  sliderTabUIStore: SliderTabUIStore;
+  filterSliderUIStore: FilterSliderUIStore;
+  chartsUIStore: ChartsUIStore;
 }
 
 export function getStores() {
-	return {
-		sliderTabUIStore: new SliderTabUIStore(),
-		filterSliderUIStore: new FilterSliderUIStore(),
-		chartsUIStore: new ChartsUIStore(),
-	}
+  return {
+    sliderTabUIStore: new SliderTabUIStore(),
+    filterSliderUIStore: new FilterSliderUIStore(),
+    chartsUIStore: new ChartsUIStore(),
+  }
 
 }

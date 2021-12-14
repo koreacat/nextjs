@@ -5,15 +5,15 @@ import Contents from "@components/contents";
 import Introduction from "../components/introduction";
 
 const IntroductionPage = () => {
-	return (
-		<Layout>
-			<Header/>
-            <FixedHeader/>
-			<Contents>
-				<Introduction/>
-			</Contents>
-		</Layout>
-	)
+  return (
+    <Layout>
+      <Header/>
+      <FixedHeader/>
+      <Contents>
+        <Introduction/>
+      </Contents>
+    </Layout>
+  )
 };
 
 export default IntroductionPage;

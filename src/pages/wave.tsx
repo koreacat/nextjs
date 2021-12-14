@@ -5,15 +5,15 @@ import Contents from "@components/contents";
 import Wave from "src/components/effect/wave";
 
 const WavePage = () => {
-    return (
-        <Layout>
-            <Header/>
-            <FixedHeader/>
-            <Contents>
-                <Wave />
-            </Contents>
-		</Layout>
-    )
+  return (
+    <Layout>
+      <Header/>
+      <FixedHeader/>
+      <Contents>
+        <Wave/>
+      </Contents>
+    </Layout>
+  )
 };
 
 export default WavePage;

@@ -7,17 +7,17 @@ import StickyScroll from "../components/stickyScroll";
 import ScrollTop from "../components/stickyScroll/scrollTop";
 
 const StickyScrollPage = () => {
-	return (
-		<Layout>
-			<Header/>
-            <FixedHeader/>
-			<Contents>
-				<Banner/>
-				<StickyScroll/>
-				<ScrollTop/>
-			</Contents>
-		</Layout>
-	)
+  return (
+    <Layout>
+      <Header/>
+      <FixedHeader/>
+      <Contents>
+        <Banner/>
+        <StickyScroll/>
+        <ScrollTop/>
+      </Contents>
+    </Layout>
+  )
 };
 
 export default StickyScrollPage;

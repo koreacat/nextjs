@@ -5,15 +5,15 @@ import Contents from "@components/contents";
 import VirtualScroll from "@components/virtualScroll";
 
 const VirtualScrollPage = () => {
-	return (
-		<Layout>
-			<Header/>
-            <FixedHeader/>
-			<Contents>
-                <VirtualScroll/>
-			</Contents>
-		</Layout>
-	)
+  return (
+    <Layout>
+      <Header/>
+      <FixedHeader/>
+      <Contents>
+        <VirtualScroll/>
+      </Contents>
+    </Layout>
+  )
 };
 
 export default VirtualScrollPage;

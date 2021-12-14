@@ -5,15 +5,15 @@ import Contents from "@components/contents";
 import Count from "../components/count";
 
 const CountPage = () => {
-	return (
-		<Layout>
-			<Header/>
-            <FixedHeader/>
-			<Contents>
-				<Count/>
-			</Contents>
-		</Layout>
-	)
+  return (
+    <Layout>
+      <Header/>
+      <FixedHeader/>
+      <Contents>
+        <Count/>
+      </Contents>
+    </Layout>
+  )
 };
 
 export default CountPage;

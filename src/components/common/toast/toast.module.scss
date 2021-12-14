@@ -3,73 +3,73 @@
 $COMPONENT_IMG_PATH: $STATIC_IMG_PATH + '/components/toast';
 
 .toastArea {
-    @include commonBoxShadowStyle('large');
-    
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    //width: 448px;
-    padding: 24px 58px 24px 24px;
-    border-radius: 4px;
-    background-color: $C_COOL_GRAY_80;
-    font-family: $F_NOTO_SANS_KR;
-    font-size: 17px;
-    font-weight: 700;
-    line-height: 28px;
-    letter-spacing: -0.41px;
-    color: $C_WHITE;
-    opacity: 0;
-    transform: translate(-50%, -50%);
-    z-index: $Z_INDEX_FIXED;
-    animation: fadeInFadeOut 3s;
-    
-    @keyframes fadeInFadeOut {
-        20% {
-            opacity: 1;
-        }
-        80% {
-            opacity: 1;
-        }
-        to {
-            opacity: 0;
-        }
+  @include commonBoxShadowStyle('large');
+  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  //width: 448px;
+  padding: 24px 58px 24px 24px;
+  border-radius: 4px;
+  background-color: $C_COOL_GRAY_80;
+  font-family: $F_NOTO_SANS_KR;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: -0.41px;
+  color: $C_WHITE;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  z-index: $Z_INDEX_FIXED;
+  animation: fadeInFadeOut 3s;
+  
+  @keyframes fadeInFadeOut {
+    20% {
+      opacity: 1;
     }
+    80% {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  &:before {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+    background-image: url($COMPONENT_IMG_PATH + '/iconToastInfo.png');
+    background-size: cover;
+    vertical-align: top;
+    content: '';
+  }
+  
+  &.SUCCESS {
+    background-color: $C_POSITIVE_DARK;
     
     &:before {
-        display: inline-block;
-        width: 28px;
-        height: 28px;
-        margin-right: 10px;
-        background-image: url($COMPONENT_IMG_PATH + '/iconToastInfo.png');
-        background-size: cover;
-        vertical-align: top;
-        content: '';
+      background-image: url($COMPONENT_IMG_PATH + '/iconToastCheck.png');
     }
-    
-    &.SUCCESS {
-        background-color: $C_POSITIVE_DARK;
-        
-        &:before {
-            background-image: url($COMPONENT_IMG_PATH + '/iconToastCheck.png');
-        }
-    }
-    
-    &.ERROR {
-        background-color: $C_NEGATIVE;
-    }
+  }
+  
+  &.ERROR {
+    background-color: $C_NEGATIVE;
+  }
 }
 
 .btnClose {
-    position: absolute;
-    top: 26px;
-    right: 24px;
-    
-    &:before {
-        display: block;
-        width: 24px;
-        height: 24px;
-        background-image: url($COMPONENT_IMG_PATH + '/iconToastClose.png');
-        background-size: cover;
-        content: '';
-    }
+  position: absolute;
+  top: 26px;
+  right: 24px;
+  
+  &:before {
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-image: url($COMPONENT_IMG_PATH + '/iconToastClose.png');
+    background-size: cover;
+    content: '';
+  }
 }

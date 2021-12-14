@@ -8,46 +8,46 @@ const cx = classnames.bind(styles);
 type ToastType = 'SUCCESS' | 'ERROR' | null;
 
 interface ToastPopupProps {
-	type?: ToastType,
-	content?: string,
-	onClose?: () => void
+  type?: ToastType,
+  content?: string,
+  onClose?: () => void
 }
 
 let timeout: NodeJS.Timeout | null = null;
 const Toast = (props: ToastPopupProps) => {
-	if(timeout) return;
+  if (timeout) return;
 
-	const el = document.getElementById('toast') as HTMLElement;
-	const {type, content, onClose} = props;
+  const el = document.getElementById('toast') as HTMLElement;
+  const {type, content, onClose} = props;
 
-	const handleClose = () => {
-		onClose && onClose();
-		resetTimeout();
-		ReactDOM.unmountComponentAtNode(el);
-	};
+  const handleClose = () => {
+    onClose && onClose();
+    resetTimeout();
+    ReactDOM.unmountComponentAtNode(el);
+  };
 
-	timeout = setTimeout(() => {
-		handleClose();
-	}, 3000);
+  timeout = setTimeout(() => {
+    handleClose();
+  }, 3000);
 
-	const resetTimeout = () => {
-		timeout && clearTimeout(timeout);
-		timeout = null;
-	};
+  const resetTimeout = () => {
+    timeout && clearTimeout(timeout);
+    timeout = null;
+  };
 
-	const toast =
-		<div className={cx('toastArea', type)}>
-			{content}
-			<a
-				className={cx('btnClose')}
-				role='button'
-				onClick={handleClose}
-			>
-				<span className={cx('hidden')}>닫기</span>
-			</a>
-		</div>;
+  const toast =
+    <div className={cx('toastArea', type)}>
+      {content}
+      <a
+        className={cx('btnClose')}
+        role='button'
+        onClick={handleClose}
+      >
+        <span className={cx('hidden')}>닫기</span>
+      </a>
+    </div>;
 
-	ReactDOM.render(toast, el);
+  ReactDOM.render(toast, el);
 };
 
 export default Toast;

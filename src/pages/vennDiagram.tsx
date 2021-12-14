@@ -5,15 +5,15 @@ import Contents from "@components/contents";
 import VennDiagram from "src/components/charts/vennDiagram";
 
 const VennDiagramPage = () => {
-    return (
-		<Layout>
-            <Header/>
-            <FixedHeader/>
-            <Contents>
-                <VennDiagram/>
-            </Contents>
-        </Layout>
-    )
+  return (
+    <Layout>
+      <Header/>
+      <FixedHeader/>
+      <Contents>
+        <VennDiagram/>
+      </Contents>
+    </Layout>
+  )
 };
 
 export default VennDiagramPage;

@@ -1,33 +1,33 @@
 @import '@styles/common.scss';
 
 .dot {
-    display: block;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: $C_POSITIVE_DARK;
-    animation: opacityRepeat 1.5s infinite linear;
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: $C_POSITIVE_DARK;
+  animation: opacityRepeat 1.5s infinite linear;
+  
+  + circle {
+    animation-delay: .2s;
     
     + circle {
-        animation-delay: .2s;
-        
-        + circle {
-            animation-delay: .4s;
-        }
+      animation-delay: .4s;
     }
+  }
 }
 
 @keyframes opacityRepeat {
-    0% {
-        opacity: 1;
-    }
-    10% {
-        opacity: .3;
-    }
-    30% {
-        opacity: .3;
-    }
-    60% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: .3;
+  }
+  30% {
+    opacity: .3;
+  }
+  60% {
+    opacity: 1;
+  }
 }

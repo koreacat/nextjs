@@ -4,11 +4,11 @@ import classnames from 'classnames/bind';
 const cx = classnames.bind(styles);
 
 const VirtualScroll = () => {
-    return (
-        <div>
-            virtualScroll
-        </div>
-    )
+  return (
+    <div>
+      virtualScroll
+    </div>
+  )
 }
 
 export default VirtualScroll;

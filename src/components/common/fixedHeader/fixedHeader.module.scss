@@ -1,13 +1,13 @@
 @import '@styles/common.scss';
 
 .fixedHeader {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    transition: top 0.3s ease-in-out;
-    z-index: $Z_INDEX_FIXED;
-    
-    &.up {
-        top: -$HEADER_HEIGHT;
-    }
+  position: fixed;
+  top: 0;
+  width: 100%;
+  transition: top 0.3s ease-in-out;
+  z-index: $Z_INDEX_FIXED;
+  
+  &.up {
+    top: -$HEADER_HEIGHT;
+  }
 }

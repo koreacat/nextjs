@@ -1,27 +1,27 @@
 @import '@styles/common.scss';
 
 .wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .textWrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: $F_NOTO_SANS_KR;
-    font-weight: 700;
-    font-size: 35px;
-    line-height: 45px;
-    color: $C_WHITE;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: $F_NOTO_SANS_KR;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 45px;
+  color: $C_WHITE;
 }
 
 .speechBubbleWrap {
-    margin-top: 80px;
+  margin-top: 80px;
 }
 
 .wordSliderWrap {
-    margin-top: 72px;
+  margin-top: 72px;
 }

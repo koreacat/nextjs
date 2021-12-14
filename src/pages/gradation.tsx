@@ -5,15 +5,15 @@ import Contents from "@components/contents";
 import Gradation from "src/components/effect/gradation";
 
 const GradationPage = () => {
-    return (
-        <Layout>
-            <Header/>
-            <FixedHeader/>
-            <Contents>
-                <Gradation />
-            </Contents>
-		</Layout>
-    )
+  return (
+    <Layout>
+      <Header/>
+      <FixedHeader/>
+      <Contents>
+        <Gradation/>
+      </Contents>
+    </Layout>
+  )
 };
 
 export default GradationPage;

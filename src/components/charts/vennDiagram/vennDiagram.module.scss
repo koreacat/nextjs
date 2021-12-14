@@ -1,136 +1,136 @@
 @import '@styles/common.scss';
 
 .wrap {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 430px;
-    height: 430px;
-    
-    path {
-        fill: transparent;
-        stroke: $C_COOL_GRAY_50;
-        stroke-width: 1;
-    }
-    
-    .sky {
-        fill: $C_SKY_60;
-        color: $C_SKY_400;
-    }
-    
-    .yellow {
-        fill: $C_YELLOW_70;
-        color: $C_YELLOW_400;
-    }
-    
-    .green {
-        fill: $C_GREEN_70;
-        color: $C_GREEN_400;
-    }
-    
-    .blue {
-        fill: $C_BLUE_40;
-        color: $C_BLUE_300;
-    }
-    
-    .gray {
-        fill: $C_COOL_GRAY_30;
-    }
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 430px;
+  height: 430px;
+  
+  path {
+    fill: transparent;
+    stroke: $C_COOL_GRAY_50;
+    stroke-width: 1;
+  }
+  
+  .sky {
+    fill: $C_SKY_60;
+    color: $C_SKY_400;
+  }
+  
+  .yellow {
+    fill: $C_YELLOW_70;
+    color: $C_YELLOW_400;
+  }
+  
+  .green {
+    fill: $C_GREEN_70;
+    color: $C_GREEN_400;
+  }
+  
+  .blue {
+    fill: $C_BLUE_40;
+    color: $C_BLUE_300;
+  }
+  
+  .gray {
+    fill: $C_COOL_GRAY_30;
+  }
 }
 
 .textWrap {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    user-select: none;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
 }
 
 .textWrap:hover {
-    .name {
-        text-decoration: underline;
-    }
+  .name {
+    text-decoration: underline;
+  }
 }
 
 .title {
-    overflow: hidden;
-    display: block;
-    text-overflow: ellipsis;
-    text-align: center;
-    white-space: nowrap;
-    margin-bottom: 12px;
-    font-family: $F_NOTO_SANS_KR;
-    font-size: 15px;
-    line-height: 20px;
-    color: $C_WARM_GRAY_60;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+  text-align: center;
+  white-space: nowrap;
+  margin-bottom: 12px;
+  font-family: $F_NOTO_SANS_KR;
+  font-size: 15px;
+  line-height: 20px;
+  color: $C_WARM_GRAY_60;
 }
 
 .name {
-    overflow: hidden;
-    display: block;
-    text-overflow: ellipsis;
-    text-align: center;
-    white-space: nowrap;
-    font-family: $F_NOTO_SANS_KR;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 20px;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+  text-align: center;
+  white-space: nowrap;
+  font-family: $F_NOTO_SANS_KR;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
 }
 
 .outSide {
+  width: 115px;
+  
+  .name {
     width: 115px;
-    
-    .name {
-        width: 115px;
-    }
-    
-    .title {
-        width: 115px;
-    }
+  }
+  
+  .title {
+    width: 115px;
+  }
 }
 
 .inSide {
+  width: 85px;
+  
+  .name {
     width: 85px;
-    
-    .name {
-        width: 85px;
-    }
+  }
 }
 
 .area01 {
-    top: 55px;
+  top: 55px;
 }
 
 .area02 {
-    top: 175px;
-    left: 93px;
+  top: 175px;
+  left: 93px;
 }
 
 .area03 {
-    top: 223px;
+  top: 223px;
 }
 
 .area04 {
-    top: 175px;
-    right: 93px;
+  top: 175px;
+  right: 93px;
 }
 
 .area05 {
-    bottom: 100px;
-    left: 25px;
+  bottom: 100px;
+  left: 25px;
 }
 
 .area06 {
-    width: 85px;
-    bottom: 91px;
+  width: 85px;
+  bottom: 91px;
 }
 
 .area07 {
-    bottom: 100px;
-    right: 25px;
+  bottom: 100px;
+  right: 25px;
 }
 
 

@@ -1,15 +1,15 @@
 @import '@styles/common.scss';
 
 .footer {
-    width: 100%;
-    height: $FOOTER_HEIGHT;
-    background: $C_COOL_GRAY_90;
+  width: 100%;
+  height: $FOOTER_HEIGHT;
+  background: $C_COOL_GRAY_90;
 }
 
 .textWrap {
-    padding: 10px;
-    
-    .text {
-        color: $C_COOL_GRAY_50;
-    }
+  padding: 10px;
+  
+  .text {
+    color: $C_COOL_GRAY_50;
+  }
 }

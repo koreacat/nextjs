@@ -5,9 +5,9 @@ import classnames from 'classnames/bind';
 const cx = classnames.bind(styles);
 
 const sliderValue = (value: number, min: number, max: number) => {
-  if(value <= min) {
+  if (value <= min) {
     return min;
-  } else if(value >= max) {
+  } else if (value >= max) {
     return max;
   }
   return value;
@@ -154,16 +154,16 @@ const Slider = (
       >
         <div ref={railEl} className={cx('railArea')}>
           <div className={cx('dotArea')}>
-            <span className={cx('dot', 'type1')} />
-            <span className={cx('dot', 'type2')} />
-            <span className={cx('dot', 'type3')} />
-            <span className={cx('dot', 'type4')} />
-            <span className={cx('dot', 'type5')} />
+            <span className={cx('dot', 'type1')}/>
+            <span className={cx('dot', 'type2')}/>
+            <span className={cx('dot', 'type3')}/>
+            <span className={cx('dot', 'type4')}/>
+            <span className={cx('dot', 'type5')}/>
           </div>
         </div>
         <div className={cx('trackArea')}>
           <div className={cx('trackWrap')}>
-            <div className={cx('track')} style={{width: `${sliderPercent}%`}} />
+            <div className={cx('track')} style={{width: `${sliderPercent}%`}}/>
           </div>
         </div>
         <div className={cx('handleArea')}>

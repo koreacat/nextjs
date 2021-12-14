@@ -5,15 +5,15 @@ import Contents from "@components/contents";
 import Components from "../components/components";
 
 const ComponentsPage = () => {
-	return (
-		<Layout>
-			<Header/>
-            <FixedHeader/>
-			<Contents>
-				<Components/>
-			</Contents>
-		</Layout>
-	)
+  return (
+    <Layout>
+      <Header/>
+      <FixedHeader/>
+      <Contents>
+        <Components/>
+      </Contents>
+    </Layout>
+  )
 };
 
 export default ComponentsPage;

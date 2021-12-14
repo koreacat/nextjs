@@ -6,15 +6,15 @@ import WaveText from "src/components/waveText";
 
 const WaveTextPage = () => {
 
-    return (
-        <Layout>
-            <Header/>
-            <FixedHeader/>
-			<Contents>
-                <WaveText text={'heyyyyyyyyyyyy'}/>
-			</Contents>
-		</Layout>
-    )
+  return (
+    <Layout>
+      <Header/>
+      <FixedHeader/>
+      <Contents>
+        <WaveText text={'heyyyyyyyyyyyy'}/>
+      </Contents>
+    </Layout>
+  )
 }
 
 export default WaveTextPage;

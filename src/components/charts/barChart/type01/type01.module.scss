@@ -1,45 +1,45 @@
 @import '@styles/common.scss';
 
 .wrap {
-    
+
 }
 
 .bar {
-    display: flex;
-    align-items: center;
-
-    &:not(:first-child) {
-        margin-top: 16px;
-    }
-
+  display: flex;
+  align-items: center;
+  
+  &:not(:first-child) {
+    margin-top: 16px;
+  }
+  
+  .title {
+    display: inline-block;
+    width: 110px;
+    font-family: $F_NOTO_SANS_KR;
+    font-size: 13px;
+    color: $C_WARM_GRAY_70;
+    line-height: 21px;
+    letter-spacing: -0.24px;
+  }
+  
+  .value {
+    display: inline-block;
+    height: 8px;
+    background-color: $C_COOL_GRAY_40;
+    border-radius: 0 4px 4px 0;
+  }
+  
+  &.emphasized {
     .title {
-        display: inline-block;
-        width: 110px;
-        font-family: $F_NOTO_SANS_KR;
-        font-size: 13px;
-        color: $C_WARM_GRAY_70;
-        line-height: 21px;
-        letter-spacing: -0.24px;
+      color: $C_GREEN_200;
+      font-weight: 500;
     }
-
+    
     .value {
-        display: inline-block;
-        height: 8px;
-        background-color: $C_COOL_GRAY_40;
-        border-radius: 0 4px 4px 0;
+      background-color: $C_GREEN_100;
     }
-
-    &.emphasized {
-        .title {
-            color: $C_GREEN_200;
-            font-weight: 500;
-        }
-
-        .value {
-            background-color: $C_GREEN_100;
-        }
-    }
-
+  }
+  
 }
 
 

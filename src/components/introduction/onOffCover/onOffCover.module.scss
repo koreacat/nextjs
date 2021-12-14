@@ -1,180 +1,180 @@
 @import '@styles/common.scss';
 
 .wrap {
-    width: 100%;
+  width: 100%;
 }
 
 .contentsWrap {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    height: 1273px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 1273px;
 }
 
 .contents {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-
-    &.off {
-        background: $C_WARM_GRAY_80;
-        
-        .bulbOff {
-            position: absolute;
-            top: -366px;
-            right: 0;
-            width: 88px;
-            height: 232px;
-            background-image: url('/nextjs/img/imgOffBulb.png');
-            background-size: cover;
-            cursor: pointer;
-        }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  
+  &.off {
+    background: $C_WARM_GRAY_80;
+    
+    .bulbOff {
+      position: absolute;
+      top: -366px;
+      right: 0;
+      width: 88px;
+      height: 232px;
+      background-image: url('/nextjs/img/imgOffBulb.png');
+      background-size: cover;
+      cursor: pointer;
+    }
+  }
+  
+  &.on {
+    position: absolute;
+    top: 0;
+    height: 1273px;
+    
+    .text {
+      color: $C_BLACK;
     }
     
-    &.on {
-        position: absolute;
-        top: 0;
-        height: 1273px;
-        
-        .text {
-            color: $C_BLACK;
-        }
-
-        .bulbOn {
-            position: absolute;
-            top: -366px;
-            right: -50px;
-            width: 188px;
-            height: 346px;
-            background-image: url('/nextjs/img/imgOnBulb.png');
-            background-size: cover;
-            cursor: pointer;
-        }
+    .bulbOn {
+      position: absolute;
+      top: -366px;
+      right: -50px;
+      width: 188px;
+      height: 346px;
+      background-image: url('/nextjs/img/imgOnBulb.png');
+      background-size: cover;
+      cursor: pointer;
     }
+  }
 }
 
 .text {
-    font-family: $F_NOTO_SANS_KR;
-    font-size: 34px;
-    line-height: 48px;
-    letter-spacing: -0.24px;
-    color: $C_WHITE;
-    
-    &.em {
-        font-weight: 600;
-    }
+  font-family: $F_NOTO_SANS_KR;
+  font-size: 34px;
+  line-height: 48px;
+  letter-spacing: -0.24px;
+  color: $C_WHITE;
+  
+  &.em {
+    font-weight: 600;
+  }
 }
 
 .contentsCover {
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    height: 0;
-    width: 100%;
-    background: $C_YELLOW_90;
-    transition: all .7s ease-in-out;
-
-    &.visible {
-        height: 100%;
-    }
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  height: 0;
+  width: 100%;
+  background: $C_YELLOW_90;
+  transition: all .7s ease-in-out;
+  
+  &.visible {
+    height: 100%;
+  }
 }
 
 .cardWrap {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 96px;
-    gap: 0 32px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 96px;
+  gap: 0 32px;
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    width: 352px;
-    height: 729px;
-    background: $C_WHITE;
-    border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 352px;
+  height: 729px;
+  background: $C_WHITE;
+  border-radius: 8px;
 }
 
 .profileWrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 269px;
-    
-    .title {
-        margin-top: 64px;
-        font-family: $F_NOTO_SANS_KR;
-        font-style: normal;
-        font-weight: 700;
-        font-size: 24px;
-        line-height: 28px;
-        letter-spacing: 0.2px;
-        color: $C_JOBDA_BLACK;
-    }
-    
-    .profileImg {
-        width: 224px;
-        height: 147px;
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 269px;
+  
+  .title {
+    margin-top: 64px;
+    font-family: $F_NOTO_SANS_KR;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0.2px;
+    color: $C_JOBDA_BLACK;
+  }
+  
+  .profileImg {
+    width: 224px;
+    height: 147px;
+  }
 }
 
 .listWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 460px;
+  background: $C_WARM_GRAY_30;
+  border-top: 4px solid #EDEDED;
+  border-radius: 0 0 8px 8px;
+  
+  .listTitle {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    height: 460px;
-    background: $C_WARM_GRAY_30;
-    border-top: 4px solid #EDEDED;
-    border-radius: 0 0 8px 8px;
+    justify-content: center;
+    padding: 6px 24px 8px;
+    margin-top: 40px;
+    background: $C_COOL_GRAY_70;
+    border-radius: 16px;
+    font-family: $F_NOTO_SANS_KR;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 14px;
+    letter-spacing: -0.0733333px;
+    color: $C_WHITE;
+  }
+  
+  .list {
+    margin-top: 32px;
+  }
+  
+  .item {
+    padding: 16px 60px;
+    background: $C_WHITE;
+    border: 1px solid $C_COOL_GRAY_50;
+    border-radius: 20px;
+    font-family: $F_NOTO_SANS_KR;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: -0.36px;
+    color: $C_COOL_GRAY_80;
     
-    .listTitle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 6px 24px 8px;
-        margin-top: 40px;
-        background: $C_COOL_GRAY_70;
-        border-radius: 16px;
-        font-family: $F_NOTO_SANS_KR;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 14px;
-        letter-spacing: -0.0733333px;
-        color: $C_WHITE;
+    &:not(:first-child) {
+      margin-top: 12px;
     }
-    
-    .list {
-        margin-top: 32px;
-    }
-    
-    .item {
-        padding: 16px 60px;
-        background: $C_WHITE;
-        border: 1px solid $C_COOL_GRAY_50;
-        border-radius: 20px;
-        font-family: $F_NOTO_SANS_KR;
-        font-weight: 500;
-        font-size: 15px;
-        line-height: 20px;
-        text-align: center;
-        letter-spacing: -0.36px;
-        color: $C_COOL_GRAY_80;
-        
-        &:not(:first-child) {
-            margin-top: 12px;
-        }
-    }
+  }
 }
 
 

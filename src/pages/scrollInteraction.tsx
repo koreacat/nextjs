@@ -7,8 +7,8 @@ import Contents from "@components/contents";
 const JobdaIntroductionPage = () => {
   return (
     <Layout>
-      <Header/>
-      <FixedHeader/>
+      {/*<Header/>*/}
+      {/*<FixedHeader/>*/}
       <Contents>
         <ScrollInteraction/>
       </Contents>

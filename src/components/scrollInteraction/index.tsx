@@ -1,69 +1,79 @@
 import classnames from "classnames/bind";
-import { useRef } from "react";
 import styles from "./scrollInteraction.module.scss";
-import { useScrollAnimation } from "./scrollAnimation";
-import { initData, animationData } from "./data";
+import {useScrollAnimation} from "../../util/scrollAnimation/scrollAnimation";
+import {IAnimationData} from "../../util/scrollAnimation/data";
 
 const cx = classnames.bind(styles);
 
 const ScrollInteraction = () => {
-	const $refs = useRef<HTMLElement[]>([]);
 
-	const setRef = (name: string, el: HTMLElement) => $refs.current[name] = el;
+  const initData = {
+    top: 500,
+    bottom: 1900,
+    topStyle: {
+      opacity: 0,
+      translateY: -60
+    },
+    bottomStyle: {
+      opacity: 0,
+      translateY: 60
+    }
+  };
 
-	useScrollAnimation({$refs, initData, animationData, cx});
-
-	return (
-		<div className={cx('container')} style={{height: '10000px'}}>
-			<div className={cx('sticky')}>
-				<div className={cx('slideContainer')}>
-
-					<div className={cx("title")} ref={el => setRef('title', el)}>
-						sokodomo - 회전목마 (Feat. Zion.T, 원슈타인)
-					</div>
-
-					<div className={cx("slide")} ref={el => setRef('sl1', el)}>
-						<div className={cx("bigText")}>
-							<p>내가 슬플 때마다</p>
-						</div>
-					</div>
-
-					<div className={cx("slide")} ref={el => setRef('sl2', el)}>
-						<div className={cx("bigText")}>
-							<p>이 노래가 찾아와</p>
-						</div>
-					</div>
-
-					<div className={cx("slide")} ref={el => setRef('sl3', el)}>
-						<div className={cx("bigText")}>
-							<p>세상이 둥근 것처럼</p>
-							<p>우린 동글동글</p>
-						</div>
-					</div>
-
-					<div className={cx("slide")} ref={el => setRef('sl4', el)}>
-						<div className={cx("bigText")}>
-							<p>인생은 회전목마</p>
-						</div>
-					</div>
-
-					<div className={cx("slide")} ref={el => setRef('sl5', el)}>
-						<div className={cx("bigText")}>
-							<p>우린 매일 달려가</p>
-						</div>
-					</div>
-
-					<div className={cx("slide")} ref={el => setRef('sl6', el)}>
-						<div className={cx("bigText")}>
-							<p>언제쯤 끝나 난 잘 몰라</p>
-						</div>
-					</div>
+  const animationData: IAnimationData[] = [
+    {
+      top: 500,
+      bottom: 1900,
+      easing: 'midSlow',
+      styles: {
+        translateY: {
+          topValue: 60,
+          bottomValue: -60
+        }
+      }
+    },
+    {
+      top: 500,
+      bottom: 800,
+      easing: 'ease',
+      styles: {
+        opacity: {
+          topValue: 0,
+          bottomValue: 1
+        }
+      }
+    },
+    {
+      top: 1400,
+      bottom: 1900,
+      easing: 'easeIn',
+      styles: {
+        opacity: {
+          topValue: 1,
+          bottomValue: 0
+        }
+      }
+    }
+  ];
 
 
-				</div>
-			</div>
-		</div>
-	)
+  const {addAnimation} = useScrollAnimation();
+
+  return (
+    <div className={cx('container')} style={{height: '10000px'}}>
+      <div className={cx('sticky')}>
+        <div className={cx('slideContainer')}>
+
+          <div className={cx("slide")} ref={ref => addAnimation({key: 'sl1', ref, initData, animationData})}>
+            <div className={cx("bigText")}>
+              <p>aaaaaaaaaaaaaaaaaaaaa</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  )
 };
 
 export default ScrollInteraction;

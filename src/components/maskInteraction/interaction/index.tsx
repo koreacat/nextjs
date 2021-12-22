@@ -47,6 +47,7 @@ const Interaction = () => {
 
   const loadFrames = () => {
     try {
+      PIXI﻿.utils.clearTextureCache();
       stageRef.current.app.loader.add(SpritesheetPath).load((_: any, resource: any) => {
         const keys: any = Object.keys(resource[SpritesheetPath].data.frames);
         setFrames(keys.map((frame: any) => PIXI.Texture.from(frame)));

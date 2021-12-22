@@ -1,5 +1,5 @@
 import {AnimatedSprite, Container, Graphics, Sprite, Text} from '@inlet/react-pixi';
-import React, { MutableRefObject, useEffect, useRef } from 'react';
+import React, {MutableRefObject, useEffect, useRef, useState} from 'react';
 import {ContainerHeight, ContainerWidth, TotalFrameCount, IAnimatedSprite, IContainer} from './data';
 import * as PIXI from 'pixi.js';
 
@@ -8,14 +8,29 @@ interface BackgroundProps {
   frames: [];
 }
 
+let tnum = 0;
+
 // 검정색 배경
 const Background = ({ backgroundRef, frames }: BackgroundProps) => {
   const aniRef = useRef<IAnimatedSprite | null>(null);
 
+  const [num, setNum] = useState(0);
+  const letterArr = ['','','','', 'ㅊ', '추', '취', '취ㅇ', '취어',
+    '취업', '취업ㅇ', '취업으', '취업의', '취업의', '취업의', '취업의', '취업의\nㅅ',
+    '취업의\n사', '취업의\n상', '취업의\n상ㅅ', '취업의\n상시', '취업의\n상식'
+  ];
+
   useEffect(() => {
     window.addEventListener('scroll', onScroll);
+    tnum = 0;
+
+    const interval = setInterval(() => {
+      if(tnum > letterArr.length - 2) clearInterval(interval);
+      setNum(tnum++);
+    }, 90);
 
     return () => {
+      clearInterval(interval);
       window.removeEventListener('scroll', onScroll);
     };
   }, []);
@@ -31,7 +46,7 @@ const Background = ({ backgroundRef, frames }: BackgroundProps) => {
   return (
     <Container ref={backgroundRef} width={ContainerWidth} height={ContainerHeight}>
       <Text
-        text={'취업의\n상식'}
+        text={letterArr[num]}
         y={162}
         style={
           new PIXI.TextStyle({

@@ -28,57 +28,6 @@ export const useScrollAnimation = () => {
     })
   }, []);
 
-  const onScroll = () => {
-    // 현재 스크롤 위치 파악
-    const scrollTop = window.scrollY || window.pageYOffset;
-    const currentPos = scrollTop + window.innerHeight / 2;
-
-    // disabled 순회하며 활성화할 요소 찾기.
-    disabled.forEach((obj, refname) => {
-      // 만약 칸에 있다면 해당 요소 활성화
-      if (
-        isAmong(currentPos, obj.top, obj.bottom)
-      ) {
-        enabled.set(refname, obj);
-        disabled.delete(refname);
-      }
-    });
-
-    // enabled 순회하면서 헤제할 요소를 체크
-    enabled.forEach((obj, refname) => {
-      const {top, bottom, topStyle, bottomStyle} = obj;
-      // 범위 밖에 있다면
-      if (!isAmong(currentPos, top, bottom)) {
-        // 위로 나갔다면 시작하는 스타일 적용
-        if (currentPos <= top) {
-          Object.keys(topStyle).forEach((styleName) => {
-            applyStyle(refs.current[refname], styleName, topStyle[styleName]);
-          });
-        }
-        // 아래로 나갔다면 끝나는 스타일적용
-        else if (currentPos >= bottom) {
-          Object.keys(bottomStyle).forEach((styleName) => {
-            applyStyle(
-              refs.current[refname],
-              styleName,
-              bottomStyle[styleName]
-            );
-            // this.refs[refname].style[styleName] = bottomStyle[styleName];
-          });
-        }
-
-        // 리스트에서 삭제하고 disabled로 옮김.
-        disabled.set(refname, obj);
-        enabled.delete(refname);
-      }
-
-      // enable 순회중, 범위 내부에 제대로 있다면 각 애니메이션 적용시키기.
-      else {
-        applyAllAnimation(currentPos, refname);
-      }
-    });
-  }
-
   const initAnimation = () => {
     // 모든 요소를 disabled 에 넣음.
     for (const refname of Object.keys(initDataMap)) {
@@ -99,7 +48,49 @@ export const useScrollAnimation = () => {
         refs.current[refname].style[styleName] = pushValue;
       });
     });
-  }
+  };
+
+  const onScroll = () => {
+    // 현재 스크롤 위치 파악
+    const scrollTop = window.scrollY || window.pageYOffset;
+    const currentPos = scrollTop + window.innerHeight / 2;
+
+    // disabled 순회하며 활성화할 요소 찾기.
+    disabled.forEach((obj, refname) => {
+      // 만약 칸에 있다면 해당 요소 활성화
+      if (isAmong(currentPos, obj.top, obj.bottom)) {
+        enabled.set(refname, obj);
+        disabled.delete(refname);
+      }
+    });
+
+    // enabled 순회하면서 헤제할 요소를 체크
+    enabled.forEach((obj, refname) => {
+      const {top, bottom, topStyle, bottomStyle} = obj;
+      // 범위 밖에 있다면
+      if (!isAmong(currentPos, top, bottom)) {
+        // 위로 나갔다면 시작하는 스타일 적용
+        if (currentPos <= top) {
+          Object.keys(topStyle).forEach((styleName) => {
+            applyStyle(refs.current[refname], styleName, topStyle[styleName]);
+          });
+        }
+        // 아래로 나갔다면 끝나는 스타일적용
+        else if (currentPos >= bottom) {
+          Object.keys(bottomStyle).forEach((styleName) => {
+            applyStyle(refs.current[refname], styleName, bottomStyle[styleName]);
+          });
+        }
+
+        // 리스트에서 삭제하고 disabled로 옮김.
+        disabled.set(refname, obj);
+        enabled.delete(refname);
+      }
+
+      // enable 순회중, 범위 내부에 제대로 있다면 각 애니메이션 적용시키기.
+      else applyAllAnimation(currentPos, refname);
+    });
+  };
 
   const applyStyles = (refname, styles, r, unit = "px") => {
     for (const style of Object.keys(styles)) {
@@ -107,7 +98,7 @@ export const useScrollAnimation = () => {
       const calc = (bottomValue - topValue) * r + topValue;
       applyStyle(refs.current[refname], style, calc, unit);
     }
-  }
+  };
 
   const applyStyle = (element, styleName, value, unit = "px") => {
     if (styleName === "translateX") {
@@ -150,7 +141,7 @@ export const useScrollAnimation = () => {
         applyStyles(refname, styles, r);
       }
     }
-  }
+  };
 
   const addAnimation = ({key, ref, initData, animationData}: AddAnimationProps) => {
     refs.current[key] = ref;

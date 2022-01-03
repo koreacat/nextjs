@@ -10,20 +10,19 @@ export const Easing = {
 
 export type TranslateType = 'translateX' | 'translateY';
 export type EasingType = 'liner' | 'midSlow' | 'ease' | 'easeIn';
-
-export type IAnimationDataStyles = Record<keyof CSSProperties | TranslateType, { topValue: number, bottomValue: number }>;
+export type AnimationStylesType = Record<keyof CSSProperties | TranslateType, { topValue: number | string, bottomValue: number | string }>;
 
 export interface IInitData {
   top: number;
   bottom: number;
-  styles: Partial<IAnimationDataStyles>;
+  styles: Partial<AnimationStylesType>;
 }
 
 export interface IAnimationData {
   top: number;
   bottom: number;
   easing: EasingType;
-  styles: Partial<IAnimationDataStyles>;
+  styles: Partial<AnimationStylesType>;
 }
 
 export interface AddAnimationProps {
@@ -34,6 +33,6 @@ export interface AddAnimationProps {
 
 export interface ApplyStylesProps {
   ref: HTMLElement;
-  styles: IAnimationDataStyles;
-  rate?: number;
+  styles: AnimationStylesType;
+  rate: number;
 }

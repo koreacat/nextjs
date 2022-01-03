@@ -7,12 +7,12 @@ import {
   IInitData,
 } from "./data";
 
+const isAmong = (pos, top, bottom) => pos >= top && pos <= bottom;
+
 export const useScrollAnimation = () => {
   const refs = useRef<HTMLElement[]>([]);
   const initDataRecord: Record<string, IInitData> = {};
   const animationDataRecord: Record<string, IAnimationData[]> = {};
-
-  const isAmong = (pos, top, bottom) => pos >= top && pos <= bottom;
 
   useEffect(() => {
     onScroll();
@@ -26,47 +26,34 @@ export const useScrollAnimation = () => {
     const currentPos = scrollTop + window.innerHeight / 2;
 
     for (const key in initDataRecord) {
-      const {top, bottom} = initDataRecord[key];
+      const initData = initDataRecord[key];
+      const animationData = animationDataRecord[key];
+      const ref = refs.current[key];
+      const {top, bottom} = initData;
 
-      if (isAmong(currentPos, top, bottom)) {
-        applyAnimationStyles(animationDataRecord[key], refs.current[key], currentPos);
-      } else {
-        initStyles(initDataRecord[key], refs.current[key], currentPos);
-      }
+      if(!isAmong(currentPos, top, bottom)) applyInitStyles(initData, ref, currentPos);
+      else applyAnimationStyles(animationData, ref, currentPos);
     }
   };
 
-  const initStyles = (animation, ref, currentPos) => {
-    const {top, bottom, styles} = animation;
-
-    for (const style in styles) {
-      const {topValue, bottomValue} = styles[style];
-      if (currentPos <= top) applyStyle(ref, style, topValue);
-      else if (currentPos >= bottom) applyStyle(ref, style, bottomValue);
+  const applyInitStyles = (initData, ref, currentPos) => {
+    const {top, styles} = initData;
+    for (const styleName in styles) {
+      const {topValue, bottomValue} = styles[styleName];
+      const value = currentPos <= top ? topValue : bottomValue;
+      applyStyle(ref, styleName, value);
     }
   };
 
   const applyAnimationStyles = (animations, ref, currentPos) => {
     for (const animation of animations) {
       const {top, bottom, styles, easing} = animation;
-
-      if (isAmong(currentPos, top, bottom)) {
-        if (!animation.enabled) animation.enabled = true;
-      } else if (!isAmong(currentPos, top, bottom) && animation.enabled) {
-
-        if (currentPos <= top) applyStyles({ref, styles, rate: 0});
-        else if (currentPos >= bottom) applyStyles({ref, styles, rate: 1});
-
-        animation.enabled = false;
-      }
-
-      if (animation.enabled) {
-        const rate = Easing[easing]((currentPos - top) / (bottom - top));
-        applyStyles({ref, styles, rate});
-      }
+      const rate = Easing[easing]((currentPos - top) / (bottom - top));
+      applyStyles({ref, styles, rate});
     }
   };
 
+  // TODO value 가 number 가 아니면 value 와 unit 분리
   const applyStyles = ({ref, styles, rate}: ApplyStylesProps) => {
     for (const styleName in styles) {
       const {topValue, bottomValue} = styles[styleName];

@@ -24,7 +24,6 @@ export interface IAnimationData {
   bottom: number;
   easing: EasingType;
   styles: Partial<IAnimationDataStyles>;
-  enabled?: boolean;
 }
 
 export interface AddAnimationProps {

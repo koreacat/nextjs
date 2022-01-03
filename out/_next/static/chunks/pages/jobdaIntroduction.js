@@ -205,7 +205,7 @@ var assign=Object.assign.bind(Object);module.exports=assign;module.exports.defau
           return __webpack_require__(/*! ./src/pages/jobdaIntroduction.tsx */ "./src/pages/jobdaIntroduction.tsx");
         }
       ]);
-    
+
 
 /***/ }),
 
@@ -322,7 +322,7 @@ module.exports = function(originalModule) {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __nccwpck_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -335,7 +335,7 @@ module.exports = function(originalModule) {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
@@ -344,14 +344,14 @@ module.exports = function(originalModule) {
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat */
-/******/ 	
+/******/
 /******/ 	__nccwpck_require__.ab = __dirname + "/";/************************************************************************/
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
@@ -4700,7 +4700,7 @@ $RefreshReg$(_c, "ScrollInteraction");
 
 /***/ "./src/components/scrollInteraction/scrollAnimation.ts":
 /*!*************************************************************!*\
-  !*** ./src/components/scrollInteraction/scrollAnimation.ts ***!
+  !*** ./src/components/scrollInteraction/useScrollAnimation.ts ***!
   \*************************************************************/
 /*! exports provided: useScrollAnimation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {

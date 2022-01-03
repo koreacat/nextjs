@@ -1,6 +1,6 @@
 import classnames from "classnames/bind";
 import styles from "./scrollInteraction.module.scss";
-import {useScrollAnimation} from "../../util/scrollAnimation/scrollAnimation";
+import {useScrollAnimation} from "../../util/hooks/useScrollAnimation/useScrollAnimation";
 import Contents1 from "./Contents1";
 import Contents2 from "./Contents2";
 

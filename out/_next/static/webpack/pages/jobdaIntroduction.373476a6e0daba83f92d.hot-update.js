@@ -692,7 +692,7 @@ $RefreshReg$(_c, "ScrollInteraction");
 
 /***/ "./src/components/scrollInteraction/scrollAnimation.ts":
 /*!*************************************************************!*\
-  !*** ./src/components/scrollInteraction/scrollAnimation.ts ***!
+  !*** ./src/components/scrollInteraction/useScrollAnimation.ts ***!
   \*************************************************************/
 /*! exports provided: useScrollAnimation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {

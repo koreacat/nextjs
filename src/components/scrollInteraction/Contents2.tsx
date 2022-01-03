@@ -1,4 +1,4 @@
-import {IAnimationData} from "../../util/scrollAnimation/data";
+import {IAnimationData} from "../../util/hooks/useScrollAnimation/data";
 import classnames from "classnames/bind";
 import styles from "./scrollInteraction.module.scss";
 

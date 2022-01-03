@@ -42,6 +42,17 @@ const Contents2 = ({addAnimation}) => {
       }
     },
     {
+      top: 2800,
+      bottom: 3400,
+      easing: 'liner',
+      styles: {
+        opacity: {
+          topValue: 1,
+          bottomValue: 1
+        }
+      }
+    },
+    {
       top: 3400,
       bottom: 3900,
       easing: 'easeIn',
@@ -55,7 +66,7 @@ const Contents2 = ({addAnimation}) => {
   ];
 
   const handleAnimation = (ref) => {
-    addAnimation({key: 'sl2', ref, initData, animationData})
+    addAnimation({ref, initData, animationData})
   };
 
   return (

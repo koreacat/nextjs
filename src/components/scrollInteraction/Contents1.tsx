@@ -18,6 +18,21 @@ const Contents1 = ({addAnimation}) => {
     }
   };
 
+  const initData2 = {
+    top: 500,
+    bottom: 1900,
+    styles: {
+      opacity: {
+        topValue: 0,
+        bottomValue: 0,
+      },
+      translateY: {
+        topValue: 60,
+        bottomValue: -60,
+      }
+    }
+  };
+
   const animationData: IAnimationData[] = [
     {
       top: 500,

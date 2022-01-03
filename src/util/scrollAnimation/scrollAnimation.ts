@@ -26,14 +26,23 @@ export const useScrollAnimation = () => {
     const currentPos = scrollTop + window.innerHeight / 2;
 
     for (const key in initDataRecord) {
-      const {top, bottom, topStyle, bottomStyle} = initDataRecord[key];
+      const {top, bottom} = initDataRecord[key];
 
       if (isAmong(currentPos, top, bottom)) {
         applyAnimationStyles(animationDataRecord[key], refs.current[key], currentPos);
       } else {
-        const styles = currentPos <= top ? topStyle : bottomStyle;
-        applyStyles({ref: refs.current[key], styles: styles});
+        initStyles(initDataRecord[key], refs.current[key], currentPos);
       }
+    }
+  };
+
+  const initStyles = (animation, ref, currentPos) => {
+    const {top, bottom, styles} = animation;
+
+    for (const style in styles) {
+      const {topValue, bottomValue} = styles[style];
+      if (currentPos <= top) applyStyle(ref, style, topValue);
+      else if (currentPos >= bottom) applyStyle(ref, style, bottomValue);
     }
   };
 
@@ -45,26 +54,24 @@ export const useScrollAnimation = () => {
         if (!animation.enabled) animation.enabled = true;
       } else if (!isAmong(currentPos, top, bottom) && animation.enabled) {
 
-        if (currentPos <= top) applyStyles({isInit: false, ref, styles, rate: 0});
-        else if (currentPos >= bottom) applyStyles({isInit: false, ref, styles, rate: 1});
+        if (currentPos <= top) applyStyles({ref, styles, rate: 0});
+        else if (currentPos >= bottom) applyStyles({ref, styles, rate: 1});
 
         animation.enabled = false;
       }
 
       if (animation.enabled) {
         const rate = Easing[easing]((currentPos - top) / (bottom - top));
-        applyStyles({isInit: false, ref, styles, rate});
+        applyStyles({ref, styles, rate});
       }
     }
   };
 
-
-  const applyStyles = ({isInit = true, ref, styles, rate}: ApplyStylesProps) => {
-    for (const style in styles) {
-      const {topValue, bottomValue} = styles[style];
+  const applyStyles = ({ref, styles, rate}: ApplyStylesProps) => {
+    for (const styleName in styles) {
+      const {topValue, bottomValue} = styles[styleName];
       const calc = topValue + (bottomValue - topValue) * rate;
-      const value = isInit ? styles[style] : calc;
-      applyStyle(ref, style, value);
+      applyStyle(ref, styleName, calc);
     }
   };
 

@@ -8,13 +8,15 @@ const Contents2 = ({addAnimation}) => {
   const initData = {
     top: 2500,
     bottom: 3900,
-    topStyle: {
-      opacity: 0,
-      translateY: 60
-    },
-    bottomStyle: {
-      opacity: 0,
-      translateY: -60
+    styles: {
+      opacity: {
+        topValue: 0,
+        bottomValue: 0,
+      },
+      translateY: {
+        topValue: 60,
+        bottomValue: -60,
+      }
     }
   };
 

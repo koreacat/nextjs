@@ -8,19 +8,6 @@ const Contents1 = ({addAnimation}) => {
   const initData = {
     top: 500,
     bottom: 1900,
-    topStyle: {
-      opacity: 0,
-      translateY: 60
-    },
-    bottomStyle: {
-      opacity: 0,
-      translateY: -60
-    }
-  };
-
-  const initData2 = {
-    top: 500,
-    bottom: 1900,
     styles: {
       opacity: {
         topValue: 0,

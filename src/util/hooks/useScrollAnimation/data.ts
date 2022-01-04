@@ -54,7 +54,7 @@ export interface ApplyAnimationStyleProps {
 
 export interface ApplyStyleProps {
   ref: HTMLElement;
-  styleName: string;
+  styleName: string | any; // CSSStyleDeclaration
   value: number | string;
   unit?: string;
 }

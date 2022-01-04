@@ -1,7 +1,7 @@
 import {CSSProperties} from "react";
-import bezierEasing from "bezier-easing";
+import bezierEasing, {EasingFunction} from "bezier-easing";
 
-export const Easing = {
+export const Easing: Record<string, EasingFunction> = {
   liner: bezierEasing(0, 0, 0, 0),
   midSlow: bezierEasing(0, 0.7, 1, 0.3),
   ease: bezierEasing(0.25, 0.1, 0.25, 1.0),
@@ -10,29 +10,51 @@ export const Easing = {
 
 export type TranslateType = 'translateX' | 'translateY';
 export type EasingType = 'liner' | 'midSlow' | 'ease' | 'easeIn';
-export type AnimationStylesType = Record<keyof CSSProperties | TranslateType, { topValue: number | string, bottomValue: number | string }>;
+export type AnimationStyleValue = { topValue: number, bottomValue: number, unit?: string };
+export type AnimationStyles = Record<keyof CSSProperties | TranslateType | string, AnimationStyleValue>;
 
-export interface IInitData {
+export interface InitData {
   top: number;
   bottom: number;
-  styles: Partial<AnimationStylesType>;
+  styles: Partial<AnimationStyles>;
 }
 
-export interface IAnimationData {
+export interface AnimationData {
   top: number;
   bottom: number;
   easing: EasingType;
-  styles: Partial<AnimationStylesType>;
+  styles: Partial<AnimationStyles>;
 }
 
 export interface AddAnimationProps {
   ref: HTMLDivElement;
-  initData: IInitData;
-  animationData: IAnimationData[];
+  initData: InitData;
+  animationDataArr: AnimationData[];
 }
 
-export interface ApplyStylesProps {
+export interface ApplyInitStyleProps {
   ref: HTMLElement;
-  styles: AnimationStylesType;
+  initData: any;
+  currentPos: number;
+}
+
+export interface ApplyAnimationStylesProps {
+  ref: HTMLElement;
+  animationDataArr: AnimationData[];
+  currentPos: number;
+}
+
+export interface ApplyAnimationStyleProps {
+  ref: HTMLElement;
+  styleName: string;
+  styleValues: AnimationStyleValue | undefined;
   rate: number;
+}
+
+
+export interface ApplyStyleProps {
+  ref: HTMLElement;
+  styleName: string;
+  value: number | string;
+  unit?: string;
 }

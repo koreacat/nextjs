@@ -1,18 +1,17 @@
 import {useEffect, useRef} from "react";
 import {
-  AddAnimationProps,
-  ApplyStylesProps,
+  AddAnimationProps, ApplyAnimationStyleProps, ApplyAnimationStylesProps, ApplyInitStyleProps, ApplyStyleProps,
   Easing,
-  IAnimationData,
-  IInitData,
+  AnimationData,
+  InitData,
 } from "./data";
 
-const isAmong = (pos, top, bottom) => pos >= top && pos <= bottom;
+const isAmong = (pos: number, top: number, bottom: number) => pos >= top && pos <= bottom;
 
 export const useScrollAnimation = () => {
-  const refs = useRef<HTMLElement[]>([]);
-  const initDataRecord: Record<string, IInitData> = {};
-  const animationDataRecord: Record<string, IAnimationData[]> = {};
+  const refs = useRef<Record<string, HTMLElement>>({});
+  const initDataRecord: Record<string, InitData> = {};
+  const animationDataRecord: Record<string, AnimationData[]> = {};
 
   useEffect(() => {
     onScroll();
@@ -27,64 +26,62 @@ export const useScrollAnimation = () => {
 
     for (const key in initDataRecord) {
       const initData = initDataRecord[key];
-      const animationData = animationDataRecord[key];
+      const animationDataArr = animationDataRecord[key];
       const ref = refs.current[key];
       const {top, bottom} = initData;
 
-      if(!isAmong(currentPos, top, bottom)) applyInitStyles(initData, ref, currentPos);
-      else applyAnimationStyles(animationData, ref, currentPos);
+      if (!isAmong(currentPos, top, bottom)) applyInitStyle({ref, initData, currentPos});
+      else applyAnimationStyles({ref, animationDataArr, currentPos});
     }
   };
 
-  const applyInitStyles = (initData, ref, currentPos) => {
+  const applyInitStyle = ({ref, initData, currentPos}: ApplyInitStyleProps) => {
     const {top, styles} = initData;
     for (const styleName in styles) {
-      const {topValue, bottomValue} = styles[styleName];
+      const {topValue, bottomValue, unit} = styles[styleName];
       const value = currentPos <= top ? topValue : bottomValue;
-      applyStyle(ref, styleName, value);
+      applyStyle({ref, styleName, value, unit});
     }
   };
 
-  const applyAnimationStyles = (animations, ref, currentPos) => {
-    for (const animation of animations) {
-      const {top, bottom, styles, easing} = animation;
+  const applyAnimationStyles = ({ref, animationDataArr, currentPos}: ApplyAnimationStylesProps) => {
+    for (const animationData of animationDataArr) {
+      const {top, bottom, styles, easing} = animationData;
       const rate = Easing[easing]((currentPos - top) / (bottom - top));
-      applyStyles({ref, styles, rate});
+
+      for (const styleName in styles) {
+        const styleValues = styles[styleName];
+        applyAnimationStyle({ref, styleName, styleValues, rate});
+      }
     }
   };
 
-  // TODO value 가 number 가 아니면 value 와 unit 분리
-  const applyStyles = ({ref, styles, rate}: ApplyStylesProps) => {
-    for (const styleName in styles) {
-      const {topValue, bottomValue} = styles[styleName];
-      const calc = topValue + (bottomValue - topValue) * rate;
-      applyStyle(ref, styleName, calc);
-    }
+  const applyAnimationStyle = ({ref, styleName, styleValues, rate}: ApplyAnimationStyleProps) => {
+    if (!styleValues) return;
+    const {topValue, bottomValue, unit} = styleValues;
+    const value = (topValue + (bottomValue - topValue) * rate);
+    applyStyle({ref, styleName, value, unit});
   };
 
-  const applyStyle = (element, styleName, value, unit = 'px') => {
+  const applyStyle = ({ref, styleName, value, unit = ''}: ApplyStyleProps) => {
     switch (styleName) {
       case 'translateX':
-        element.style.transform = `translateX(${value}${unit})`;
+        ref.style.transform = `translateX(${value}${unit})`;
         break;
       case 'translateY':
-        element.style.transform = `translateY(${value}${unit})`;
-        break;
-      case 'width':
-      case 'height':
-        element.style[styleName] = `${value}${unit}`;
+        ref.style.transform = `translateY(${value}${unit})`;
         break;
       default:
-        element.style[styleName] = value;
+        ref.style[styleName] = `${value}${unit}`;
         break;
     }
   };
 
-  const addAnimation = ({ref, initData, animationData}: AddAnimationProps) => {
+  const addAnimation = ({ref, initData, animationDataArr}: AddAnimationProps) => {
     const key = Math.random().toString(36);
     refs.current[key] = ref;
     initDataRecord[key] = initData;
-    animationDataRecord[key] = animationData;
+    animationDataRecord[key] = animationDataArr;
   };
 
   return {addAnimation};

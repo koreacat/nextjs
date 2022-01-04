@@ -1,4 +1,4 @@
-import {IAnimationData} from "../../util/hooks/useScrollAnimation/data";
+import {AnimationData} from "../../util/hooks/useScrollAnimation/data";
 import classnames from "classnames/bind";
 import styles from "./scrollInteraction.module.scss";
 
@@ -16,11 +16,12 @@ const Contents2 = ({addAnimation}) => {
       translateY: {
         topValue: 60,
         bottomValue: -60,
+        unit: 'px',
       }
     }
   };
 
-  const animationData: IAnimationData[] = [
+  const animationDataArr: AnimationData[] = [
     {
       top: 2500,
       bottom: 3900,
@@ -28,7 +29,8 @@ const Contents2 = ({addAnimation}) => {
       styles: {
         translateY: {
           topValue: 60,
-          bottomValue: -60
+          bottomValue: -60,
+          unit: 'px',
         }
       }
     },
@@ -39,7 +41,7 @@ const Contents2 = ({addAnimation}) => {
       styles: {
         opacity: {
           topValue: 0,
-          bottomValue: 1
+          bottomValue: 1,
         }
       }
     },
@@ -50,7 +52,7 @@ const Contents2 = ({addAnimation}) => {
       styles: {
         opacity: {
           topValue: 1,
-          bottomValue: 1
+          bottomValue: 1,
         }
       }
     },
@@ -61,14 +63,14 @@ const Contents2 = ({addAnimation}) => {
       styles: {
         opacity: {
           topValue: 1,
-          bottomValue: 0
+          bottomValue: 0,
         }
       }
     }
   ];
 
   const handleAnimation = (ref) => {
-    addAnimation({ref, initData, animationData})
+    addAnimation({ref, initData, animationDataArr})
   };
 
   return (

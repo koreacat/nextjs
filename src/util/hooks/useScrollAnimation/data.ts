@@ -44,6 +44,12 @@ export interface AddClassProps {
   classData: ClassData;
 }
 
+export interface ApplyClassProps {
+  ref: HTMLElement;
+  classData: ClassData;
+  currentPos: number;
+}
+
 export interface ApplyInitStyleProps {
   ref: HTMLElement;
   initData: any;

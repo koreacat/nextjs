@@ -14,7 +14,7 @@ const ScrollInteraction = () => {
       <div className={cx('sticky')}>
         <div className={cx('slideContainer')}>
           <Contents1 addAnimation={addAnimation} addClass={addClass}/>
-          {/* <Contents2 addAnimation={addAnimation}/> */}
+          <Contents2 addAnimation={addAnimation}/>
         </div>
       </div>
     </div>

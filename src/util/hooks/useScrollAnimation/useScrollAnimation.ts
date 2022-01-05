@@ -9,13 +9,13 @@ import {
   AnimationData,
   InitData,
   AddClassProps,
-  ClassData,
+  ClassData, ApplyClassProps,
 } from './data';
 
 const isAmong = (pos: number, top: number, bottom: number) => pos >= top && pos <= bottom;
 const getKey = () => Math.random().toString(36);
 
-// TODO 
+// TODO
 // 1. 역재생 on/off
 // 2. baseLine 자동 계산 on/off
 export const useScrollAnimation = () => {
@@ -53,7 +53,7 @@ export const useScrollAnimation = () => {
     }
   };
 
-  const applyClass = ({ref, classData, currentPos}) => {
+  const applyClass = ({ref, classData, currentPos}: ApplyClassProps) => {
     const { className } = classData;
     const { top, bottom } = classData;
     if (isAmong(currentPos, top, bottom)) ref.classList.add(className);
@@ -120,7 +120,7 @@ export const useScrollAnimation = () => {
     const key = getKey();
     refs.current[key] = ref;
     classDataRecord[key] = classData;
-  }
+  };
 
   return { addAnimation, addClass };
 };

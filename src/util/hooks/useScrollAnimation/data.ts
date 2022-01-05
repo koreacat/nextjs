@@ -1,5 +1,5 @@
-import {CSSProperties} from "react";
-import bezierEasing, {EasingFunction} from "bezier-easing";
+import { CSSProperties } from 'react';
+import bezierEasing, { EasingFunction } from 'bezier-easing';
 
 export const Easing: Record<string, EasingFunction> = {
   liner: bezierEasing(0, 0, 0, 0),
@@ -10,8 +10,9 @@ export const Easing: Record<string, EasingFunction> = {
 
 export type TranslateType = 'translateX' | 'translateY';
 export type EasingType = 'liner' | 'midSlow' | 'ease' | 'easeIn';
-export type AnimationStyleValue = { topValue: number, bottomValue: number, unit?: string };
+export type AnimationStyleValue = { topValue: number | string; bottomValue: number | string; unit?: string };
 export type AnimationStyles = Record<keyof CSSProperties | TranslateType | string, AnimationStyleValue>;
+export type AddAnimation = ({ ref, initData, animationDataArr }: AddAnimationProps) => void;
 
 export interface InitData {
   top: number;
@@ -27,7 +28,7 @@ export interface AnimationData {
 }
 
 export interface AddAnimationProps {
-  ref: HTMLDivElement;
+  ref: HTMLElement;
   initData: InitData;
   animationDataArr: AnimationData[];
 }
@@ -50,7 +51,6 @@ export interface ApplyAnimationStyleProps {
   styleValues: AnimationStyleValue | undefined;
   rate: number;
 }
-
 
 export interface ApplyStyleProps {
   ref: HTMLElement;

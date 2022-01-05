@@ -27,10 +27,21 @@ export interface AnimationData {
   styles: Partial<AnimationStyles>;
 }
 
+export interface ClassData {
+  top: number;
+  bottom: number;
+  className: string;
+}
+
 export interface AddAnimationProps {
   ref: HTMLElement;
   initData: InitData;
   animationDataArr: AnimationData[];
+}
+
+export interface AddClassProps {
+  ref: HTMLElement;
+  classData: ClassData;
 }
 
 export interface ApplyInitStyleProps {
@@ -47,8 +58,7 @@ export interface ApplyAnimationStylesProps {
 
 export interface ApplyAnimationStyleProps {
   ref: HTMLElement;
-  styleName: string;
-  styleValues: AnimationStyleValue | undefined;
+  styles: Partial<AnimationStyles>;
   rate: number;
 }
 

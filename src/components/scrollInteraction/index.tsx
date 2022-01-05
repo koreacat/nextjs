@@ -7,14 +7,14 @@ import Contents2 from "./Contents2";
 const cx = classnames.bind(styles);
 
 const ScrollInteraction = () => {
-  const {addAnimation} = useScrollAnimation();
+  const {addAnimation, addClass} = useScrollAnimation();
 
   return (
     <div className={cx('container')} style={{height: '10000px'}}>
       <div className={cx('sticky')}>
         <div className={cx('slideContainer')}>
-          <Contents1 addAnimation={addAnimation}/>
-          <Contents2 addAnimation={addAnimation}/>
+          <Contents1 addAnimation={addAnimation} addClass={addClass}/>
+          {/* <Contents2 addAnimation={addAnimation}/> */}
         </div>
       </div>
     </div>

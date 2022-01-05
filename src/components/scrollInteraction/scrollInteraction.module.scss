@@ -23,7 +23,7 @@
 .slide {
   position: absolute;
   z-index: 0;
-  transition: all 0.1s linear;
+  // transition: all 0.1s linear;
   
   .bigText p {
     margin: 0;
@@ -34,4 +34,11 @@
     word-spacing: 1.5px;
     text-align: center;
   }
+
+  .bigText {
+    &.on {
+      color: gold;
+    }
+  }
+
 }

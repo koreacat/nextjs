@@ -8,16 +8,21 @@ import {
   Easing,
   AnimationData,
   InitData,
+  AddClassProps,
+  ClassData,
 } from './data';
 
 const isAmong = (pos: number, top: number, bottom: number) => pos >= top && pos <= bottom;
+const getKey = () => Math.random().toString(36);
 
-// TODO 역재생, 자동 기준점, ADD Class 로직 추가
-
+// TODO 
+// 1. 역재생 on/off
+// 2. baseLine 자동 계산 on/off
 export const useScrollAnimation = () => {
   const refs = useRef<Record<string, HTMLElement>>({});
   const initDataRecord: Record<string, InitData> = {};
   const animationDataRecord: Record<string, AnimationData[]> = {};
+  const classDataRecord: Record<string, ClassData> ={};
 
   useEffect(() => {
     onScroll();
@@ -31,6 +36,12 @@ export const useScrollAnimation = () => {
     const currentPos = scrollTop + window.innerHeight / 2;
     console.log(currentPos);
 
+    for(const key in classDataRecord) {
+      const classData = classDataRecord[key];
+      const ref = refs.current[key];
+      applyClass({ref, classData, currentPos});
+    }
+
     for (const key in initDataRecord) {
       const initData = initDataRecord[key];
       const animationDataArr = animationDataRecord[key];
@@ -42,7 +53,15 @@ export const useScrollAnimation = () => {
     }
   };
 
+  const applyClass = ({ref, classData, currentPos}) => {
+    const { className } = classData;
+    const { top, bottom } = classData;
+    if (isAmong(currentPos, top, bottom)) ref.classList.add(className);
+    else ref.classList.remove(className);
+  };
+
   const applyInitStyle = ({ ref, initData, currentPos }: ApplyInitStyleProps) => {
+    console.log('init');
     const { top, styles } = initData;
     for (const styleName in styles) {
       const { topValue, bottomValue, unit } = styles[styleName];
@@ -56,20 +75,23 @@ export const useScrollAnimation = () => {
       const { top, bottom, styles, easing } = animationData;
       const rate = Easing[easing]((currentPos - top) / (bottom - top));
 
-      for (const styleName in styles) {
-        const styleValues = styles[styleName];
-        applyAnimationStyle({ ref, styleName, styleValues, rate });
-      }
+      if(isAmong(currentPos, top, bottom)) applyAnimationStyle({ ref, styles, rate });
     }
   };
 
-  const applyAnimationStyle = ({ ref, styleName, styleValues, rate }: ApplyAnimationStyleProps) => {
-    if (!styleValues) return;
-    const { topValue, bottomValue, unit } = styleValues;
+  const applyAnimationStyle = ({ ref, styles, rate }: ApplyAnimationStyleProps) => {
+    console.log('animation');
+    for (const styleName in styles) {
+      const styleValues = styles[styleName];
 
-    if(typeof topValue === 'number' && typeof bottomValue === 'number') {
-      const value = topValue + (bottomValue - topValue) * rate;
-      applyStyle({ ref, styleName, value, unit });
+      if (styleValues) {
+        const { topValue, bottomValue, unit } = styleValues;
+
+        if(typeof topValue === 'number' && typeof bottomValue === 'number') {
+          const value = topValue + (bottomValue - topValue) * rate;
+          applyStyle({ ref, styleName, value, unit });
+        }
+      }
     }
   };
 
@@ -88,11 +110,17 @@ export const useScrollAnimation = () => {
   };
 
   const addAnimation = ({ ref, initData, animationDataArr }: AddAnimationProps) => {
-    const key = Math.random().toString(36);
+    const key = getKey();
     refs.current[key] = ref;
     initDataRecord[key] = initData;
     animationDataRecord[key] = animationDataArr;
   };
 
-  return { addAnimation };
+  const addClass = ({ ref, classData }: AddClassProps) => {
+    const key = getKey();
+    refs.current[key] = ref;
+    classDataRecord[key] = classData;
+  }
+
+  return { addAnimation, addClass };
 };

@@ -4,7 +4,7 @@ import styles from "./scrollInteraction.module.scss";
 
 const cx = classnames.bind(styles);
 
-const Contents1 = ({addAnimation}) => {
+const Contents1 = ({addAnimation, addClass}) => {
   const initData = {
     top: 500,
     bottom: 1900,
@@ -69,13 +69,23 @@ const Contents1 = ({addAnimation}) => {
     }
   ];
 
+  const classData = {
+    top: 800,
+    bottom: 1400,
+    className: cx('on'),
+  };
+
   const handleAnimation = (ref) => {
     addAnimation({ref, initData, animationDataArr})
   };
 
+  const handleClass = (ref) => {
+    addClass({ref, classData});
+  };
+
   return (
-    <div className={cx("slide")} ref={handleAnimation}>
-      <div className={cx("bigText")}>
+    <div ref={handleAnimation} className={cx("slide")}>
+      <div ref={handleClass} className={cx("bigText")}>
         <p>JOBDA - JOBDA - JOBDA</p>
       </div>
     </div>

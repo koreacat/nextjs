@@ -9,20 +9,18 @@ import {
   AnimationData,
   InitData,
   AddClassProps,
-  ClassData, ApplyClassProps,
+  ClassData,
 } from './data';
 
-const isAmong = (pos: number, top: number, bottom: number) => pos >= top && pos <= bottom;
+const isAmong = (pos: number, top: number, bottom: number) => pos >= top && pos < bottom;
 const getKey = () => Math.random().toString(36);
 
-// TODO
-// 1. 역재생 on/off
-// 2. baseLine 자동 계산 on/off
+// TODO 역재생 on/off, window resize
 export const useScrollAnimation = () => {
   const refs = useRef<Record<string, HTMLElement>>({});
   const initDataRecord: Record<string, InitData> = {};
   const animationDataRecord: Record<string, AnimationData[]> = {};
-  const classDataRecord: Record<string, ClassData> ={};
+  const classDataRecord: Record<string, ClassData> = {};
 
   useEffect(() => {
     onScroll();
@@ -32,62 +30,67 @@ export const useScrollAnimation = () => {
   }, []);
 
   const onScroll = () => {
-    const scrollTop = window.scrollY || window.pageYOffset;
-    const currentPos = scrollTop + window.innerHeight / 2;
-    console.log(currentPos);
+    const currentPos = window.pageYOffset || document.documentElement.scrollTop;
+    handleClass(currentPos);
+    handleStyle(currentPos);
+  };
 
-    for(const key in classDataRecord) {
+  const handleClass = (currentPos: number) => {
+    for (const key in classDataRecord) {
       const classData = classDataRecord[key];
       const ref = refs.current[key];
-      applyClass({ref, classData, currentPos});
-    }
+      const { className } = classData;
+      const { top, bottom, baseLineRef } = classData;
+      const baseLine = baseLineRef ? -baseLineRef?.getBoundingClientRect().top : currentPos;
 
+      if (isAmong(baseLine, top, bottom)) ref.classList.add(className);
+      else ref.classList.remove(className);
+    }
+  };
+
+  const handleStyle = (currentPos: number) => {
     for (const key in initDataRecord) {
       const initData = initDataRecord[key];
       const animationDataArr = animationDataRecord[key];
       const ref = refs.current[key];
-      const { top, bottom } = initData;
+      const { top, bottom, baseLineRef, styles } = initData;
+      const baseLine = baseLineRef ? -baseLineRef?.getBoundingClientRect().top : currentPos;
 
-      if (!isAmong(currentPos, top, bottom)) applyInitStyle({ ref, initData, currentPos });
+      if (!isAmong(baseLine, top, bottom)) applyInitStyle({ ref, top, styles, baseLine });
       else applyAnimationStyles({ ref, animationDataArr, currentPos });
     }
   };
 
-  const applyClass = ({ref, classData, currentPos}: ApplyClassProps) => {
-    const { className } = classData;
-    const { top, bottom } = classData;
-    if (isAmong(currentPos, top, bottom)) ref.classList.add(className);
-    else ref.classList.remove(className);
-  };
-
-  const applyInitStyle = ({ ref, initData, currentPos }: ApplyInitStyleProps) => {
-    console.log('init');
-    const { top, styles } = initData;
+  const applyInitStyle = ({ ref, top, styles, baseLine }: ApplyInitStyleProps) => {
     for (const styleName in styles) {
-      const { topValue, bottomValue, unit } = styles[styleName];
-      const value = currentPos <= top ? topValue : bottomValue;
-      applyStyle({ ref, styleName, value, unit });
+      const styleValues = styles[styleName];
+
+      if (styleValues) {
+        const { topValue, bottomValue, unit } = styleValues;
+        const value = baseLine <= top ? topValue : bottomValue;
+        applyStyle({ ref, styleName, value, unit });
+      }
     }
   };
 
   const applyAnimationStyles = ({ ref, animationDataArr, currentPos }: ApplyAnimationStylesProps) => {
     for (const animationData of animationDataArr) {
-      const { top, bottom, styles, easing } = animationData;
-      const rate = Easing[easing]((currentPos - top) / (bottom - top));
+      const { top, bottom, baseLineRef, styles, easing } = animationData;
+      const baseLine = baseLineRef ? -baseLineRef?.getBoundingClientRect().top : currentPos;
 
-      if(isAmong(currentPos, top, bottom)) applyAnimationStyle({ ref, styles, rate });
+      const rate = Easing[easing]((baseLine - top) / (bottom - top));
+      if (isAmong(baseLine, top, bottom)) applyAnimationStyle({ ref, styles, rate });
     }
   };
 
   const applyAnimationStyle = ({ ref, styles, rate }: ApplyAnimationStyleProps) => {
-    console.log('animation');
     for (const styleName in styles) {
       const styleValues = styles[styleName];
 
       if (styleValues) {
         const { topValue, bottomValue, unit } = styleValues;
 
-        if(typeof topValue === 'number' && typeof bottomValue === 'number') {
+        if (typeof topValue === 'number' && typeof bottomValue === 'number') {
           const value = topValue + (bottomValue - topValue) * rate;
           applyStyle({ ref, styleName, value, unit });
         }

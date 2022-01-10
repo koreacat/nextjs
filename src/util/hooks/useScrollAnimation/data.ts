@@ -13,14 +13,17 @@ export type EasingType = 'liner' | 'midSlow' | 'ease' | 'easeIn';
 export type AnimationStyleValue = { topValue: number | string; bottomValue: number | string; unit?: string };
 export type AnimationStyles = Record<keyof CSSProperties | TranslateType | string, AnimationStyleValue>;
 export type AddAnimation = ({ ref, initData, animationDataArr }: AddAnimationProps) => void;
+export type AddClass = ({ ref, classData }: AddClassProps) => void;
 
 export interface InitData {
+  baseLineRef?: HTMLElement | null;
   top: number;
   bottom: number;
   styles: Partial<AnimationStyles>;
 }
 
 export interface AnimationData {
+  baseLineRef?: HTMLElement | null;
   top: number;
   bottom: number;
   easing: EasingType;
@@ -28,6 +31,7 @@ export interface AnimationData {
 }
 
 export interface ClassData {
+  baseLineRef?: HTMLElement | null;
   top: number;
   bottom: number;
   className: string;
@@ -44,16 +48,11 @@ export interface AddClassProps {
   classData: ClassData;
 }
 
-export interface ApplyClassProps {
-  ref: HTMLElement;
-  classData: ClassData;
-  currentPos: number;
-}
-
 export interface ApplyInitStyleProps {
   ref: HTMLElement;
-  initData: any;
-  currentPos: number;
+  top: number;
+  styles: Partial<AnimationStyles>;
+  baseLine: number;
 }
 
 export interface ApplyAnimationStylesProps {

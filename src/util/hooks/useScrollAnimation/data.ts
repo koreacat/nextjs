@@ -17,23 +17,23 @@ export type AddClass = ({ ref, classData }: AddClassProps) => void;
 
 export interface InitData {
   baseLineRef?: HTMLElement | null;
-  top: number;
-  bottom: number;
+  top: () => number;
+  bottom: () => number;
   styles: Partial<AnimationStyles>;
 }
 
 export interface AnimationData {
   baseLineRef?: HTMLElement | null;
-  top: number;
-  bottom: number;
+  top: () => number;
+  bottom: () => number;
   easing: EasingType;
   styles: Partial<AnimationStyles>;
 }
 
 export interface ClassData {
   baseLineRef?: HTMLElement | null;
-  top: number;
-  bottom: number;
+  top: () => number;
+  bottom: () => number;
   className: string;
 }
 
@@ -50,7 +50,7 @@ export interface AddClassProps {
 
 export interface ApplyInitStyleProps {
   ref: HTMLElement;
-  top: number;
+  top: () => number;
   styles: Partial<AnimationStyles>;
   baseLine: number;
 }

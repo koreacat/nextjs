@@ -6,8 +6,8 @@ const cx = classnames.bind(styles);
 
 const Contents1 = ({addAnimation, addClass}) => {
   const initData = {
-    top: 500,
-    bottom: 1900,
+    top: () => 500,
+    bottom: () => 1900,
     styles: {
       opacity: {
         topValue: 0,
@@ -23,8 +23,8 @@ const Contents1 = ({addAnimation, addClass}) => {
 
   const animationDataArr: AnimationData[] = [
     {
-      top: 500,
-      bottom: 1900,
+      top: () => 500,
+      bottom: () => 1900,
       easing: 'midSlow',
       styles: {
         translateY: {
@@ -35,8 +35,8 @@ const Contents1 = ({addAnimation, addClass}) => {
       }
     },
     {
-      top: 500,
-      bottom: 800,
+      top: () => 500,
+      bottom: () => 800,
       easing: 'ease',
       styles: {
         opacity: {
@@ -46,8 +46,8 @@ const Contents1 = ({addAnimation, addClass}) => {
       }
     },
     {
-      top: 800,
-      bottom: 1400,
+      top: () => 800,
+      bottom: () => 1400,
       easing: 'liner',
       styles: {
         opacity: {
@@ -57,8 +57,8 @@ const Contents1 = ({addAnimation, addClass}) => {
       }
     },
     {
-      top: 1400,
-      bottom: 1900,
+      top: () => 1400,
+      bottom: () => 1900,
       easing: 'easeIn',
       styles: {
         opacity: {
@@ -70,8 +70,8 @@ const Contents1 = ({addAnimation, addClass}) => {
   ];
 
   const classData = {
-    top: 800,
-    bottom: 1400,
+    top: () => 800,
+    bottom: () => 1400,
     className: cx('on'),
   };
 

@@ -15,7 +15,7 @@ import {
 const isAmong = (pos: number, top: number, bottom: number) => pos >= top && pos < bottom;
 const getKey = () => Math.random().toString(36);
 
-// TODO 역재생 on/off, window resize
+// TODO 역재생 on/off
 export const useScrollAnimation = () => {
   const refs = useRef<Record<string, HTMLElement>>({});
   const initDataRecord: Record<string, InitData> = {};
@@ -43,7 +43,7 @@ export const useScrollAnimation = () => {
       const { top, bottom, baseLineRef } = classData;
       const baseLine = baseLineRef ? -baseLineRef?.getBoundingClientRect().top : currentPos;
 
-      if (isAmong(baseLine, top, bottom)) ref.classList.add(className);
+      if (isAmong(baseLine, top(), bottom())) ref.classList.add(className);
       else ref.classList.remove(className);
     }
   };
@@ -56,7 +56,7 @@ export const useScrollAnimation = () => {
       const { top, bottom, baseLineRef, styles } = initData;
       const baseLine = baseLineRef ? -baseLineRef?.getBoundingClientRect().top : currentPos;
 
-      if (!isAmong(baseLine, top, bottom)) applyInitStyle({ ref, top, styles, baseLine });
+      if (!isAmong(baseLine, top(), bottom())) applyInitStyle({ ref, top, styles, baseLine });
       else applyAnimationStyles({ ref, animationDataArr, currentPos });
     }
   };
@@ -67,7 +67,7 @@ export const useScrollAnimation = () => {
 
       if (styleValues) {
         const { topValue, bottomValue, unit } = styleValues;
-        const value = baseLine <= top ? topValue : bottomValue;
+        const value = baseLine <= top() ? topValue : bottomValue;
         applyStyle({ ref, styleName, value, unit });
       }
     }
@@ -78,8 +78,8 @@ export const useScrollAnimation = () => {
       const { top, bottom, baseLineRef, styles, easing } = animationData;
       const baseLine = baseLineRef ? -baseLineRef?.getBoundingClientRect().top : currentPos;
 
-      const rate = Easing[easing]((baseLine - top) / (bottom - top));
-      if (isAmong(baseLine, top, bottom)) applyAnimationStyle({ ref, styles, rate });
+      const rate = Easing[easing]((baseLine - top()) / (bottom() - top()));
+      if (isAmong(baseLine, top(), bottom())) applyAnimationStyle({ ref, styles, rate });
     }
   };
 

@@ -1,11 +1,17 @@
-import {AnimationData} from "../../util/hooks/useScrollAnimation/data";
 import classnames from "classnames/bind";
 import styles from "./scrollInteraction.module.scss";
+import {OnScrollStyles, StyleData} from "../../util/hooks/useScrollInteraction/data/styleData";
+import {OnScrollClassName} from "../../util/hooks/useScrollInteraction/data/classData";
 
 const cx = classnames.bind(styles);
 
-const Contents1 = ({addAnimation, addClass}) => {
-  const initData = {
+interface Contents1Props {
+  onScrollStyles: OnScrollStyles,
+  onScrollClassName: OnScrollClassName,
+}
+
+const Contents1 = ({onScrollStyles, onScrollClassName}: Contents1Props) => {
+  const initStyleData = {
     top: () => 500,
     bottom: () => 1900,
     styles: {
@@ -18,10 +24,11 @@ const Contents1 = ({addAnimation, addClass}) => {
         bottomValue: -60,
         unit: 'px',
       }
-    }
+    },
+    reverse: true
   };
 
-  const animationDataArr: AnimationData[] = [
+  const styleDataArr: StyleData[] = [
     {
       top: () => 500,
       bottom: () => 1900,
@@ -73,14 +80,15 @@ const Contents1 = ({addAnimation, addClass}) => {
     top: () => 800,
     bottom: () => 1400,
     className: cx('on'),
+    reverse: true
   };
 
   const handleAnimation = (ref) => {
-    addAnimation({ref, initData, animationDataArr})
+    onScrollStyles({$el: ref, initStyleData, styleDataArr})
   };
 
   const handleClass = (ref) => {
-    addClass({ref, classData});
+    onScrollClassName({$el: ref, classData});
   };
 
   return (

@@ -84,11 +84,11 @@ const Contents1 = ({onScrollStyles, onScrollClassName}: Contents1Props) => {
   };
 
   const handleAnimation = (ref) => {
-    onScrollStyles({$el: ref, initStyleData, styleDataArr})
+    onScrollStyles({el: ref, initStyleData, styleDataArr})
   };
 
   const handleClass = (ref) => {
-    onScrollClassName({$el: ref, classData});
+    onScrollClassName({el: ref, classData});
   };
 
   return (

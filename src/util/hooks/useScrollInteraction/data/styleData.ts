@@ -1,13 +1,13 @@
 import { CSSProperties } from 'react';
-import {EasingType} from "./easing";
+import { EasingType } from './easing';
 
 export type TranslateType = 'translateX' | 'translateY';
 export type StylesType = Record<keyof CSSProperties | TranslateType | string, StyleValue>;
 export type StyleValue = { topValue: number | string; bottomValue: number | string; unit?: string };
-export type OnScrollStyles = ({ $el, initStyleData, styleDataArr }: OnScrollStylesProps) => void;
+export type OnScrollStyles = ({ el, initStyleData, styleDataArr }: OnScrollStylesProps) => void;
 
 export interface InitStyleData {
-  $baseLineEl?: HTMLElement | null;
+  baseLineEl?: HTMLElement | null;
   top: () => number;
   bottom: () => number;
   styles: Partial<StylesType>;
@@ -15,7 +15,7 @@ export interface InitStyleData {
 }
 
 export interface ApplyInitStyleProps {
-  $el: HTMLElement;
+  el: HTMLElement;
   key: string;
   top: () => number;
   styles: Partial<StylesType>;
@@ -24,7 +24,7 @@ export interface ApplyInitStyleProps {
 }
 
 export interface StyleData {
-  $baseLineEl?: HTMLElement | null;
+  baseLineEl?: HTMLElement | null;
   top: () => number;
   bottom: () => number;
   easing: EasingType;
@@ -32,26 +32,26 @@ export interface StyleData {
 }
 
 export interface ApplyStylesProps {
-  $el: HTMLElement;
+  el: HTMLElement;
   styleDataArr: StyleData[];
   currentPos: number;
 }
 
 export interface ApplyStyleProps {
-  $el: HTMLElement;
+  el: HTMLElement;
   styles: Partial<StylesType>;
   rate: number;
 }
 
 export interface SetStyleProps {
-  $el: HTMLElement;
+  el: HTMLElement;
   styleName: string | any; // CSSStyleDeclaration
   value: number | string;
   unit?: string;
 }
 
 export interface OnScrollStylesProps {
-  $el: HTMLElement | null;
+  el: HTMLElement | null;
   initStyleData: InitStyleData;
   styleDataArr: StyleData[];
 }

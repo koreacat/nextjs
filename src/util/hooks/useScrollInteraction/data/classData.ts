@@ -1,7 +1,7 @@
-export type OnScrollClassName = ({ $el, classData }: OnScrollClassNameProps) => void;
+export type OnScrollClassName = ({ el, classData }: OnScrollClassNameProps) => void;
 
 export interface ClassNameData {
-  $baseLineEl?: HTMLElement | null;
+  baseLineEl?: HTMLElement | null;
   top: () => number;
   bottom: () => number;
   className: string;
@@ -9,6 +9,6 @@ export interface ClassNameData {
 }
 
 export interface OnScrollClassNameProps {
-  $el: HTMLElement | null;
+  el: HTMLElement | null;
   classData: ClassNameData;
 }

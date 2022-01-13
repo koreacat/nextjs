@@ -1,5 +1,5 @@
-import {ClassNameData, OnScrollClassNameProps} from "./data/classData";
-import {getBaseLine, getKey, isBetween} from "./common";
+import { ClassNameData, OnScrollClassNameProps } from './data/classData';
+import { getBaseLine, getKey, isBetween } from './common';
 
 /**
  * scrollClassName() 스크롤 시 지정한 구간에서 class 를 add, remove 해주는 함수
@@ -19,14 +19,14 @@ const scrollClassName = (els: Record<string, HTMLElement>) => {
   const handleClassName = (currentPos: number) => {
     for (const key in classDataRecord) {
       const classData = classDataRecord[key];
-      const $el = els[key];
-      const { $baseLineEl, top, bottom, className, reverse } = classData;
-      const baseLine = getBaseLine($baseLineEl, currentPos);
+      const el = els[key];
+      const { baseLineEl, top, bottom, className, reverse } = classData;
+      const baseLine = getBaseLine(baseLineEl, currentPos);
 
       if (isBetween(baseLine, top(), bottom())) {
-        $el.classList.add(className);
+        el.classList.add(className);
         handleClassReverse(reverse, key);
-      } else $el.classList.remove(className);
+      } else el.classList.remove(className);
     }
   };
 
@@ -34,10 +34,10 @@ const scrollClassName = (els: Record<string, HTMLElement>) => {
     if (!reverse) delete classDataRecord[key];
   };
 
-  const onScrollClassName = ({ $el, classData }: OnScrollClassNameProps) => {
-    if (!$el) throw new Error('$el is not defined');
+  const onScrollClassName = ({ el, classData }: OnScrollClassNameProps) => {
+    if (!el) throw new Error('el is not defined');
     const key = getKey();
-    els[key] = $el;
+    els[key] = el;
     classDataRecord[key] = classData;
   };
 

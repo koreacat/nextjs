@@ -75,7 +75,7 @@ const Contents2 = ({onScrollStyles}: Contents2Props) => {
   ];
 
   const handleAnimation = (ref) => {
-    onScrollStyles({$el: ref, initStyleData , styleDataArr})
+    onScrollStyles({el: ref, initStyleData , styleDataArr})
   };
 
   return (

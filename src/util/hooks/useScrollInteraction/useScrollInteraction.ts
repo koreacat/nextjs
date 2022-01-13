@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import scrollClassName from "./scrollClassName";
-import scrollStyles from "./scrollStyles";
+import scrollClassName from './scrollClassName';
+import scrollStyles from './scrollStyles';
 
 /**
  *
@@ -18,14 +18,14 @@ import scrollStyles from "./scrollStyles";
  *      스크롤 시 지정한 구간에서 class 를 add, remove 해주는 함수
  *
  *  - param
- *      $el: 스크롤 시 효과를 주고자하는 대상 html dom element
- *      $baseLine?: default - window.pageYOffset(현재 스크롤 위치)
- *                기준점이 되어줄 $el을 설정할 수 있는 옵션,
- *                $baseLine을 따로 설정하지않으면, 현재 스크롤 위치가 기준점이 되기 때문에,
+ *      el: 스크롤 시 효과를 주고자하는 대상 html dom element
+ *      baseLine?: default - window.pageYOffset(현재 스크롤 위치)
+ *                기준점이 되어줄 el을 설정할 수 있는 옵션,
+ *                baseLine을 따로 설정하지않으면, 현재 스크롤 위치가 기준점이 되기 때문에,
  *                상단 요소의 높이 변화가 생겼을 경우 아래쪽의 모든 요소들이 영향을 받을 수 있음
- *      initData: onScrollStyles()에서 style 변경에 필요한 초기 데이터, $el이 설정한 구간에서 벗어났을 때 style 데이터
- *      styleDataArr: onScrollStyles()에서 style 변경에 필요한 데이터, $el이 설정한 구간 내에 있을 때 적용될 style 데이터
- *      classData: onScrollClassName()에서 class 변경에 필요한 데이터, $el이 설정한 구간 내에 있을 때 적용될 class 데이터
+ *      initData: onScrollStyles()에서 style 변경에 필요한 초기 데이터, el이 설정한 구간에서 벗어났을 때 style 데이터
+ *      styleDataArr: onScrollStyles()에서 style 변경에 필요한 데이터, el이 설정한 구간 내에 있을 때 적용될 style 데이터
+ *      classData: onScrollClassName()에서 class 변경에 필요한 데이터, el이 설정한 구간 내에 있을 때 적용될 class 데이터
  *      reverse?: default - false
  *                역재생을 허용할 것인지에 대한 옵션,
  *                true 로 설정할 경우 설정한 구간에서 벗어났다가 재진입할 경우 다시 class 나 style 변경이이루어 진다.
@@ -49,12 +49,12 @@ import scrollStyles from "./scrollStyles";
  *      }
  *
  *
- *      2. 자식 컴포넌트에서 스크롤시 변경이 필요한 $el 과 데이터를
+ *      2. 자식 컴포넌트에서 스크롤시 변경이 필요한 el 과 데이터를
  *         onScrollStyles 나 onScrollClassName 로 등록해줍니다.
  *
  *      ...
  *      const classData = {
- *        $baseLineEl: baseLineRef.current,
+ *        baseLineEl: baseLineRef.current,
  *        top: () => -window.innerHeight + 300,
  *        bottom: () => -window.innerHeight + 1500,
  *        className: cx('visible'),
@@ -62,7 +62,7 @@ import scrollStyles from "./scrollStyles";
  *      }
  *
  *      useEffect(() => {
- *        onScrollClassName({ $el: step1Ref.current, classData});
+ *        onScrollClassName({ el: step1Ref.current, classData});
  *      }, []);
  *      ...
  *
@@ -71,7 +71,7 @@ import scrollStyles from "./scrollStyles";
 export const useScrollInteraction = () => {
   const elsRef = useRef<Record<string, HTMLElement>>({});
   const { handleClassName, onScrollClassName } = scrollClassName(elsRef.current);
-  const { handleStyle, onScrollStyles } = scrollStyles(elsRef.current);
+  const { handleStyles, onScrollStyles } = scrollStyles(elsRef.current);
 
   useEffect(() => {
     onScroll();
@@ -83,7 +83,7 @@ export const useScrollInteraction = () => {
   const onScroll = () => {
     const currentPos = window.pageYOffset || document.documentElement.scrollTop;
     handleClassName(currentPos);
-    handleStyle(currentPos);
+    handleStyles(currentPos);
   };
 
   return { onScrollStyles, onScrollClassName };

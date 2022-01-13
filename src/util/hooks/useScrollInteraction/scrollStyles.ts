@@ -6,9 +6,9 @@ import {
   OnScrollStylesProps,
   SetStyleProps,
   StyleData,
-} from "./data/styleData";
-import {getBaseLine, getKey, isBetween} from "./common";
-import {Easing} from "./data/easing";
+} from './data/styleData';
+import { getBaseLine, getKey, isBetween } from './common';
+import { Easing } from './data/easing';
 
 /**
  * scrollStyles() 스크롤 시 지정한 구간에서 style 을 적용 해주는 함수
@@ -28,16 +28,16 @@ const scrollStyles = (els: Record<string, HTMLElement>) => {
   const initStyleDataRecord: Record<string, InitStyleData> = {};
   const styleDataRecord: Record<string, StyleData[]> = {};
 
-  const handleStyle = (currentPos: number) => {
+  const handleStyles = (currentPos: number) => {
     for (const key in initStyleDataRecord) {
       const initData = initStyleDataRecord[key];
       const styleDataArr = styleDataRecord[key];
-      const $el = els[key];
-      const { top, bottom, $baseLineEl, styles, reverse } = initData;
-      const baseLine = getBaseLine($baseLineEl, currentPos);
+      const el = els[key];
+      const { top, bottom, baseLineEl, styles, reverse } = initData;
+      const baseLine = getBaseLine(baseLineEl, currentPos);
 
-      if (isBetween(baseLine, top(), bottom())) applyStyles({ $el, styleDataArr, currentPos });
-      else applyInitStyle({ key, $el, top, styles, baseLine, reverse });
+      if (isBetween(baseLine, top(), bottom())) applyStyles({ el, styleDataArr, currentPos });
+      else applyInitStyle({ key, el, top, styles, baseLine, reverse });
     }
   };
 
@@ -48,7 +48,7 @@ const scrollStyles = (els: Record<string, HTMLElement>) => {
     }
   };
 
-  const applyInitStyle = ({ key, $el, top, styles, baseLine, reverse }: ApplyInitStyleProps) => {
+  const applyInitStyle = ({ key, el, top, styles, baseLine, reverse }: ApplyInitStyleProps) => {
     for (const styleName in styles) {
       const styleValues = styles[styleName];
 
@@ -57,22 +57,23 @@ const scrollStyles = (els: Record<string, HTMLElement>) => {
         const isOverTop = baseLine <= top();
         const value = isOverTop ? topValue : bottomValue;
         if (!isOverTop) handleStyleReverse(reverse, key);
-        setStyle({ $el, styleName, value, unit });
+        setStyle({ el, styleName, value, unit });
       }
     }
   };
 
-  const applyStyles = ({ $el, styleDataArr, currentPos }: ApplyStylesProps) => {
+  const applyStyles = ({ el, styleDataArr, currentPos }: ApplyStylesProps) => {
+    console.log(el, styleDataArr, currentPos);
     for (const animationData of styleDataArr) {
-      const { $baseLineEl, top, bottom, styles, easing } = animationData;
-      const baseLine = getBaseLine($baseLineEl, currentPos);
+      const { baseLineEl, top, bottom, styles, easing } = animationData;
+      const baseLine = getBaseLine(baseLineEl, currentPos);
 
       const rate = Easing[easing]((baseLine - top()) / (bottom() - top()));
-      if (isBetween(baseLine, top(), bottom())) applyStyle({ $el, styles, rate });
+      if (isBetween(baseLine, top(), bottom())) applyStyle({ el, styles, rate });
     }
   };
 
-  const applyStyle = ({ $el, styles, rate }: ApplyStyleProps) => {
+  const applyStyle = ({ el, styles, rate }: ApplyStyleProps) => {
     for (const styleName in styles) {
       const styleValues = styles[styleName];
 
@@ -81,7 +82,7 @@ const scrollStyles = (els: Record<string, HTMLElement>) => {
 
         if (typeof topValue === 'number' && typeof bottomValue === 'number') {
           const value = topValue + (bottomValue - topValue) * rate;
-          setStyle({ $el, styleName, value, unit });
+          setStyle({ el, styleName, value, unit });
         } else {
           // TODO string value css
         }
@@ -89,29 +90,29 @@ const scrollStyles = (els: Record<string, HTMLElement>) => {
     }
   };
 
-  const setStyle = ({ $el, styleName, value, unit = '' }: SetStyleProps) => {
+  const setStyle = ({ el, styleName, value, unit = '' }: SetStyleProps) => {
     switch (styleName) {
       case 'translateX':
-        $el.style.transform = `translateX(${value}${unit})`;
+        el.style.transform = `translateX(${value}${unit})`;
         break;
       case 'translateY':
-        $el.style.transform = `translateY(${value}${unit})`;
+        el.style.transform = `translateY(${value}${unit})`;
         break;
       default:
-        $el.style[styleName] = `${value}${unit}`;
+        el.style[styleName] = `${value}${unit}`;
         break;
     }
   };
 
-  const onScrollStyles = ({ $el, initStyleData, styleDataArr }: OnScrollStylesProps) => {
-    if (!$el) throw new Error('$el is not defined');
+  const onScrollStyles = ({ el, initStyleData, styleDataArr }: OnScrollStylesProps) => {
+    if (!el) throw new Error('el is not defined');
     const key = getKey();
-    els[key] = $el;
+    els[key] = el;
     initStyleDataRecord[key] = initStyleData;
     styleDataRecord[key] = styleDataArr;
   };
 
-  return { handleStyle, onScrollStyles };
+  return { handleStyles, onScrollStyles };
 };
 
 export default scrollStyles;

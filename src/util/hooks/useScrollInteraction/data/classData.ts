@@ -1,4 +1,4 @@
-export type OnScrollClassName = ({ el, classData }: OnScrollClassNameProps) => void;
+export type OnScrollClassName = ({ el, classNameData }: OnScrollClassNameProps) => void;
 
 export interface ClassNameData {
   baseLineEl?: HTMLElement | null;
@@ -10,5 +10,5 @@ export interface ClassNameData {
 
 export interface OnScrollClassNameProps {
   el: HTMLElement | null;
-  classData: ClassNameData;
+  classNameData: ClassNameData;
 }

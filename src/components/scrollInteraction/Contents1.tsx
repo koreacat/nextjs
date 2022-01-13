@@ -76,7 +76,7 @@ const Contents1 = ({onScrollStyles, onScrollClassName}: Contents1Props) => {
     }
   ];
 
-  const classData = {
+  const classNameData = {
     top: () => 800,
     bottom: () => 1400,
     className: cx('on'),
@@ -88,7 +88,7 @@ const Contents1 = ({onScrollStyles, onScrollClassName}: Contents1Props) => {
   };
 
   const handleClass = (ref) => {
-    onScrollClassName({el: ref, classData});
+    onScrollClassName({el: ref, classNameData});
   };
 
   return (

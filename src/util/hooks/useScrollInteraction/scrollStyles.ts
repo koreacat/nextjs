@@ -7,7 +7,7 @@ import {
   SetStyleProps,
   StyleData,
 } from './data/styleData';
-import { getBaseLine, getKey, isBetween } from './common';
+import { getBaseLine, getDocumentHeight, getKey, isBetween } from './common';
 import { Easing } from './data/easing';
 
 /**
@@ -21,6 +21,10 @@ import { Easing } from './data/easing';
  *    reverse(역재생) 옵션이 false 인 경우 (default false)
  *    style 이 설정한 구간까지 모두 적용되면, styleDataRecord 에서 삭제시켜 style 을 변경하지 않는다.
  *
+ * - top() [default: html 문서의 총 height (getDocumentHeight())]
+ *    스크롤 인터랙션이 트리거되는 위치
+ *    baseLine 을 기준으로 top 위치를 계산하며,
+ *    baseLine 이 없다면 최상단부터 위치를 계산한다.
  *
  */
 
@@ -29,14 +33,11 @@ const scrollStyles = (els: Record<string, HTMLElement>) => {
   const styleDataRecord: Record<string, StyleData[]> = {};
 
   const handleStyles = (currentPos: number) => {
-    const htmlEl = document.documentElement;
-    const height = Math.max(htmlEl.clientHeight, htmlEl.scrollHeight, htmlEl.offsetHeight);
-
     for (const key in initStyleDataRecord) {
       const initData = initStyleDataRecord[key];
       const styleDataArr = styleDataRecord[key];
       const el = els[key];
-      const { top, bottom = () => height, baseLineEl, styles, reverse } = initData;
+      const { top, bottom = () => getDocumentHeight(), baseLineEl, styles, reverse } = initData;
       const baseLine = getBaseLine(baseLineEl, currentPos);
 
       if (isBetween(baseLine, top(), bottom())) applyStyles({ el, styleDataArr, currentPos });
@@ -66,11 +67,8 @@ const scrollStyles = (els: Record<string, HTMLElement>) => {
   };
 
   const applyStyles = ({ el, styleDataArr, currentPos }: ApplyStylesProps) => {
-    const htmlEl = document.documentElement;
-    const height = Math.max(htmlEl.clientHeight, htmlEl.scrollHeight, htmlEl.offsetHeight);
-
     for (const animationData of styleDataArr) {
-      const { baseLineEl, top, bottom = () => height, styles, easing } = animationData;
+      const { baseLineEl, top, bottom = () => getDocumentHeight(), styles, easing } = animationData;
       const baseLine = getBaseLine(baseLineEl, currentPos);
 
       const rate = Easing[easing]((baseLine - top()) / (bottom() - top()));

@@ -7,8 +7,6 @@ import MaskInteraction from "../components/maskInteraction";
 const MaskInteractionPage = () => {
   return (
     <Layout>
-      <Header/>
-      <FixedHeader/>
       <Contents>
         <MaskInteraction/>
       </Contents>

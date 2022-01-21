@@ -16,7 +16,7 @@ export default function Home() {
 			<Header/>
 			<FixedHeader/>
 			<Contents>
-        <Index/>
+        		<Index/>
 			</Contents>
 			<Footer/>
 		</Layout>

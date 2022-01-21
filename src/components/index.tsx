@@ -51,6 +51,16 @@ const Index = () => {
           <Link href={'/waveText'}>
             <a className={cx('contents')}>
               WaveText
+              <i className={cx('new')}>new</i>
+              <i className={cx('dom')}>dom</i>
+              <i className={cx('svg')}>svg</i>
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link href={'/cards'}>
+            <a className={cx('contents')}>
+              Cards
               <i className={cx('dom')}>dom</i>
             </a>
           </Link>

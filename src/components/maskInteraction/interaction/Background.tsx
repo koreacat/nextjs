@@ -46,7 +46,7 @@ const Background = ({ backgroundRef, frames }: BackgroundProps) => {
   return (
     <Container ref={backgroundRef} width={ContainerWidth} height={ContainerHeight}>
       <Text
-        text={letterArr[num]}
+        text={'취업의\n상식'}
         y={162}
         style={
           new PIXI.TextStyle({

@@ -9,7 +9,7 @@ export type OnScrollStyles = ({ el, initStyleData, styleDataArr }: OnScrollStyle
 export interface InitStyleData {
   baseLineEl?: HTMLElement | null;
   top: () => number;
-  bottom: () => number;
+  bottom?: () => number;
   styles: Partial<StylesType>;
   reverse?: boolean;
 }
@@ -26,7 +26,7 @@ export interface ApplyInitStyleProps {
 export interface StyleData {
   baseLineEl?: HTMLElement | null;
   top: () => number;
-  bottom: () => number;
+  bottom?: () => number;
   easing: EasingType;
   styles: Partial<StylesType>;
 }

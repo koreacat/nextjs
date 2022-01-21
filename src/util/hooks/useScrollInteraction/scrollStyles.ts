@@ -29,11 +29,14 @@ const scrollStyles = (els: Record<string, HTMLElement>) => {
   const styleDataRecord: Record<string, StyleData[]> = {};
 
   const handleStyles = (currentPos: number) => {
+    const htmlEl = document.documentElement;
+    const height = Math.max(htmlEl.clientHeight, htmlEl.scrollHeight, htmlEl.offsetHeight);
+
     for (const key in initStyleDataRecord) {
       const initData = initStyleDataRecord[key];
       const styleDataArr = styleDataRecord[key];
       const el = els[key];
-      const { top, bottom, baseLineEl, styles, reverse } = initData;
+      const { top, bottom = () => height, baseLineEl, styles, reverse } = initData;
       const baseLine = getBaseLine(baseLineEl, currentPos);
 
       if (isBetween(baseLine, top(), bottom())) applyStyles({ el, styleDataArr, currentPos });
@@ -63,9 +66,11 @@ const scrollStyles = (els: Record<string, HTMLElement>) => {
   };
 
   const applyStyles = ({ el, styleDataArr, currentPos }: ApplyStylesProps) => {
-    console.log(el, styleDataArr, currentPos);
+    const htmlEl = document.documentElement;
+    const height = Math.max(htmlEl.clientHeight, htmlEl.scrollHeight, htmlEl.offsetHeight);
+
     for (const animationData of styleDataArr) {
-      const { baseLineEl, top, bottom, styles, easing } = animationData;
+      const { baseLineEl, top, bottom = () => height, styles, easing } = animationData;
       const baseLine = getBaseLine(baseLineEl, currentPos);
 
       const rate = Easing[easing]((baseLine - top()) / (bottom() - top()));

@@ -17,10 +17,13 @@ const scrollClassName = (els: Record<string, HTMLElement>) => {
   const classNameDataRecord: Record<string, ClassNameData> = {};
 
   const handleClassName = (currentPos: number) => {
+    const htmlEl = document.documentElement;
+    const height = Math.max(htmlEl.clientHeight, htmlEl.scrollHeight, htmlEl.offsetHeight);
+
     for (const key in classNameDataRecord) {
       const classData = classNameDataRecord[key];
       const el = els[key];
-      const { baseLineEl, top, bottom, className, reverse } = classData;
+      const { baseLineEl, top, bottom = () => height, className, reverse } = classData;
       const baseLine = getBaseLine(baseLineEl, currentPos);
 
       if (isBetween(baseLine, top(), bottom())) {

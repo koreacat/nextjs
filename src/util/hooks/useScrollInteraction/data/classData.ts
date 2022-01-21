@@ -3,7 +3,7 @@ export type OnScrollClassName = ({ el, classNameData }: OnScrollClassNameProps) 
 export interface ClassNameData {
   baseLineEl?: HTMLElement | null;
   top: () => number;
-  bottom: () => number;
+  bottom?: () => number;
   className: string;
   reverse?: boolean;
 }

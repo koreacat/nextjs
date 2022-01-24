@@ -1,45 +1,12 @@
 @import '@styles/variables/path.scss';
 
-/*  NotoSans  */
-@font-face {
-    font-family: 'NotoSansKR';
-    font-style: normal;
-    font-weight: 400;
-    src: url($FONT_PATH + '/NotoSansKR-Regular.otf') format('opentype');
-}
+// Pretendard
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
+/*  Wemakeprice  */
 @font-face {
-    font-family: 'NotoSansKR';
-    font-style: normal;
-    font-weight: 500;
-    src: url($FONT_PATH + '/NotoSansKR-Medium.otf') format('opentype');
-}
-
-@font-face {
-    font-family: 'NotoSansKR';
+    font-family: 'Wemakeprice';
     font-style: normal;
     font-weight: 700;
-    src: url($FONT_PATH + '/NotoSansKR-Bold.otf') format('opentype');
-}
-
-@font-face {
-    font-family: 'NotoSansKR';
-    font-style: normal;
-    font-weight: 900;
-    src: url($FONT_PATH + '/NotoSansKR-Black.otf') format('opentype');
-}
-
-/* Montserrat */
-@font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 700;
-    src: url($FONT_PATH + '/Montserrat-Bold.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 900;
-    src: url($FONT_PATH + '/Montserrat-Black.ttf') format('truetype');
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Bold.woff') format('woff');
 }

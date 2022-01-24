@@ -1,0 +1,387 @@
+@import '@styles/common.scss';
+
+$COMPONENT_IMG_PATH: $STATIC_IMG_PATH + '/introduce';
+$FADEIN_DURATION: 0.5s;
+
+// 매칭 정보 영역
+.matchInfoArea {
+  overflow: hidden;
+  padding: 160px 0;
+  background-color: $C_COOL_GRAY_30;
+}
+
+// 타이틀 영역
+.matchTitleArea {
+  text-align: center;
+
+  &.on {
+    .text,
+    .title {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .text {
+    display: inline-block;
+    font-family: $F_PRETENDARD;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 32px;
+    color: $C_COOL_GRAY_70;
+    vertical-align: top;
+    transform: translateY(24px);
+    transition: transform $FADEIN_DURATION ease-in-out, opacity $FADEIN_DURATION ease-in-out;
+    opacity: 0;
+  }
+
+  .title {
+    display: block;
+    margin-top: 24px;
+    font-family: $F_PRETENDARD;
+    font-size: 96px;
+    font-weight: 800;
+    line-height: 120px;
+    color: $C_COOL_GRAY_90;
+    transform: translateY(24px);
+    transition: transform $FADEIN_DURATION $FADEIN_DURATION ease-in-out,
+      opacity $FADEIN_DURATION $FADEIN_DURATION ease-in-out;
+    opacity: 0;
+  }
+}
+
+// 이미지 영역
+.imgArea {
+  position: relative;
+  height: 766px;
+  margin: 96px 0 240px;
+
+  &.on {
+    .imgList {
+      .listItem {
+        transform: translateY(0) skew(0) !important;
+      }
+    }
+
+    .desc {
+      opacity: 1;
+
+      &.type1 {
+        // 왼쪽으로 요소 크기(-100%) / 왼쪽(-)으로 이미지 절반(268px) / 왼쪽(-)으로 가이드 간격(24px)
+        transform: translate(calc(-100% - 268px - 24px), 0);
+      }
+
+      &.type2 {
+        // 오른쪽으로 요소 크기(100%) / 오른쪽(+)으로 이미지 절반(268px) / 오른쪽(+)으로 가이드 간격(36px)
+        transform: translate(calc(100% + 268px + 36px), 0);
+      }
+    }
+  }
+
+  .desc {
+    position: absolute;
+    top: 170px;
+    font-family: $F_PRETENDARD;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 28px;
+    color: $C_COOL_GRAY_80;
+    transition: transform 0.5s 1s ease-in-out, opacity 0.5s 1s ease-in-out;
+    opacity: 0;
+
+    &.type1 {
+      left: 50%;
+      // 왼쪽으로 요소 크기(-100%) / 왼쪽(-)으로 이미지 절반(268px) / 왼쪽(-)으로 가이드 간격(24px)
+      transform: translate(calc(-100% - 268px - 24px), 48px);
+    }
+
+    &.type2 {
+      right: 50%;
+      // 오른쪽으로 요소 크기(100%) / 오른쪽(+)으로 이미지 절반(268px) / 오른쪽(+)으로 가이드 간격(36px)
+      transform: translate(calc(100% + 268px + 36px), 48px);
+      transition-delay: 1.5s;
+    }
+  }
+
+  .imgList {
+    position: absolute;
+    top: 388px;
+    left: 50%;
+    white-space: nowrap;
+    transform: translateX(calc(-50% + 4px));
+
+    .listItem {
+      display: inline-block;
+      width: 224px;
+      height: 256px;
+      vertical-align: top;
+      transition: transform 1s ease-in-out;
+
+      &:before {
+        display: block;
+        width: 224px;
+        height: 256px;
+        background-size: cover;
+        content: '';
+      }
+
+      @for $i from 1 through 6 {
+        &.type#{$i} {
+          &:before {
+            background-image: url($COMPONENT_IMG_PATH + '/imgMatch#{$i}.png');
+          }
+        }
+      }
+
+      & + .listItem {
+        margin-left: 24px;
+      }
+
+      &.type1 {
+        transform: translateY(288px);
+      }
+
+      &.type2 {
+        transform: translateY(192px);
+      }
+
+      &.type3 {
+        transform: translateY(96px);
+      }
+
+      &.type4 {
+        transform: translateY(-96px);
+      }
+
+      &.type5 {
+        transform: translateY(-192px);
+      }
+
+      &.type6 {
+        transform: translateY(-288px);
+      }
+
+      &.empty {
+        width: 400px;
+        margin: 0 -24px 0 0;
+
+        &:before {
+          content: none;
+        }
+      }
+    }
+  }
+
+  &:after {
+    position: relative;
+    display: block;
+    width: 536px;
+    height: 766px;
+    margin: 0 auto;
+    background-image: url($COMPONENT_IMG_PATH + '/imgMatchMobile.png');
+    background-size: cover;
+    content: '';
+  }
+}
+
+// 매칭 정보 리스트 영역
+.matchInfoInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 928px;
+  margin: 0 auto;
+
+  .infoTitle {
+    display: block;
+    font-family: $F_PRETENDARD;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 40px;
+    color: $C_COOL_GRAY_90;
+  }
+
+  .infoDesc {
+    margin-top: 16px;
+    font-family: $F_PRETENDARD;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 24px;
+    color: $C_COOL_GRAY_60;
+  }
+
+  & + .matchInfoInner {
+    margin-top: 32px;
+  }
+
+  .matchInfoWrap {
+    .matchInfoBox {
+      &:before {
+        display: block;
+        height: 64px;
+        margin-bottom: 32px;
+        background-size: cover;
+        content: '';
+      }
+    }
+
+    .infoTitle {
+      font-size: 24px;
+      line-height: 34px;
+    }
+
+    .infoDesc {
+      margin-top: 8px;
+    }
+  }
+
+  .matchInfoBox {
+    width: 448px;
+    padding: 48px;
+    border-radius: 16px;
+    background-color: $C_WHITE;
+    transition: transform 0.4s ease-out;
+
+    & + .matchInfoBox {
+      margin-top: 32px;
+    }
+
+    &.type1 {
+      padding-bottom: 0;
+      transform: translateY(120px);
+
+      &:after {
+        display: block;
+        margin: 98px auto 0;
+        width: 352px;
+        height: 398px;
+        background-image: url($COMPONENT_IMG_PATH + '/iconMatchInfo1.png');
+        background-size: cover;
+        content: '';
+      }
+    }
+
+    &.type2 {
+      transform: translateY(240px);
+
+      &:before {
+        width: 113px;
+        background-image: url($COMPONENT_IMG_PATH + '/iconMatchInfo2.png');
+      }
+    }
+
+    &.type3 {
+      transform: translateY(420px);
+
+      &:before {
+        width: 101px;
+        background-image: url($COMPONENT_IMG_PATH + '/iconMatchInfo3.png');
+      }
+    }
+
+    &.type4 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 400px;
+      padding-right: 144px;
+      transform: translateY(440px);
+
+      .infoDesc {
+        margin-top: 24px;
+      }
+
+      .emphasis {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 28px;
+        color: $C_COOL_GRAY_70;
+      }
+
+      &:after {
+        flex: none;
+        width: 224px;
+        height: 227px;
+        background-image: url($COMPONENT_IMG_PATH + '/iconMatchInfo4.png');
+        background-size: cover;
+        content: '';
+      }
+    }
+  }
+}
+
+// 조이 영역
+.joyArea {
+  margin-top: 160px;
+  text-align: center;
+
+  &.on {
+    .title,
+    .btnMatch,
+    .text {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .videoWrap {
+    overflow: hidden;
+    width: 240px;
+    height: 240px;
+    margin: 0 auto;
+    border-radius: 50%;
+  }
+
+  .title {
+    display: block;
+    margin-top: 80px;
+    font-family: $F_PRETENDARD;
+    font-size: 96px;
+    font-weight: 800;
+    line-height: 120px;
+    color: $C_BLACK;
+    transform: translateY(24px);
+    opacity: 0;
+    transition: transform $FADEIN_DURATION ease-in-out, opacity $FADEIN_DURATION ease-in-out;
+  }
+
+  .btnMatch {
+    display: inline-block;
+    margin-top: 48px;
+    width: 300px;
+    height: 72px;
+    border-radius: 36px;
+    background-color: $C_COOL_GRAY_90;
+    font-family: $F_PRETENDARD;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 72px;
+    color: $C_WHITE;
+    vertical-align: top;
+    transform: translateY(24px);
+    opacity: 0;
+    transition: transform $FADEIN_DURATION $FADEIN_DURATION ease-in-out,
+      opacity $FADEIN_DURATION $FADEIN_DURATION ease-in-out;
+
+    &:hover {
+      background-color: $C_GREEN_200;
+    }
+  }
+
+  .text {
+    display: block;
+    margin-top: 24px;
+    font-family: $F_PRETENDARD;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 28px;
+    color: $C_COOL_GRAY_60;
+    transform: translateY(24px);
+    opacity: 0;
+    transition: transform $FADEIN_DURATION $FADEIN_DURATION * 2 ease-in-out,
+      opacity $FADEIN_DURATION $FADEIN_DURATION * 2 ease-in-out;
+  }
+}

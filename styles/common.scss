@@ -17,3 +17,14 @@
     margin: -1px;
     clip: rect(0, 0, 0, 0);
 }
+
+// 역검 강조
+.textEmphasis {
+    display: inline-block;
+    font-family: $F_WEMAKE_PRICE;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    color: $C_SKY_200;
+    vertical-align: 2px;
+}

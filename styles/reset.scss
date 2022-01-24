@@ -5,7 +5,7 @@
 *,
 :before,
 :after {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
@@ -35,98 +35,103 @@ fieldset,
 legend,
 iframe,
 figure {
-	margin: 0;
-	padding: 0;
-	font-size: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
 }
 
 html,
 body {
-	height: 100%;
-	-webkit-text-size-adjust: none;
+  height: 100%;
+  -webkit-text-size-adjust: none;
 }
 
 body {
-	min-width: $MIN_WIDTH;
-	font-family: NotoSanskr, Dotum, sans-serif;
-	font-size: 12px;
-	line-height: 1.4;
-	color: #25282b;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+  min-width: $MIN_WIDTH;
+  font-family: $F_NOTO_SANS_KR;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #25282b;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 address,
 em {
-	font-style: normal;
+  font-style: normal;
 }
 
 fieldset,
 img {
-	border: 0;
-	vertical-align: top;
+  border: 0;
+  vertical-align: top;
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 select {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 input {
-	border-radius: 0;
-	vertical-align: middle;
+  border-radius: 0;
+  vertical-align: middle;
 
-	&::-webkit-search-cancel-button {
-		appearance: none;
-	}
+  &::-webkit-search-cancel-button {
+    appearance: none;
+  }
 
-	&::-ms-clear {
-		display: none;
-	}
+  &::-ms-clear {
+    display: none;
+  }
 
-	&::-webkit-inner-spin-button,
-    &::-webkit-outer-spin-button {
-		display: none;
-    }
+  // ms 계열 브라우저 - 비밀번호 보기 버튼 제거
+  &::-ms-reveal {
+    display: none;
+  }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    display: none;
+  }
 }
 
 i {
-    font-style: normal;
+  font-style: normal;
 }
 
 dl,
 ol,
 ul {
-	list-style: none;
+  list-style: none;
 }
 
 a {
-	color: inherit;
-	text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 
-	&[role='button'] {
-        cursor: pointer;
-    }
+  &[role='button'] {
+    cursor: pointer;
+  }
 }
 
 button {
-	appearance: none;
-	border: 0;
-	background: transparent;
-	font: inherit;
-	outline: none;
-	cursor: pointer;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  outline: none;
+  cursor: pointer;
 
-	&:disabled {
-		cursor: default;
-	}
+  &:disabled {
+    cursor: default;
+  }
 }
 
 textarea {
-	overflow: auto;
-	resize: none;
+  overflow: auto;
+  resize: none;
 }

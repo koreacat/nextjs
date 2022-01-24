@@ -1,24 +1,32 @@
-import classnames from "classnames/bind";
-import styles from "./scrollInteraction.module.scss";
-import Contents1 from "./Contents1";
-import Contents2 from "./Contents2";
+import React from 'react';
+import Title from './title/Title';
+import Step from './step/Step';
+import Character from './character/Character';
+import MatchInfo from './matchInfo/MatchInfo';
+import FAQ from './faq/FAQ';
 import {useScrollInteraction} from "../../util/hooks/useScrollInteraction/useScrollInteraction";
 
-const cx = classnames.bind(styles);
-
 const ScrollInteraction = () => {
-  const {onScrollClassName, onScrollStyles} = useScrollInteraction();
+  const { onScrollStyles, onScrollClassName } = useScrollInteraction();
 
   return (
-    <div className={cx('container')} style={{height: '10000px'}}>
-      <div className={cx('sticky')}>
-        <div className={cx('slideContainer')}>
-          <Contents1 onScrollStyles={onScrollStyles} onScrollClassName={onScrollClassName}/>
-          <Contents2 onScrollStyles={onScrollStyles}/>
-        </div>
-      </div>
-    </div>
-  )
+    <>
+      {/* 전체 타이틀 영역 */}
+      <Title onScrollStyles={onScrollStyles} onScrollClassName={onScrollClassName} />
+
+      {/* 스텝 영역 */}
+      <Step onScrollClassName={onScrollClassName} />
+
+      {/* 캐릭터 영역 */}
+      <Character onScrollClassName={onScrollClassName} />
+
+      {/* 매칭 정보 영역 */}
+      <MatchInfo onScrollStyles={onScrollStyles} onScrollClassName={onScrollClassName} />
+
+      {/* FAQ, 서비스 정보 영역 */}
+      <FAQ />
+    </>
+  );
 };
 
 export default ScrollInteraction;

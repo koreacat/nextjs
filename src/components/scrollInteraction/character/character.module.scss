@@ -1,0 +1,213 @@
+@import '@styles/common.scss';
+
+$COMPONENT_IMG_PATH: $STATIC_IMG_PATH + '/introduce';
+
+@keyframes move1 {
+  0% {
+    transform: translateY(0) skew(0) scale(1);
+  }
+
+  100% {
+    transform: translateY(2vh);
+  }
+}
+
+@keyframes move2 {
+  0% {
+    transform: translateY(0) skew(0) scale(1);
+  }
+
+  100% {
+    transform: translateY(-2vh);
+  }
+}
+
+.characterArea {
+  overflow: hidden;
+  padding: 240px 0;
+}
+
+.characterInner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $CONTENTS_WIDTH;
+  height: 924px;
+  margin: 0 auto;
+}
+
+.character {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  transform: scale(0);
+  transition: transform 0.2s ease-in-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+
+  &.on {
+    transform: scale(1);
+  }
+
+  &:before {
+    display: block;
+    width: 160px;
+    height: 160px;
+    background-size: cover;
+    content: '';
+  }
+
+  @for $i from 1 through 12 {
+    &.character#{$i} {
+      &:before {
+        background-image: url($COMPONENT_IMG_PATH + '/iconCharacter#{$i}.png');
+      }
+    }
+  }
+
+  &.character1 {
+    top: 22px;
+    right: 868px;
+
+    &.on {
+      animation: move1 2s 0.3s ease-in-out infinite alternate;
+    }
+  }
+
+  &.character2 {
+    top: 110px;
+    right: 1316px;
+    transform: scale(0);
+
+    &.on {
+      animation: move2 2s 0.3s ease-in-out infinite alternate;
+    }
+  }
+
+  &.character3 {
+    top: 336px;
+    right: 1054px;
+
+    &.on {
+      animation: move1 2s 0.5s ease-in-out infinite alternate;
+    }
+
+    &:after {
+      position: absolute;
+      top: 0;
+      left: 128px;
+      width: 205px;
+      height: 62px;
+      background-image: url($COMPONENT_IMG_PATH + '/iconBubble1.png');
+      background-size: cover;
+      content: '';
+    }
+  }
+
+  &.character4 {
+    top: 488px;
+    right: 1280px;
+
+    &.on {
+      animation: move1 2s 0.2s ease-in-out infinite alternate;
+    }
+  }
+
+  &.character5 {
+    top: 562px;
+    right: 832px;
+
+    &.on {
+      animation: move2 2s 0.5s ease-in-out infinite alternate;
+    }
+  }
+
+  &.character6 {
+    top: 742px;
+    right: 1120px;
+
+    &.on {
+      animation: move1 2s 0.1s ease-in-out infinite alternate;
+    }
+  }
+
+  &.character7 {
+    top: 0;
+    left: 992px;
+
+    &.on {
+      animation: move2 2s 0.4s ease-in-out infinite alternate;
+    }
+  }
+
+  &.character8 {
+    top: 184px;
+    left: 1240px;
+
+    &.on {
+      animation: move1 2s 0.3s ease-in-out infinite alternate;
+    }
+  }
+
+  &.character9 {
+    top: 268px;
+    left: 832px;
+
+    &.on {
+      animation: move1 2s 0.5s ease-in-out infinite alternate;
+    }
+  }
+
+  &.character10 {
+    top: 512px;
+    left: 1086px;
+
+    &.on {
+      animation: move2 2s 0.2s ease-in-out infinite alternate;
+    }
+
+    &:after {
+      position: absolute;
+      top: 0;
+      right: 128px;
+      width: 205px;
+      height: 62px;
+      background-image: url($COMPONENT_IMG_PATH + '/iconBubble2.png');
+      background-size: cover;
+      content: '';
+    }
+  }
+
+  &.character11 {
+    top: 752px;
+    left: 894px;
+
+    &.on {
+      animation: move2 2s 0.4s ease-in-out infinite alternate;
+    }
+  }
+
+  &.character12 {
+    top: 764px;
+    left: 1280px;
+
+    &.on {
+      animation: move1 2s 0.2s ease-in-out infinite alternate;
+    }
+  }
+}
+
+.textArea {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: $F_PRETENDARD;
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 96px;
+  color: $C_COOL_GRAY_90;
+  text-align: center;
+}

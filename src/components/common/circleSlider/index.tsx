@@ -31,11 +31,26 @@ const CircleSlider = () => {
     return d;
   };
 
+  const onMouseUp = () => {
+    document.removeEventListener('mouseup', onMouseUp);
+    document.removeEventListener('mousemove', onMouseMove);
+  };
+
+  const onMouseMove = (e: MouseEvent) => {
+    console.log(e.clientX, e.clientY);
+  };
+
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  };
+
   return (
     <div>
       <svg width={500} height={500}>
         <path d={d} fill="none" stroke="#446688" strokeWidth="20" strokeLinecap="round"/>
-        <circle id="handle" cx="220" cy="220" r="15" cursor="pointer"/>
+        <circle onMouseDown={handleMouseDown} cx="220" cy="220" r="15" cursor="pointer"/>
       </svg>
     </div>
   )

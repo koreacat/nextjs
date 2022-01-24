@@ -8,7 +8,7 @@ const CircleSlider = () => {
   }, []);
 
   const polarToCartesian = (centerX, centerY, radius, angleInDegrees) => {
-    var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
+    const angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
 
     return {
       x: centerX + (radius * Math.cos(angleInRadians)),
@@ -18,12 +18,12 @@ const CircleSlider = () => {
 
   const describeArc = (x, y, radius, startAngle, endAngle) => {
 
-    var start = polarToCartesian(x, y, radius, endAngle);
-    var end = polarToCartesian(x, y, radius, startAngle);
+    const start = polarToCartesian(x, y, radius, endAngle);
+    const end = polarToCartesian(x, y, radius, startAngle);
 
-    var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+    const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
 
-    var d = [
+    const d = [
       "M", start.x, start.y,
       "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
     ].join(" ");

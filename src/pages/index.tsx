@@ -8,17 +8,17 @@ import Index from "../components";
 
 export default function Home() {
 
-	return (
-		<Layout>
-			<Head>
-				<title>index</title>
-			</Head>
-			<Header/>
-			<FixedHeader/>
-			<Contents>
-        		<Index/>
-			</Contents>
-			<Footer/>
-		</Layout>
-	)
+  return (
+    <Layout>
+      <Head>
+        <title>index</title>
+      </Head>
+      <Header/>
+      <FixedHeader/>
+      <Contents>
+        <Index/>
+      </Contents>
+      {/*<Footer/>*/}
+    </Layout>
+  )
 }

@@ -1,0 +1,9 @@
+@import '@styles/common.scss';
+
+$COMPONENT_IMG_PATH: $STATIC_IMG_PATH + '/matchIntroduce';
+
+.mainContentArea {
+  position: sticky;
+  top: 0;
+  background-color: $C_WHITE;
+}

@@ -12,6 +12,47 @@ const Index = () => {
       {/*<i className={cx('svg')}>svg</i>*/}
       {/*<i className={cx('canvas')}>canvas</i>*/}
 
+      <h1 className={cx('title')}>Page</h1>
+      <ul>
+        <li>
+          <Link href={'/aiIntroduce'}>
+            <a className={cx('contents')}>
+              AiIntroduce
+              <i className={cx('dom')}>dom</i>
+              <i className={cx('svg')}>svg</i>
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link href={'/stickyScroll'}>
+            <a className={cx('contents')}>
+              StickyScroll
+              <i className={cx('dom')}>dom</i>
+              <i className={cx('svg')}>svg</i>
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link href={'/maskInteraction'}>
+            <a className={cx('contents')}>
+              MaskInteraction
+              <i className={cx('new')}>new</i>
+              <i className={cx('canvas')}>canvas</i>
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link href={'/matchIntroduce'}>
+            <a className={cx('contents')}>
+              MatchIntroduce
+              <i className={cx('new')}>new</i>
+              <i className={cx('dom')}>dom</i>
+            </a>
+          </Link>
+        </li>
+      </ul>
+      <hr/>
+
       <h1 className={cx('title')}>Components</h1>
       <ul>
         <li>
@@ -40,37 +81,6 @@ const Index = () => {
           </Link>
         </li>
         <li>
-          <Link href={'/sliderTab'}>
-            <a className={cx('contents')}>
-              SliderTab
-              <i className={cx('dom')}>dom</i>
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link href={'/waveText'}>
-            <a className={cx('contents')}>
-              WaveText
-              <i className={cx('new')}>new</i>
-              <i className={cx('dom')}>dom</i>
-              <i className={cx('svg')}>svg</i>
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link href={'/cards'}>
-            <a className={cx('contents')}>
-              Cards
-              <i className={cx('dom')}>dom</i>
-            </a>
-          </Link>
-        </li>
-        {/*<li>*/}
-        {/*  <Link href={'/virtualScroll'}>*/}
-        {/*    <a className={cx('contents')}>VirtualScroll</a>*/}
-        {/*  </Link>*/}
-        {/*</li>*/}
-        <li>
           <Link href={'/components'}>
             <a className={cx('contents')}>
               Etc.
@@ -79,10 +89,6 @@ const Index = () => {
             </a>
           </Link>
         </li>
-      </ul>
-      <hr/>
-      <h1 className={cx('title')}>Chart</h1>
-      <ul>
         <li>
           <Link href={'/barChart'}>
             <a className={cx('contents')}>
@@ -101,75 +107,10 @@ const Index = () => {
           </Link>
         </li>
         <li>
-          <Link href={'/dotChart'}>
-            <a className={cx('contents')}>
-              DotChart
-              <i className={cx('dom')}>dom</i>
-            </a>
-          </Link>
-        </li>
-        <li>
           <Link href={'/lineChart'}>
             <a className={cx('contents')}>
               LineChart
               <i className={cx('svg')}>svg</i>
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link href={'/vennDiagram'}>
-            <a className={cx('contents')}>
-              VennDiagram
-              <i className={cx('dom')}>dom</i>
-              <i className={cx('svg')}>svg</i>
-            </a>
-          </Link>
-        </li>
-      </ul>
-      <hr/>
-      <h1 className={cx('title')}>Page</h1>
-      <ul>
-        <li>
-          <Link href={'/maskInteraction'}>
-            <a className={cx('contents')}>
-              MaskInteraction
-              <i className={cx('new')}>new</i>
-              <i className={cx('canvas')}>canvas</i>
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link href={'/scrollInteraction'}>
-            <a className={cx('contents')}>
-              ScrollInteraction
-              <i className={cx('new')}>new</i>
-              <i className={cx('dom')}>dom</i>
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link href={'/introduction'}>
-            <a className={cx('contents')}>
-              AIIntroduction
-              <i className={cx('dom')}>dom</i>
-              <i className={cx('svg')}>svg</i>
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link href={'/stickyScroll'}>
-            <a className={cx('contents')}>
-              StickyScroll
-              <i className={cx('dom')}>dom</i>
-              <i className={cx('svg')}>svg</i>
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link href={'/filterSlider'}>
-            <a className={cx('contents')}>
-              FilterSlider
-              <i className={cx('dom')}>dom</i>
             </a>
           </Link>
         </li>
@@ -185,13 +126,9 @@ const Index = () => {
             </a>
           </Link>
         </li>
-        {/*<li>*/}
-        {/*  <Link href={'/gradation'}>*/}
-        {/*    <a className={cx('contents')}>Gradation</a>*/}
-        {/*  </Link>*/}
-        {/*</li>*/}
       </ul>
       <hr/>
+
       <h1 className={cx('title')}>Chracter</h1>
       <ul>
         <li>
@@ -204,6 +141,7 @@ const Index = () => {
         </li>
       </ul>
       <hr/>
+
       <h1 className={cx('title')}>WebGL</h1>
       <ul>
         <li>

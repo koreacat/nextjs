@@ -152,15 +152,7 @@ const Slider = (
         className={cx('wrap')}
         onMouseDown={e => handleOnMouseDown(e)}
       >
-        <div ref={railEl} className={cx('railArea')}>
-          <div className={cx('dotArea')}>
-            <span className={cx('dot', 'type1')}/>
-            <span className={cx('dot', 'type2')}/>
-            <span className={cx('dot', 'type3')}/>
-            <span className={cx('dot', 'type4')}/>
-            <span className={cx('dot', 'type5')}/>
-          </div>
-        </div>
+        <div ref={railEl} className={cx('railArea')}/>
         <div className={cx('trackArea')}>
           <div className={cx('trackWrap')}>
             <div className={cx('track')} style={{width: `${sliderPercent}%`}}/>

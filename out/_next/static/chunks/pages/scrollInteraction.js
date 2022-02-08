@@ -624,7 +624,7 @@ var assign=Object.assign.bind(Object);module.exports=assign;module.exports.defau
       (window.__NEXT_P = window.__NEXT_P || []).push([
         "/scrollInteraction",
         function () {
-          return __webpack_require__(/*! ./src/pages/scrollInteraction.tsx */ "./src/pages/scrollInteraction.tsx");
+          return __webpack_require__(/*! ./src/pages/matchIntroduce.tsx */ "./src/pages/scrollInteraction.tsx");
         }
       ]);
 
@@ -11556,7 +11556,7 @@ module.exports = content.locals || {};
 
 /***/ "./src/pages/scrollInteraction.tsx":
 /*!*****************************************!*\
-  !*** ./src/pages/scrollInteraction.tsx ***!
+  !*** ./src/pages/matchIntroduce.tsx ***!
   \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -11572,7 +11572,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_contents__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @components/contents */ "./src/components/common/contents/index.tsx");
 
 
-var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\src\\pages\\scrollInteraction.tsx",
+var _jsxFileName = "C:\\Users\\jgm0531.MIDASIT\\jgmProjects\\cna\\src\\pages\\matchIntroduce.tsx",
     _this = undefined;
 
 

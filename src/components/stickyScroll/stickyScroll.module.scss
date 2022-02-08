@@ -20,6 +20,9 @@
   }
   
   .summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 300px;
     background-color: #eee;
@@ -89,6 +92,10 @@
         
         &:not(:first-child) {
           margin-top: 60px;
+        }
+
+        .contentsText {
+          margin-top: 24px;
         }
       }
     }

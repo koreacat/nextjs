@@ -2,17 +2,14 @@
 
 .header {
   width: 100%;
-  height: $HEADER_HEIGHT;
-  background: #0070f3;
+  height: 70px;
+  background: $C_COOL_GRAY_70;
+  padding: 10px;
 }
 
-.textWrap {
-  padding: 10px;
-  
-  .text {
-    font-size: 24px;
-    color: $C_WHITE;
-    cursor: pointer;
-  }
+.text {
+  font-size: 24px;
+  color: $C_WHITE;
+  cursor: pointer;
 }
 

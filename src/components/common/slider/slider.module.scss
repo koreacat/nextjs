@@ -76,77 +76,11 @@
   }
 }
 
-.dotArea,
 .trackWrap,
 .handleWrap,
 .markWrap {
   position: relative;
   height: 100%;
-}
-
-.dot {
-  &:before,
-  &:after {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: $C_COOL_GRAY_60;
-    transform: translate(-50%, -50%);
-    content: '';
-  }
-  
-  &.type1 {
-    &:before {
-      left: 0;
-    }
-    
-    &:after {
-      left: 11.1111%;
-    }
-  }
-  
-  &.type2 {
-    &:before {
-      left: 22.2222%;
-    }
-    
-    &:after {
-      left: 33.3333%;
-    }
-  }
-  
-  &.type3 {
-    &:before {
-      left: 44.4444%;
-    }
-    
-    &:after {
-      left: 55.5556%;
-    }
-  }
-  
-  &.type4 {
-    &:before {
-      left: 66.6667%;
-    }
-    
-    &:after {
-      left: 77.7778%;
-    }
-  }
-  
-  &.type5 {
-    &:before {
-      left: 88.8889%;
-    }
-    
-    &:after {
-      left: 100%;
-    }
-  }
 }
 
 .track {

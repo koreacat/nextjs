@@ -1,0 +1,167 @@
+@import '@styles/common.scss';
+
+$COMPONENT_IMG_PATH: $STATIC_IMG_PATH + '/matchIntroduce';
+
+@keyframes count {
+  0% {
+    transform: translateY(0);
+  }
+
+  22.2222% {
+    transform: translateY(-120px);
+  }
+
+  33.3333% {
+    transform: translateY(-120px);
+  }
+
+  55.5556% {
+    transform: translateY(-240px);
+  }
+
+  66.6667% {
+    transform: translateY(-240px);
+  }
+
+  88.8889% {
+    transform: translateY(-360px);
+  }
+
+  100% {
+    transform: translateY(-360px);
+  }
+}
+
+// 스텝 영역
+.stepArea {
+  .stepTitle {
+    display: block;
+    width: 928px;
+    margin: 0 auto;
+    padding: 160px 0;
+    font-family: $F_PRETENDARD;
+    font-size: 96px;
+    font-weight: 800;
+    line-height: 120px;
+    color: $C_COOL_GRAY_90;
+  }
+
+  .countArea {
+    overflow: hidden;
+    display: inline-block;
+    height: 120px;
+    vertical-align: top;
+
+    .countWrap {
+      display: block;
+      animation: count 4.5s ease-in-out infinite;
+    }
+
+    .count {
+      display: block;
+
+      &.type1 {
+        color: $C_GREEN_100;
+      }
+
+      &.type2 {
+        color: $C_WARNING;
+      }
+
+      &.type3 {
+        color: $C_SKY_100;
+      }
+    }
+  }
+
+  .stepInner {
+    display: flex;
+    width: 928px;
+    height: 300vh;
+    margin: 0 auto;
+  }
+}
+
+// 스텝 텍스트 영역
+.textArea {
+  position: sticky;
+  top: 0;
+  width: 50%;
+  height: 100vh;
+
+  .textWrap {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    transition: opacity 0.2s ease-in-out;
+    opacity: 0;
+
+    &.visible {
+      opacity: 1;
+    }
+  }
+
+  .step {
+    display: block;
+    font-family: $F_PRETENDARD;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 28px;
+
+    &.type1 {
+      color: $C_GREEN_100;
+    }
+
+    &.type2 {
+      color: $C_WARNING;
+    }
+
+    &.type3 {
+      color: $C_SKY_100;
+    }
+  }
+
+  .title {
+    display: block;
+    margin-top: 4px;
+    font-family: $F_PRETENDARD;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 40px;
+    color: $C_COOL_GRAY_90;
+  }
+
+  .desc {
+    margin-top: 24px;
+    font-family: $F_PRETENDARD;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 28px;
+    color: $C_COOL_GRAY_70;
+
+    & + .desc {
+      margin-top: 16px;
+    }
+  }
+}
+
+// 스텝 비디오 영역
+.videoArea {
+  width: 50%;
+  height: 100vh;
+  transition: all 0.4s cubic-bezier(0, 0, 0.2, 0.95);
+
+  .videoInner {
+    display: flex;
+    align-items: center;
+    height: calc(100% + 70px);
+  }
+
+  .videoWrap {
+    flex: none;
+    width: 352px;
+    height: 472px;
+    margin-left: auto;
+  }
+}

@@ -1,0 +1,63 @@
+@import '@styles/common.scss';
+
+$COMPONENT_IMG_PATH: $STATIC_IMG_PATH + '/matchIntroduce';
+
+// mainVideo 영역
+.mainVideoArea {
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding-top: 134px;
+  background-color: #000001;
+
+  &:after {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    width: 108px;
+    height: 80px;
+    background-image: url($COMPONENT_IMG_PATH + '/iconScroll.png');
+    background-size: cover;
+    transform: translateX(-50%);
+    content: '';
+  }
+}
+
+.videoWrap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100vh;
+  transform: translateX(-50%);
+
+  video {
+    object-fit: cover;
+  }
+}
+
+.titleArea {
+  position: relative;
+  text-align: center;
+
+  .text {
+    display: inline-block;
+    font-family: $F_PRETENDARD;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 34px;
+    color: $C_GREEN_100;
+    vertical-align: top;
+  }
+
+  .title {
+    display: block;
+    margin-top: 16px;
+    font-family: $F_PRETENDARD;
+    font-size: 96px;
+    font-weight: 800;
+    line-height: 120px;
+    color: $C_WHITE;
+  }
+}

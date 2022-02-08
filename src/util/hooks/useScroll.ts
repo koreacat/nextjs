@@ -43,12 +43,10 @@ export function useScrollDir(props: useScrollDirProps) {
     if (onScrollDown && scrollDir === 'DOWN') {
       if (scrollDownTopSrtart && scrollDownTopEnd) {
         if ((windHeight * scrollDownTopEnd >= elPos) && (elPos >= windHeight * scrollDownTopSrtart)) {
-          console.log('da');
           onScrollDown();
         }
       } else if (scrollDownTop) {
         if (elPos > windHeight * scrollDownTop) {
-          console.log('ba');
           onScrollDown();
         }
       } else onScrollDown();

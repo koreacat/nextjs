@@ -114,6 +114,14 @@ const Index = () => {
             </a>
           </Link>
         </li>
+        <li>
+          <Link href={'/bubbleChart'}>
+            <a className={cx('contents')}>
+              BubbleChart
+              <i className={cx('canvas')}>canvas</i>
+            </a>
+          </Link>
+        </li>
       </ul>
       <hr/>
       <h1 className={cx('title')}>Effect</h1>

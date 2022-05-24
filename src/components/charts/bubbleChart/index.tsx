@@ -7,6 +7,10 @@ import {
   ReactElement
 } from "react";
 
+import styles from './bubbleChart.module.scss';
+import classnames from 'classnames/bind';
+const cx = classnames.bind(styles);
+
 interface ChartData {
   point: Point;
   r: number;
@@ -43,13 +47,15 @@ function scalePoint(p1: Point, scale: number) {
 
 const ZOOM_SENSITIVITY = 500; // bigger for lower zoom per scroll
 
-const BubbleChar = ({canvasWidth, canvasHeight, chartDataList}: CanvasProps) => {
+const BubbleChar = ({ canvasWidth, canvasHeight, chartDataList }: CanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null);
   const [scale, setScale] = useState<number>(1);
   const [offset, setOffset] = useState<Point>(ORIGIN);
   const [mousePos, setMousePos] = useState<Point>(ORIGIN);
   const [viewportTopLeft, setViewportTopLeft] = useState<Point>(ORIGIN);
+  const [toolTipEl, setToolTipEl] = useState(<></>);
+  const [toolTipPos, setToolTipPos] = useState({x: '0px', y: '0px'});
   const isResetRef = useRef<boolean>(false);
   const lastMousePosRef = useRef<Point>(ORIGIN);
   const lastOffsetRef = useRef<Point>(ORIGIN);
@@ -96,6 +102,10 @@ const BubbleChar = ({canvasWidth, canvasHeight, chartDataList}: CanvasProps) => 
       event.preventDefault();
       if (ctx) {
         const zoom = 1 - event.deltaY / ZOOM_SENSITIVITY;
+
+        if (scale * zoom < 0.3) return;
+        if (scale * zoom > 3) return;
+
         const viewportTopLeftDelta = {
           x: (mousePos.x / scale) * (1 - 1 / zoom),
           y: (mousePos.y / scale) * (1 - 1 / zoom)
@@ -161,9 +171,10 @@ const BubbleChar = ({canvasWidth, canvasHeight, chartDataList}: CanvasProps) => 
   ]);
 
   const drawGrid = () => {
+    const GRID_SCALE = 20;
     const s = 110;
-    const nX = Math.floor(canvasWidth * 10 / s) - 2;
-    const nY = Math.floor(canvasHeight * 10 / s) - 2;
+    const nX = Math.floor(canvasWidth * GRID_SCALE / s) - 2;
+    const nY = Math.floor(canvasHeight * GRID_SCALE / s) - 2;
     const pX = canvasWidth - nX * s;
     const pY = canvasHeight - nY * s;
 
@@ -186,8 +197,8 @@ const BubbleChar = ({canvasWidth, canvasHeight, chartDataList}: CanvasProps) => 
   }
 
   const drawCircles = () => {
-    if(!chartDataList) return;
-    chartDataList.forEach(({point: {x, y}, r, fill}) => {
+    if (!chartDataList) return;
+    chartDataList.forEach(({ point: { x, y }, r, fill }) => {
       ctx.beginPath();
       ctx.arc(x, y, r, 0, 2 * Math.PI);
       ctx.fillStyle = fill;
@@ -196,10 +207,6 @@ const BubbleChar = ({canvasWidth, canvasHeight, chartDataList}: CanvasProps) => 
   }
 
   const drawText = () => {
-    ctx.beginPath();
-    ctx.arc(viewportTopLeft.x, viewportTopLeft.y, 20, 0, 2 * Math.PI);
-    ctx.fillStyle = "#ff0000";
-    ctx.fill();
   }
 
   // reset
@@ -256,18 +263,22 @@ const BubbleChar = ({canvasWidth, canvasHeight, chartDataList}: CanvasProps) => 
 
   const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
     if (!ctx || !chartDataList) return;
-    
-    chartDataList.forEach(({point: {x, y}, r}) => {
+    setToolTipEl(null);
+
+    chartDataList.forEach(({ point: { x, y }, r, toolTip }) => {
       const circle = new Path2D();
       circle.arc(x, y, r, 0, 2 * Math.PI);
-      if(ctx.isPointInPath(circle, e.nativeEvent.offsetX, e.nativeEvent.offsetY)) {
-        console.log('in');
+      if (ctx.isPointInPath(circle, e.nativeEvent.offsetX, e.nativeEvent.offsetY)) {
+        setToolTipPos({x: `${e.nativeEvent.offsetX - 140}px`, y: `${e.nativeEvent.offsetY - 60}px`});
+        setToolTipEl(toolTip);
+        return;
       }
     });
+
   }
 
   return (
-    <div>
+    <div className={cx('wrap')} style={{ width: canvasWidth * RATIO }}>
       <canvas
         onMouseMove={handleMouseMove}
         onMouseDown={startPan}
@@ -280,7 +291,15 @@ const BubbleChar = ({canvasWidth, canvasHeight, chartDataList}: CanvasProps) => 
           height: `${canvasHeight}px`
         }}
       />
-      <button onClick={() => ctx && reset(ctx)}>Reset</button>
+      <div
+        className={cx('tooltipWrap')}
+        style={{
+          transform: `translate(${toolTipPos.x}, ${toolTipPos.y})`,
+        }}
+      >
+        {toolTipEl}
+      </div>
+      <button className={cx('btn')} onClick={() => ctx && reset(ctx)}>Reset</button>
     </div>
   )
 }

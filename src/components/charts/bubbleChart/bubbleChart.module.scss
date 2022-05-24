@@ -1,0 +1,28 @@
+@import '@styles/common.scss';
+
+.wrap {
+  display: block;
+  position: relative;
+  margin: 20px;
+}
+
+.tooltipWrap {
+  @include commonBoxShadowStyle('large');
+
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.btn {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 80px;
+  height: 40px;
+  background-color: #000;
+  color: #fff;
+}

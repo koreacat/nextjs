@@ -24,7 +24,6 @@ const BubbleChartPage = () => {
   return (
     <Layout>
       <Contents>
-
         <BubbleChar
           canvasWidth={1120}
           canvasHeight={500}
@@ -88,7 +87,6 @@ const BubbleChartPage = () => {
           ]}
         />
       </Contents>
-      <Footer />
     </Layout>
   )
 }

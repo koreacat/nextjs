@@ -1,6 +1,5 @@
 import {
   useEffect,
-  useCallback,
   useLayoutEffect,
   useRef,
   useState,
@@ -55,7 +54,7 @@ const BubbleChar = ({ canvasWidth, canvasHeight, chartDataList }: CanvasProps) =
   const [mousePos, setMousePos] = useState<Point>(ORIGIN);
   const [viewportTopLeft, setViewportTopLeft] = useState<Point>(ORIGIN);
   const [toolTipEl, setToolTipEl] = useState(<></>);
-  const [toolTipPos, setToolTipPos] = useState({x: '0px', y: '0px'});
+  const [toolTipPos, setToolTipPos] = useState({ x: '0px', y: '0px' });
   const isResetRef = useRef<boolean>(false);
   const lastMousePosRef = useRef<Point>(ORIGIN);
   const lastOffsetRef = useRef<Point>(ORIGIN);
@@ -73,7 +72,7 @@ const BubbleChar = ({ canvasWidth, canvasHeight, chartDataList }: CanvasProps) =
     function handleUpdateMouse(event: MouseEvent) {
       event.preventDefault();
       if (canvasRef.current) {
-        const viewportMousePos = { x: event.clientX, y: event.clientY };
+        const viewportMousePos = { x: event.offsetX, y: event.offsetY };
         const topLeftCanvasPos = {
           x: canvasRef.current.offsetLeft,
           y: canvasRef.current.offsetTop
@@ -210,56 +209,48 @@ const BubbleChar = ({ canvasWidth, canvasHeight, chartDataList }: CanvasProps) =
   }
 
   // reset
-  const reset = useCallback(
-    (ctx: CanvasRenderingContext2D) => {
-      if (!ctx && isResetRef.current) return;
-      // adjust for device pixel density
-      ctx.canvas.width = canvasWidth * RATIO;
-      ctx.canvas.height = canvasHeight * RATIO;
-      ctx.scale(RATIO, RATIO);
-      setScale(1);
+  const reset = (ctx: CanvasRenderingContext2D) => {
+    if (!ctx && isResetRef.current) return;
+    // adjust for device pixel density
+    ctx.canvas.width = canvasWidth * RATIO;
+    ctx.canvas.height = canvasHeight * RATIO;
+    ctx.scale(RATIO, RATIO);
+    setScale(1);
 
-      // reset state and refs
-      setCtx(ctx);
-      setOffset(ORIGIN);
-      setMousePos(ORIGIN);
-      setViewportTopLeft(ORIGIN);
-      lastOffsetRef.current = ORIGIN;
-      lastMousePosRef.current = ORIGIN;
+    // reset state and refs
+    setCtx(ctx);
+    setOffset(ORIGIN);
+    setMousePos(ORIGIN);
+    setViewportTopLeft(ORIGIN);
+    lastOffsetRef.current = ORIGIN;
+    lastMousePosRef.current = ORIGIN;
 
-      // this thing is so multiple resets in a row don't clear canvas
-      isResetRef.current = true;
-    },
-    [canvasWidth, canvasHeight]
-  );
+    // this thing is so multiple resets in a row don't clear canvas
+    isResetRef.current = true;
+  };
 
   // functions for panning
-  const mouseMove = useCallback(
-    (e: MouseEvent) => {
-      if (!ctx) return;
-      const lastMousePos = lastMousePosRef.current;
-      const currentMousePos = { x: e.clientX, y: e.clientY };
-      lastMousePosRef.current = currentMousePos;
-      const mouseDiff = diffPoints(currentMousePos, lastMousePos);
-      setOffset((prevOffset) => addPoints(prevOffset, mouseDiff));
-    }, [ctx]
-  );
+  const mouseMove = (e: MouseEvent) => {
+    if (!ctx) return;
+    const lastMousePos = lastMousePosRef.current;
+    const currentMousePos = { x: e.offsetX, y: e.offsetY };
+    lastMousePosRef.current = currentMousePos;
+    const mouseDiff = diffPoints(currentMousePos, lastMousePos);
+    setOffset((prevOffset) => addPoints(prevOffset, mouseDiff));
+  }
 
-  const mouseUp = useCallback(() => {
+  const mouseUp = () => {
     canvasRef.current.style.cursor = "crosshair";
     document.removeEventListener("mousemove", mouseMove);
     document.removeEventListener("mouseup", mouseUp);
-  }, [mouseMove]);
+  }
 
-  const startPan = useCallback(
-    (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-      canvasRef.current.style.cursor = "grabbing";
-      document.addEventListener("mousemove", mouseMove);
-      document.addEventListener("mouseup", mouseUp);
-      lastMousePosRef.current = { x: event.pageX, y: event.pageY };
-    },
-    [mouseMove, mouseUp]
-  );
+  const startPan = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
+    canvasRef.current.style.cursor = "grabbing";
+    document.addEventListener("mousemove", mouseMove);
+    document.addEventListener("mouseup", mouseUp);
+    lastMousePosRef.current = { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY };
+  }
 
   const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
     if (!ctx || !chartDataList) return;
@@ -269,7 +260,7 @@ const BubbleChar = ({ canvasWidth, canvasHeight, chartDataList }: CanvasProps) =
       const circle = new Path2D();
       circle.arc(x, y, r, 0, 2 * Math.PI);
       if (ctx.isPointInPath(circle, e.nativeEvent.offsetX, e.nativeEvent.offsetY)) {
-        setToolTipPos({x: `${e.nativeEvent.offsetX - 140}px`, y: `${e.nativeEvent.offsetY - 60}px`});
+        setToolTipPos({ x: `${e.nativeEvent.offsetX - 140}px`, y: `${e.nativeEvent.offsetY - 60}px` });
         setToolTipEl(toolTip);
         return;
       }
@@ -299,6 +290,7 @@ const BubbleChar = ({ canvasWidth, canvasHeight, chartDataList }: CanvasProps) =
       >
         {toolTipEl}
       </div>
+      <span className={cx('scale')}>scale: {scale.toFixed(2)}</span>
       <button className={cx('btn')} onClick={() => ctx && reset(ctx)}>Reset</button>
     </div>
   )

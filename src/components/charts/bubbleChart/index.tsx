@@ -197,7 +197,11 @@ const BubbleChar = ({ canvasWidth, canvasHeight, chartDataList }: CanvasProps) =
 
   const drawCircles = () => {
     if (!chartDataList) return;
-    chartDataList.forEach(({ point: { x, y }, r, fill }) => {
+    const sortedList = chartDataList.sort((a, b) => {
+      return b.r - a.r;
+    })
+
+    sortedList.forEach(({ point: { x, y }, r, fill }) => {
       ctx.beginPath();
       ctx.arc(x, y, r, 0, 2 * Math.PI);
       ctx.fillStyle = fill;
@@ -260,12 +264,11 @@ const BubbleChar = ({ canvasWidth, canvasHeight, chartDataList }: CanvasProps) =
       const circle = new Path2D();
       circle.arc(x, y, r, 0, 2 * Math.PI);
       if (ctx.isPointInPath(circle, e.nativeEvent.offsetX, e.nativeEvent.offsetY)) {
-        setToolTipPos({ x: `${e.nativeEvent.offsetX - 140}px`, y: `${e.nativeEvent.offsetY - 60}px` });
+        setToolTipPos({ x: `${e.nativeEvent.offsetX}px`, y: `${e.nativeEvent.offsetY - 50}px` });
         setToolTipEl(toolTip);
         return;
       }
     });
-
   }
 
   return (

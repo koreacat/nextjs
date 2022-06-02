@@ -1,6 +1,6 @@
 import Contents from "@components/contents";
 import Layout from "@components/layout";
-import BubbleChar from "src/components/charts/bubbleChart";
+import BubbleChart from "src/components/charts/bubbleChart";
 import { getInteger } from "src/util/getInteger";
 
 const ToolTip = ({ title }: { title: string }) => {
@@ -12,7 +12,6 @@ const ToolTip = ({ title }: { title: string }) => {
         padding: '10px 20px',
         fontSize: '14px',
         fontWeight: 700,
-
       }
     }>
       {title}
@@ -45,7 +44,7 @@ const BubbleChartPage = () => {
   return (
     <Layout>
       <Contents>
-        <BubbleChar
+        <BubbleChart
           canvasWidth={700}
           canvasHeight={500}
           chartDataList={getChartDataList()}

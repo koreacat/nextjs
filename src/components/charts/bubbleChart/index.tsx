@@ -46,7 +46,7 @@ function scalePoint(p1: Point, scale: number) {
 
 const ZOOM_SENSITIVITY = 500; // bigger for lower zoom per scroll
 
-const BubbleChar = ({ canvasWidth, canvasHeight, chartDataList }: CanvasProps) => {
+const BubbleChart = ({ canvasWidth, canvasHeight, chartDataList }: CanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null);
   const [scale, setScale] = useState<number>(1);
@@ -302,4 +302,4 @@ const BubbleChar = ({ canvasWidth, canvasHeight, chartDataList }: CanvasProps) =
   )
 }
 
-export default BubbleChar;
+export default BubbleChart;

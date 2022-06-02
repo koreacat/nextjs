@@ -71,6 +71,7 @@ const BubbleChar = ({ canvasWidth, canvasHeight, chartDataList }: CanvasProps) =
 
     function handleUpdateMouse(event: MouseEvent) {
       event.preventDefault();
+
       if (canvasRef.current) {
         const viewportMousePos = { x: event.offsetX, y: event.offsetY };
         const topLeftCanvasPos = {
@@ -236,6 +237,8 @@ const BubbleChar = ({ canvasWidth, canvasHeight, chartDataList }: CanvasProps) =
   // functions for panning
   const mouseMove = (e: MouseEvent) => {
     if (!ctx) return;
+    if(e.target !== ctx.canvas) return;
+
     const lastMousePos = lastMousePosRef.current;
     const currentMousePos = { x: e.offsetX, y: e.offsetY };
     lastMousePosRef.current = currentMousePos;

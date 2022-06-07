@@ -1,0 +1,234 @@
+.wrap {
+  position: relative;
+  display: flex;
+  width: 412px;
+  height: 412px;
+  background-color: #eee;
+
+  .cropArea {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url('/nextjs/img/imageCrop/grid.png');
+  }
+}
+
+.imgArea {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+
+  .imgBox {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    .img {}
+  }
+}
+
+.dimmedBox {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: .5;
+  cursor: crosshair;
+}
+
+.cropBox {
+  position: relative;
+  display: block;
+  outline: 1px solid #39f;
+
+  .viewBox {
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+
+    .viewImg {
+      display: block;
+    }
+  }
+
+  .dash {
+    position: absolute;
+    display: block;
+    border: 0 dashed #eee;
+    opacity: .5;
+
+    &.w {
+      border-bottom-width: 1px;
+      border-top-width: 1px;
+      height: 33.33333%;
+      left: 0;
+      top: 33.33333%;
+      width: 100%;
+    }
+
+    &.h {
+      border-left-width: 1px;
+      border-right-width: 1px;
+      height: 100%;
+      left: 33.33333%;
+      top: 0;
+      width: 33.33333%;
+    }
+  }
+
+  .cross {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 0;
+    height: 0;
+    opacity: .75;
+
+    &:before {
+      position: absolute;
+      top: 0;
+      left: -3px;
+      display: block;
+      width: 7px;
+      height: 1px;
+      background-color: #eee;
+      content: " ";
+    }
+
+    &:after {
+      position: absolute;
+      top: -3px;
+      left: 0;
+      display: block;
+      width: 1px;
+      height: 7px;
+      background-color: #eee;
+      content: " ";
+    }
+  }
+
+  .moveBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: .1;
+    user-select: none;
+    cursor: move;
+  }
+
+  .line {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: .1;
+    background-color: #39f;
+
+    &.n {
+      top: -3px;
+      left: 0;
+      height: 5px;
+      cursor: n-resize;
+    }
+
+    &.e {
+      top: 0;
+      right: -3px;
+      width: 5px;
+      cursor: e-resize;
+    }
+
+    &.s {
+      left: 0;
+      bottom: -3px;
+      height: 5px;
+      cursor: s-resize;
+    }
+
+    &.w {
+      top: 0;
+      left: -3px;
+      width: 5px;
+      cursor: w-resize;
+    }
+
+  }
+
+  .point {
+    position: absolute;
+    display: block;
+    width: 5px;
+    height: 5px;
+    background-color: #39f;
+    opacity: .75;
+
+    &.nw {
+      top: -3px;
+      left: -3px;
+      cursor: nw-resize;
+    }
+
+    &.n {
+      top: -3px;
+      left: 50%;
+      margin-left: -3px;
+      cursor: n-resize;
+    }
+
+    &.ne {
+      top: -3px;
+      right: -3px;
+      cursor: ne-resize;
+    }
+
+    &.e {
+      top: 50%;
+      right: -3px;
+      margin-top: -3px;
+      cursor: e-resize;
+    }
+
+    &.se {
+      right: -3px;
+      bottom: -3px;
+      margin-top: -3px;
+      cursor: se-resize;
+    }
+
+    &.s {
+      bottom: -3px;
+      left: 50%;
+      margin-left: -3px;
+      cursor: s-resize;
+    }
+
+    &.sw {
+      bottom: -3px;
+      left: -3px;
+      cursor: sw-resize;
+    }
+
+    &.w {
+      top: 50%;
+      left: -3px;
+      margin-top: -3px;
+      cursor: w-resize;
+    }
+  }
+}

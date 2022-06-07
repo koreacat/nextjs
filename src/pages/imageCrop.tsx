@@ -6,7 +6,9 @@ const ImageCropPage = () => {
   return (
     <Layout>
       <Contents>
-        <ImageCrop/>
+        <div style={{padding: '50px'}}>
+          <ImageCrop/>
+        </div>
       </Contents>
     </Layout>
   )

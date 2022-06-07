@@ -231,4 +231,15 @@
       cursor: w-resize;
     }
   }
+
+  .cropBoxInfo {
+    position: absolute;
+    right: 0;
+    display: block;
+    min-width: 125px;
+    text-align: right;
+    color: #fff;
+    font-weight: 700;
+    text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+  }
 }

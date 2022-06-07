@@ -253,7 +253,12 @@ const CropBox = ({ wrapRef, imgPath, imgSize }: CropBoxProps) => {
 
       {/* 점 영역 */}
       {getPoints()}
-
+      
+      <span className={cx('cropBoxInfo')}>
+        {offset.x}, {offset.y}
+        <br/>
+        {cropBoxSize.w}, {cropBoxSize.h} (px)
+      </span>
     </div>
   )
 }

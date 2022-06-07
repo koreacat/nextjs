@@ -1,18 +1,8 @@
 import styles from './imageCrop.module.scss';
 import classnames from 'classnames/bind';
-import { DirType, Size } from '.';
-import { RefObject, useRef, useState } from 'react';
+import { RefObject, useRef } from 'react';
+import { Point, Size, ORIGIN_POINT, DirType, LINE_DIR, POINT_DIR } from './data';
 const cx = classnames.bind(styles);
-
-const ORIGIN_POINT = Object.freeze({ x: 0, y: 0 });
-const ORIGIN_SIZE = Object.freeze({ w: 200, h: 200 });
-const LINE_DIR = ['e', 'w', 's', 'n'];
-const POINT_DIR = ['e', 'w', 's', 'n', 'se', 'sw', 'ne', 'nw'];
-
-interface Point {
-  x: number;
-  y: number;
-};
 
 function diffPoints(p1: Point, p2: Point) {
   return { x: p1.x - p2.x, y: p1.y - p2.y };
@@ -31,11 +21,22 @@ interface CropBoxProps {
   wrapRef: RefObject<HTMLDivElement>;
   imgPath: string;
   imgSize: Size;
+  offset: Point;
+  setOffset: (offset: ((prev: Point) => Point) | Point) => void;
+  cropBoxSize: Size;
+  setCropBoxSize: (cropBoxSize: Size) => void;
 }
 
-const CropBox = ({ wrapRef, imgPath, imgSize }: CropBoxProps) => {
-  const [offset, setOffset] = useState<Point>(ORIGIN_POINT);
-  const [cropBoxSize, setCropBoxSize] = useState<Size>(ORIGIN_SIZE);
+const CropBox = (
+  { 
+    wrapRef, 
+    imgPath, 
+    imgSize,
+    offset,
+    setOffset,
+    cropBoxSize,
+    setCropBoxSize,
+  }: CropBoxProps) => {
   const lastMousePosRef = useRef<Point>(ORIGIN_POINT);
 
   const getEdgeWidth = () => imgSize.w - cropBoxSize.w;

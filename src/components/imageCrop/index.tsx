@@ -1,25 +1,42 @@
 import styles from './imageCrop.module.scss';
 import classnames from 'classnames/bind';
-import { useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import CropBox from './CropBox';
+import { Size, Point, ORIGIN_POINT, ORIGIN_SIZE } from './data';
 const cx = classnames.bind(styles);
 
-const IMG_PATH = '/nextjs/img/chunSik/imgChunSikFace.png';
-
-export type DirType = 'e' | 'w' | 's' | 'n' | 'se' | 'sw' | 'ne' | 'nw';
-
-export interface Size {
-  w: number;
-  h: number;
+interface ImageCropProps {
+  url: string;
 }
 
-const ImageCrop = () => {
+const ImageCrop = ({ url }: ImageCropProps) => {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const [imgPath, setImgPath] = useState<string>(IMG_PATH);
-  const [imgSize, setImgSize] = useState<Size>({ w: 412, h: 412 });
+  const [imgPath, setImgPath] = useState<string>('');
+  const [imgSize, setImgSize] = useState<Size>(ORIGIN_SIZE);
+  const [cropBoxSize, setCropBoxSize] = useState<Size>(ORIGIN_SIZE);
+  const [offset, setOffset] = useState<Point>(ORIGIN_POINT);
+
+  useEffect(() => {
+    const imgEl = new Image();
+    imgEl.src = url;
+
+    imgEl.addEventListener('load', () => {
+      setImgPath(url);
+      setImgSize({w: imgEl.width, h: imgEl.height});
+      setCropBoxSize({ w: imgEl.width / 2, h: imgEl.height / 2 });
+      setOffset({ x: imgEl.width / 4, y: imgEl.width / 4 });
+    })
+  }, []);
 
   return (
-    <div ref={wrapRef} className={cx('wrap')}>
+    <div
+      ref={wrapRef}
+      className={cx('wrap')}
+      style={{
+        width: `${imgSize.w}px`,
+        height: `${imgSize.h}px`,
+      }}
+    >
       <div className={cx('cropArea')}>
 
         {/* 이미지 영역 */}
@@ -40,7 +57,15 @@ const ImageCrop = () => {
         <div className={cx('dimmedBox')} />
 
         {/* crop 영역 박스 */}
-        <CropBox wrapRef={wrapRef} imgPath={imgPath} imgSize={imgSize}/>
+        <CropBox
+          wrapRef={wrapRef}
+          imgPath={imgPath}
+          imgSize={imgSize}
+          offset={offset}
+          setOffset={setOffset}
+          cropBoxSize={cropBoxSize}
+          setCropBoxSize={setCropBoxSize}
+        />
 
       </div>
     </div>

@@ -240,3 +240,31 @@
     text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
   }
 }
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 40px;
+  margin-left: auto;
+  margin-top: 20px;
+  border-radius: 8px;
+  background-color: #39f;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btnChoice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #39f;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+}

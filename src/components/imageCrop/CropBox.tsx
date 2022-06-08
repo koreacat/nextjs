@@ -1,7 +1,7 @@
 import styles from './imageCrop.module.scss';
 import classnames from 'classnames/bind';
 import { RefObject, useRef } from 'react';
-import { Point, Size, ORIGIN_POINT, DirType, LINE_DIR, POINT_DIR } from './data';
+import { Point, Size, ORIGIN_POINT, DirType, LINE_DIR, POINT_DIR, clamp } from './data';
 const cx = classnames.bind(styles);
 
 function diffPoints(p1: Point, p2: Point) {
@@ -11,15 +11,12 @@ function diffPoints(p1: Point, p2: Point) {
 function addPoints(p1: Point, p2: Point, minX = 0, minY = 0, maxX = 0, maxY = 0) {
   const x = p1.x + p2.x;
   const y = p1.y + p2.y;
-  return {
-    x: (x < minX) ? minX : (x > maxX) ? maxX : x,
-    y: (y < minY) ? minY : (y > maxY) ? maxY : y,
-  };
+  return { x: clamp(x, minX, maxX), y: clamp(y, minY, maxY) };
 }
 
 interface CropBoxProps {
   wrapRef: RefObject<HTMLDivElement>;
-  imgPath: string;
+  imgSrc: string;
   imgSize: Size;
   offset: Point;
   setOffset: (offset: ((prev: Point) => Point) | Point) => void;
@@ -30,7 +27,7 @@ interface CropBoxProps {
 const CropBox = (
   { 
     wrapRef, 
-    imgPath, 
+    imgSrc, 
     imgSize,
     offset,
     setOffset,
@@ -65,7 +62,7 @@ const CropBox = (
     document.removeEventListener("mouseup", stopPan);
   }
 
-  const startSetSize = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>, dir: DirType) => {
+  const startSetCropBox = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>, dir: DirType) => {
     e.preventDefault();
 
     const eLineX = offset.x + cropBoxSize.w;
@@ -73,14 +70,10 @@ const CropBox = (
     const sLineY = offset.y + cropBoxSize.h;
     const nLineY = offset.y;
 
-    const setSizeCropBox = (e: MouseEvent) => {
+    const setCropBox = (e: MouseEvent) => {
       const x = e.pageX - wrapRef.current.offsetLeft;
       const y = e.pageY - wrapRef.current.offsetTop;
-
-      setBox({
-        x: (x < 0) ? 0 : (x > imgSize.w) ? imgSize.w : x,
-        y: (y < 0) ? 0 : (y > imgSize.h) ? imgSize.h : y,
-      });
+      setBox({ x: clamp(x, 0, imgSize.w), y: clamp(y, 0, imgSize.h) });
     }
 
     const setBox = (currentMousePos) => {
@@ -196,13 +189,13 @@ const CropBox = (
       }
     }
 
-    const stopSetSize = () => {
-      document.removeEventListener("mousemove", setSizeCropBox);
-      document.removeEventListener("mouseup", stopSetSize);
+    const stopSetCropBox = () => {
+      document.removeEventListener("mousemove", setCropBox);
+      document.removeEventListener("mouseup", stopSetCropBox);
     }
 
-    document.addEventListener("mousemove", setSizeCropBox);
-    document.addEventListener("mouseup", stopSetSize);
+    document.addEventListener("mousemove", setCropBox);
+    document.addEventListener("mouseup", stopSetCropBox);
   }
 
   const getDash = () => ['w', 'h'].map((dir) =>
@@ -210,11 +203,11 @@ const CropBox = (
   )
 
   const getLine = () => LINE_DIR.map((dir: DirType) =>
-    <span key={dir} className={cx('line', dir)} onMouseDown={e => startSetSize(e, dir)} />
+    <span key={dir} className={cx('line', dir)} onMouseDown={e => startSetCropBox(e, dir)} />
   )
 
   const getPoints = () => POINT_DIR.map((dir: DirType) =>
-    <span key={dir} className={cx('point', dir)} onMouseDown={e => startSetSize(e, dir)} />
+    <span key={dir} className={cx('point', dir)} onMouseDown={e => startSetCropBox(e, dir)} />
   )
 
   return (
@@ -231,7 +224,7 @@ const CropBox = (
       <span className={cx('viewBox')}>
         <img
           className={cx('viewImg')}
-          src={imgPath}
+          src={imgSrc}
           style={{
             width: `${imgSize.w}px`,
             height: `${imgSize.h}px`,

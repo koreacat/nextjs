@@ -60,7 +60,7 @@ const menu = {
     },
     {
       name: 'imageCrop',
-      type: ['dom', 'new']
+      type: ['dom', 'canvas', 'new']
     },
   ],
   effect: [

@@ -1,0 +1,85 @@
+@import '@styles/common.scss';
+
+.wrap {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 32px;
+    font-family: $F_PRETENDARD;
+}
+
+.btnArea {
+    width: 150px;
+    font-size: 16px;
+
+    .btnWrap {        
+        font-size: 32px;
+
+        ~.btnWrap {
+            margin-top: 10px;
+        }
+    }
+
+    .btn {
+        width: 120px;
+        height: 80px;
+        margin-top: 16px;
+        background-color: $C_COOL_GRAY_80;
+        font-weight: 600;
+        font-size: 24px;
+        color: white;
+        border-radius: 6px;
+    }
+}
+
+.listArea {
+    display: flex;
+    flex-wrap: wrap;
+    align-self: flex-start;
+    width: 500px;
+    margin-left: 32px;
+}
+
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    margin: 8px 8px 0 0;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 32px;
+    color: black;
+    cursor: pointer;
+    user-select: none;
+
+    &.except {
+        background-color: lightgray;
+        opacity: 0.5;
+    }
+
+    &.head {
+        background-color: yellow;
+    }
+}
+
+.groupArea {
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
+}
+
+.groupWrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-self: flex-start;
+    width: 200px;
+    padding: 20px;
+    margin: 16px 16px 0 0;
+    background-color: beige;
+    cursor: pointer;
+    user-select: none;
+}

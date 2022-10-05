@@ -1,4 +1,4 @@
-import LineChart from "src/components/charts/lineChart";
+import RoundedLineChart from "src/components/charts/roundedLineChart";
 import classnames from "classnames/bind";
 import styles from "./resultProcess.module.scss";
 
@@ -8,7 +8,7 @@ const ResultProcess = () => {
   return (
     <div className={cx('wrap')}>
       <div className={cx('chartWrap')}>
-        <LineChart/>
+        <RoundedLineChart/>
       </div>
       <div className={cx('textWrap')}>
         <div className={cx('titleWrap')}>

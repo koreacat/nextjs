@@ -7,6 +7,7 @@ const LineChartPage = () => {
     <Layout>
       <Contents>
         <LineChart/>
+        {/* <RoundedLineChart/> */}
       </Contents>
     </Layout>
 

@@ -52,7 +52,7 @@ const menu = {
     },
     {
       name: 'lineChart',
-      type: ['svg']
+      type: ['dom', 'svg', 'new']
     },
     {
       name: 'bubbleChart',

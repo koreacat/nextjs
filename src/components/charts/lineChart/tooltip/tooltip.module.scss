@@ -1,0 +1,44 @@
+@import '@styles/common.scss';
+
+$COMPONENT_IMG_PATH: $STATIC_IMG_PATH + '/v2/components/phs/pst/result';
+
+.tooltipArea {
+  @include commonBoxShadowStyle('large');
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px;
+  border-radius: 4px;
+  white-space: nowrap;
+
+  &.black {
+    background-color: $C_JOBDA_BLACK;
+    color: $C_WHITE;
+  }
+
+  &.green {
+    background-color: $C_GREEN_200;
+    color: $C_WHITE;
+  }
+
+  &.blue {
+    background-color: $C_BLUE_100;
+    color: $C_WHITE;
+  }
+
+  .text {
+    font-family: $F_PRETENDARD;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  &::after {
+    position: absolute;
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+    content: '';
+  }
+}

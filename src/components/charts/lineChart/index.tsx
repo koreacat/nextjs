@@ -4,13 +4,18 @@ import { ReactElement, useEffect, useRef, useState } from 'react';
 
 const cx = classnames.bind(styles);
 
+type LineChartType = 'black' | 'green' | 'blue';
+type ToolTipPositionType = 'top' | 'left';
+
 export interface ChartData {
   column: number;
   toolTip?: ReactElement;
+  toolTipPosition?: ToolTipPositionType;
   onClick?: () => void;
 }
 
 interface LineChartProps {
+  type?: LineChartType;
   viewCount: number;
   rows: string[];
   columns: string[];
@@ -18,7 +23,7 @@ interface LineChartProps {
   onIndex?: number;
 }
 
-const LineChart = ({ viewCount, rows, columns, data, onIndex: on }: LineChartProps) => {
+const LineChart = ({ type = 'black', viewCount, rows, columns, data, onIndex: onIdx }: LineChartProps) => {
   const [onIndex, setOnIndex] = useState<number | null>(null);
   const [slideIndex, setSlideIndex] = useState<number>(0);
   const [rowWidth, setRowWidth] = useState<number>(0);
@@ -27,12 +32,15 @@ const LineChart = ({ viewCount, rows, columns, data, onIndex: on }: LineChartPro
   const tableRef = useRef<HTMLDivElement | null>(null);
 
   const maxRow = Math.max(rows.length, data.length);
+  const maxColums = Math.max(columns.length, data.length - 1);
   const isOver = viewCount < maxRow;
 
   useEffect(() => {
-    if (on !== undefined) {
-      setOnIndex(on);
-      setSlideIndex(on - viewCount + 1);
+    if (onIdx !== undefined) {
+      const idx = onIdx > maxColums ? maxColums : onIdx;
+      const slideIndex = idx - viewCount + 1;
+      setOnIndex(idx < 0 ? 0 : idx);
+      setSlideIndex(slideIndex < 0 ? 0 : slideIndex);
     }
 
     if (chartRef.current) {
@@ -53,22 +61,60 @@ const LineChart = ({ viewCount, rows, columns, data, onIndex: on }: LineChartPro
     return <div key={index} className={cx('divider')} />;
   });
 
+  const getDataLineEl = () => {
+    const stroke = '#44474B';
+
+    const getLineData = () => {
+      return data.reduce((prev, { column }, i) => {
+        const x = i * 150;
+        const y = column * 70;
+        const char = i === data.length - 1 ? '' : 'L';
+        return `${prev} ${x} ${y} ${char}`;
+      }, 'M');
+    }
+
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none">
+        <path d={getLineData()} stroke={stroke}/>
+      </svg>
+    )
+  }
+
   const getDataEl = () => {
     const dataEl = data.map((d, index) => {
-      const { column, toolTip, onClick } = d;
+      const { column, toolTip, toolTipPosition = 'top', onClick } = d;
+      const isOn = index === onIndex;
+
       const handleClick = () => {
+        setOnIndex(index);
         onClick?.();
       };
 
+      const getLine = () => {
+        if (isOn) return (
+          <i
+            className={cx('line')}
+            style={{ height: `${column * columnHeight}px` }}
+          />
+        ) 
+        return null;
+      }
+
       return (
-        <div key={index} className={cx('dataWrap', { on: index === onIndex })} style={{ zIndex: data.length - index }}>
+        <div
+          key={index}
+          className={cx('dataWrap', type, { on: isOn })}
+        >
+          {getLine()}
           <a
             className={cx('dataBtn')}
             style={{ transform: `translateY(-${column * columnHeight}px)` }}
             onClick={handleClick}
             role="button"
           >
-            <div className={cx('tooltipArea', { on: index === data.length - 1 })}>{toolTip}</div>
+            <div className={cx('tooltipArea', toolTipPosition, { on: isOn })}>
+              {toolTip}
+            </div>
           </a>
         </div>
       );
@@ -106,7 +152,7 @@ const LineChart = ({ viewCount, rows, columns, data, onIndex: on }: LineChartPro
 
     const emptyRowEl = new Array(maxRow - rows.length)
       .fill(null)
-      .map((row, index) => <div key={index} className={cx('row')} />);
+      .map((_, index) => <div key={index} className={cx('row')} />);
 
     return (
       <>
@@ -126,6 +172,7 @@ const LineChart = ({ viewCount, rows, columns, data, onIndex: on }: LineChartPro
       <div ref={chartRef} className={cx('chartWrap')}>
         <div ref={tableRef} className={cx('tableArea')} style={{ width: areaWidth, transform: translateX }}>
           <div className={cx('dividerArea')}>{dividerEl}</div>
+          <div className={cx('dataLineArea')}>{getDataLineEl()}</div>
           <div className={cx('dataArea')}>{getDataEl()}</div>
         </div>
 

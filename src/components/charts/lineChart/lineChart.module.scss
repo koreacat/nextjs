@@ -13,12 +13,12 @@ $ROW_Z_INDEX: 40;
 }
 
 .columnArea {
-  flex: 1;
-  width: 100%;
+  width: fit-content;
   height: calc(100% - 29px + 18px); // rowArea 높이 + column 텍스트 높이
   padding-top: 70px;
   padding-bottom: 35px;
   transform: translateY(-9px); // column 텍스트 높이 / 2
+  text-align: right;
 
   .columnWrap {
     width: 100%;
@@ -34,23 +34,23 @@ $ROW_Z_INDEX: 40;
     align-items: center;
     justify-content: right;
     width: 100%;
-    font-family: $F_NOTO_SANS_KR;
+    font-family: $F_PRETENDARD;
     font-weight: 500;
     font-size: 13px;
     line-height: 18px;
     color: $C_WARM_GRAY_70;
+    white-space: nowrap;
   }
 }
 
 .chartWrap {
   overflow: hidden;
   position: relative;
-  flex: 19;
   width: 100%;
   height: 100%;
   padding-top: 70px;
   padding-bottom: 35px;
-  margin-left: 16px;
+  margin-left: 32px;
 
   .tableArea {
     position: relative;
@@ -77,6 +77,14 @@ $ROW_Z_INDEX: 40;
     }
   }
 
+  .dataLineArea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   .dataArea {
     position: absolute;
     top: 0;
@@ -89,44 +97,103 @@ $ROW_Z_INDEX: 40;
       position: relative;
       width: 100%;
       height: 100%;
-      border-right: 1px dashed $C_COOL_GRAY_40;
+
+      .line {
+        position: absolute;
+        bottom: 0;
+        right: -1px;
+        display: block;
+        border-right: 2px solid;
+      }
 
       .dataBtn {
         position: absolute;
         bottom: -8px;
-        right: -8px;
+        right: -9px;
         display: flex;
         align-items: center;
         justify-content: center;
         width: 16px;
         height: 16px;
-        background-color: $C_COOL_GRAY_40;
         border-radius: 50%;
 
         &::after {
           display: block;
           width: 6px;
           height: 6px;
-          background-color: $C_COOL_GRAY_60;
           border-radius: 50%;
           content: '';
         }
+      }
 
-        &:hover {
-          .tooltipArea {
-            display: block;
+      &.black {
+        .line {
+          border-color: $C_JOBDA_BLACK;
+        }
+
+        .dataBtn {
+          background-color: $C_COOL_GRAY_40;
+          
+          &::after {
+            background-color: $C_COOL_GRAY_80;
+          }
+        }
+
+        &.on {
+          .dataBtn {
+            background-color: $C_JOBDA_BLACK;
+            
+            &::after {
+              background-color: $C_WHITE;
+            }
           }
         }
       }
 
-      &.on {
-        border-color: $C_GREEN_80;
+      &.green {
+        .line {
+          border-color: $C_GREEN_200;
+        }
 
         .dataBtn {
-          background-color: $C_GREEN_50;
-
+          background-color: $C_GREEN_40;
+          
           &::after {
             background-color: $C_GREEN_200;
+          }
+        }
+
+        &.on {
+          .dataBtn {
+            background-color: $C_GREEN_200;
+            
+            &::after {
+              background-color: $C_WHITE;
+            }
+          }
+        }
+      }
+
+      &.blue {
+        .line {
+          border-color: $C_BLUE_100;
+        }
+
+        .dataBtn {
+          background-color: $C_BLUE_40;
+          
+          &::after {
+            background-color: $C_BLUE_100;
+          }
+        }
+
+        &.on {
+          .dataBtn {
+            background-color: $C_BLUE_100;
+            
+            &::after {
+              background-color: $C_WHITE;
+            }
           }
         }
       }
@@ -149,7 +216,7 @@ $ROW_Z_INDEX: 40;
   .rowWrap {
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
     width: 100%;
     height: 100%;
   }
@@ -160,17 +227,18 @@ $ROW_Z_INDEX: 40;
     align-items: center;
     width: 100%;
     height: 100%;
-    font-family: $F_NOTO_SANS_KR;
+    font-family: $F_PRETENDARD;
     font-weight: 500;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 18px;
+    letter-spacing: -0.01em;
     color: $C_WARM_GRAY_70;
     text-align: center;
     transform: translateX(50%);
 
     &.on {
       font-weight: 700;
-      color: $C_GREEN_200;
+      color: $C_JOBDA_BLACK;
     }
   }
 
@@ -218,7 +286,31 @@ $ROW_Z_INDEX: 40;
   left: 100%;
   display: none;
 
+  &.top {
+    // 8px = 동그라미 반지름
+    transform: translate(calc(-50% - 8px), calc(-50% - 8px - 15px));
+    animation: moveBoxTop 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  &.left {
+    transform: translate(10px, 7.5px);
+  }
+
   &.on {
     display: block;
+  }
+}
+
+@keyframes moveBoxTop {
+  0% {
+    transform: translate(calc(-50% - 8px), calc(-50% - 8px - 15px -4px));
+  }
+
+  50% {
+    transform: translate(calc(-50% - 8px), calc(-50% - 8px - 15px + 4px));
+  }
+
+  100% {
+    transform: translate(calc(-50% - 8px), calc(-50% - 8px - 15px -4px));
   }
 }

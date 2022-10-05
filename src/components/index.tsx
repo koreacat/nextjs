@@ -1,6 +1,7 @@
 import Link from "next/link";
 import classnames from "classnames/bind";
 import styles from "./index.module.scss";
+import { Fragment } from "react";
 
 const cx = classnames.bind(styles);
 
@@ -93,24 +94,24 @@ const Index = () => {
   const getMenuEl = () => {
     return titles.map(title => {
       const menuEl = menu[title]?.map(({ name, type }) =>
-        <li>
+        <li key={name}>
           <Link href={`/${name}`}>
             <a className={cx('contents')}>
               {name}
-              {type.map((d) => <i className={cx(d)}>{d}</i>)}
+              {type.map((d) => <i key={d} className={cx(d)}>{d}</i>)}
             </a>
           </Link>
         </li>
       );
 
       return (
-        <>
+        <Fragment key={title}>
           <h1 className={cx('title')}>{title}</h1>
           <ul>
             {menuEl}
           </ul>
           <hr />
-        </>
+        </Fragment>
       )
     })
   }

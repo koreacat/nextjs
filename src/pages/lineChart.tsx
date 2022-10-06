@@ -33,10 +33,10 @@ const LineChartPage = () => {
 
   return (
     <Layout>
-      <Grid size={50}/>
+      {/*<Grid size={50}/>*/}
       <Contents>
         <div style={{padding: '100px'}}>
-          <div style={{width: '1400px', height: '484px', backgroundColor:'#fefbf9'}}>
+          <div style={{width: '1400px', height: '484px'}}>
             <LineChart
               type={'black'}
               rows={getRows()}
@@ -46,7 +46,7 @@ const LineChartPage = () => {
               viewCount={12}
             />
           </div>
-          <div style={{width: '1100px', height: '384px', marginTop: '24px', backgroundColor:'#fefbf9'}}>
+          <div style={{width: '1100px', height: '384px', marginTop: '24px'}}>
             <LineChart
               type={'green'}
               rows={getRows()}

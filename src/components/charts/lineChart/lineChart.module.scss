@@ -78,8 +78,11 @@ $ROW_Z_INDEX: 40;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 0;
     height: 100%;
+    animation: slide 1s cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: forwards;
+    animation-delay: 0.2s;
   }
 
   .pointsArea {
@@ -101,6 +104,9 @@ $ROW_Z_INDEX: 40;
         right: -1px;
         display: block;
         border-right: 2px solid;
+        animation: fadeIn .2s cubic-bezier(0.4, 0, 0.2, 1);
+        animation-fill-mode: forwards;
+        opacity: 0;
       }
 
       .dataBtn {
@@ -113,6 +119,9 @@ $ROW_Z_INDEX: 40;
         width: 16px;
         height: 16px;
         border-radius: 50%;
+        animation: fadeIn .2s cubic-bezier(0.4, 0, 0.2, 1);
+        animation-fill-mode: forwards;
+        opacity: 0;
 
         &::after {
           display: block;
@@ -120,6 +129,41 @@ $ROW_Z_INDEX: 40;
           height: 6px;
           border-radius: 50%;
           content: '';
+        }
+
+        .tooltipArea {
+          position: absolute;
+          left: 100%;
+          display: none;
+          opacity: 0;
+
+          &::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -0.5px);
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 7px solid;
+          }
+
+          &.top {
+            // 8px = 동그라미 반지름
+            transform: translate(calc(-50% - 8px), calc(-50% - 8px - 15px));
+            animation: moveBoxTop 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+          }
+
+          &.left {
+            transform: translate(10px, 7.5px);
+          }
+
+          &.on {
+            display: block;
+            animation: fadeIn .7s cubic-bezier(0.4, 0, 0.2, 1), moveBoxTop 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            animation-fill-mode: forwards;
+          }
         }
       }
 
@@ -133,6 +177,12 @@ $ROW_Z_INDEX: 40;
           
           &::after {
             background-color: $C_COOL_GRAY_80;
+          }
+        }
+
+        .tooltipArea {
+          &::after {
+            border-top-color: $C_JOBDA_BLACK;
           }
         }
 
@@ -160,6 +210,12 @@ $ROW_Z_INDEX: 40;
           }
         }
 
+        .tooltipArea {
+          &::after {
+            border-top-color: $C_GREEN_200;
+          }
+        }
+
         &.on {
           .dataBtn {
             background-color: $C_GREEN_200;
@@ -181,6 +237,12 @@ $ROW_Z_INDEX: 40;
           
           &::after {
             background-color: $C_BLUE_100;
+          }
+        }
+
+        .tooltipArea {
+          &::after {
+            border-top-color: $C_BLUE_100;
           }
         }
 
@@ -279,26 +341,6 @@ $ROW_Z_INDEX: 40;
   }
 }
 
-.tooltipArea {
-  position: absolute;
-  left: 100%;
-  display: none;
-
-  &.top {
-    // 8px = 동그라미 반지름
-    transform: translate(calc(-50% - 8px), calc(-50% - 8px - 15px));
-    animation: moveBoxTop 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  }
-
-  &.left {
-    transform: translate(10px, 7.5px);
-  }
-
-  &.on {
-    display: block;
-  }
-}
-
 @keyframes moveBoxTop {
   0% {
     transform: translate(calc(-50% - 8px), calc(-50% - 8px - 15px - 4px));
@@ -310,5 +352,24 @@ $ROW_Z_INDEX: 40;
 
   100% {
     transform: translate(calc(-50% - 8px), calc(-50% - 8px - 15px - 4px));
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
   }
 }

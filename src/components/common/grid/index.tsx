@@ -12,7 +12,7 @@ interface GridProps {
   size?: number;
 }
 
-const Grid = ({canvasWidth = 10000, canvasHeight = 10000, size = 100}: GridProps) => {
+const Grid = ({canvasWidth = 3000, canvasHeight = 2000, size = 50}: GridProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null);
   const [visible, setVisible] = useState(true);

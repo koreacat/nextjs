@@ -52,6 +52,10 @@ const LineChart = ({ type = 'black', viewCount, rows, columns, data, onIndex: on
   const areaWidth = isOver ? `${(maxRow + 1) * rowWidth}px` : '100%';
   const translateX = isOver ? `translateX(${-(slideIndex * rowWidth)}px)` : 'translateX(0)';
 
+  const handleClick = (index: number) => {
+    setOnIndex(index);
+  }
+
   return (
     <div className={cx('lineChartArea')}>
       {/* Columns 영역 */}
@@ -65,12 +69,12 @@ const LineChart = ({ type = 'black', viewCount, rows, columns, data, onIndex: on
           {/* 꺾은 선, 면 영역 */}
           <Line data={data} type={type} tableRef={tableRef} rows={rows} columnHeight={columnHeight} />
 
-          {/* 점 영역 */}
-          <Points data={data} type={type} onIndex={onIndex} setOnIndex={setOnIndex} columnHeight={columnHeight} maxRow={maxRow} />
+          {/* 점, 툴팁, 세로 선 영역 */}
+          <Points data={data} type={type} onIndex={onIndex} handleClick={handleClick} columnHeight={columnHeight} maxRow={maxRow} />
         </div>
 
         {/* Rows 영역 */}
-        <Rows rows={rows} maxRow={maxRow} onIndex={onIndex} setOnIndex={setOnIndex} areaWidth={areaWidth} translateX={translateX}/>
+        <Rows rows={rows} maxRow={maxRow} onIndex={onIndex} handleClick={handleClick} areaWidth={areaWidth} translateX={translateX}/>
 
         {/* 버튼 영역 */}
         <Buttons slideIndex={slideIndex} setSlideIndex={setSlideIndex} maxRow={maxRow} viewCount={viewCount}/>

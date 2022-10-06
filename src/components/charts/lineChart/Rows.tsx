@@ -8,22 +8,19 @@ interface RowsProps {
   rows: string[];
   maxRow: number;
   onIndex: number;
-  setOnIndex: (onIndex: number) => void;
+  handleClick: (index: number) => void;
   areaWidth: string;
   translateX: string;
 }
 
-const Rows = ({ rows, maxRow, onIndex, setOnIndex, areaWidth, translateX }: RowsProps) => {
+const Rows = ({ rows, maxRow, onIndex, handleClick, areaWidth, translateX }: RowsProps) => {
   const getRowsEl = () => {
     const rowEl = rows.map((row, index) => {
-      const handleClick = () => {
-        setOnIndex(index);
-      };
 
       return (
         <div
           key={index}
-          onClick={handleClick}
+          onClick={() => handleClick(index)}
           className={cx('row', { on: index === onIndex })}
           style={{ width: index === 0 ? `${EDGE_SPACE * 100}%` : '100%' }}
         >

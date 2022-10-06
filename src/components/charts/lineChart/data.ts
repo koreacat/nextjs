@@ -21,5 +21,4 @@ export interface ChartData {
   column: number;
   toolTip?: ReactElement;
   toolTipPosition?: ToolTipPositionType;
-  onClick?: () => void;
 }

@@ -2,7 +2,7 @@ webpackHotUpdate_N_E("pages/bubbleChart",{
 
 /***/ "./src/components/charts/bubbleChart/index.tsx":
 /*!*****************************************************!*\
-  !*** ./src/components/charts/bubbleChart/index.tsx ***!
+  !*** ./src/components/charts/bubbleChart/Rows.tsx ***!
   \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "C:\\Users\\jgm0531\\myProject\\nextjs\\src\\components\\charts\\bubbleChart\\index.tsx",
+var _jsxFileName = "C:\\Users\\jgm0531\\myProject\\nextjs\\src\\components\\charts\\bubbleChart\\Rows.tsx",
     _this = undefined,
     _s = $RefreshSig$();
 

@@ -3931,7 +3931,7 @@ module.exports = content.locals || {};
 
 /***/ "./src/components/charts/bubbleChart/index.tsx":
 /*!*****************************************************!*\
-  !*** ./src/components/charts/bubbleChart/index.tsx ***!
+  !*** ./src/components/charts/bubbleChart/Rows.tsx ***!
   \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -3949,7 +3949,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "C:\\Users\\jgm0531\\myProject\\nextjs\\src\\components\\charts\\bubbleChart\\index.tsx",
+var _jsxFileName = "C:\\Users\\jgm0531\\myProject\\nextjs\\src\\components\\charts\\bubbleChart\\Rows.tsx",
     _this = undefined,
     _s = $RefreshSig$();
 
@@ -4440,7 +4440,7 @@ module.exports = content.locals || {};
 
 /***/ "./src/components/common/contents/index.tsx":
 /*!**************************************************!*\
-  !*** ./src/components/common/contents/index.tsx ***!
+  !*** ./src/components/common/contents/Rows.tsx ***!
   \**************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -4455,7 +4455,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_2__);
 
 
-var _jsxFileName = "C:\\Users\\jgm0531\\myProject\\nextjs\\src\\components\\common\\contents\\index.tsx",
+var _jsxFileName = "C:\\Users\\jgm0531\\myProject\\nextjs\\src\\components\\common\\contents\\Rows.tsx",
     _this = undefined;
 
 
@@ -4541,7 +4541,7 @@ $RefreshReg$(_c, "Contents");
 
 /***/ "./src/components/common/layout/index.tsx":
 /*!************************************************!*\
-  !*** ./src/components/common/layout/index.tsx ***!
+  !*** ./src/components/common/layout/Rows.tsx ***!
   \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -4552,7 +4552,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var _jsxFileName = "C:\\Users\\jgm0531\\myProject\\nextjs\\src\\components\\common\\layout\\index.tsx",
+var _jsxFileName = "C:\\Users\\jgm0531\\myProject\\nextjs\\src\\components\\common\\layout\\Rows.tsx",
     _this = undefined;
 
 var Layout = function Layout(props) {

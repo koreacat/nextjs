@@ -1,0 +1,22 @@
+.gridArea {
+  overflow: hidden;
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.checkboxArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+}
+
+.onOff {
+  width: 30px;
+  height: 30px;
+}

@@ -10,13 +10,12 @@ $ROW_Z_INDEX: 40;
   display: flex;
   width: 100%;
   height: 100%;
+  user-select: none;
 }
 
 .columnArea {
   width: fit-content;
   height: calc(100% - 29px + 18px); // rowArea 높이 + column 텍스트 높이
-  padding-top: 70px;
-  padding-bottom: 35px;
   transform: translateY(-9px); // column 텍스트 높이 / 2
   text-align: right;
 
@@ -48,9 +47,7 @@ $ROW_Z_INDEX: 40;
   position: relative;
   width: 100%;
   height: 100%;
-  padding-top: 70px;
-  padding-bottom: 35px;
-  margin-left: 32px;
+  padding-left: 32px;
 
   .tableArea {
     position: relative;
@@ -77,7 +74,7 @@ $ROW_Z_INDEX: 40;
     }
   }
 
-  .dataLineArea {
+  .lineArea {
     position: absolute;
     top: 0;
     left: 0;
@@ -85,7 +82,7 @@ $ROW_Z_INDEX: 40;
     height: 100%;
   }
 
-  .dataArea {
+  .pointsArea {
     position: absolute;
     top: 0;
     left: 0;
@@ -208,15 +205,14 @@ $ROW_Z_INDEX: 40;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 24px;
-    margin-top: 5px;
+    height: 18px;
+    margin-top: 12px;
     z-index: $ROW_Z_INDEX;
   }
 
   .rowWrap {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     width: 100%;
     height: 100%;
   }
@@ -235,6 +231,7 @@ $ROW_Z_INDEX: 40;
     color: $C_WARM_GRAY_70;
     text-align: center;
     transform: translateX(50%);
+    cursor: pointer;
 
     &.on {
       font-weight: 700;
@@ -253,6 +250,7 @@ $ROW_Z_INDEX: 40;
     background-color: $C_WHITE;
     border: 1px solid $C_COOL_GRAY_40;
     border-radius: 50%;
+    z-index: 100;
 
     &::after {
       display: block;
@@ -303,7 +301,7 @@ $ROW_Z_INDEX: 40;
 
 @keyframes moveBoxTop {
   0% {
-    transform: translate(calc(-50% - 8px), calc(-50% - 8px - 15px -4px));
+    transform: translate(calc(-50% - 8px), calc(-50% - 8px - 15px - 4px));
   }
 
   50% {
@@ -311,6 +309,6 @@ $ROW_Z_INDEX: 40;
   }
 
   100% {
-    transform: translate(calc(-50% - 8px), calc(-50% - 8px - 15px -4px));
+    transform: translate(calc(-50% - 8px), calc(-50% - 8px - 15px - 4px));
   }
 }

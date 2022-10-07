@@ -51,7 +51,9 @@ const LineChart = ({ type = 'black', viewCount, rows, columns, data, onIndex: on
   }, []);
 
   useEffect(() => {
-    setTableWidth(tableRef.current.clientWidth);
+    if(tableRef.current) {
+      setTableWidth(tableRef.current.clientWidth);
+    }
   }, [tableRef.current]);
 
   const tableWidthWhitUnit = isOver ? `${(maxRow + 1) * rowWidth}px` : '100%';

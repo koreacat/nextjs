@@ -1,14 +1,14 @@
 import classnames from "classnames/bind";
 import styles from "./lineChart.module.scss";
 import {ChartData, EDGE_SPACE, LineChartType} from "./data";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 const cx = classnames.bind(styles);
 
 interface PointsProps {
   data: ChartData[];
-  type?: LineChartType;
-  onIndex: number;
+  type: LineChartType;
+  onIndex: number | null;
   handleClick: (index: number) => void;
   columnHeight: number;
   maxRow: number;
@@ -19,7 +19,7 @@ const pointsAnimationDelay = [
 ];
 
 const Points = ({data, type, onIndex, handleClick, columnHeight, maxRow}: PointsProps) => {
-  const tiggerRef = useRef(true);
+  const triggerRef = useRef(true);
 
   const getDataEl = () => {
     const dataEl = data.map((d, index) => {
@@ -30,7 +30,7 @@ const Points = ({data, type, onIndex, handleClick, columnHeight, maxRow}: Points
         if (!isOn) return null;
         return (
           <i
-            className={cx('line', {fadeIn: tiggerRef.current})}
+            className={cx('line', {fadeIn: triggerRef.current})}
             style={{ 
               height: `${column * columnHeight}px`,
               animationDelay: `${pointsAnimationDelay[index]}s`
@@ -56,7 +56,7 @@ const Points = ({data, type, onIndex, handleClick, columnHeight, maxRow}: Points
               animationDelay: `${pointsAnimationDelay[index]}s`
             }}
             onClick={() => {
-              tiggerRef.current = false;
+              triggerRef.current = false;
               handleClick(index); 
             }}
             role="button"

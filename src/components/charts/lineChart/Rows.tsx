@@ -7,7 +7,7 @@ const cx = classnames.bind(styles);
 interface RowsProps {
   rows: string[];
   maxRow: number;
-  onIndex: number;
+  onIndex: number | null;
   handleClick: (index: number) => void;
   tableWidthWhitUnit: string;
   translateX: string;

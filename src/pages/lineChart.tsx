@@ -31,9 +31,31 @@ const LineChartPage = () => {
     })
   };
 
+  const getChartData2 = (type): ChartData[] => {
+    return [
+      55, 60, 65, 70, 75, 80, 80, 80, 80, 85, 90, 95
+    ].map((value, i) => {
+      return {
+        column: value / 100,
+        toolTip: <Tooltip value={`입사자: ${value}명`} type={type}/>,
+      }
+    })
+  };
+
+  const getChartData3 = (type): ChartData[] => {
+    return [
+      55, 60, 65, 70, 75, 80, 80, 80, 80, 85, 90, 95
+    ].map((value, i) => {
+      return {
+        column: value / 100,
+        toolTip: <Tooltip value={`퇴사자: ${value}명`} type={type}/>,
+      }
+    })
+  };
+
   return (
     <Layout>
-      {/*<Grid size={50}/>*/}
+      <Grid size={50}/>
       <Contents>
         <div style={{padding: '100px'}}>
           <div style={{width: '1400px', height: '484px'}}>
@@ -51,23 +73,23 @@ const LineChartPage = () => {
               type={'green'}
               rows={getRows()}
               columns={getColumns()}
-              data={getChartData('green')}
+              data={getChartData2('green')}
               onIndex={5}
               viewCount={12}
             />
           </div>
-          <div style={{width: '800px', height: '284px', marginTop: '24px', backgroundColor:'#fefbf9'}}>
+          <div style={{width: '800px', height: '284px', marginTop: '24px'}}>
             <LineChart
               type={'blue'}
               rows={getRows()}
               columns={getColumns()}
-              data={getChartData('blue')}
+              data={getChartData3('blue')}
               onIndex={0}
               viewCount={12}
             />
           </div>
 
-          <div style={{display: 'flex', marginTop: '24px'}}>
+          <div style={{display: 'flex', marginTop: '48px'}}>
             <div style={{width: '340px', height: '205px', backgroundColor:'#fefbf9'}}>
               <LineChart
                 type={'black'}

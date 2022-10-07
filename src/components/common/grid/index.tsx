@@ -9,13 +9,14 @@ const RATIO = 1;
 interface GridProps {
   canvasWidth?: number;
   canvasHeight?: number;
+  state?: boolean;
   size?: number;
 }
 
-const Grid = ({canvasWidth = 3000, canvasHeight = 2000, size = 50}: GridProps) => {
+const Grid = ({canvasWidth = 3000, canvasHeight = 2000, state = false, size = 50}: GridProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null);
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(state);
 
   // setup canvas and set context
   useLayoutEffect(() => {

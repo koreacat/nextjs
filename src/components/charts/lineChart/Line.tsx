@@ -8,17 +8,17 @@ const cx = classnames.bind(styles);
 interface LineProps {
   data: ChartData[];
   type?: LineChartType;
-  tableRef: RefObject<HTMLDivElement>;
   rows: string[];
   columnHeight: number;
+  width: number;
+  height: number;
 }
 
-const Line = ({data, type, tableRef, rows, columnHeight}: LineProps) => {
+const Line = ({data, type, rows, columnHeight, width, height}: LineProps) => {
+  
   const getDataLineEl = () => {
     const stroke = LineColors[type];
     const fill = ShapeColors[type];
-    const width = tableRef.current?.clientWidth ?? 0;
-    const height = tableRef.current?.clientHeight ?? 0;
 
     const getX = (value: number) => (width / (rows.length + (1 - EDGE_SPACE))) * (value + EDGE_SPACE);
     const getY = (value: number) => height - columnHeight * value;

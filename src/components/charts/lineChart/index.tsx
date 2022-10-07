@@ -25,6 +25,7 @@ const LineChart = ({ type = 'black', viewCount, rows, columns, data, onIndex: on
   const [slideIndex, setSlideIndex] = useState<number>(0);
   const [rowWidth, setRowWidth] = useState<number>(0);
   const [columnHeight, setColumnHeight] = useState<number>(0);
+  const [tableWidth, setTableWidth] = useState<number>(0);
   const chartRef = useRef<HTMLDivElement | null>(null);
   const tableRef = useRef<HTMLDivElement | null>(null);
 
@@ -49,12 +50,14 @@ const LineChart = ({ type = 'black', viewCount, rows, columns, data, onIndex: on
     }
   }, []);
 
-  const areaWidth = isOver ? `${(maxRow + 1) * rowWidth}px` : '100%';
+  useEffect(() => {
+    setTableWidth(tableRef.current.clientWidth);
+  }, [tableRef.current]);
+
+  const tableWidthWhitUnit = isOver ? `${(maxRow + 1) * rowWidth}px` : '100%';
   const translateX = isOver ? `translateX(${-(slideIndex * rowWidth)}px)` : 'translateX(0)';
 
-  const handleClick = (index: number) => {
-    setOnIndex(index);
-  }
+  const handleClick = (index: number) => setOnIndex(index);
 
   return (
     <div className={cx('lineChartArea')}>
@@ -62,19 +65,19 @@ const LineChart = ({ type = 'black', viewCount, rows, columns, data, onIndex: on
       <Columns columns={columns}/>
 
       <div ref={chartRef} className={cx('chartWrap')}>
-        <div ref={tableRef} className={cx('tableArea')} style={{ width: areaWidth, transform: translateX }}>
+        <div ref={tableRef} className={cx('tableArea')} style={{ width: tableWidthWhitUnit, transform: translateX }}>
           {/* 가로 구분선 영역 */}
           <Divider value={columns.length - 1}/>
 
           {/* 꺾은 선, 면 영역 */}
-          <Line data={data} type={type} tableRef={tableRef} rows={rows} columnHeight={columnHeight} />
+          <Line data={data} type={type} rows={rows} columnHeight={columnHeight} width={tableWidth} height={tableRef.current?.clientHeight ?? 0}/>
 
           {/* 점, 툴팁, 세로 선 영역 */}
           <Points data={data} type={type} onIndex={onIndex} handleClick={handleClick} columnHeight={columnHeight} maxRow={maxRow} />
         </div>
 
         {/* Rows 영역 */}
-        <Rows rows={rows} maxRow={maxRow} onIndex={onIndex} handleClick={handleClick} areaWidth={areaWidth} translateX={translateX}/>
+        <Rows rows={rows} maxRow={maxRow} onIndex={onIndex} handleClick={handleClick} tableWidthWhitUnit={tableWidthWhitUnit} translateX={translateX}/>
 
         {/* 버튼 영역 */}
         <Buttons slideIndex={slideIndex} setSlideIndex={setSlideIndex} maxRow={maxRow} viewCount={viewCount}/>

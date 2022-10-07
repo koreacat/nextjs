@@ -1,6 +1,7 @@
 import classnames from "classnames/bind";
 import styles from "./lineChart.module.scss";
 import {ChartData, EDGE_SPACE, LineChartType} from "./data";
+import { useEffect, useRef } from "react";
 
 const cx = classnames.bind(styles);
 
@@ -18,6 +19,7 @@ const pointsAnimationDelay = [
 ];
 
 const Points = ({data, type, onIndex, handleClick, columnHeight, maxRow}: PointsProps) => {
+  const tiggerRef = useRef(true);
 
   const getDataEl = () => {
     const dataEl = data.map((d, index) => {
@@ -28,10 +30,10 @@ const Points = ({data, type, onIndex, handleClick, columnHeight, maxRow}: Points
         if (!isOn) return null;
         return (
           <i
-            className={cx('line')}
-            style={{
+            className={cx('line', {fadeIn: tiggerRef.current})}
+            style={{ 
               height: `${column * columnHeight}px`,
-              animationDelay: `0.8s`
+              animationDelay: `${pointsAnimationDelay[index]}s`
             }}
           />
         )
@@ -53,7 +55,10 @@ const Points = ({data, type, onIndex, handleClick, columnHeight, maxRow}: Points
               transform: `translateY(-${column * columnHeight}px)`,
               animationDelay: `${pointsAnimationDelay[index]}s`
             }}
-            onClick={() => handleClick(index)}
+            onClick={() => {
+              tiggerRef.current = false;
+              handleClick(index); 
+            }}
             role="button"
           >
             <div className={cx('tooltipArea', toolTipPosition, {on: isOn})}>

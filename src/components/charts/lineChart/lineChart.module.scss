@@ -104,10 +104,14 @@ $ROW_Z_INDEX: 40;
         right: -1px;
         display: block;
         border-right: 2px solid;
-        animation: fadeIn .2s cubic-bezier(0.4, 0, 0.2, 1);
-        animation-fill-mode: forwards;
-        opacity: 0;
+
+        &.fadeIn {
+          animation: fadeIn .2s cubic-bezier(0.4, 0, 0.2, 1);
+          animation-fill-mode: forwards;
+          opacity: 0;
+        }
       }
+
 
       .dataBtn {
         position: absolute;
@@ -174,7 +178,7 @@ $ROW_Z_INDEX: 40;
 
         .dataBtn {
           background-color: $C_COOL_GRAY_40;
-          
+
           &::after {
             background-color: $C_COOL_GRAY_80;
           }
@@ -189,7 +193,7 @@ $ROW_Z_INDEX: 40;
         &.on {
           .dataBtn {
             background-color: $C_JOBDA_BLACK;
-            
+
             &::after {
               background-color: $C_WHITE;
             }
@@ -204,7 +208,7 @@ $ROW_Z_INDEX: 40;
 
         .dataBtn {
           background-color: $C_GREEN_40;
-          
+
           &::after {
             background-color: $C_GREEN_200;
           }
@@ -219,7 +223,7 @@ $ROW_Z_INDEX: 40;
         &.on {
           .dataBtn {
             background-color: $C_GREEN_200;
-            
+
             &::after {
               background-color: $C_WHITE;
             }
@@ -234,7 +238,7 @@ $ROW_Z_INDEX: 40;
 
         .dataBtn {
           background-color: $C_BLUE_40;
-          
+
           &::after {
             background-color: $C_BLUE_100;
           }
@@ -249,7 +253,7 @@ $ROW_Z_INDEX: 40;
         &.on {
           .dataBtn {
             background-color: $C_BLUE_100;
-            
+
             &::after {
               background-color: $C_WHITE;
             }
@@ -369,6 +373,7 @@ $ROW_Z_INDEX: 40;
   from {
     width: 0;
   }
+
   to {
     width: 100%;
   }

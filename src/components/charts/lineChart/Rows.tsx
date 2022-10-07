@@ -9,11 +9,11 @@ interface RowsProps {
   maxRow: number;
   onIndex: number;
   handleClick: (index: number) => void;
-  areaWidth: string;
+  tableWidthWhitUnit: string;
   translateX: string;
 }
 
-const Rows = ({ rows, maxRow, onIndex, handleClick, areaWidth, translateX }: RowsProps) => {
+const Rows = ({ rows, maxRow, onIndex, handleClick, tableWidthWhitUnit, translateX }: RowsProps) => {
   const getRowsEl = () => {
     const rowEl = rows.map((row, index) => {
 
@@ -43,7 +43,7 @@ const Rows = ({ rows, maxRow, onIndex, handleClick, areaWidth, translateX }: Row
   };
 
   return (
-    <div className={cx('rowArea')} style={{ width: areaWidth, transform: translateX }}>
+    <div className={cx('rowArea')} style={{ width: tableWidthWhitUnit, transform: translateX }}>
       <div className={cx('rowWrap')}>{getRowsEl()}</div>
     </div>
   )

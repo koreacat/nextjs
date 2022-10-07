@@ -1,13 +1,13 @@
 import classnames from 'classnames/bind';
 import styles from './lineChart.module.scss';
 import { useEffect, useRef, useState } from 'react';
-import {ChartData, LineChartType} from "./data";
-import Rows from "./Rows";
-import Buttons from "./Buttons";
-import Columns from "./Columns";
-import Divider from "./Divider";
-import Line from "./Line";
-import Points from "./Points";
+import { ChartData, LineChartType } from './data';
+import Rows from './Rows';
+import Buttons from './Buttons';
+import Columns from './Columns';
+import Divider from './Divider';
+import Line from './Line';
+import Points from './Points';
 
 const cx = classnames.bind(styles);
 
@@ -51,7 +51,7 @@ const LineChart = ({ type = 'black', viewCount, rows, columns, data, onIndex: on
   }, []);
 
   useEffect(() => {
-    if(tableRef.current) {
+    if (tableRef.current) {
       setTableWidth(tableRef.current.clientWidth);
     }
   }, [tableRef.current]);
@@ -64,25 +64,46 @@ const LineChart = ({ type = 'black', viewCount, rows, columns, data, onIndex: on
   return (
     <div className={cx('lineChartArea')}>
       {/* Columns 영역 */}
-      <Columns columns={columns}/>
+      <Columns columns={columns} />
 
       <div ref={chartRef} className={cx('chartWrap')}>
         <div ref={tableRef} className={cx('tableArea')} style={{ width: tableWidthWhitUnit, transform: translateX }}>
           {/* 가로 구분선 영역 */}
-          <Divider value={columns.length - 1}/>
+          <Divider value={columns.length - 1} />
 
           {/* 꺾은 선, 면 영역 */}
-          <Line data={data} type={type} rows={rows} columnHeight={columnHeight} width={tableWidth} height={tableRef.current?.clientHeight ?? 0}/>
+          <Line
+            data={data}
+            type={type}
+            rows={rows}
+            columnHeight={columnHeight}
+            width={tableWidth}
+            height={tableRef.current?.clientHeight ?? 0}
+          />
 
           {/* 점, 툴팁, 세로 선 영역 */}
-          <Points data={data} type={type} onIndex={onIndex} handleClick={handleClick} columnHeight={columnHeight} maxRow={maxRow} />
+          <Points
+            data={data}
+            type={type}
+            onIndex={onIndex}
+            handleClick={handleClick}
+            columnHeight={columnHeight}
+            maxRow={maxRow}
+          />
         </div>
 
         {/* Rows 영역 */}
-        <Rows rows={rows} maxRow={maxRow} onIndex={onIndex} handleClick={handleClick} tableWidthWhitUnit={tableWidthWhitUnit} translateX={translateX}/>
+        <Rows
+          rows={rows}
+          maxRow={maxRow}
+          onIndex={onIndex}
+          handleClick={handleClick}
+          tableWidthWhitUnit={tableWidthWhitUnit}
+          translateX={translateX}
+        />
 
         {/* 버튼 영역 */}
-        <Buttons slideIndex={slideIndex} setSlideIndex={setSlideIndex} maxRow={maxRow} viewCount={viewCount}/>
+        <Buttons slideIndex={slideIndex} setSlideIndex={setSlideIndex} maxRow={maxRow} viewCount={viewCount} />
       </div>
     </div>
   );

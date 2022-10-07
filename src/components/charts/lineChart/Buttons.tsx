@@ -1,5 +1,5 @@
-import classnames from "classnames/bind";
-import styles from "./lineChart.module.scss";
+import classnames from 'classnames/bind';
+import styles from './lineChart.module.scss';
 
 const cx = classnames.bind(styles);
 
@@ -10,7 +10,7 @@ interface ButtonsProps {
   viewCount: number;
 }
 
-const Buttons = ({ slideIndex, setSlideIndex, viewCount, maxRow  }: ButtonsProps) => {
+const Buttons = ({ slideIndex, setSlideIndex, viewCount, maxRow }: ButtonsProps) => {
   const isOver = viewCount < maxRow;
   const prevBtnVisible = isOver && slideIndex !== 0;
   const nextBtnVisible = isOver && slideIndex < maxRow - viewCount;
@@ -24,7 +24,7 @@ const Buttons = ({ slideIndex, setSlideIndex, viewCount, maxRow  }: ButtonsProps
         <a className={cx('btn', 'right')} onClick={() => setSlideIndex(slideIndex + 1)} role="button" />
       )}
     </>
-  )
-}
+  );
+};
 
 export default Buttons;

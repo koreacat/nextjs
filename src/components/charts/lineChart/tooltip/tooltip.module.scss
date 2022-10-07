@@ -28,10 +28,10 @@ $COMPONENT_IMG_PATH: $STATIC_IMG_PATH + '/v2/components/phs/pst/result';
   }
 
   .text {
-    font-family: $F_PRETENDARD;
     font-weight: 700;
     font-size: 16px;
     line-height: 20px;
+    font-family: $F_PRETENDARD;
   }
 
   &::after {

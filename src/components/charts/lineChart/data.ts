@@ -1,4 +1,4 @@
-import {ReactElement} from "react";
+import { ReactElement } from 'react';
 
 export type LineChartType = 'black' | 'green' | 'blue';
 export type ToolTipPositionType = 'top' | 'left';

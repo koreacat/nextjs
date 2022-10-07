@@ -1,6 +1,6 @@
-import classnames from "classnames/bind";
-import styles from "./lineChart.module.scss";
-import {EDGE_SPACE} from "./data";
+import classnames from 'classnames/bind';
+import styles from './lineChart.module.scss';
+import { EDGE_SPACE } from './data';
 
 const cx = classnames.bind(styles);
 
@@ -16,7 +16,6 @@ interface RowsProps {
 const Rows = ({ rows, maxRow, onIndex, handleClick, tableWidthWhitUnit, translateX }: RowsProps) => {
   const getRowsEl = () => {
     const rowEl = rows.map((row, index) => {
-
       return (
         <div
           key={index}
@@ -37,7 +36,7 @@ const Rows = ({ rows, maxRow, onIndex, handleClick, tableWidthWhitUnit, translat
       <>
         {rowEl}
         {emptyRowEl}
-        <div className={cx('row')} style={{ width: `${EDGE_SPACE * 100}%`}} />
+        <div className={cx('row')} style={{ width: `${EDGE_SPACE * 100}%` }} />
       </>
     );
   };
@@ -46,7 +45,7 @@ const Rows = ({ rows, maxRow, onIndex, handleClick, tableWidthWhitUnit, translat
     <div className={cx('rowArea')} style={{ width: tableWidthWhitUnit, transform: translateX }}>
       <div className={cx('rowWrap')}>{getRowsEl()}</div>
     </div>
-  )
-}
+  );
+};
 
 export default Rows;

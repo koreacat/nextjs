@@ -1,34 +1,33 @@
 import classnames from 'classnames/bind';
 import styles from './lineChart.module.scss';
-import { ChartData, EDGE_SPACE, LineChartType } from './data';
-import { useRef } from 'react';
+import { ChartData, EDGE_SPACE, LineChartColorsType, LineChartSizeType } from './data';
 
 const cx = classnames.bind(styles);
 
 interface PointsProps {
   data: ChartData[];
-  type: LineChartType;
+  type: LineChartSizeType;
+  colors: LineChartColorsType;
   onIndex: number | null;
   handleClick: (index: number) => void;
   columnHeight: number;
   maxRow: number;
+  lineTrigger: boolean;
 }
 
 const pointsAnimationDelay = [0, 0.1, 0.2, 0.3, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75];
 
-const Points = ({ data, type, onIndex, handleClick, columnHeight, maxRow }: PointsProps) => {
-  const triggerRef = useRef(true);
-
+const Points = ({ data, type, colors, onIndex, handleClick, columnHeight, maxRow, lineTrigger }: PointsProps) => {
   const getDataEl = () => {
     const dataEl = data.map((d, index) => {
-      const { column, toolTip, toolTipPosition = 'top' } = d;
+      const { column, toolTip } = d;
       const isOn = index === onIndex;
 
       const getLine = () => {
         if (!isOn) return null;
         return (
           <i
-            className={cx('line', { fadeIn: triggerRef.current })}
+            className={cx('line', { fadeIn: lineTrigger }, type)}
             style={{
               height: `${column * columnHeight}px`,
               animationDelay: `${pointsAnimationDelay[index]}s`,
@@ -40,26 +39,23 @@ const Points = ({ data, type, onIndex, handleClick, columnHeight, maxRow }: Poin
       return (
         <div
           key={index}
-          className={cx('dataWrap', type, { on: isOn })}
+          className={cx('dataWrap', colors, { on: isOn })}
           style={{
-            width: index === 0 ? `${EDGE_SPACE * 100}%` : '100%',
+            width: index === 0 ? `${EDGE_SPACE[type] * 100}%` : '100%',
             zIndex: data.length - index,
           }}
         >
           {getLine()}
           <a
-            className={cx('dataBtn')}
+            className={cx('dataBtn', type)}
             style={{
               transform: `translateY(-${column * columnHeight}px)`,
               animationDelay: `${pointsAnimationDelay[index]}s`,
             }}
-            onClick={() => {
-              triggerRef.current = false;
-              handleClick(index);
-            }}
+            onClick={() => handleClick(index)}
             role="button"
           >
-            <div className={cx('tooltipArea', toolTipPosition, { on: isOn })}>{toolTip}</div>
+            <div className={cx('tooltipArea', { on: isOn })}>{toolTip}</div>
           </a>
         </div>
       );
@@ -73,7 +69,7 @@ const Points = ({ data, type, onIndex, handleClick, columnHeight, maxRow }: Poin
       <>
         {dataEl}
         {emptyDataEl}
-        <div className={cx('dataWrap', 'empty')} style={{ width: `${EDGE_SPACE * 100}%` }} />
+        <div className={cx('dataWrap', 'empty')} style={{ width: `${EDGE_SPACE[type] * 100}%` }} />
       </>
     );
   };

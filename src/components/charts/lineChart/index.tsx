@@ -1,7 +1,7 @@
 import classnames from 'classnames/bind';
 import styles from './lineChart.module.scss';
 import { useEffect, useRef, useState } from 'react';
-import { ChartData, LineChartType } from './data';
+import { ChartData, LineChartColorsType, LineChartSizeType } from './data';
 import Rows from './Rows';
 import Buttons from './Buttons';
 import Columns from './Columns';
@@ -12,7 +12,8 @@ import Points from './Points';
 const cx = classnames.bind(styles);
 
 interface LineChartProps {
-  type?: LineChartType;
+  colors?: LineChartColorsType;
+  type?: LineChartSizeType;
   viewCount: number;
   rows: string[];
   columns: string[];
@@ -20,12 +21,13 @@ interface LineChartProps {
   onIndex?: number;
 }
 
-const LineChart = ({ type = 'black', viewCount, rows, columns, data, onIndex: onIdx }: LineChartProps) => {
+const LineChart = ({ colors = 'black', type = 'large', viewCount, rows, columns, data, onIndex: onIdx }: LineChartProps) => {
   const [onIndex, setOnIndex] = useState<number | null>(null);
   const [slideIndex, setSlideIndex] = useState<number>(0);
   const [rowWidth, setRowWidth] = useState<number>(0);
   const [columnHeight, setColumnHeight] = useState<number>(0);
   const [tableWidth, setTableWidth] = useState<number>(0);
+  const [lineTrigger, setLineTrigger] = useState(true); // 점 아래 세로선 최초 애니메이션 실행용
   const chartRef = useRef<HTMLDivElement | null>(null);
   const tableRef = useRef<HTMLDivElement | null>(null);
 
@@ -59,14 +61,17 @@ const LineChart = ({ type = 'black', viewCount, rows, columns, data, onIndex: on
   const tableWidthWhitUnit = isOver ? `${(maxRow + 1) * rowWidth}px` : '100%';
   const translateX = isOver ? `translateX(${-(slideIndex * rowWidth)}px)` : 'translateX(0)';
 
-  const handleClick = (index: number) => setOnIndex(index);
+  const handleClick = (index: number) => {
+    setLineTrigger(false);
+    setOnIndex(index);
+  }
 
   return (
     <div className={cx('lineChartArea')}>
       {/* Columns 영역 */}
-      <Columns columns={columns} />
+      <Columns columns={columns} type={type}/>
 
-      <div ref={chartRef} className={cx('chartWrap')}>
+      <div ref={chartRef} className={cx('chartWrap', type)}>
         <div ref={tableRef} className={cx('tableArea')} style={{ width: tableWidthWhitUnit, transform: translateX }}>
           {/* 가로 구분선 영역 */}
           <Divider value={columns.length - 1} />
@@ -75,6 +80,7 @@ const LineChart = ({ type = 'black', viewCount, rows, columns, data, onIndex: on
           <Line
             data={data}
             type={type}
+            colors={colors}
             rows={rows}
             columnHeight={columnHeight}
             width={tableWidth}
@@ -85,19 +91,21 @@ const LineChart = ({ type = 'black', viewCount, rows, columns, data, onIndex: on
           <Points
             data={data}
             type={type}
+            colors={colors}
             onIndex={onIndex}
             handleClick={handleClick}
             columnHeight={columnHeight}
             maxRow={maxRow}
+            lineTrigger={lineTrigger}
           />
         </div>
 
         {/* Rows 영역 */}
         <Rows
           rows={rows}
+          type={type}
           maxRow={maxRow}
           onIndex={onIndex}
-          handleClick={handleClick}
           tableWidthWhitUnit={tableWidthWhitUnit}
           translateX={translateX}
         />

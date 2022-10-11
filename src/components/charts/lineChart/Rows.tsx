@@ -1,29 +1,30 @@
 import classnames from 'classnames/bind';
 import styles from './lineChart.module.scss';
-import { EDGE_SPACE } from './data';
+import { EDGE_SPACE, LineChartSizeType } from './data';
 
 const cx = classnames.bind(styles);
 
 interface RowsProps {
   rows: string[];
+  type: LineChartSizeType;
   maxRow: number;
   onIndex: number | null;
-  handleClick: (index: number) => void;
   tableWidthWhitUnit: string;
   translateX: string;
 }
 
-const Rows = ({ rows, maxRow, onIndex, handleClick, tableWidthWhitUnit, translateX }: RowsProps) => {
+const Rows = ({ rows, type, maxRow, onIndex, tableWidthWhitUnit, translateX }: RowsProps) => {
   const getRowsEl = () => {
     const rowEl = rows.map((row, index) => {
       return (
         <div
           key={index}
-          onClick={() => handleClick(index)}
-          className={cx('row', { on: index === onIndex })}
-          style={{ width: index === 0 ? `${EDGE_SPACE * 100}%` : '100%' }}
+          className={cx('row', { on: index === onIndex }, type)}
+          style={{ width: index === 0 ? `${EDGE_SPACE[type] * 100}%` : '100%' }}
         >
-          {row}
+          <span className={cx('rowText')}>
+            {row}
+          </span>
         </div>
       );
     });
@@ -36,7 +37,7 @@ const Rows = ({ rows, maxRow, onIndex, handleClick, tableWidthWhitUnit, translat
       <>
         {rowEl}
         {emptyRowEl}
-        <div className={cx('row')} style={{ width: `${EDGE_SPACE * 100}%` }} />
+        <div className={cx('row')} style={{ width: `${EDGE_SPACE[type] * 100}%` }} />
       </>
     );
   };

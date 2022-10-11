@@ -4,9 +4,10 @@ import LineChart from "src/components/charts/lineChart";
 import Tooltip from "src/components/charts/lineChart/tooltip";
 import Grid from "@components/grid";
 import {ChartData} from "../components/charts/lineChart/data";
+import TooltipSmall from "src/components/charts/lineChart/tooltipSmall";
 
 const LineChartPage = () => {
-  const getColumns = () => ['0명', '100명', '200명', '300명', '400명', '500명'];
+  const getColumns = () => ['0명', '100명', '200명', '300명', '400명', '500명', '600명'];
 
   const getRows = () => [
     '21.01', '21.02', '21.03', '21.04',
@@ -26,7 +27,7 @@ const LineChartPage = () => {
     ].map((value, i) => {
       return {
         column: value / 100,
-        toolTip: <Tooltip value={`직원수: ${value}명`} type={type}/>,
+        toolTip: <Tooltip value={`총 ${value}명`} type={type}/>,
       }
     })
   };
@@ -53,6 +54,17 @@ const LineChartPage = () => {
     })
   };
 
+  const getChartDataSmall = (type): ChartData[] => {
+    return [
+      190, 200, 210, 220, 260, 280, 300, 310, 320, 330, 380, 403
+    ].map((value, i) => {
+      return {
+        column: value / 100,
+        toolTip: <TooltipSmall value={`총 ${value}명`} type={type}/>,
+      }
+    })
+  };
+
   return (
     <Layout>
       <Grid size={50}/>
@@ -60,7 +72,7 @@ const LineChartPage = () => {
         <div style={{padding: '100px'}}>
           <div style={{width: '1400px', height: '484px'}}>
             <LineChart
-              type={'black'}
+              colors={'black'}
               rows={getRows()}
               columns={getColumns()}
               data={getChartData('black')}
@@ -68,9 +80,10 @@ const LineChartPage = () => {
               viewCount={12}
             />
           </div>
+          {/* 
           <div style={{width: '1100px', height: '384px', marginTop: '24px'}}>
             <LineChart
-              type={'green'}
+              colors={'green'}
               rows={getRows()}
               columns={getColumns()}
               data={getChartData2('green')}
@@ -78,9 +91,11 @@ const LineChartPage = () => {
               viewCount={12}
             />
           </div>
+           
+
           <div style={{width: '800px', height: '284px', marginTop: '24px'}}>
             <LineChart
-              type={'blue'}
+              colors={'blue'}
               rows={getRows()}
               columns={getColumns()}
               data={getChartData3('blue')}
@@ -88,35 +103,38 @@ const LineChartPage = () => {
               viewCount={12}
             />
           </div>
-
-          <div style={{display: 'flex', marginTop: '48px'}}>
-            <div style={{width: '340px', height: '205px', backgroundColor:'#fefbf9'}}>
+          */}
+          <div style={{marginTop: '48px'}}>
+            <div style={{width: '340px', height: '205px'}}>
               <LineChart
-                type={'black'}
+                colors={'black'}
+                type={'small'}
                 rows={getMobileRows()}
                 columns={getColumns()}
-                data={getChartData('black')}
-                onIndex={2}
+                data={getChartDataSmall('black')}
+                onIndex={0}
                 viewCount={12}
               />
             </div>
-            <div style={{width: '340px', height: '205px', marginLeft: '24px', backgroundColor:'#fefbf9'}}>
+            <div style={{width: '340px', height: '205px', marginLeft: '24px'}}>
               <LineChart
-                type={'green'}
+                colors={'green'}
+                type={'small'}
                 rows={getMobileRows()}
                 columns={getColumns()}
-                data={getChartData('green')}
+                data={getChartDataSmall('green')}
                 onIndex={3}
                 viewCount={12}
               />
             </div>
-            <div style={{width: '340px', height: '205px', marginLeft: '24px', backgroundColor:'#fefbf9'}}>
+            <div style={{width: '340px', height: '205px', marginLeft: '24px'}}>
               <LineChart
-                type={'blue'}
+                colors={'blue'}
+                type={'small'}
                 rows={getMobileRows()}
                 columns={getColumns()}
-                data={getChartData('blue')}
-                onIndex={4}
+                data={getChartDataSmall('blue')}
+                onIndex={11}
                 viewCount={12}
               />
             </div>

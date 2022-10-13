@@ -29,8 +29,6 @@ const BarChartType03 = ({ type = 'large', data, line = 6 }: BarChartType03Props)
   const [columnHeight, setColumnHeight] = useState(0);
   const wrapRef = useRef<HTMLDivElement>(null);
 
-  if (!data || data.length === 0) return null;
-
   const min = Math.min(...data.map(d => d.value), 0);
   const max = Math.max(...data.map(d => d.value), 0);
   const capacity = Math.abs(max - min);
@@ -92,6 +90,8 @@ const BarChartType03 = ({ type = 'large', data, line = 6 }: BarChartType03Props)
       </div>
     )
   }
+
+  if (!data || data.length === 0) return null;
 
   return (
     <div ref={wrapRef} className={cx('wrap')}>

@@ -1,47 +1,112 @@
-import {useState} from "react";
 import styles from './barChart.module.scss';
 import classnames from 'classnames/bind';
-import BarChartType01 from "./type01";
-import {barChartData} from "./type01/data";
-import BarChartType02 from "./type02";
+import BarChartType03 from './type03';
 
 const cx = classnames.bind(styles);
 
 const BarChart = () => {
-  const [barChartsVisible, setBarChartsVisible] = useState(false);
-  const [barChartsVisible02, setBarChartsVisible02] = useState(false);
+
+  const million = 1000000;
+
+  const barChartData = () => {
+    return [
+      {
+        value: 35 * million * 100,
+        name: '35억',
+        row: '2018',
+      },
+      {
+        value: 135 * million * 100,
+        name: '135억',
+        row: '2019',
+      },
+      {
+        value: 210 * million * 100,
+        name: '210억',
+        row: '2020',
+      },
+      {
+        value: 240 * million * 100,
+        name: '240억',
+        row: '2021',
+      },
+    ]
+  }
+
+  const barChartData2 = () => {
+    return [
+      {
+        value: -35 * million * 100,
+        name: '-35억',
+        row: '2018',
+      },
+      {
+        value: -135 * million * 100,
+        name: '-135억',
+        row: '2019',
+      },
+      {
+        value: 210 * million * 100,
+        name: '210억',
+        row: '2020',
+      },
+      {
+        value: 210 * million * 100,
+        name: '210억',
+        row: '2021',
+      },
+    ]
+  }
+
+  const barChartData3 = () => {
+    return [
+      {
+        value: -35 * million * 100,
+        name: '-35억',
+        row: '2018',
+      },
+      {
+        value: -135 * million * 100,
+        name: '-135억',
+        row: '2019',
+      },
+      {
+        value: -210 * million * 100,
+        name: '-210억',
+        row: '2020',
+      },
+      {
+        value: -240 * million * 100,
+        name: '-240억',
+        row: '2021',
+      },
+    ]
+  }
 
   return (
     <div className={cx('wrap')}>
-      <div>
-        <button
-          className={cx('barChartBtn', {'open': barChartsVisible})}
-          onClick={() => setBarChartsVisible(!barChartsVisible)}
-        >
-          {barChartsVisible ? '접어두기' : '확인하기'}
-        </button>
-        <div
-          style={{
-            overflow: 'hidden',
-            height: !barChartsVisible ? '0px' : '600px',
-            transition: barChartsVisible && '.5s all ease-in-out'
-          }}
-        >
-          <div style={{padding: '15px'}}>
-            <BarChartType01
-              data={barChartData}
-              interactionTrigger={barChartsVisible}
-            />
-          </div>
-        </div>
+      <div className={cx('chartWrap')}>
+        <BarChartType03 data={barChartData()}/>
       </div>
-      <div>
-        <button
-          className={cx('barChartBtn')}
-          onClick={() => setBarChartsVisible02(!barChartsVisible02)}
-        >확인하기
-        </button>
-        <BarChartType02 interactionTrigger={barChartsVisible02}/>
+      
+      <div className={cx('chartWrap')}>
+        <BarChartType03 data={barChartData2()}/>
+      </div>
+
+      <div className={cx('chartWrap')}>
+        <BarChartType03 data={barChartData3()}/>
+      </div>
+
+      <div className={cx('chartWrapS')}>
+        <BarChartType03 data={barChartData()} type={'small'}/>
+      </div>
+
+      <div className={cx('chartWrapS')}>
+        <BarChartType03 data={barChartData2()} type={'small'}/>
+      </div>
+
+      <div className={cx('chartWrapS')}>
+        <BarChartType03 data={barChartData3()} type={'small'}/>
       </div>
     </div>
   )

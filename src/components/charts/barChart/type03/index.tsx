@@ -1,105 +1,105 @@
+import styles from './type03.module.scss';
 import classnames from 'classnames/bind';
-import styles from './gradeChart.module.scss';
-import { Fragment } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const cx = classnames.bind(styles);
 
-export interface ChartData {
-  name: string;
+export type BarChartSizeType = 'small' | 'large';
+
+interface BarChartData {
   value: number;
-  isOn?: boolean;
-}
-
-export interface RowData {
   name: string;
-  isOn?: boolean;
+  row: string;
 }
 
-const EmptyContents = () => {
-  return (
-    <tr className={cx('contentArea')}>
-      <td className={cx('contents')} />
-      <td className={cx('contents')} />
-      <td className={cx('contents')} />
-    </tr>
-  );
-};
-
-interface ChartTableProps {
-  chartDataArr: ChartData[];
-  columnCount: number;
+interface BarChartType03Props {
+  type?: BarChartSizeType;
+  data: BarChartData[];
+  line?: number;
 }
 
-const ChartTable = ({ chartDataArr, columnCount }: ChartTableProps) => {
-  const columnsEl = chartDataArr
-    .map((_, index) => {
-      const getColumnEl = () => {
-        const { value, name, isOn } = chartDataArr[index];
-        return (
-          <>
-            <tr key={index} className={cx('contentsArea', 'boxArea')}>
-              <td className={cx('contents')} />
-              <td rowSpan={value} className={cx('contents', 'boxWrap', { on: isOn })}>
-                <div className={cx('textWrap', { on: isOn })}>{name}</div>
-              </td>
-              <td className={cx('contents')} />
-            </tr>
-            {value > 1 && new Array(value - 1).fill(null).map((_, index) => <EmptyContents key={index} />)}
-          </>
-        );
-      };
-      return <Fragment key={index}>{getColumnEl()}</Fragment>;
-    })
-    .reverse();
-
-  const emptyCount =
-    columnCount -
-    chartDataArr.reduce((prev, cur) => {
-      return prev + cur.value;
-    }, 0);
-
-  const emptyEl = new Array(emptyCount).fill(null).map((_, index) => <EmptyContents key={index} />);
-
-  return (
-    <table className={cx('table')}>
-      <tbody>
-        {emptyEl}
-        {columnsEl}
-      </tbody>
-    </table>
-  );
-};
-
-interface GradeChartProps {
-  chartDataArr: ChartData[][];
-  rowData: RowData[];
-  columnCount: number;
+const getSubText = ({lastYearValue, thisYearValue}: {lastYearValue?: number, thisYearValue: number}) => {
+  console.log(lastYearValue, thisYearValue);
+  if(!lastYearValue || (lastYearValue === thisYearValue)) return '전년대비 보합';
+  if(lastYearValue < thisYearValue) return '전년대비 상승';
+  if(lastYearValue > thisYearValue) return '전년대비 하락';
 }
 
-const GradeChart = ({ chartDataArr, rowData, columnCount }: GradeChartProps) => {
-  const getTableEl = () =>
-    chartDataArr.map((chartData, index) => (
-      <ChartTable key={index} chartDataArr={chartData} columnCount={columnCount} />
-    ));
+const BarChartType03 = ({ type = 'large', data, line = 6 }: BarChartType03Props) => {
+  const [zeroLineIndex, setZeroLineIndex] = useState(0);
+  const [columnHeight, setColumnHeight] = useState(0);
+  const wrapRef = useRef<HTMLDivElement>(null);
 
-  const getRowTextEl = () => {
-    const rowEls = rowData.map((item, index) => {
-      const { name, isOn } = item;
-      return (
-        <em key={index} className={cx('rowText', { on: isOn })}>
-          {name}
-        </em>
-      );
-    });
-    return <div className={cx('rowTextArea')}>{rowEls}</div>;
-  };
+  if (!data || data.length === 0) return null;
+
+  const min = Math.min(...data.map(d => d.value), 0);
+  const max = Math.max(...data.map(d => d.value), 0);
+  const capacity = Math.abs(max - min);
+  const minPer = Math.abs(min / capacity);
+
+  useEffect(() => {
+    setZeroLineIndex(line - Math.round(minPer * (line - 1)) - 1);
+
+    if(wrapRef && wrapRef.current){
+      setColumnHeight(wrapRef.current.clientHeight * ((line - 1) / line));
+    }
+  }, []);
+
+  const getBar = () => data.map(({ value, name }, i) => {
+    const isReverse = value < 0;
+    const isLast = i === data.length - 1;
+
+    return (
+      <div key={i} className={cx('barWrap')}>
+        <div
+          className={cx('bar', type, { reverse: isReverse })}
+          style={{ height: `${Math.abs(value / capacity) * columnHeight}px` }}
+        >
+          <span className={cx('tooltip')}>
+            {name}
+            {
+              isLast &&
+              <span className={cx('subText')}>
+                {
+                  getSubText({
+                    lastYearValue: data[data.length - 2]?.value, 
+                    thisYearValue: data[data.length - 1]?.value
+                  })
+                }
+                
+              </span>
+            }
+          </span>
+          
+        </div>
+      </div>
+    )
+  })
+
+  const getDividerEl = () => new Array(line).fill(null).map((_, i) => {
+    const isOn = zeroLineIndex === i;
+
+    return (
+      <div key={i} className={cx('divider', { on: isOn }, type)}>
+        {isOn && getBar()}
+      </div>
+    )
+  })
+
+  const getRowsEl = () => {
+    return (
+      <div className={cx('rowWrap', type)}>
+        {data.map((d, i) => <span key={i} className={cx('row')}>{d.row}</span>)}
+      </div>
+    )
+  }
 
   return (
-    <div className={cx('gradeChartArea')}>
-      <div className={cx('gradeChartWrap')}>{getTableEl()}</div>
-      {getRowTextEl()}
+    <div ref={wrapRef} className={cx('wrap')}>
+      {getDividerEl()}
+      {getRowsEl()}
     </div>
-  );
-};
+  )
+}
 
-export default GradeChart;
+export default BarChartType03;

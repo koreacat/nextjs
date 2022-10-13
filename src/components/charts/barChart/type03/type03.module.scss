@@ -1,0 +1,204 @@
+@import '@styles/common.scss';
+
+.wrap {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+}
+
+.divider {
+  position: relative;
+  display: flex;
+  width: 100%;
+	height: 100%;
+	border-bottom: 1px solid;
+	border-color: $C_COOL_GRAY_40;
+
+  .barWrap {
+    position: relative;
+    width: 100%;
+
+    .bar{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 56px;
+      background-color: $C_WHITE;
+      border: 1px solid $C_COOL_GRAY_80;
+      border-bottom: 0;
+      border-radius: 8px 8px 0 0;
+      transform: translate(-50%);
+      z-index: 1;
+
+      &.small {
+        width: 30px;
+        left: 50%;
+        border-radius: 6px 6px 0 0;
+
+        .tooltip {
+          top: -4px;
+          min-width: 38px;
+          max-width: 58px;
+          padding: 5px 8px;
+          font-size: 10px;
+          line-height: 12px;
+        }
+      }
+
+      .tooltip {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: -8.5px;
+        width: fit-content;
+        padding: 6px 8px;
+        background-color: $C_WHITE;
+        border: 1px solid $C_COOL_GRAY_50;
+        border-radius: 4px;
+        font-family: $F_PRETENDARD;
+        font-weight: 500;
+        font-size: 11px;
+        line-height: 13px;
+        letter-spacing: -0.01em;
+        color: $C_COOL_GRAY_70;
+        white-space: nowrap;
+        transform: translateY(-100%);
+      }
+
+
+      &.reverse {
+        transform: translate(-50%, calc(100% + 1px));
+        border: 1px solid $C_COOL_GRAY_80;
+        border-top: 0;
+        border-radius: 0 0 8px 8px;
+
+        &.small {
+          border: 1px solid $C_COOL_GRAY_80;
+          border-top: 0;
+          border-radius: 0 0 6px 6px;
+        }
+      }
+    }
+
+    &:last-child {
+      .bar {
+        border: 1px solid $C_JOBDA_BLACK;
+        background-color: $C_JOBDA_BLACK;
+
+        &.small {
+          .tooltip {
+            top: -9px;
+            min-width: 50px;
+            max-width: 68px;
+            padding: 6px 8px;
+
+            .subText {
+              top: calc(-50% - 6px);
+              font-size: 10px;
+            }
+          }
+        }
+      }
+
+      .tooltip {
+        top: -13.5px;
+        padding: 8px 16px;
+        border-color: $C_JOBDA_BLACK;
+        background-color: $C_JOBDA_BLACK;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 22px;
+        color: $C_WHITE;
+
+        .subText {
+          position: absolute;
+          top: calc(-50% - 4px);
+          font-family: $F_PRETENDARD;
+          font-weight: 700;
+          font-size: 12px;
+          line-height: 14px;
+          color: $C_JOBDA_BLACK;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translate(-50%, 100%);
+          width: 0;
+          height: 0;
+          border-left: 4px solid transparent;
+          border-right: 4px solid transparent;
+          border-top: 7px solid $C_JOBDA_BLACK;
+        }
+      }
+    }
+  }
+
+	&.on {
+		border-color: $C_COOL_GRAY_80;
+
+    &::after {
+      content: '0';
+      position: absolute;
+      right: calc(100% + 32px);
+      bottom: -9px;
+      font-family: $F_PRETENDARD;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    &.small {
+		  border-color: $C_COOL_GRAY_60;
+
+      &::after {
+        right: calc(100% + 8px);
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+      }
+    }
+	}
+}
+
+
+.rowWrap {
+	display: flex;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	transform: translateY(calc(100% + 12px));
+
+  &.small {
+    transform: translateY(calc(100% + 8px));
+
+    .row {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+	.row {
+		width: 100%;
+		text-align: center;
+    font-family: $F_PRETENDARD;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+    color: $C_WARM_GRAY_70;
+
+    &:last-child {
+      font-weight: 700;
+      color: $C_JOBDA_BLACK;
+    }
+	}
+}

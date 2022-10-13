@@ -1,33 +1,23 @@
 @import '@styles/common.scss';
 
 .wrap {
-  padding: 10px;
-  display: flex;
+  width: 2200px;
+  height: 100%;
+  padding: 48px;
 }
 
-.barChartBtn {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 640px;
-  height: 56px;
-  background: $C_COOL_GRAY_30;
-  border: 1px solid $C_COOL_GRAY_40;
-  border-radius: 16px;
-  font-family: $F_NOTO_SANS_KR;
-  font-size: 15px;
-  color: $C_WARM_GRAY_70;
-  line-height: 20px;
-  letter-spacing: -0.36px;
-  
-  &.open {
-    background: $C_COOL_GRAY_70;
-    border: 1px solid $C_COOL_GRAY_70;
-    color: $C_WARM_GRAY_30;
-  }
-  
-  &:hover {
-    border: 1px solid $C_COOL_GRAY_70;
-  }
+.chartWrap {
+  display: inline-block;
+  width: 600px;
+  height: 320px;
+  margin-top: 32px;
+  margin-left: 48px;
+}
+
+.chartWrapS {
+  display: inline-block;
+  width: 312px;
+  height: 180px;
+  margin-top: 64px;
+  margin-left: 32px;
 }

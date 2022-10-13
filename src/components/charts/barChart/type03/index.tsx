@@ -19,7 +19,6 @@ interface BarChartType03Props {
 }
 
 const getSubText = ({lastYearValue, thisYearValue}: {lastYearValue?: number, thisYearValue: number}) => {
-  console.log(lastYearValue, thisYearValue);
   if(!lastYearValue || (lastYearValue === thisYearValue)) return '전년대비 보합';
   if(lastYearValue < thisYearValue) return '전년대비 상승';
   if(lastYearValue > thisYearValue) return '전년대비 하락';

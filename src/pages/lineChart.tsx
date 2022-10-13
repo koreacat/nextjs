@@ -80,7 +80,6 @@ const LineChartPage = () => {
               viewCount={12}
             />
           </div>
-          {/* 
           <div style={{width: '1100px', height: '384px', marginTop: '24px'}}>
             <LineChart
               colors={'green'}
@@ -91,8 +90,6 @@ const LineChartPage = () => {
               viewCount={12}
             />
           </div>
-           
-
           <div style={{width: '800px', height: '284px', marginTop: '24px'}}>
             <LineChart
               colors={'blue'}
@@ -103,7 +100,6 @@ const LineChartPage = () => {
               viewCount={12}
             />
           </div>
-          */}
           <div style={{marginTop: '48px'}}>
             <div style={{width: '340px', height: '205px'}}>
               <LineChart

@@ -1,6 +1,8 @@
 import styles from './type03.module.scss';
 import classnames from 'classnames/bind';
 import { useEffect, useRef, useState } from 'react';
+import ArrowUp from './ArrowUp';
+import ArrowDown from './ArrowDown';
 
 const cx = classnames.bind(styles);
 
@@ -20,8 +22,8 @@ interface BarChartType03Props {
 
 const getSubText = ({lastYearValue, thisYearValue}: {lastYearValue?: number, thisYearValue: number}) => {
   if(!lastYearValue || (lastYearValue === thisYearValue)) return '전년대비 보합';
-  if(lastYearValue < thisYearValue) return '전년대비 상승';
-  if(lastYearValue > thisYearValue) return '전년대비 하락';
+  if(lastYearValue < thisYearValue) return <> 전년대비 상승<ArrowUp/></>;
+  if(lastYearValue > thisYearValue) return <>전년대비 하락<ArrowDown/></>;
 }
 
 const BarChartType03 = ({ type = 'large', data, line = 6 }: BarChartType03Props) => {

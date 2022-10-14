@@ -118,6 +118,9 @@
 
         .subText {
           position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           top: calc(-50% - 4px);
           font-family: $F_PRETENDARD;
           font-weight: 700;

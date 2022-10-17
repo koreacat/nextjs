@@ -29,7 +29,8 @@ const ImageCrop = ({ imgSrc, imgName, width, height }: ImageCropProps) => {
 
   const getWidth = (imgWidth: number, imgHeight: number) => {
     if (imgWidth > width && imgHeight > height) {
-      return width;
+      if(height > width) return width;
+      return imgWidth * (height / imgHeight);
     }    
     if (imgHeight > height) return Math.min(imgWidth, width) * (height / imgHeight);
     return Math.min(imgWidth, width);
@@ -37,6 +38,7 @@ const ImageCrop = ({ imgSrc, imgName, width, height }: ImageCropProps) => {
 
   const getHeight = (imgWidth: number, imgHeight: number) => {
     if (imgWidth > width && imgHeight > height) {
+      if(height < width)  return height;
       return imgHeight * (width / imgWidth);      
     }
     if (imgWidth > width) return Math.min(imgHeight, height) * (width / imgWidth);

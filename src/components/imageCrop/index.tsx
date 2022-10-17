@@ -9,25 +9,45 @@ const cx = classnames.bind(styles);
 interface ImageCropProps {
   imgSrc: string;
   imgName: string;
+  width: number;
+  height: number;
 }
 
-const ImageCrop = ({ imgSrc, imgName }: ImageCropProps) => {
+const ImageCrop = ({ imgSrc, imgName, width, height }: ImageCropProps) => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [imgSize, setImgSize] = useState<Size>(ORIGIN_SIZE);
   const [cropBoxSize, setCropBoxSize] = useState<Size>(ORIGIN_SIZE);
   const [offset, setOffset] = useState<Point>(ORIGIN_POINT);
+  const [widthRatio, setWidthRatio] = useState<number>(1);
+  const [heightRatio, setHeightRatio] = useState<number>(1);
 
   useEffect(() => {
     init();
   }, [imgSrc]);
 
+
+  const getWidth = (imgWidth: number, imgHeight: number) => {
+    if(imgHeight > height) return imgWidth * (height / imgHeight);
+    return imgWidth;
+  }
+
+  const getHeight = (imgWidth: number, imgHeight: number) => {
+    if(imgWidth > width) return imgHeight * (width / imgWidth);
+    return imgHeight;
+  }
+
   const init = () => {
     const imgEl = new Image();
     imgEl.src = imgSrc;
     imgEl.onload = () => {
-      setImgSize({ w: imgEl.width, h: imgEl.height });
-      setCropBoxSize({ w: imgEl.width / 2, h: imgEl.height / 2 });
-      setOffset({ x: imgEl.width / 4, y: imgEl.height / 4 });
+      const imgWidth = getWidth(Math.min(imgEl.width, width), imgEl.height);
+      const imgHeight = getHeight(imgEl.width, Math.min(imgEl.height, height));
+
+      setWidthRatio(imgWidth / imgEl.width);
+      setHeightRatio(imgHeight / imgEl.height);
+      setImgSize({ w: imgWidth, h: imgHeight });
+      setCropBoxSize({ w: imgWidth / 2, h: imgHeight / 2 });
+      setOffset({ x: imgWidth / 4, y: imgHeight / 4 });
     }
   }
 
@@ -50,8 +70,14 @@ const ImageCrop = ({ imgSrc, imgName }: ImageCropProps) => {
     imgEl.src = imgSrc;
 
     imgEl.onload = () => {
+      const oc = document.createElement('canvas');
+      const octx = oc.getContext('2d');
+      oc.width = imgEl.width * widthRatio;
+      oc.height = imgEl.height * heightRatio;
+      octx.drawImage(imgEl, 0, 0, oc.width, oc.height);
+
       ctx.drawImage(
-        imgEl,
+        oc,
         offset.x,
         offset.y,
         cropBoxSize.w,
@@ -68,48 +94,49 @@ const ImageCrop = ({ imgSrc, imgName }: ImageCropProps) => {
   if (!imgSrc) return null;
 
   return (
-    <div
-      ref={wrapRef}
-      className={cx('wrap')}
-      style={{
-        width: `${imgSize.w}px`,
-        height: `${imgSize.h}px`,
-      }}
-    >
-      <div className={cx('cropArea')}>
-        <div className={cx('imgArea')}>
-          <div className={cx('imgBox')}>
-            <img
-              className={cx('img')}
-              src={imgSrc}
-              style={{
-                width: `${imgSize.w}px`,
-                height: `${imgSize.h}px`,
-              }}
-            />
+    <>
+      <div ref={wrapRef} className={cx('wrap')}
+        style={{
+          width: `${width}px`,
+          height: `${height}px`,
+        }}
+      >
+        <div className={cx('cropArea')}>
+          <div className={cx('imgArea')}>
+            <div className={cx('imgBox')}>
+              <img
+                className={cx('img')}
+                src={imgSrc}
+                style={{
+                  width: `${imgSize.w}px`,
+                  height: `${imgSize.h}px`,
+                }}
+              />
+            </div>
           </div>
+
+          <DimmedBox
+            wrapRef={wrapRef}
+            imgSize={imgSize}
+            setOffset={setOffset}
+            setCropBoxSize={setCropBoxSize}
+          />
+
+          <CropBox
+            wrapRef={wrapRef}
+            imgSrc={imgSrc}
+            imgSize={imgSize}
+            offset={offset}
+            setOffset={setOffset}
+            cropBoxSize={cropBoxSize}
+            setCropBoxSize={setCropBoxSize}
+          />
         </div>
 
-        <DimmedBox
-          wrapRef={wrapRef}
-          imgSize={imgSize}
-          setOffset={setOffset}
-          setCropBoxSize={setCropBoxSize}
-        />
-
-        <CropBox
-          wrapRef={wrapRef}
-          imgSrc={imgSrc}
-          imgSize={imgSize}
-          offset={offset}
-          setOffset={setOffset}
-          cropBoxSize={cropBoxSize}
-          setCropBoxSize={setCropBoxSize}
-        />
       </div>
 
       <a className={cx('btn')} onClick={handleDownload}>download</a>
-    </div>
+    </>
   )
 }
 

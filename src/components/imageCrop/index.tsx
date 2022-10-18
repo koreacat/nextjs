@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
-import { Size, Point, ORIGIN_POINT, ORIGIN_SIZE } from './data';
+import {useEffect, useRef, useState} from 'react';
+import {Size, Point, ORIGIN_POINT, ORIGIN_SIZE} from './data';
 import styles from './imageCrop.module.scss';
 import classnames from 'classnames/bind';
 import DimmedBox from './DimmedBox';
 import CropBox from './CropBox';
+
 const cx = classnames.bind(styles);
 
 interface ImageCropProps {
@@ -13,7 +14,7 @@ interface ImageCropProps {
   height: number;
 }
 
-const ImageCrop = ({ imgSrc, imgName, width, height }: ImageCropProps) => {
+const ImageCrop = ({imgSrc, imgName, width, height}: ImageCropProps) => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const cropAreaRef = useRef<HTMLDivElement>(null);
   const [imgSize, setImgSize] = useState<Size>(ORIGIN_SIZE);
@@ -29,17 +30,17 @@ const ImageCrop = ({ imgSrc, imgName, width, height }: ImageCropProps) => {
 
   const getWidth = (imgWidth: number, imgHeight: number) => {
     if (imgWidth > width && imgHeight > height) {
-      if(height > width) return width;
+      if (height > width) return width;
       return imgWidth * (height / imgHeight);
-    }    
+    }
     if (imgHeight > height) return Math.min(imgWidth, width) * (height / imgHeight);
     return Math.min(imgWidth, width);
   }
 
   const getHeight = (imgWidth: number, imgHeight: number) => {
     if (imgWidth > width && imgHeight > height) {
-      if(height < width)  return height;
-      return imgHeight * (width / imgWidth);      
+      if (height < width) return height;
+      return imgHeight * (width / imgWidth);
     }
     if (imgWidth > width) return Math.min(imgHeight, height) * (width / imgWidth);
     return Math.min(imgHeight, height);
@@ -54,9 +55,9 @@ const ImageCrop = ({ imgSrc, imgName, width, height }: ImageCropProps) => {
 
       setWidthRatio(imgWidth / imgEl.width);
       setHeightRatio(imgHeight / imgEl.height);
-      setImgSize({ w: imgWidth, h: imgHeight });
-      setCropBoxSize({ w: imgWidth / 2, h: imgHeight / 2 });
-      setOffset({ x: imgWidth / 4, y: imgHeight / 4 });
+      setImgSize({w: imgWidth, h: imgHeight});
+      setCropBoxSize({w: imgWidth / 2, h: imgHeight / 2});
+      setOffset({x: imgWidth / 4, y: imgHeight / 4});
     }
   }
 
@@ -83,9 +84,9 @@ const ImageCrop = ({ imgSrc, imgName, width, height }: ImageCropProps) => {
       const octx = oc.getContext('2d');
       oc.width = imgEl.width * widthRatio;
       oc.height = imgEl.height * heightRatio;
-      octx.drawImage(imgEl, 0, 0, oc.width, oc.height);
+      octx?.drawImage(imgEl, 0, 0, oc.width, oc.height);
 
-      ctx.drawImage(
+      ctx?.drawImage(
         oc,
         offset.x,
         offset.y,
@@ -105,12 +106,12 @@ const ImageCrop = ({ imgSrc, imgName, width, height }: ImageCropProps) => {
   return (
     <>
       <div ref={wrapRef} className={cx('wrap')}
-        style={{
-          width: `${width}px`,
-          height: `${height}px`,
-        }}
+           style={{
+             width: `${width}px`,
+             height: `${height}px`,
+           }}
       >
-        <div 
+        <div
           ref={cropAreaRef}
           className={cx('cropArea')}
           style={{
@@ -132,8 +133,14 @@ const ImageCrop = ({ imgSrc, imgName, width, height }: ImageCropProps) => {
           </div>
 
           <DimmedBox
-            offsetTop={wrapRef.current?.offsetTop + cropAreaRef.current?.offsetTop}
-            offsetLeft={wrapRef.current?.offsetLeft + cropAreaRef.current?.offsetLeft}
+            offsetTop={
+              (wrapRef.current ? wrapRef.current.offsetTop : 0)
+              + (cropAreaRef.current ? cropAreaRef.current?.offsetTop : 0)
+            }
+            offsetLeft={
+              (wrapRef.current ? wrapRef.current?.offsetLeft : 0)
+              + (cropAreaRef.current ? cropAreaRef.current.offsetLeft : 0)
+            }
             imgSize={imgSize}
             setOffset={setOffset}
             setCropBoxSize={setCropBoxSize}

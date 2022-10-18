@@ -25,9 +25,9 @@ interface CropBoxProps {
 }
 
 const CropBox = (
-  { 
-    wrapRef, 
-    imgSrc, 
+  {
+    wrapRef,
+    imgSrc,
     imgSize,
     offset,
     setOffset,
@@ -62,7 +62,7 @@ const CropBox = (
     document.removeEventListener("mouseup", stopPan);
   }
 
-  const startSetCropBox = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>, dir: DirType) => {
+  const startSetCropBox = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>, dir: string) => {
     e.preventDefault();
 
     const eLineX = offset.x + cropBoxSize.w;
@@ -71,12 +71,12 @@ const CropBox = (
     const nLineY = offset.y;
 
     const setCropBox = (e: MouseEvent) => {
-      const x = e.pageX - wrapRef.current.offsetLeft;
-      const y = e.pageY - wrapRef.current.offsetTop;
+      const x = e.pageX - (wrapRef.current ? wrapRef.current?.offsetLeft : 0);
+      const y = e.pageY - (wrapRef.current ? wrapRef.current?.offsetTop : 0);
       setBox({ x: clamp(x, 0, imgSize.w), y: clamp(y, 0, imgSize.h) });
     }
 
-    const setBox = (currentMousePos) => {
+    const setBox = (currentMousePos: {x: number, y: number}) => {
       const isCrossEL = !(wLineX + cropBoxSize.w > currentMousePos.x);
       const isCrossWL = eLineX - cropBoxSize.w > currentMousePos.x;
       const isCrossSL = !(nLineY + cropBoxSize.h > currentMousePos.y);
@@ -202,11 +202,11 @@ const CropBox = (
     <span key={dir} className={cx('dash', dir)} />
   )
 
-  const getLine = () => LINE_DIR.map((dir: DirType) =>
+  const getLine = () => LINE_DIR.map((dir: string) =>
     <span key={dir} className={cx('line', dir)} onMouseDown={e => startSetCropBox(e, dir)} />
   )
 
-  const getPoints = () => POINT_DIR.map((dir: DirType) =>
+  const getPoints = () => POINT_DIR.map((dir: string) =>
     <span key={dir} className={cx('point', dir)} onMouseDown={e => startSetCropBox(e, dir)} />
   )
 
@@ -247,7 +247,7 @@ const CropBox = (
 
       {/* 점 영역 */}
       {getPoints()}
-      
+
       <span className={cx('cropBoxInfo')}>
         {offset.x}, {offset.y}
         <br/>

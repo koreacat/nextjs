@@ -7,7 +7,7 @@ import styles from './../components/imageCrop/imageCrop.module.scss';
 import classnames from 'classnames/bind';
 const cx = classnames.bind(styles);
 
-const IMG_PATH = '/nextjs/img/matchIntroduce/imgMatch4.png';
+const IMG_PATH = '/nextjs/img/imageCrop/imgTest.jpg';
 
 const ImageCropPage = () => {
   const [imgSrc, setImgSrc] = useState(IMG_PATH);
@@ -37,13 +37,7 @@ const ImageCropPage = () => {
             />
           </label>
 
-
-          <div
-            style={{
-              width: '360px',
-              height: '600px',
-            }}
-          >
+          <div style={{ width: '360px', height: '600px' }}>
             <ImageCrop imgSrc={imgSrc} imgName={imgName} width={360} height={600}/>
           </div>
         </div>

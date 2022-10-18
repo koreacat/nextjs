@@ -35,7 +35,6 @@ const DimmedBox = (
     }
 
     const setCropBox = (e: MouseEvent) => {
-      console.log(offsetLeft, offsetTop);
       initCropBox();
       const w = e.pageX - startPoint.x;
       const h = e.pageY - startPoint.y;

@@ -1,7 +1,6 @@
 import { Size, Point, clamp } from './data';
 import styles from './imageCrop.module.scss';
 import classnames from 'classnames/bind';
-import { RefObject } from 'react';
 
 const cx = classnames.bind(styles);
 

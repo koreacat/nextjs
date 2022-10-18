@@ -38,11 +38,16 @@ const BarChartType03 = ({ type = 'large', data, line = 6 }: BarChartType03Props)
 
   useEffect(() => {
     setZeroLineIndex(line - Math.round(minPer * (line - 1)) - 1);
+    init();
+  }, [data]);
 
-    if(wrapRef && wrapRef.current){
-      setColumnHeight(wrapRef.current.clientHeight * ((line - 1) / line));
-    }
-  }, []);
+  const init = () => {
+    setTimeout(() => {
+      if(wrapRef && wrapRef.current){
+        setColumnHeight(wrapRef.current.clientHeight * ((line - 1) / line));
+      }
+    }, 0)
+  }
 
   const getBar = () => data.map(({ value, name }, i) => {
     const isReverse = value < 0;

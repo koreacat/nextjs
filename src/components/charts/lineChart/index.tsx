@@ -21,12 +21,19 @@ interface LineChartProps {
   onIndex?: number;
 }
 
-const LineChart = ({ colors = 'black', type = 'large', viewCount, rows, columns, data, onIndex: onIdx }: LineChartProps) => {
+const LineChart = ({
+                     colors = 'black',
+                     type = 'large',
+                     viewCount,
+                     rows,
+                     columns,
+                     data,
+                     onIndex: onIdx,
+                   }: LineChartProps) => {
   const [onIndex, setOnIndex] = useState<number | null>(null);
   const [slideIndex, setSlideIndex] = useState<number>(0);
   const [rowWidth, setRowWidth] = useState<number>(0);
   const [columnHeight, setColumnHeight] = useState<number>(0);
-  const [tableWidth, setTableWidth] = useState<number>(0);
   const [lineTrigger, setLineTrigger] = useState(true); // 점 아래 세로선 최초 애니메이션 실행용
   const chartRef = useRef<HTMLDivElement | null>(null);
   const tableRef = useRef<HTMLDivElement | null>(null);
@@ -50,13 +57,7 @@ const LineChart = ({ colors = 'black', type = 'large', viewCount, rows, columns,
     if (tableRef.current) {
       setColumnHeight(tableRef.current?.clientHeight / (columns.length - 1));
     }
-  }, []);
-
-  useEffect(() => {
-    if (tableRef.current) {
-      setTableWidth(tableRef.current.clientWidth);
-    }
-  }, [tableRef.current]);
+  }, [data, rows, columns]);
 
   const tableWidthWhitUnit = isOver ? `${(maxRow + 1) * rowWidth}px` : '100%';
   const translateX = isOver ? `translateX(${-(slideIndex * rowWidth)}px)` : 'translateX(0)';
@@ -64,12 +65,12 @@ const LineChart = ({ colors = 'black', type = 'large', viewCount, rows, columns,
   const handleClick = (index: number) => {
     setLineTrigger(false);
     setOnIndex(index);
-  }
+  };
 
   return (
     <div className={cx('lineChartArea')}>
       {/* Columns 영역 */}
-      <Columns columns={columns} type={type}/>
+      <Columns columns={columns} type={type} />
 
       <div ref={chartRef} className={cx('chartWrap', type)}>
         <div ref={tableRef} className={cx('tableArea')} style={{ width: tableWidthWhitUnit, transform: translateX }}>
@@ -83,8 +84,8 @@ const LineChart = ({ colors = 'black', type = 'large', viewCount, rows, columns,
             colors={colors}
             rows={rows}
             columnHeight={columnHeight}
-            width={tableWidth}
             height={tableRef.current?.clientHeight ?? 0}
+            tableRef={tableRef}
           />
 
           {/* 점, 툴팁, 세로 선 영역 */}

@@ -15,24 +15,26 @@ function addPoints(p1: Point, p2: Point, minX = 0, minY = 0, maxX = 0, maxY = 0)
 }
 
 interface CropBoxProps {
-  wrapRef: RefObject<HTMLDivElement>;
   imgSrc: string;
   imgSize: Size;
   offset: Point;
   setOffset: (offset: ((prev: Point) => Point) | Point) => void;
   cropBoxSize: Size;
   setCropBoxSize: (cropBoxSize: Size) => void;
+  offsetTop: number;
+  offsetLeft: number;
 }
 
 const CropBox = (
   {
-    wrapRef,
     imgSrc,
     imgSize,
     offset,
     setOffset,
     cropBoxSize,
     setCropBoxSize,
+    offsetTop,
+    offsetLeft,
   }: CropBoxProps) => {
   const lastMousePosRef = useRef<Point>(ORIGIN_POINT);
 
@@ -71,8 +73,8 @@ const CropBox = (
     const nLineY = offset.y;
 
     const setCropBox = (e: MouseEvent) => {
-      const x = e.pageX - (wrapRef.current ? wrapRef.current?.offsetLeft : 0);
-      const y = e.pageY - (wrapRef.current ? wrapRef.current?.offsetTop : 0);
+      const x = e.pageX - offsetLeft;
+      const y = e.pageY - offsetTop;
       setBox({ x: clamp(x, 0, imgSize.w), y: clamp(y, 0, imgSize.h) });
     }
 

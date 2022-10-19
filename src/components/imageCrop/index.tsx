@@ -101,6 +101,16 @@ const ImageCrop = ({imgSrc, imgName, width, height}: ImageCropProps) => {
     }
   };
 
+  const getOffsetTop = () => {
+    return (wrapRef.current ? wrapRef.current.offsetTop : 0)
+      + (cropAreaRef.current ? cropAreaRef.current?.offsetTop : 0);
+  }
+
+  const getOffsetLeft = () => {
+    return (wrapRef.current ? wrapRef.current?.offsetLeft : 0)
+      + (cropAreaRef.current ? cropAreaRef.current.offsetLeft : 0);
+  }
+
   if (!imgSrc) return null;
 
   return (
@@ -133,21 +143,16 @@ const ImageCrop = ({imgSrc, imgName, width, height}: ImageCropProps) => {
           </div>
 
           <DimmedBox
-            offsetTop={
-              (wrapRef.current ? wrapRef.current.offsetTop : 0)
-              + (cropAreaRef.current ? cropAreaRef.current?.offsetTop : 0)
-            }
-            offsetLeft={
-              (wrapRef.current ? wrapRef.current?.offsetLeft : 0)
-              + (cropAreaRef.current ? cropAreaRef.current.offsetLeft : 0)
-            }
+            offsetTop={getOffsetTop()}
+            offsetLeft={getOffsetLeft()}
             imgSize={imgSize}
             setOffset={setOffset}
             setCropBoxSize={setCropBoxSize}
           />
 
           <CropBox
-            wrapRef={wrapRef}
+            offsetTop={getOffsetTop()}
+            offsetLeft={getOffsetLeft()}
             imgSrc={imgSrc}
             imgSize={imgSize}
             offset={offset}

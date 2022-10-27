@@ -22,14 +22,14 @@ interface LineChartProps {
 }
 
 const LineChart = ({
-                     colors = 'black',
-                     type = 'large',
-                     viewCount,
-                     rows,
-                     columns,
-                     data,
-                     onIndex: onIdx,
-                   }: LineChartProps) => {
+  colors = 'black',
+  type = 'large',
+  viewCount,
+  rows,
+  columns,
+  data,
+  onIndex: onIdx,
+}: LineChartProps) => {
   const [onIndex, setOnIndex] = useState<number | null>(null);
   const [slideIndex, setSlideIndex] = useState<number>(0);
   const [rowWidth, setRowWidth] = useState<number>(0);
@@ -57,7 +57,7 @@ const LineChart = ({
     if (tableRef.current) {
       setColumnHeight(tableRef.current?.clientHeight / (columns.length - 1));
     }
-  }, [data, rows, columns]);
+  }, [data]);
 
   const tableWidthWhitUnit = isOver ? `${(maxRow + 1) * rowWidth}px` : '100%';
   const translateX = isOver ? `translateX(${-(slideIndex * rowWidth)}px)` : 'translateX(0)';

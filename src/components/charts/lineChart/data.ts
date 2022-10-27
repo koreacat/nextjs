@@ -8,7 +8,6 @@ export const EDGE_SPACE = {
   large: 0.66,
 };
 
-
 export const LineColors = {
   black: {
     small: '#9FA4AB',
@@ -21,14 +20,14 @@ export const LineColors = {
   blue: {
     small: '#8BA3DF',
     large: '#2B53AE',
-  }
-}
+  },
+};
 
 export const ShapeColors = {
   black: '#CFD1D5',
   green: '#E0F9E4',
   blue: '#C3D1EF',
-}
+};
 
 export interface ChartData {
   column: number;

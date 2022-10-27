@@ -29,9 +29,13 @@ const Line = ({ data, type, colors, rows, columnHeight, height, tableRef }: Line
   const stroke = LineColors[colors][type];
   const fill = ShapeColors[colors];
   const [lineData, setLineData] = useState('');
+  const [shapeData, setShapeData] = useState('');
 
   useEffect(() => {
-    const updateSize = () => setLineData(getLineData());
+    const updateSize = () => {
+      setLineData(getLineData());
+      setShapeData(getShapeData());
+    };
     window.addEventListener('resize', updateSize);
     updateSize();
     return () => window.removeEventListener('resize', updateSize);
@@ -52,7 +56,7 @@ const Line = ({ data, type, colors, rows, columnHeight, height, tableRef }: Line
     return (
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none">
         <path d={lineData} stroke={stroke} />
-        <path d={getShapeData()} fill={fill} fillOpacity={0.2} />
+        <path d={shapeData} fill={fill} fillOpacity={0.2} />
       </svg>
     );
   };

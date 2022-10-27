@@ -22,9 +22,7 @@ const Rows = ({ rows, type, maxRow, onIndex, tableWidthWhitUnit, translateX }: R
           className={cx('row', { on: index === onIndex }, type)}
           style={{ width: index === 0 ? `${EDGE_SPACE[type] * 100}%` : '100%' }}
         >
-          <span className={cx('rowText')}>
-            {row}
-          </span>
+          <span className={cx('rowText')}>{row}</span>
         </div>
       );
     });

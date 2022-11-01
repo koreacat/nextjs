@@ -92,9 +92,12 @@ $ROW_Z_INDEX: 40;
     left: 0;
     width: 0;
     height: 100%;
-    animation: slide 1s cubic-bezier(0.4, 0, 0.2, 1);
-    animation-fill-mode: forwards;
-    animation-delay: 0.2s;
+
+    &.animation {
+      animation: slide 1s cubic-bezier(0.4, 0, 0.2, 1);
+      animation-fill-mode: forwards;
+      animation-delay: 0.2s;
+    }
   }
 
   .pointsArea {
@@ -139,9 +142,12 @@ $ROW_Z_INDEX: 40;
         width: 16px;
         height: 16px;
         border-radius: 50%;
-        animation: fadeIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        animation-fill-mode: forwards;
         opacity: 0;
+
+        &.animation {
+          animation: fadeIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+          animation-fill-mode: forwards;
+        }
 
         &.small {
           width: 6px;

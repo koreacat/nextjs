@@ -35,6 +35,7 @@ const rowValue = [
 const LineChartPage = () => {
   const [employeeType, setEmployeeType] = useState<EmployeeType>('ALL');
   const [yearsValue, setYearsValue] = useState<string | null>(null);
+  const [trigger, setTrigger] = useState(false);
 
   const getUnit = () => {
     const max = Math.max(...value1);
@@ -76,10 +77,17 @@ const LineChartPage = () => {
 
   const handleClick = (type: EmployeeType) => {
     setEmployeeType(type);
+    animation();
   }
 
   const handleChange = (e) => {
     setYearsValue(e.target.value);
+    animation();
+  }
+
+  const animation = () => {
+    setTrigger(false);
+    setTimeout(() => setTrigger(true), 0)
   }
 
   return (
@@ -106,6 +114,7 @@ const LineChartPage = () => {
               data={getChartData(employeeType)}
               onIndex={11}
               viewCount={12}
+              trigger={trigger}
             />
           </div>
         </div>

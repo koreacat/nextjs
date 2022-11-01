@@ -19,6 +19,7 @@ interface LineChartProps {
   columns: string[];
   data: ChartData[];
   onIndex?: number;
+  trigger?: boolean;
 }
 
 const LineChart = ({
@@ -29,6 +30,7 @@ const LineChart = ({
   columns,
   data,
   onIndex: onIdx,
+  trigger = true,
 }: LineChartProps) => {
   const [onIndex, setOnIndex] = useState<number | null>(null);
   const [slideIndex, setSlideIndex] = useState<number>(0);
@@ -86,6 +88,7 @@ const LineChart = ({
             columnHeight={columnHeight}
             height={tableRef.current?.clientHeight ?? 0}
             tableRef={tableRef}
+            trigger={trigger}
           />
 
           {/* 점, 툴팁, 세로 선 영역 */}
@@ -98,6 +101,7 @@ const LineChart = ({
             columnHeight={columnHeight}
             maxRow={maxRow}
             lineTrigger={lineTrigger}
+            trigger={trigger}
           />
         </div>
 

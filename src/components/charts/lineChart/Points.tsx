@@ -13,11 +13,12 @@ interface PointsProps {
   columnHeight: number;
   maxRow: number;
   lineTrigger: boolean;
+  trigger: boolean;
 }
 
 const pointsAnimationDelay = [0, 0.1, 0.2, 0.3, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75];
 
-const Points = ({ data, type, colors, onIndex, handleClick, columnHeight, maxRow, lineTrigger }: PointsProps) => {
+const Points = ({ data, type, colors, onIndex, handleClick, columnHeight, maxRow, lineTrigger, trigger }: PointsProps) => {
   const getDataEl = () => {
     const dataEl = data.map((d, index) => {
       const { column, toolTip } = d;
@@ -27,7 +28,7 @@ const Points = ({ data, type, colors, onIndex, handleClick, columnHeight, maxRow
         if (!isOn) return null;
         return (
           <i
-            className={cx('line', { fadeIn: lineTrigger }, type)}
+            className={cx('line', { fadeIn: lineTrigger && trigger }, type)}
             style={{
               height: `${column * columnHeight}px`,
               animationDelay: `${pointsAnimationDelay[index]}s`,
@@ -47,7 +48,7 @@ const Points = ({ data, type, colors, onIndex, handleClick, columnHeight, maxRow
         >
           {getLine()}
           <a
-            className={cx('dataBtn', type)}
+            className={cx('dataBtn', type, { animation: trigger })}
             style={{
               transform: `translateY(-${column * columnHeight}px)`,
               animationDelay: `${pointsAnimationDelay[index]}s`,

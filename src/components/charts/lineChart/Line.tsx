@@ -13,9 +13,10 @@ interface LineProps {
   columnHeight: number;
   height: number;
   tableRef: MutableRefObject<HTMLDivElement | null>;
+  trigger: boolean;
 }
 
-const Line = ({ data, type, colors, rows, columnHeight, height, tableRef }: LineProps) => {
+const Line = ({ data, type, colors, rows, columnHeight, height, tableRef, trigger }: LineProps) => {
   const getRowWidth = () => {
     if (tableRef.current) {
       return tableRef.current?.clientWidth / (rows.length - 1 + EDGE_SPACE[type] * 2);
@@ -61,7 +62,7 @@ const Line = ({ data, type, colors, rows, columnHeight, height, tableRef }: Line
     );
   };
 
-  return <div className={cx('lineArea')}>{getDataLineEl()}</div>;
+  return <div className={cx('lineArea', { animation: trigger })}>{getDataLineEl()}</div>;
 };
 
 export default Line;

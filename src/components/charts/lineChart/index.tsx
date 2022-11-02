@@ -26,7 +26,7 @@ const LineChart = ({
   colors = 'black',
   type = 'large',
   viewCount,
-  rows,
+  rows: rowsData,
   columns,
   data,
   onIndex: onIdx,
@@ -40,11 +40,14 @@ const LineChart = ({
   const chartRef = useRef<HTMLDivElement | null>(null);
   const tableRef = useRef<HTMLDivElement | null>(null);
 
-  const maxRow = Math.max(rows.length, data.length);
+  const maxRow = Math.max(rowsData.length, data.length);
   const maxColumns = Math.max(columns.length, data.length - 1);
   const isOver = viewCount < maxRow;
+  const rows = [...rowsData, ...new Array(maxRow - rowsData.length).fill('')];
 
   useEffect(() => {
+    setLineTrigger(true);
+
     if (onIdx !== undefined) {
       const idx = onIdx > maxColumns ? maxColumns : onIdx;
       const slideIndex = idx - viewCount + 1;

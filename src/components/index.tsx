@@ -5,7 +5,7 @@ import { Fragment } from "react";
 
 const cx = classnames.bind(styles);
 
-const titles = ['page', 'components', 'effect', 'character', 'webgl', 'treejs'];
+const titles = ['page', 'components', 'effect', 'character', 'webgl', 'threejs'];
 
 const menu = {
   page: [
@@ -23,7 +23,7 @@ const menu = {
     },
     {
       name: 'matchIntroduce',
-      type: ['dom', 'new']
+      type: ['dom']
     },
   ],
   components: [
@@ -57,7 +57,7 @@ const menu = {
     },
     {
       name: 'bubbleChart',
-      type: ['canvas', 'new']
+      type: ['canvas']
     },
     {
       name: 'imageCrop',
@@ -82,7 +82,7 @@ const menu = {
       type: ['canvas']
     },
   ],
-  treejs: [
+  threejs: [
     {
       name: 'solarSystem',
       type: ['canvas', 'new']

@@ -1,7 +1,7 @@
 import styles from './imageCrop.module.scss';
 import classnames from 'classnames/bind';
-import { RefObject, useRef } from 'react';
-import { Point, Size, ORIGIN_POINT, DirType, LINE_DIR, POINT_DIR, clamp } from './data';
+import {MutableRefObject, useRef} from 'react';
+import { Point, Size, ORIGIN_POINT, LINE_DIR, POINT_DIR, clamp } from './data';
 const cx = classnames.bind(styles);
 
 function diffPoints(p1: Point, p2: Point) {
@@ -21,8 +21,8 @@ interface CropBoxProps {
   setOffset: (offset: ((prev: Point) => Point) | Point) => void;
   cropBoxSize: Size;
   setCropBoxSize: (cropBoxSize: Size) => void;
-  offsetTop: number;
-  offsetLeft: number;
+  wrapRef: MutableRefObject<HTMLDivElement>;
+  cropAreaRef: MutableRefObject<HTMLDivElement>;
 }
 
 const CropBox = (
@@ -33,13 +33,23 @@ const CropBox = (
     setOffset,
     cropBoxSize,
     setCropBoxSize,
-    offsetTop,
-    offsetLeft,
+    wrapRef,
+    cropAreaRef,
   }: CropBoxProps) => {
   const lastMousePosRef = useRef<Point>(ORIGIN_POINT);
 
   const getEdgeWidth = () => imgSize.w - cropBoxSize.w;
   const getEdgeHeight = () => imgSize.h - cropBoxSize.h;
+
+  const getOffsetTop = () => {
+    return (wrapRef.current ? wrapRef.current.offsetTop : 0)
+      + (cropAreaRef.current ? cropAreaRef.current?.offsetTop : 0);
+  }
+
+  const getOffsetLeft = () => {
+    return (wrapRef.current ? wrapRef.current?.offsetLeft : 0)
+      + (cropAreaRef.current ? cropAreaRef.current.offsetLeft : 0);
+  }
 
   const startPan = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     e.preventDefault();
@@ -73,8 +83,8 @@ const CropBox = (
     const nLineY = offset.y;
 
     const setCropBox = (e: MouseEvent) => {
-      const x = e.pageX - offsetLeft;
-      const y = e.pageY - offsetTop;
+      const x = e.pageX - getOffsetLeft();
+      const y = e.pageY - getOffsetTop();
       setBox({ x: clamp(x, 0, imgSize.w), y: clamp(y, 0, imgSize.h) });
     }
 

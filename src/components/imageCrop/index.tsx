@@ -46,16 +46,6 @@ const ImageCrop = ({imgSrc, imgName, width, height}: ImageCropProps) => {
     return Math.min(imgHeight, height);
   }
 
-  const getOffsetTop = () => {
-    return (wrapRef.current ? wrapRef.current.offsetTop : 0)
-      + (cropAreaRef.current ? cropAreaRef.current?.offsetTop : 0);
-  }
-
-  const getOffsetLeft = () => {
-    return (wrapRef.current ? wrapRef.current?.offsetLeft : 0)
-      + (cropAreaRef.current ? cropAreaRef.current.offsetLeft : 0);
-  }
-
   const init = () => {
     const imgEl = new Image();
     imgEl.src = imgSrc;
@@ -146,8 +136,8 @@ const ImageCrop = ({imgSrc, imgName, width, height}: ImageCropProps) => {
             imgSize={imgSize}
             setOffset={setOffset}
             setCropBoxSize={setCropBoxSize}
-            offsetTop={getOffsetTop()}
-            offsetLeft={getOffsetLeft()}
+            wrapRef={wrapRef}
+            cropAreaRef={cropAreaRef}
           />
 
           <CropBox
@@ -157,8 +147,8 @@ const ImageCrop = ({imgSrc, imgName, width, height}: ImageCropProps) => {
             setOffset={setOffset}
             cropBoxSize={cropBoxSize}
             setCropBoxSize={setCropBoxSize}
-            offsetTop={getOffsetTop()}
-            offsetLeft={getOffsetLeft()}
+            wrapRef={wrapRef}
+            cropAreaRef={cropAreaRef}
           />
         </div>
 

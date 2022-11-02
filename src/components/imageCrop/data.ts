@@ -12,7 +12,6 @@ enum DIR {
   nw = 'nw',
 }
 
-export type DirType = keyof typeof DIR;
 export const LINE_DIR = ['e', 'w', 's', 'n'];
 export const POINT_DIR = [...Object.keys(DIR)];
 

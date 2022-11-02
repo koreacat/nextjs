@@ -42,16 +42,22 @@ const Line = ({ data, type, colors, rows, columnHeight, height, tableRef, trigge
     return () => window.removeEventListener('resize', updateSize);
   }, [data, tableRef.current?.clientWidth]);
 
-  const getLineData = () => data.reduce((prev, { column }, i) => `${prev} ${getPoint(i, column)} ${getChar(i)}`, 'M');
+  const getLineData = () => {
+    if(!data.length) return '';
+    return data.reduce((prev, { column }, i) => `${prev} ${getPoint(i, column)} ${getChar(i)}`, 'M');
+  }
 
-  const getShapeData = () =>
-    data.reduce((prev, { column }, i) => {
+  const getShapeData = () => {
+    if(!data.length) return '';
+    return data.reduce((prev, { column }, i) => {
       if (i === data.length - 1) {
         const shape = `L${getX(i)} ${height} L${getRowWidth() * EDGE_SPACE[type]} ${height} Z`;
         return `${prev} ${getPoint(i, column)} ${shape}`;
       }
       return `${prev} ${getPoint(i, column)} ${getChar(i)}`;
     }, 'M');
+  }
+
 
   const getDataLineEl = () => {
     return (

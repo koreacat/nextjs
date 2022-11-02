@@ -1,6 +1,6 @@
 import classnames from 'classnames/bind';
 import styles from './grid.module.scss';
-import {useLayoutEffect, useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 const cx = classnames.bind(styles);
 
@@ -19,14 +19,14 @@ const Grid = ({canvasWidth = 3000, canvasHeight = 2000, state = false, size = 50
   const [visible, setVisible] = useState(state);
 
   // setup canvas and set context
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!canvasRef) return;
     const renderCtx = canvasRef.current.getContext("2d");
     if (renderCtx) reset(renderCtx);
   }, [canvasHeight, canvasWidth]);
 
   // draw
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (ctx) {
       const storedTransform = ctx.getTransform();
       ctx.canvas.width = ctx.canvas.width;

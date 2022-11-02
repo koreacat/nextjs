@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom/client';
 import styles from './alert.module.scss';
 import classnames from 'classnames/bind';
 
@@ -41,7 +41,8 @@ const Alert = (props: AlertProps) => {
       </div>
     </div>;
 
-  ReactDOM.render(alert, el);
+  const rootNode = document.getElementById('__next');
+  ReactDOM.createRoot(rootNode).render(alert, el);
 };
 
 export default Alert;

@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom/client';
 import styles from './toast.module.scss';
 import classnames from 'classnames/bind';
 
@@ -47,7 +47,8 @@ const Toast = (props: ToastPopupProps) => {
       </a>
     </div>;
 
-  ReactDOM.render(toast, el);
+  const rootNode = document.getElementById('__next');
+  ReactDOM.createRoot(rootNode).render(toast, el);
 };
 
 export default Toast;

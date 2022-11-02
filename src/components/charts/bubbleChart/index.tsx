@@ -1,6 +1,5 @@
 import {
   useEffect,
-  useLayoutEffect,
   useRef,
   useState,
   ReactElement
@@ -130,14 +129,14 @@ const BubbleChart = ({ canvasWidth, canvasHeight, chartDataList }: CanvasProps) 
   }, [ctx, mousePos.x, mousePos.y, viewportTopLeft, scale]);
 
   // setup canvas and set context
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!canvasRef) return;
     const renderCtx = canvasRef.current.getContext("2d");
     if (renderCtx) reset(renderCtx);
   }, [canvasHeight, canvasWidth, chartDataList]);
 
   // pan when offset or scale changes
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (ctx && lastOffsetRef.current) {
       const offsetDiff = scalePoint(
         diffPoints(offset, lastOffsetRef.current),
@@ -150,7 +149,7 @@ const BubbleChart = ({ canvasWidth, canvasHeight, chartDataList }: CanvasProps) 
   }, [ctx, offset, scale]);
 
   // draw
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (ctx) {
       const storedTransform = ctx.getTransform();
       ctx.canvas.width = ctx.canvas.width;

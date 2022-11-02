@@ -5,7 +5,7 @@ import { Fragment } from "react";
 
 const cx = classnames.bind(styles);
 
-const titles = ['page', 'components', 'effect', 'character', 'webgl'];
+const titles = ['page', 'components', 'effect', 'character', 'webgl', 'treejs'];
 
 const menu = {
   page: [
@@ -81,11 +81,13 @@ const menu = {
       name: 'webGL',
       type: ['canvas']
     },
-    {
-      name: 'treejs',
-      type: ['canvas']
-    },
   ],
+  treejs: [
+    {
+      name: 'solarSystem',
+      type: ['canvas', 'new']
+    },
+  ]
 };
 
 

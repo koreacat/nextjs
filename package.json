@@ -24,7 +24,8 @@
 		"react-scroll": "^1.8.2",
 		"react-waypoint": "^10.1.0",
 		"sass": "^1.32.8",
-		"webgl-dev-utils": "0.0.2"
+		"webgl-dev-utils": "0.0.2",
+		"three": "^0.115.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.7.2",

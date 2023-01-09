@@ -1,3 +1,62 @@
+@import '@styles/common.scss';
+
+.imageCropModal {
+  overflow: hidden;
+  width: 560px;
+  border-radius: 8px;
+  background-color: $C_WHITE;
+}
+
+.titleArea {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 106px;
+  padding: 0 40px;
+
+  .title {
+    font-size: 22px;
+    line-height: 26px;
+    color: $C_JOBDA_BLACK;
+  }
+}
+
+.btnArea {
+  display: flex;
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 42px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    color: $C_COOL_GRAY_90;
+
+    & + .btn {
+      margin-left: 8px;
+    }
+
+    &.save {
+      background-color: $C_COOL_GRAY_90;
+      font-weight: 700;
+      color: $C_WHITE;
+    }
+  }
+}
+
+.imageArea {
+  position: relative;
+  background-color: #eee;
+  background-image: linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd),
+  linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+}
+
 .wrap {
   position: relative;
   display: flex;
@@ -37,7 +96,7 @@
   left: 0;
   right: 0;
   background-color: #000;
-  opacity: .5;
+  opacity: 0.5;
   cursor: crosshair;
   user-select: none;
 }
@@ -47,7 +106,7 @@
   top: 0;
   left: 0;
   display: block;
-  outline: 1px solid #39f;
+  outline: 1px solid #fff;
 
   .viewBox {
     overflow: hidden;
@@ -64,8 +123,8 @@
   .dash {
     position: absolute;
     display: block;
-    border: 0 dashed #eee;
-    opacity: .5;
+    border: 1px solid #fff;
+    opacity: 0.5;
 
     &.w {
       border-bottom-width: 1px;
@@ -93,7 +152,7 @@
     display: block;
     width: 0;
     height: 0;
-    opacity: .75;
+    opacity: 0.75;
 
     &:before {
       position: absolute;
@@ -103,7 +162,7 @@
       width: 7px;
       height: 1px;
       background-color: #eee;
-      content: " ";
+      content: ' ';
     }
 
     &:after {
@@ -114,7 +173,7 @@
       width: 1px;
       height: 7px;
       background-color: #eee;
-      content: " ";
+      content: ' ';
     }
   }
 
@@ -126,7 +185,7 @@
     width: 100%;
     height: 100%;
     background-color: #fff;
-    opacity: .1;
+    opacity: 0.1;
     user-select: none;
     cursor: move;
   }
@@ -136,8 +195,8 @@
     display: block;
     width: 100%;
     height: 100%;
-    opacity: .1;
-    background-color: #39f;
+    opacity: 0.1;
+    background-color: #fff;
 
     &.n {
       top: -3px;
@@ -166,24 +225,22 @@
       width: 5px;
       cursor: w-resize;
     }
-
   }
 
   .point {
     position: absolute;
-    display: block;
-    width: 5px;
-    height: 5px;
-    background-color: #39f;
-    opacity: .75;
+    width: 6px;
+    height: 6px;
+    background-color: $C_JOBDA_BLACK;
 
     &.nw {
-      top: -3px;
-      left: -3px;
+      top: -4px;
+      left: -4px;
       cursor: nw-resize;
     }
 
     &.n {
+      display: none;
       top: -3px;
       left: 50%;
       margin-left: -3px;
@@ -191,12 +248,13 @@
     }
 
     &.ne {
-      top: -3px;
-      right: -3px;
+      top: -4px;
+      right: -4px;
       cursor: ne-resize;
     }
 
     &.e {
+      display: none;
       top: 50%;
       right: -3px;
       margin-top: -3px;
@@ -204,13 +262,14 @@
     }
 
     &.se {
-      right: -3px;
-      bottom: -3px;
+      right: -4px;
+      bottom: -4px;
       margin-top: -3px;
       cursor: se-resize;
     }
 
     &.s {
+      display: none;
       bottom: -3px;
       left: 50%;
       margin-left: -3px;
@@ -218,12 +277,13 @@
     }
 
     &.sw {
-      bottom: -3px;
-      left: -3px;
+      bottom: -4px;
+      left: -4px;
       cursor: sw-resize;
     }
 
     &.w {
+      display: none;
       top: 50%;
       left: -3px;
       margin-top: -3px;
@@ -233,40 +293,15 @@
 
   .cropBoxInfo {
     position: absolute;
-    right: 0;
-    display: block;
-    min-width: 125px;
-    text-align: right;
-    color: #fff;
-    font-weight: 700;
-    text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 13px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: $C_WHITE;
+    white-space: nowrap;
   }
-}
-
-.btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 120px;
-  height: 40px;
-  margin-left: auto;
-  margin-top: 20px;
-  border-radius: 8px;
-  background-color: #39f;
-  font-size: 16px;
-  color: #fff;
-  cursor: pointer;
-}
-
-.btnChoice {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 140px;
-  height: 40px;
-  border-radius: 8px;
-  background-color: #39f;
-  font-size: 16px;
-  color: #fff;
-  cursor: pointer;
 }

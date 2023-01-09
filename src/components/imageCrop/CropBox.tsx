@@ -1,7 +1,8 @@
 import styles from './imageCrop.module.scss';
 import classnames from 'classnames/bind';
-import {MutableRefObject, useRef} from 'react';
+import { useRef } from 'react';
 import { Point, Size, ORIGIN_POINT, LINE_DIR, POINT_DIR, clamp } from './data';
+
 const cx = classnames.bind(styles);
 
 function diffPoints(p1: Point, p2: Point) {
@@ -21,42 +22,28 @@ interface CropBoxProps {
   setOffset: (offset: ((prev: Point) => Point) | Point) => void;
   cropBoxSize: Size;
   setCropBoxSize: (cropBoxSize: Size) => void;
-  wrapRef: MutableRefObject<HTMLDivElement>;
-  cropAreaRef: MutableRefObject<HTMLDivElement>;
 }
 
-const CropBox = (
-  {
-    imgSrc,
-    imgSize,
-    offset,
-    setOffset,
-    cropBoxSize,
-    setCropBoxSize,
-    wrapRef,
-    cropAreaRef,
-  }: CropBoxProps) => {
+const CropBox = ({ imgSrc, imgSize, offset, setOffset, cropBoxSize, setCropBoxSize }: CropBoxProps) => {
   const lastMousePosRef = useRef<Point>(ORIGIN_POINT);
 
   const getEdgeWidth = () => imgSize.w - cropBoxSize.w;
   const getEdgeHeight = () => imgSize.h - cropBoxSize.h;
 
   const getOffsetTop = () => {
-    return (wrapRef.current ? wrapRef.current.offsetTop : 0)
-      + (cropAreaRef.current ? cropAreaRef.current?.offsetTop : 0);
-  }
+    return (window.innerHeight - 666) / 2 + 106 + (560 - imgSize.h) / 2;
+  };
 
   const getOffsetLeft = () => {
-    return (wrapRef.current ? wrapRef.current?.offsetLeft : 0)
-      + (cropAreaRef.current ? cropAreaRef.current.offsetLeft : 0);
-  }
+    return (window.innerWidth - imgSize.w) / 2;
+  };
 
   const startPan = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     e.preventDefault();
-    document.addEventListener("mousemove", moveCropBox);
-    document.addEventListener("mouseup", stopPan);
+    document.addEventListener('mousemove', moveCropBox);
+    document.addEventListener('mouseup', stopPan);
     lastMousePosRef.current = { x: e.clientX, y: e.clientY };
-  }
+  };
 
   const moveCropBox = (e: MouseEvent) => {
     const lastMousePos = lastMousePosRef.current;
@@ -64,15 +51,13 @@ const CropBox = (
     const mouseDiff = diffPoints(currentMousePos, lastMousePos);
 
     lastMousePosRef.current = currentMousePos;
-    setOffset((prevOffset) =>
-      addPoints(prevOffset, mouseDiff, 0, 0, getEdgeWidth(), getEdgeHeight())
-    );
-  }
+    setOffset((prevOffset) => addPoints(prevOffset, mouseDiff, 0, 0, getEdgeWidth(), getEdgeHeight()));
+  };
 
   const stopPan = () => {
-    document.removeEventListener("mousemove", moveCropBox);
-    document.removeEventListener("mouseup", stopPan);
-  }
+    document.removeEventListener('mousemove', moveCropBox);
+    document.removeEventListener('mouseup', stopPan);
+  };
 
   const startSetCropBox = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>, dir: string) => {
     e.preventDefault();
@@ -83,12 +68,15 @@ const CropBox = (
     const nLineY = offset.y;
 
     const setCropBox = (e: MouseEvent) => {
-      const x = e.pageX - getOffsetLeft();
-      const y = e.pageY - getOffsetTop();
-      setBox({ x: clamp(x, 0, imgSize.w), y: clamp(y, 0, imgSize.h) });
-    }
+      const startPoint = { x: e.clientX, y: e.clientY };
 
-    const setBox = (currentMousePos: {x: number, y: number}) => {
+      setBox({
+        x: clamp(startPoint.x - getOffsetLeft(), 0, imgSize.w),
+        y: clamp(startPoint.y - getOffsetTop(), 0, imgSize.h)
+      });
+    };
+
+    const setBox = (currentMousePos: { x: number; y: number }) => {
       const isCrossEL = !(wLineX + cropBoxSize.w > currentMousePos.x);
       const isCrossWL = eLineX - cropBoxSize.w > currentMousePos.x;
       const isCrossSL = !(nLineY + cropBoxSize.h > currentMousePos.y);
@@ -199,28 +187,28 @@ const CropBox = (
           }
           break;
       }
-    }
+    };
 
     const stopSetCropBox = () => {
-      document.removeEventListener("mousemove", setCropBox);
-      document.removeEventListener("mouseup", stopSetCropBox);
-    }
+      document.removeEventListener('mousemove', setCropBox);
+      document.removeEventListener('mouseup', stopSetCropBox);
+    };
 
-    document.addEventListener("mousemove", setCropBox);
-    document.addEventListener("mouseup", stopSetCropBox);
-  }
+    document.addEventListener('mousemove', setCropBox);
+    document.addEventListener('mouseup', stopSetCropBox);
+  };
 
-  const getDash = () => ['w', 'h'].map((dir) =>
-    <span key={dir} className={cx('dash', dir)} />
-  )
+  const getDash = () => ['w', 'h'].map((dir) => <span key={dir} className={cx('dash', dir)} />);
 
-  const getLine = () => LINE_DIR.map((dir: string) =>
-    <span key={dir} className={cx('line', dir)} onMouseDown={e => startSetCropBox(e, dir)} />
-  )
+  const getLine = () =>
+    LINE_DIR.map((dir: string) => (
+      <span key={dir} className={cx('line', dir)} onMouseDown={(e) => startSetCropBox(e, dir)} />
+    ));
 
-  const getPoints = () => POINT_DIR.map((dir: string) =>
-    <span key={dir} className={cx('point', dir)} onMouseDown={e => startSetCropBox(e, dir)} />
-  )
+  const getPoints = () =>
+    POINT_DIR.map((dir: string) => (
+      <span key={dir} className={cx('point', dir)} onMouseDown={(e) => startSetCropBox(e, dir)} />
+    ));
 
   return (
     <div
@@ -228,19 +216,19 @@ const CropBox = (
       style={{
         width: `${cropBoxSize.w}px`,
         height: `${cropBoxSize.h}px`,
-        transform: `translateX(${offset.x}px) translateY(${offset.y}px)`
+        transform: `translateX(${offset.x}px) translateY(${offset.y}px)`,
       }}
     >
-
       {/* 이미지 영역 */}
       <span className={cx('viewBox')}>
         <img
           className={cx('viewImg')}
           src={imgSrc}
+          alt={'img'}
           style={{
             width: `${imgSize.w}px`,
             height: `${imgSize.h}px`,
-            transform: `translateX(-${offset.x}px) translateY(-${offset.y}px)`
+            transform: `translateX(-${offset.x}px) translateY(-${offset.y}px)`,
           }}
         />
       </span>
@@ -260,13 +248,9 @@ const CropBox = (
       {/* 점 영역 */}
       {getPoints()}
 
-      <span className={cx('cropBoxInfo')}>
-        {offset.x}, {offset.y}
-        <br/>
-        {cropBoxSize.w}, {cropBoxSize.h} (px)
-      </span>
+      <span className={cx('cropBoxInfo')}>드래그하여 위치를 조정해주세요</span>
     </div>
-  )
-}
+  );
+};
 
 export default CropBox;
